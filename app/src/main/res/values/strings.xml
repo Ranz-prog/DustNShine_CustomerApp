@@ -22,6 +22,13 @@
     <string name="province">Province</string>
     <string name="zipcode">Zip Code</string>
 
-
+    <!--Forgot Password-->
+    <string name="findyouraccount">Find Your Account</string>
+    <string name="enteryouremail">Enter Your Email</string>
+    <string name="resetyourpassword">Reset Your Password</string>
+    <string name="newpassword">New Password</string>
+    <string name="resetcode">Reset Code</string>
+    <string name="save">Save</string>
+    <string name="enteremail">Please enter your email to search for your account</string>
 
 </resources>
