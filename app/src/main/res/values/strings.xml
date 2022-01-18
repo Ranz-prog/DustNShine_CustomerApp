@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Dust n\' Shine</string>
+
+    <!--Sign In-->
+    <string name="signin">Sign In</string>
+    <string name="username">Username or email</string>
+    <string name="password">Password</string>
+    <string name="dustnshine">Dust n\' Shine</string>
+
+    <!--Sign Up-->
+    <string name="signup">Sign Up</string>
+    <string name="personalinformation">Personal Information</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="email">Email Address</string>
+    <string name="retypepassword">Re-type Password</string>
+    <string name="location">Location</string>
+    <string name="houseno">House no.</string>
+    <string name="street">Street</string>
+    <string name="barangay">Last Name</string>
+    <string name="citymunicipality">City/Municipality</string>
+    <string name="province">Province</string>
+    <string name="zipcode">Zip Code</string>
+
+
+
+</resources>
