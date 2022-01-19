@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.ActivityManageAccount">
 
-
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ReturnBtnOnManageAcc"
         android:layout_width="44dp"
