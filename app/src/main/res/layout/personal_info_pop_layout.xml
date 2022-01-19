@@ -1,212 +1,390 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.PersonalInfoPopLayout">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/PersonalInfoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="113dp"
-        android:text="Personal Info"
-        android:textColor="@color/app_yellow"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.564"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/firstName"
-        android:layout_width="169dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PersonalInfoText" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/lastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Last Name"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/firstName"
-        app:layout_constraintTop_toBottomOf="@+id/PersonalInfoText" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="13dp"
-        android:ems="10"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/personalinformation"
+                    android:textColor="@color/app_blue"
+                    android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/mobileNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Mobile Number"
-        android:inputType="phone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="17dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mobileNum" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/reytpePass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="21dp"
-        android:ems="10"
-        android:hint="Re-type Password"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/firstName"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/edittext_layout"
+                            android:cursorVisible="true"
+                            android:gravity="center|left|bottom"
+                            android:hint="@string/firstname"
+                            android:maxLength="50"
+                            android:paddingBottom="10dp"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="22dp"
-        android:text="Location"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reytpePass" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/houseNo"
-        android:layout_width="172dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="21dp"
-        android:ems="10"
-        android:hint="House Number"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lastName"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="210dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/edittext_layout"
+                            android:cursorVisible="true"
+                            android:gravity="center|left|bottom"
+                            android:hint="@string/lastname"
+                            android:maxLength="50"
+                            android:paddingBottom="10dp"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/street"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="72dp"
-        android:ems="10"
-        android:hint="Street"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/houseNo"
-        app:layout_constraintTop_toBottomOf="@+id/reytpePass" />
+                </RelativeLayout>
 
-    <EditText
-        android:id="@+id/barangay"
-        android:layout_width="184dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Barangay"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/houseNo" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/city"
-        android:layout_width="189dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="City / Municipality"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/barangay"
-        app:layout_constraintTop_toBottomOf="@+id/street" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/edittext_layout"
+                        android:cursorVisible="true"
+                        android:gravity="center|left|bottom"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="50"
+                        android:paddingBottom="10dp"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/province"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="Province"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/zip"
-        android:layout_width="162dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="23dp"
-        android:ems="10"
-        android:hint="Zip Code"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/province"
-        app:layout_constraintTop_toBottomOf="@+id/city" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mobileNum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/edittext_layout"
+                        android:cursorVisible="true"
+                        android:gravity="center|left|bottom"
+                        android:hint="@string/mobilenumber"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:paddingBottom="10dp"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="29dp"
-        android:text="Edit"
-        app:layout_constraintStart_toEndOf="@+id/cancel"
-        app:layout_constraintTop_toBottomOf="@+id/zip" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="32dp"
-        android:text="Cancel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/province" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/edittext_layout"
+                        android:cursorVisible="true"
+                        android:gravity="center|left|bottom"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:paddingBottom="10dp"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="29dp"
-        android:text="Save"
-        app:layout_constraintStart_toEndOf="@+id/edit"
-        app:layout_constraintTop_toBottomOf="@+id/zip" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/reytpePass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/edittext_layout"
+                        android:cursorVisible="true"
+                        android:gravity="center|left|bottom"
+                        android:hint="@string/retypepassword"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:paddingBottom="10dp"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="@string/location"
+                    android:textColor="@color/app_blue"
+                    android:textSize="25sp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/houseNo"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/edittext_layout"
+                            android:cursorVisible="true"
+                            android:gravity="center|left|bottom"
+                            android:hint="@string/houseno"
+                            android:maxLength="50"
+                            android:paddingBottom="10dp"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/street"
+                            android:layout_width="230dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="160dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/edittext_layout"
+                            android:cursorVisible="true"
+                            android:gravity="center|left|bottom"
+                            android:hint="@string/street"
+                            android:maxLength="50"
+                            android:paddingBottom="10dp"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/barangay"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/edittext_layout"
+                            android:cursorVisible="true"
+                            android:gravity="center|left|bottom"
+                            android:hint="@string/barangay"
+                            android:maxLength="50"
+                            android:paddingBottom="10dp"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/city"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="210dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/edittext_layout"
+                            android:cursorVisible="true"
+                            android:gravity="center|left|bottom"
+                            android:hint="@string/citymunicipality"
+                            android:maxLength="50"
+                            android:paddingBottom="10dp"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/province"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/edittext_layout"
+                            android:cursorVisible="true"
+                            android:gravity="center|left|bottom"
+                            android:hint="@string/province"
+                            android:maxLength="50"
+                            android:paddingBottom="10dp"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/zip"
+                            android:layout_width="160dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="230dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/edittext_layout"
+                            android:cursorVisible="true"
+                            android:gravity="center|left|bottom"
+                            android:hint="@string/zipcode"
+                            android:maxLength="50"
+                            android:paddingBottom="10dp"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginBottom="0dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="bottom|left"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_corners_button_layout"
+                        android:backgroundTint="@color/app_blue"
+                        android:padding="10dp"
+                        android:text="Edit"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="bottom|left"
+                        android:layout_marginStart="168dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:background="@drawable/rounded_corners_button_layout"
+                        android:backgroundTint="@color/app_blue"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Cancel"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="bottom|left"
+                        android:layout_marginStart="293dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="-1dp"
+                        android:background="@drawable/rounded_corners_button_layout"
+                        android:backgroundTint="@color/app_blue"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Save"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</layout>
