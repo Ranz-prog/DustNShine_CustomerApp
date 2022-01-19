@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/Users/Jolo/customer-app/app/src/main/res/layout/activity_forgot_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jolo/customer-app/app/src/main/res/layout/activity_forgotpw_search_email.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jolo/customer-app/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Jolo/customer-app/app/src/main/res/layout/activity_manage_acc.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Jolo/customer-app/app/src/main/res/layout/activity_signin.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jolo/customer-app/app/src/main/res/layout/fragment_message.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jolo/customer-app/app/src/main/res/layout/personal_info_pop_layout.xml" value="0.13020833333333334" />
       </map>
     </option>
   </component>

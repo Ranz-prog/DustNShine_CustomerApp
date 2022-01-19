@@ -31,4 +31,7 @@
     <string name="save">Save</string>
     <string name="enteremail">Please enter your email to search for your account</string>
 
+    <!--Manage Account-->
+    <string name="managecards">Manage Cards</string>
+
 </resources>
