@@ -3,50 +3,55 @@ package com.example.dustnshine;
 import java.io.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.example.dustnshine.ui.FragmentFavorites;
 import com.example.dustnshine.ui.FragmentHome;
 import com.example.dustnshine.ui.FragmentMessage;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        bottomNavigationView.setOnItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.homeFragment);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.flFragment, new FragmentHome()).commit();
     }
-    FragmentHome fragmentHome = new FragmentHome();
-    FragmentMessage fragmentMessage = new FragmentMessage();
-    FragmentFavorites fragmentFavorites = new FragmentFavorites();
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            int itemId = item.getItemId();
+            if (itemId == R.id.home) {
+                selectedFragment = new FragmentHome();
+            } else if (itemId == R.id.message) {
+                selectedFragment = new FragmentMessage();
+            } else if (itemId == R.id.favorite) {
+                selectedFragment = new FragmentFavorites();
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,
+                    selectedFragment).commit();
 
-        switch (item.getItemId()) {
-            case R.id.home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentHome).commit();
-                return true;
-
-            case R.id.message:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentMessage).commit();
-                return true;
-
-            case R.id.favorite:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentFavorites).commit();
-                return true;
+            return true;
         }
-        return false;
-    }
-
-    // Comment ni Ivan
+    };
 }
