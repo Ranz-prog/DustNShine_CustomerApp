@@ -10,11 +10,15 @@ import com.example.dustnshine.ui.FragmentHome;
 import com.example.dustnshine.ui.FragmentMessage;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private long backButtonCount;
 
     BottomNavigationView bottomNavigationView;
 
@@ -54,4 +58,22 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    @Override
+    public void onBackPressed()
+    {
+        if(backButtonCount >= 1)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
+    }
 }
