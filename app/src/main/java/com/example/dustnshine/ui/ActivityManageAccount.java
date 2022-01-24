@@ -2,21 +2,25 @@ package com.example.dustnshine.ui;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.dustnshine.R;
 
 public class ActivityManageAccount extends AppCompatActivity {
 
-    Button personal, edit, cancel, save;
-    AlertDialog.Builder dialogBuilder;
-    AlertDialog dialog;
-    EditText fname, lname, email, mobile, pass,repass, house , street,  barangay,city,province, zip;
+    LinearLayout personalInfoView;
+    TextView txtPersonalInfo;
+    CardView personalInfoCardView;
 
 
     @Override
@@ -26,49 +30,23 @@ public class ActivityManageAccount extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_manage_acc);
 
-        personal = findViewById(R.id.PersonalInfoBtn);
+        personalInfoView = findViewById(R.id.personal_info_view);
+        txtPersonalInfo = findViewById(R.id.txtPersonalInfo);
+        personalInfoCardView = findViewById(R.id.personal_info_cardview);
 
-        personal.setOnClickListener(new View.OnClickListener() {
+
+        txtPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                createNewContactDialog();
-
+            public void onClick(View view) {
+                if (personalInfoView.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(personalInfoCardView, new AutoTransition());
+                    personalInfoView.setVisibility(View.VISIBLE);
+                } else {
+                    TransitionManager.beginDelayedTransition(personalInfoCardView, new AutoTransition());
+                    personalInfoView.setVisibility(View.GONE);
+                }
             }
         });
-    }
-
-    public void createNewContactDialog(){
-        dialogBuilder = new AlertDialog.Builder(this);
-        final View contactPopupView = getLayoutInflater().inflate(R.layout.personal_info_pop_layout,null);
-        fname = contactPopupView.findViewById(R.id.firstName);
-        lname = contactPopupView.findViewById(R.id.lastName);
-        email = contactPopupView.findViewById(R.id.email);
-        mobile = contactPopupView.findViewById(R.id.mobileNum);
-        pass = contactPopupView.findViewById(R.id.Password);
-        repass = contactPopupView.findViewById(R.id.reytpePass);
-        house = contactPopupView.findViewById(R.id.houseNo);
-        street = contactPopupView.findViewById(R.id.street);
-        barangay = contactPopupView.findViewById(R.id.barangay);
-        city = contactPopupView.findViewById(R.id.city);
-        province = contactPopupView.findViewById(R.id.province);
-        zip = contactPopupView.findViewById(R.id.zip);
-
-        edit = contactPopupView.findViewById(R.id.edit);
-        cancel = contactPopupView.findViewById(R.id.cancel);
-        save = contactPopupView.findViewById(R.id.save);
-
-        dialogBuilder.setView(contactPopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
-
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
 
     }
 }
