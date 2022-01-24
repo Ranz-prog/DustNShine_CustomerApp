@@ -27,7 +27,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/customerdetails"
-                android:textColor="@color/app_blue"
+                android:textColor="@color/app_theme_blue"
                 android:textSize="20sp" />
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="125dp"
                 android:text="@string/bookingdetails"
-                android:textColor="@color/app_blue"
+                android:textColor="@color/app_theme_blue"
                 android:textSize="20sp" />
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="280dp"
                 android:text="@string/paymentmethod"
-                android:textColor="@color/app_blue"
+                android:textColor="@color/app_theme_blue"
                 android:textSize="20sp" />
 
             <TextView
@@ -86,7 +86,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="370dp"
                 android:text="@string/totalcost"
-                android:textColor="@color/app_blue"
+                android:textColor="@color/app_theme_blue"
                 android:textSize="20sp" />
 
         </RelativeLayout>
@@ -100,7 +100,7 @@
         android:layout_gravity="center|bottom"
         android:layout_margin="15dp"
         android:background="@drawable/rounded_corners_button_layout"
-        android:backgroundTint="@color/app_yellow"
+        android:backgroundTint="@color/app_theme_gold"
         android:padding="10dp"
         android:text="@string/checkout"
         android:textColor="@color/white"
