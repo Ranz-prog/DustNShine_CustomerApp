@@ -26,7 +26,7 @@ public class ActivitySignIn extends AppCompatActivity {
 
         createAcc = findViewById(R.id.createAcc);
         signInBtn = findViewById(R.id.btnServerLogin);
-        forget = findViewById(R.id.forget);
+//        forget = findViewById(R.id.forget);
 
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,12 +44,12 @@ public class ActivitySignIn extends AppCompatActivity {
             }
         });
 
-        forget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivitySignIn.this, ActivitySearchEmail.class);
-                startActivity(intent);
-            }
-        });
+//        forget.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ActivitySignIn.this, ActivitySearchEmail.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }
