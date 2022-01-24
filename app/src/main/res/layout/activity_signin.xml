@@ -131,12 +131,11 @@
                         android:id="@+id/forget"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Forget Password"
                         android:layout_gravity="center|end"
                         android:layout_marginEnd="20dp"
-                        android:textColor="@color/line_divider_color"
-                        >
-                    </TextView>
+                        android:text="Forget Password"
+                        android:textColor="@color/line_divider_color"></TextView>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
