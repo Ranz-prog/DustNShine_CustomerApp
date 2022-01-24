@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.dustnshine.ui.FragmentBooking;
 import com.example.dustnshine.ui.FragmentFavorites;
 import com.example.dustnshine.ui.FragmentHome;
 import com.example.dustnshine.ui.FragmentMessage;
@@ -47,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
                 selectedFragment = new FragmentHome();
-            } else if (itemId == R.id.message) {
+            } else if (itemId == R.id.booking) {
+                selectedFragment = new FragmentBooking();
+            }else if (itemId == R.id.message) {
                 selectedFragment = new FragmentMessage();
             } else if (itemId == R.id.favorite) {
                 selectedFragment = new FragmentFavorites();

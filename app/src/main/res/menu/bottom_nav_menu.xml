@@ -6,6 +6,11 @@
 
         android:icon="@drawable/ic_unselected_home"/>
     <item
+        android:id="@+id/booking"
+        android:title=""
+
+        android:icon="@drawable/ic_unselected_broom"/>
+    <item
         android:id="@+id/message"
         android:title=""
 
