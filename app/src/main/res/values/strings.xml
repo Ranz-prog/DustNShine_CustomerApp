@@ -35,4 +35,12 @@
     <!--Manage Account-->
     <string name="managecards">Manage Cards</string>
 
+    <!--Dashboard-->
+    <string name="Manage">Manage</string>
+    <string name="ClientName">Hi, User</string>
+    <string name="CleaningCompanies">Cleaning Companies in</string>
+    <string name="Location">Dagupan City.</string>
+    <string name="Recommendation">Recommendation</string>
+    <string name="FeaturedServices">Featured Service</string>
+
 </resources>

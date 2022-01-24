@@ -1,159 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
 
-    <RelativeLayout
-        android:id="@+id/topSide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/clientImage"
-            android:layout_marginVertical="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/user" />
 
-        <TextView
-            android:id="@+id/clientName"
+        <RelativeLayout
+            android:id="@+id/topSide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/clientImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/user" />
+
+            <TextView
+                android:id="@+id/clientName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/clientImage"
+                android:fontFamily="@font/quicksand_semibold"
+                android:text="@string/ClientName"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/manageAccButton"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_below="@id/clientName"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/clientImage"
+                android:background="@drawable/manage_button"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="@string/Manage"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+
+                android:layout_marginTop="30dp"
+
+
+                android:src="@drawable/bell_ring" />
+
+            <TextView
+                android:id="@+id/cleaningTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/manageAccButton"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/quicksand_light"
+                android:text="@string/CleaningCompanies"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/locationTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cleaningTV"
+                android:fontFamily="@font/calibribold"
+                android:text="@string/Location"
+                android:textColor="@color/app_theme_gold"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+            <SearchView
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/locationTv"
+                android:layout_marginTop="21dp"
+                android:background="@drawable/container1"
+                android:gravity="center"
+                android:orientation="horizontal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/middleSide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topSide"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/clientImage"
-            android:fontFamily="@font/quicksand_font"
-            android:text="Client Name"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/manageAccButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/clientName"
-            android:layout_marginLeft="14dp"
-            android:layout_marginTop="2dp"
-            android:layout_toRightOf="@+id/clientImage"
-            android:singleLine="true"
-            android:text="Manage"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/recommendationTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_font"
+                android:text="@string/Recommendation"
+                android:textColor="@color/app_theme_gold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
+            <TextView
+                android:id="@+id/viewAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="14dp"
+                android:fontFamily="@font/quicksand_font"
+                android:text="view all"
+                android:textColor="@color/line_divider_color"
+                android:textSize="15sp" />
 
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
-            android:src="@drawable/bell_ring" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/companiesList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/recommendationTV"
+                android:layout_marginTop="20dp" />
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/cleaningTV"
+        <RelativeLayout
+            android:id="@+id/botSide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/manageAccButton"
-            android:layout_marginLeft="14dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/quicksand_font"
-            android:text="Cleaning Companies in"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            android:layout_below="@+id/middleSide"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/locationTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cleaningTV"
-            android:layout_marginLeft="14dp"
-            android:fontFamily="@font/quicksand_font"
-            android:text="Dagupan."
-            android:textColor="@color/app_yellow"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/featuredTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_font"
+                android:text="@string/FeaturedServices"
+                android:textColor="@color/app_theme_gold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/locationTv"
-            android:layout_alignParentEnd="true"
-            android:layout_marginVertical="15dp"
-            android:layout_marginHorizontal="20dp"/>
-    </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/featuredList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/featuredTV"
+                android:layout_marginTop="10dp" />
 
-    <RelativeLayout
-        android:id="@+id/middleSide"
-        android:layout_below="@+id/topSide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/recommendationTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/quicksand_font"
-            android:layout_marginLeft="14dp"
-            android:text="Recommendation"
-            android:textColor="@color/app_yellow"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/viewAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="14dp"
-            android:fontFamily="@font/quicksand_font"
-            android:text="view all"
-            android:textColor="@color/app_gray"
-            android:textSize="15dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/companiesList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recommendationTV"
-            android:layout_marginTop="10dp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/botSide"
-        android:layout_below="@+id/middleSide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/featuredTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:fontFamily="@font/quicksand_font"
-            android:text="Featured Service"
-            android:textColor="@color/app_yellow"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/featuredList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/featuredTV"
-            android:layout_marginTop="10dp" />
-    </RelativeLayout>
-
-
-
-
+        </RelativeLayout>
 
 </RelativeLayout>

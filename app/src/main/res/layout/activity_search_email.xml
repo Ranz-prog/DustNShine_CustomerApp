@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|end|bottom"
                     android:layout_margin="15dp"
-                    android:backgroundTint="@color/app_blue"
+                    android:backgroundTint="@color/app_theme_blue"
                     android:padding="10dp"
                     android:text="@string/signin"
                     android:textColor="@color/white"

@@ -29,7 +29,7 @@
                 android:layout_gravity="center|top"
                 android:layout_marginTop="120dp"
                 android:text="@string/dustnshine"
-                android:textColor="@color/app_blue"
+                android:textColor="@color/app_theme_blue"
                 android:textSize="30sp" />
 
         </androidx.cardview.widget.CardView>
@@ -37,7 +37,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/app_blue">
+            android:background="@color/app_theme_blue">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" Create an account"
-                        android:textColor="@color/app_blue"
+                        android:textColor="@color/app_theme_blue"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -134,7 +134,7 @@
                         android:text="Forget Password"
                         android:layout_gravity="center|end"
                         android:layout_marginEnd="20dp"
-                        android:textColor="@color/app_gray"
+                        android:textColor="@color/line_divider_color"
                         >
                     </TextView>
                     <LinearLayout
@@ -162,7 +162,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="15dp"
                         android:background="@drawable/rounded_corners_button_layout"
-                        android:backgroundTint="@color/app_yellow"
+                        android:backgroundTint="@color/app_theme_gold"
                         android:padding="10dp"
                         android:text="@string/signin"
                         android:textColor="@color/white"

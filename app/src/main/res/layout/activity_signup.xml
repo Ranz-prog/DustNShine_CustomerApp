@@ -22,7 +22,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="20dp"
                     android:text="@string/personalinformation"
-                    android:textColor="@color/app_blue"
+                    android:textColor="@color/app_theme_blue"
                     android:textSize="25sp" />
 
                 <RelativeLayout
@@ -137,7 +137,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
                     android:text="@string/location"
-                    android:textColor="@color/app_blue"
+                    android:textColor="@color/app_theme_blue"
                     android:textSize="25sp" />
 
                 <RelativeLayout
@@ -282,7 +282,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="15dp"
                     android:background="@drawable/rounded_corners_button_layout"
-                    android:backgroundTint="@color/app_blue"
+                    android:backgroundTint="@color/app_theme_blue"
                     android:padding="10dp"
                     android:text="@string/signup"
                     android:textColor="@color/white"

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Message"
-        android:textColor="@color/app_yellow"
+        android:textColor="@color/app_theme_gold"
         android:textSize="28sp"
         android:textStyle="bold"
         android:fontFamily="@font/quicksand_font"/>
