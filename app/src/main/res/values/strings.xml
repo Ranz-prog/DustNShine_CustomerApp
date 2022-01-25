@@ -7,6 +7,9 @@
     <string name="password">Password</string>
     <string name="mobilenumber">Mobile Number</string>
     <string name="dustnshine">Dust n\' Shine</string>
+    <string name="newuser">New User? </string>
+    <string name="createaccount"> Create an account</string>
+    <string name="keepsignedin">Keep me signed in</string>
 
     <!--Sign Up-->
     <string name="signup">Sign Up</string>
@@ -34,6 +37,31 @@
 
     <!--Manage Account-->
     <string name="managecards">Manage Cards</string>
+    <string name="manageaccount">Manage Account</string>
+    <string name="viewpersonalinfo">View Personal Info</string>
+    <string name="managebankaccounts">Manage Bank Accounts</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+    <string name="logout">Logout</string>
+
+    <!--Checkout-->
+    <string name="customerdetails">Customer Details</string>
+    <string name="customername">Customer name:</string>
+    <string name="contactnumber">Contact number:</string>
+    <string name="locationdetails">Location:</string>
+    <string name="bookingdetails">Booking Details</string>
+    <string name="paymentmethod">Payment Method</string>
+    <string name="totalcost">Total Cost</string>
+    <string name="changemethod">Change Method</string>
+    <string name="checkout">Checkout</string>
+
+    <!--Feedback-->
+    <string name="feedbakcdescription">Your feedback matters. Write down your experience or what we can improve in our service.</string>
+    <string name="howsourwork">How\'s Our Work?</string>
+    <string name="rating">Rating</string>
+    <string name="done">Done</string>
+    <string name="typeyourfeedback">Type your feedback...</string>
+    <string name="agree">I agree</string>
 
     <!--Dashboard-->
     <string name="Manage">Manage</string>
