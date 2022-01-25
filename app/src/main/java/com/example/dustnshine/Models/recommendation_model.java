@@ -3,11 +3,13 @@ package com.example.dustnshine.Models;
 public class recommendation_model {
 
     private int companyImg;
-    private  String companyName;
+    private  String companyName,companyLocation,companyRating;
 
-    public recommendation_model(int companyImg, String companyName) {
+    public recommendation_model(int companyImg, String companyName, String companyLocation, String companyRating) {
         this.companyImg = companyImg;
         this.companyName = companyName;
+        this.companyLocation = companyLocation;
+        this.companyRating = companyRating;
     }
 
     public int getCompanyImg() {
@@ -24,5 +26,21 @@ public class recommendation_model {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getCompanyLocation() {
+        return companyLocation;
+    }
+
+    public void setCompanyLocation(String companyLocation) {
+        this.companyLocation = companyLocation;
+    }
+
+    public String getCompanyRating() {
+        return companyRating;
+    }
+
+    public void setCompanyRating(String companyRating) {
+        this.companyRating = companyRating;
     }
 }

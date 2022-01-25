@@ -70,13 +70,13 @@ public class FragmentHome extends Fragment {
         recommendationModelList = new ArrayList<>();
 
         recommendationModelList.add(new recommendation_model(R.drawable.company1,
-                "Clean Solutions"));
+                "Clean Solutions","Dagupan City","5/5"));
         recommendationModelList.add(new recommendation_model(R.drawable.company2,
-                "Super Clean"));
+                "Super Clean","Dagupan City","5/5"));
         recommendationModelList.add(new recommendation_model(R.drawable.company1,
-                "Clean Solutions"));
+                "Clean Solutions","Dagupan City","5/5"));
         recommendationModelList.add(new recommendation_model(R.drawable.company2,
-                "Super Clean"));
+                "Super Clean","Dagupan City","5/5"));
 
         return recommendationModelList;
 

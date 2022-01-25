@@ -1,19 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
     <TextView
-        android:id="@+id/bookingFragment"
+        android:id="@+id/MangeAccTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Booking"
-        android:textColor="@color/app_theme_blue"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="39dp"
+        android:text="Booking Service"
+        android:textColor="@color/app_theme_gold"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bookingHistoryBtn"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/time_past"
+            android:backgroundTint="@color/app_theme_blue" />
+        <RelativeLayout
+            android:id="@+id/middleSide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/MangeAccTV"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bookingList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

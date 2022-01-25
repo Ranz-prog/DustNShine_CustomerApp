@@ -38,6 +38,8 @@ public class recommendation_adapter extends RecyclerView.Adapter<recommendation_
 
         holder.companyImage.setImageResource(recommendationModelList.get(position).getCompanyImg());
         holder.companyName.setText(recommendationModelList.get(position).getCompanyName());
+        holder.companyLocation.setText(recommendationModelList.get(position).getCompanyLocation());
+        holder.companyRating.setText(recommendationModelList.get(position).getCompanyRating());
 
 
     }
@@ -50,13 +52,15 @@ public class recommendation_adapter extends RecyclerView.Adapter<recommendation_
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView companyImage;
-        private TextView companyName;
+        private TextView companyName,companyLocation,companyRating;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             companyImage = itemView.findViewById(R.id.companyImg);
             companyName = itemView.findViewById(R.id.companyNameTV);
+            companyLocation = itemView.findViewById(R.id.companyLocationTV);
+            companyRating = itemView.findViewById(R.id.companyRatingTV);
 
         }
     }
