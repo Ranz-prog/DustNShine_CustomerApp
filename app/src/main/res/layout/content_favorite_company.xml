@@ -1,48 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="15dp"
-        android:layout_marginBottom="80dp"
-        app:cardCornerRadius="7dp">
+        android:layout_height="125dp"
+        app:cardCornerRadius="15dp">
 
         <ImageView
+            android:id="@+id/companyImgFav"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/company1" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="30dp">
 
             <TextView
+                android:id="@+id/companyNameTVFav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_marginTop="45dp"
                 android:text="Company Name"
-                android:textColor="@color/app_theme_blue"/>
+                android:textColor="@color/app_theme_blue"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
+                android:id="@+id/imageFilterButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
+                android:layout_alignParentEnd="true"
+                app:srcCompat="@drawable/heart_red" />
 
             <TextView
                 android:id="@+id/txtAdrress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_alignParentStart="true"
-                android:text="Address"/>
+                android:layout_below="@+id/companyNameTVFav"
+                android:layout_marginTop="0dp"
+                android:text="Address"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/star"
+                android:layout_below="@+id/txtAdrress"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_toLeftOf="@+id/ratingFavorite"
+
+                app:srcCompat="@drawable/star" />
 
             <TextView
+                android:id="@+id/ratingFavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/txtAdrress"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="30dp"
-                android:text="Rating" />
+                android:text="Rating"
+                android:textColor="@color/white" />
 
         </RelativeLayout>
 
