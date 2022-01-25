@@ -31,8 +31,10 @@
     <string name="enteryouremail">Enter Your Email</string>
     <string name="resetyourpassword">Reset Your Password</string>
     <string name="newpassword">New Password</string>
+    <string name="forgotpassword">Forgot Password</string>
     <string name="resetcode">Reset Code</string>
     <string name="save">Save</string>
+    <string name="search">Search</string>
     <string name="enteremail">Please enter your email to search for your account</string>
 
     <!--Manage Account-->
@@ -70,5 +72,10 @@
     <string name="Location">Dagupan City.</string>
     <string name="Recommendation">Recommendation</string>
     <string name="FeaturedServices">Featured Service</string>
+
+    <!--Company Detail-->
+    <string name="companydetails">Company Details</string>
+    <string name="selectdetails">Select the details for your cleaning</string>
+
 
 </resources>
