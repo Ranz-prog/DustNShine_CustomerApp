@@ -9,11 +9,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:orientation="vertical"/>
+            android:orientation="vertical" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ReturnBtnOnManageAcc"
@@ -42,14 +43,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/ForgetText"
             android:layout_marginTop="30dp"
-            android:orientation="vertical"
-            android:layout_below="@+id/ForgetText">
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/personal_info_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/personal_info_cardview"
                 android:layout_margin="5dp">
 
                 <LinearLayout
@@ -57,13 +58,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/txtPersonalInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:hint="@string/personalinformation"
-                        android:textSize="22sp"
                         android:textColor="@color/black"
-                        android:id="@+id/txtPersonalInfo"/>
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
@@ -72,8 +73,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="10dp"
                     android:orientation="vertical"
                     android:visibility="gone">
@@ -95,11 +96,11 @@
                                 android:layout_width="180dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
+                                android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
                                 android:hint="@string/firstname"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:background="@drawable/edittext_layout"
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,11 +113,11 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="180dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
                                 android:hint="@string/lastname"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:background="@drawable/edittext_layout"
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,12 +132,12 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/edittext_layout"
                             android:cursorVisible="true"
                             android:hint="@string/email"
                             android:inputType="textEmailAddress"
                             android:maxLength="50"
                             android:paddingBottom="10dp"
-                            android:background="@drawable/edittext_layout"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,11 +151,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
+                            android:background="@drawable/edittext_layout"
                             android:cursorVisible="true"
                             android:hint="@string/mobilenumber"
                             android:maxLength="50"
                             android:paddingBottom="10dp"
-                            android:background="@drawable/edittext_layout"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,12 +169,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
+                            android:background="@drawable/edittext_layout"
                             android:cursorVisible="true"
                             android:hint="@string/password"
                             android:inputType="textPassword"
                             android:maxLength="50"
                             android:paddingBottom="10dp"
-                            android:background="@drawable/edittext_layout"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,12 +188,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
+                            android:background="@drawable/edittext_layout"
                             android:cursorVisible="true"
                             android:hint="@string/retypepassword"
                             android:inputType="textPassword"
                             android:maxLength="50"
                             android:paddingBottom="10dp"
-                            android:background="@drawable/edittext_layout"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -223,11 +224,11 @@
                                 android:layout_width="130dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
+                                android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
                                 android:hint="@string/houseno"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:background="@drawable/edittext_layout"
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -240,11 +241,11 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="230dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
                                 android:hint="@string/street"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:background="@drawable/edittext_layout"
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -267,11 +268,11 @@
                                 android:layout_width="180dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
+                                android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
                                 android:hint="@string/barangay"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:background="@drawable/edittext_layout"
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -284,11 +285,11 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="180dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
                                 android:hint="@string/citymunicipality"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:background="@drawable/edittext_layout"
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -311,11 +312,11 @@
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
+                                android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
                                 android:hint="@string/province"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:background="@drawable/edittext_layout"
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -328,11 +329,11 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="160dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
                                 android:hint="@string/zipcode"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:background="@drawable/edittext_layout"
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -369,17 +370,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:hint="@string/managebankaccounts"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/manage_cards_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/manage_cards_cardview"
                 android:layout_margin="5dp">
 
                 <LinearLayout
@@ -387,13 +388,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/txtManageCards"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:hint="@string/managecards"
-                        android:textSize="22sp"
                         android:textColor="@color/black"
-                        android:id="@+id/txtManageCards"/>
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
@@ -413,8 +414,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:hint="@string/logout"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
