@@ -39,8 +39,7 @@ public class FragmentBooking extends Fragment {
 
         bookingRecycler.setAdapter(new booking_adapter(bookingModels()));
 
-        RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-        bookingRecycler.addItemDecoration(divider);
+
 
         return view;
     }

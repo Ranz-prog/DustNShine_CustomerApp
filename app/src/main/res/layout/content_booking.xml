@@ -1,52 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="6dp"
+    app:cardCornerRadius="5dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-
-        android:elevation="0dp"
-        android:layout_margin="20dp"
-        android:innerRadius="0dp"
-        android:shape="ring"
-        app:cardCornerRadius="00dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/container_border"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/clientImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/user" />
-
-
-    </androidx.cardview.widget.CardView>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/cardView">
 
         <TextView
             android:id="@+id/detailsTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/clientImage"
             android:text="@string/customerdetails"
             android:textColor="@color/app_theme_blue"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/nameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/detailsTv"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/clientImage"
             android:text="@string/customername"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -57,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/detailsTv"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:layout_toRightOf="@+id/nameTv"
             android:text="@string/customername"
             android:textSize="15sp" />
@@ -67,7 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nameTv"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/clientImage"
             android:text="@string/locationdetails"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -78,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/nameTv"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+
             android:layout_toRightOf="@+id/locTv"
             android:text="@string/location"
             android:textSize="15sp" />
@@ -88,7 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/locTv"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/clientImage"
             android:text="@string/contactnumber"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -99,11 +93,32 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/locTv"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/conTv"
             android:text="@string/contactnumber"
             android:textSize="15sp" />
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/cardView">
+
+
 
     </RelativeLayout>
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
+
+
+
+
+
