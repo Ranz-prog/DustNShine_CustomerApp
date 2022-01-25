@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="0dp"
             android:orientation="vertical" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -22,8 +22,7 @@
             android:layout_height="28dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/ic_angle_small_left"
             android:backgroundTint="@color/app_theme_blue" />
 
@@ -32,8 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="39dp"
+            android:layout_marginTop="16dp"
             android:layout_toEndOf="@+id/ReturnBtnOnManageAcc"
             android:text="Manage Account"
             android:textColor="@color/app_theme_gold"
@@ -44,14 +42,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ForgetText"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/personal_info_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:outlineSpotShadowColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,7 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:hint="@string/personalinformation"
+                        android:text="@string/personalinformation"
                         android:textColor="@color/black"
                         android:textSize="22sp" />
 
@@ -72,17 +71,16 @@
                     android:id="@+id/personal_info_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="35dp"
                     android:orientation="vertical"
                     android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
 
@@ -348,7 +346,7 @@
                         android:background="@drawable/rounded_corners_button_layout"
                         android:backgroundTint="@color/app_theme_blue"
                         android:padding="10dp"
-                        android:text="@string/signup"
+                        android:text="@string/save"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
@@ -356,10 +354,13 @@
 
             </androidx.cardview.widget.CardView>
 
+            <View style="@style/Divider" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:outlineSpotShadowColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -369,7 +370,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:hint="@string/managebankaccounts"
+                        android:text="@string/managebankaccounts"
                         android:textColor="@color/black"
                         android:textSize="22sp" />
 
@@ -377,11 +378,14 @@
 
             </androidx.cardview.widget.CardView>
 
+            <View style="@style/Divider" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/manage_cards_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:outlineSpotShadowColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -392,7 +396,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:hint="@string/managecards"
+                        android:text="@string/managecards"
                         android:textColor="@color/black"
                         android:textSize="22sp" />
 
@@ -400,10 +404,13 @@
 
             </androidx.cardview.widget.CardView>
 
+            <View style="@style/Divider" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:outlineSpotShadowColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -413,13 +420,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:hint="@string/logout"
+                        android:text="@string/logout"
                         android:textColor="@color/black"
                         android:textSize="22sp" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
+            <View style="@style/Divider" />
 
         </LinearLayout>
     </RelativeLayout>
