@@ -31,6 +31,7 @@
     <string name="enteryouremail">Enter Your Email</string>
     <string name="resetyourpassword">Reset Your Password</string>
     <string name="newpassword">New Password</string>
+    <string name="forgotpassword">Forgot Password</string>
     <string name="resetcode">Reset Code</string>
     <string name="save">Save</string>
     <string name="search">Search</string>
