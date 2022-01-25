@@ -8,15 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:text="@string/findyouraccount"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <androidx.cardview.widget.CardView
@@ -29,10 +29,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/enteremail"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -43,9 +44,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:cursorVisible="true"
                     android:gravity="center|start|bottom"
                     android:hint="@string/enteryouremail"
@@ -56,16 +57,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnServerLogin"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|end|bottom"
                 android:layout_margin="15dp"
                 android:backgroundTint="@color/app_theme_blue"
                 android:padding="10dp"
-                android:text="@string/signin"
+                android:text="@string/search"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
 

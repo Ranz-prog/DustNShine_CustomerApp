@@ -33,6 +33,7 @@
     <string name="newpassword">New Password</string>
     <string name="resetcode">Reset Code</string>
     <string name="save">Save</string>
+    <string name="search">Search</string>
     <string name="enteremail">Please enter your email to search for your account</string>
 
     <!--Manage Account-->
