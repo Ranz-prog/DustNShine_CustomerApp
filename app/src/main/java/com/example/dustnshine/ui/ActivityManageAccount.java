@@ -22,6 +22,7 @@ public class ActivityManageAccount extends AppCompatActivity {
     TextView txtPersonalInfo;
     CardView personalInfoCardView;
 
+    //Comment ni Jolo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
