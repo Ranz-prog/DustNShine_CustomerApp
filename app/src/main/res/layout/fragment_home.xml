@@ -45,15 +45,14 @@
                 android:textSize="11sp"
                 android:textStyle="bold" />
 
-            <ImageView
+            <Button
+                android:id="@+id/notificationBtn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-
+                android:background="@drawable/bell_ring"
                 android:layout_marginTop="30dp"
-
-
-                android:src="@drawable/bell_ring" />
+                />
 
             <TextView
                 android:id="@+id/cleaningTV"
