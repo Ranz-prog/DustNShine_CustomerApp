@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Dust n\' Shine</string>
+
+    //Splash Title
+    <string name="app_name">DustNShine</string>
 
     <!--Sign In-->
     <string name="signin">Sign In</string>
