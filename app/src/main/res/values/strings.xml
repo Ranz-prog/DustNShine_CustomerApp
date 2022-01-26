@@ -79,5 +79,11 @@
     <string name="companydetails">Company Details</string>
     <string name="selectdetails">Select the details for your cleaning</string>
 
+    <!--Booking-->
+    <string name="bookinghistory">Booking History</string>
+
+    <!--Booking-->
+    <string name="notification">Notification</string>
+
 
 </resources>
