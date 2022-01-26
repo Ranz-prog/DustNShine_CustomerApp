@@ -15,8 +15,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="39dp"
             android:text="Favorite Companies"
             android:textColor="@color/app_theme_gold"
             android:textSize="25dp"
@@ -26,17 +24,15 @@
         <RelativeLayout
             android:id="@+id/middleSide"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/favCompanyTV"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/favoriteCompanyList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" />
+                android:layout_height="match_parent" />
         </RelativeLayout>
     </RelativeLayout>
 </ScrollView>
