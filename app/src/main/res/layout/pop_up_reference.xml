@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
