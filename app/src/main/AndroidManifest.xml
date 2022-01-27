@@ -19,6 +19,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.ActivityCompanyDetails"
+            android:exported="true"></activity>
+        <activity
             android:name=".ui.ActivitySignIn"
             android:exported="true"></activity>
         <activity
