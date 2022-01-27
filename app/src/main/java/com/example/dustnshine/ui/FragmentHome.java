@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentHome extends Fragment {
-    Button manage;
+    Button manage,notifBtn;
     View view;
 
     private RecyclerView recommendationRecycler,featureRecycler;
@@ -38,6 +38,7 @@ public class FragmentHome extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         manage = view.findViewById(R.id.manageAccButton);
+        notifBtn = view.findViewById(R.id.notificationBtn);
         recommendationRecycler = view.findViewById(R.id.companiesList);
         featureRecycler = view.findViewById(R.id.featuredList);
 
@@ -57,6 +58,14 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ActivityManageAccount.class);
+                startActivity(intent);
+            }
+        });
+
+        notifBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ActivityNotification.class);
                 startActivity(intent);
             }
         });
