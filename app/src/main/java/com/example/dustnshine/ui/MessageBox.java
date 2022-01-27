@@ -1,33 +1,30 @@
 package com.example.dustnshine.ui;
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.widget.ImageView;
 import com.example.dustnshine.R;
 
-public class ActivityNotification extends AppCompatActivity {
+public class MessageBox extends AppCompatActivity {
 
-    Button returnHome;
+    private ImageView message_arrowBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_message_box);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_notification);
+        message_arrowBack = findViewById(R.id.arrowback2);
 
-        returnHome=findViewById(R.id.btnReturnBooking);
-
-        returnHome.setOnClickListener(new View.OnClickListener() {
+        message_arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
     }
 }

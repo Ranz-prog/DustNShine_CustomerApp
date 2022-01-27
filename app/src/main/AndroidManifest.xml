@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DustNShine">
         <activity
+            android:name=".ui.MessageBox"
+            android:exported="false" />
+        <activity
             android:name=".ui.splash_screen"
             android:exported="true">
             <intent-filter>
@@ -20,25 +23,25 @@
         </activity>
         <activity
             android:name=".ui.ActivitySignIn"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.ActivitySignUp"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.ActivityManageAccount"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.PersonalInfoPopLayout"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.ActivitySearchEmail"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.ActivityForgetPassword"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".ui.ActivityBookingHistory" />
         <activity android:name=".ui.ActivityNotification" />
     </application>

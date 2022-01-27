@@ -26,7 +26,7 @@ public class ActivityManageAccount extends AppCompatActivity {
     TextView txtPersonalInfo,popText;
     CardView personalInfoCardView;
 
-    Button reset;
+    Button reset,returnHome;
     Dialog dialog;
     //Comment ni Jolo
 
@@ -38,6 +38,7 @@ public class ActivityManageAccount extends AppCompatActivity {
         setContentView(R.layout.activity_manage_acc);
 
         reset = findViewById(R.id.btnServerLogin);
+        returnHome = findViewById(R.id.ReturnBtnOnManageAcc);
 
         personalInfoView = findViewById(R.id.personal_info_view);
         txtPersonalInfo = findViewById(R.id.txtPersonalInfo);
@@ -89,6 +90,13 @@ public class ActivityManageAccount extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.show(); // Showing the dialog here
+            }
+        });
+
+        returnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
