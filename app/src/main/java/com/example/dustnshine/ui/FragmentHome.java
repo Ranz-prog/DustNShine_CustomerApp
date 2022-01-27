@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
 import com.example.dustnshine.Models.recommendation_model;
+import com.example.dustnshine.adapter.chat_adapter;
 import com.example.dustnshine.adapter.recommendation_adapter;
 import com.example.dustnshine.Models.feature_model;
 import com.example.dustnshine.adapter.feature_adapter;
@@ -20,7 +21,7 @@ import com.example.dustnshine.adapter.feature_adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentHome extends Fragment {
+public class FragmentHome extends Fragment implements recommendation_adapter.OnClickMessageListener{
     Button manage,notifBtn;
     View view;
 
@@ -48,7 +49,7 @@ public class FragmentHome extends Fragment {
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutFeature = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
-        recommendationRecycler.setAdapter(new recommendation_adapter(recommendationModel()));
+        recommendationRecycler.setAdapter(new recommendation_adapter(recommendationModel(),this));
 
         featureRecycler.setLayoutManager(layoutFeature);
         featureRecycler.setAdapter(new feature_adapter(featureModel()));
@@ -111,4 +112,9 @@ public class FragmentHome extends Fragment {
     }
 
 
+    @Override
+    public void onClickMessage(int adapterPosition) {
+        Intent intent = new Intent(getActivity(), ActivityCompanyDetails.class);
+        startActivity(intent);
+    }
 }

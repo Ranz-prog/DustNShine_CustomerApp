@@ -13,7 +13,9 @@
         <ImageView
             android:id="@+id/imgCompany"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="200dp"
+            android:src="@drawable/company1"
+            android:scaleType="fitXY"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardCompanyDetail"
@@ -88,8 +90,8 @@
             android:id="@+id/layoutDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/cardCompanyDetail">
+            android:layout_below="@+id/cardCompanyDetail"
+            android:layout_marginTop="46dp">
 
             <TextView
                 android:id="@+id/txtSelectDetails"
@@ -185,6 +187,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/serviceRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutDetails">
@@ -196,29 +199,40 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/services"
-                android:textColor="@color/black"
+                android:textColor="@color/app_theme_blue"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtExtraServices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
                 android:layout_below="@+id/txtServices"
                 android:layout_centerInParent="true"
-                android:textColor="@color/black"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/extraservices"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/companiesList"
+                android:id="@+id/serviceList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtExtraServices"
-                android:layout_margin="10dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp" />
 
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/checkOutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/serviceRecyclerView"
+            android:backgroundTint="@color/app_theme_gold"
+            android:text="Next"/>
 
     </RelativeLayout>
 

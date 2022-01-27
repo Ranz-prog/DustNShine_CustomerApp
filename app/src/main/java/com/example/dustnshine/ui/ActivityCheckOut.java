@@ -1,37 +1,40 @@
 package com.example.dustnshine.ui;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.dustnshine.Models.services_model;
 import com.example.dustnshine.R;
+import com.example.dustnshine.adapter.services_adapter;
 
-public class ActivityForgetPassword extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    Button forgotBtn,returnSignIn;
+public class ActivityCheckOut extends AppCompatActivity {
+
+    Button checkOut;
+
     Dialog dialog;
     TextView popText;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_checkout);
 
-        setContentView(R.layout.activity_forgot_password);
-
-        forgotBtn = findViewById(R.id.forgetBtn);
-        returnSignIn = findViewById(R.id.btnReturnForget);
+        checkOut = findViewById(R.id.checkOutBtn);
 
         // DIALOG BOX START
         dialog = new Dialog(this);
@@ -46,34 +49,28 @@ public class ActivityForgetPassword extends AppCompatActivity {
 
         Button Okay = dialog.findViewById(R.id.btn_okay);
         popText = dialog.findViewById(R.id.popUpText);
-        String text= "Thank you. You have successfully changed your Password!";// Set Message Here
+        String text= "Thank you. Checkout is successful!";// Set Message Here
         popText.setText(text.toString());
 
 
         Okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityForgetPassword.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityCheckOut.this, "Success", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
         //END OF DIALOG BOX
 
-        forgotBtn.setOnClickListener(new View.OnClickListener() {
+        checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 dialog.show(); // Showing the dialog here
-            }
-        });
-
-        returnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
 
     }
 
+
 }
+
