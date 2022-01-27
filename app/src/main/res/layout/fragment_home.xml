@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:paddingLeft="10dp"
+    android:paddingTop="15dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/topSide"
@@ -50,16 +57,15 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/bell_ring"
                 android:layout_marginTop="30dp"
-                />
+                android:background="@drawable/bell_ring" />
 
             <TextView
                 android:id="@+id/cleaningTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/manageAccButton"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/quicksand_light"
                 android:text="@string/CleaningCompanies"
                 android:textColor="@color/black"
@@ -81,56 +87,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/locationTv"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/container1"
                 android:gravity="center"
                 android:orientation="horizontal" />
 
         </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/middleSide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/topSide"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/recommendationTV"
+        <RelativeLayout
+            android:id="@+id/middleSide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/quicksand_font"
-            android:text="@string/Recommendation"
-            android:textColor="@color/app_theme_gold"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_below="@+id/topSide"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/viewAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="14dp"
-            android:fontFamily="@font/quicksand_font"
-            android:text="view all"
-            android:textColor="@color/line_divider_color"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/recommendationTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_font"
+                android:text="@string/Recommendation"
+                android:textColor="@color/app_theme_gold"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/companiesList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recommendationTV"
-            android:layout_marginTop="20dp" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/viewAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="14dp"
+                android:fontFamily="@font/quicksand_font"
+                android:text="view all"
+                android:textColor="@color/line_divider_color"
+                android:textSize="15sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/companiesList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/recommendationTV"
+                android:layout_marginTop="20dp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/botSide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/middleSide"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
@@ -140,7 +146,7 @@
                 android:fontFamily="@font/quicksand_font"
                 android:text="@string/FeaturedServices"
                 android:textColor="@color/app_theme_gold"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -148,8 +154,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/featuredTV"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="20dp" />
 
         </RelativeLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
