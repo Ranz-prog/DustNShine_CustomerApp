@@ -55,14 +55,6 @@ public class FragmentFavorites extends Fragment {
                 "Clean Solutions","Dagupan City","5/5"));
         favoriteModelList.add(new favorite_model(R.drawable.company2,
                 "Super Clean","Dagupan City","5/5"));
-        favoriteModelList.add(new favorite_model(R.drawable.company1,
-                "Clean Solutions","Dagupan City","5/5"));
-        favoriteModelList.add(new favorite_model(R.drawable.company2,
-                "Super Clean","Dagupan City","5/5"));
-        favoriteModelList.add(new favorite_model(R.drawable.company1,
-                "Clean Solutions","Dagupan City","5/5"));
-        favoriteModelList.add(new favorite_model(R.drawable.company2,
-                "Super Clean","Dagupan City","5/5"));
 
         return favoriteModelList;
 

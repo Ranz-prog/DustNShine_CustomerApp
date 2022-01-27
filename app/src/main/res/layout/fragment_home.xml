@@ -4,7 +4,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingLeft="10dp"
-    android:paddingTop="15dp"
     android:paddingRight="10dp"
     android:paddingBottom="10dp">
 
@@ -148,14 +147,115 @@
                 android:textColor="@color/app_theme_gold"
                 android:textSize="22sp"
                 android:textStyle="bold" />
+        </RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/featuredList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/featuredTV"
-                android:layout_marginTop="20dp" />
+        <RelativeLayout
+            android:id="@+id/firstrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/botSide"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/gencon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/container_border_2"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/home_cleaning" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/garcon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/gencon"
+                android:background="@drawable/container_border_2"
+                android:orientation="horizontal"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/garage_cleaning" />
+            </LinearLayout>
+
 
         </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/secondrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/firstrow"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/dencon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/container_border_2"
+                android:orientation="horizontal"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/garden_cleaning" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/repcon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/dencon"
+                android:background="@drawable/container_border_2"
+                android:orientation="horizontal"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/repair" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
     </RelativeLayout>
 </ScrollView>

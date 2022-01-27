@@ -40,18 +40,15 @@ public class FragmentHome extends Fragment {
         manage = view.findViewById(R.id.manageAccButton);
         notifBtn = view.findViewById(R.id.notificationBtn);
         recommendationRecycler = view.findViewById(R.id.companiesList);
-        featureRecycler = view.findViewById(R.id.featuredList);
+
 
         recommendationRecycler.setHasFixedSize(true);
-        featureRecycler.setHasFixedSize(true);
 
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutFeature = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
         recommendationRecycler.setAdapter(new recommendation_adapter(recommendationModel()));
 
-        featureRecycler.setLayoutManager(layoutFeature);
-        featureRecycler.setAdapter(new feature_adapter(featureModel()));
 
 
         manage.setOnClickListener(new View.OnClickListener() {
@@ -92,23 +89,6 @@ public class FragmentHome extends Fragment {
     }
 
 
-    private List<feature_model> featureModel(){
-
-        featureModelList = new ArrayList<>();
-
-        featureModelList.add(new feature_model(R.drawable.home_cleaning,
-                "House Cleaning","cleaning"));
-        featureModelList.add(new feature_model(R.drawable.garden_cleaning,
-                "Gardening","pick up weeds"));
-        featureModelList.add(new feature_model(R.drawable.garage_cleaning,
-                "Garage Cleaning","cleaning"));
-        featureModelList.add(new feature_model(R.drawable.repair,
-                "Appliance repair","repair"));
-
-
-        return featureModelList;
-
-    }
 
 
 }
