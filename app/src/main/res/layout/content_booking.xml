@@ -24,11 +24,11 @@
             android:id="@+id/detailsTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:text="@string/customerdetails"
             android:textColor="@color/app_theme_blue"
             android:textSize="16dp"
-            android:layout_marginLeft="10dp"
             android:textStyle="bold" />
 
         <TextView
@@ -36,8 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/detailsTv"
-            android:layout_marginTop="6dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
             android:layout_toRightOf="@+id/clientImage"
             android:text="@string/customername"
             android:textSize="15sp"
@@ -98,7 +98,7 @@
             android:textSize="15sp" />
     </RelativeLayout>
 
-    //Sample comment
+    //Sample comment comment
 
 
 

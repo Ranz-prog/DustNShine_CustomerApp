@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="15dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
     tools:context=".ui.ActivityManageAccount">
 
     <RelativeLayout
@@ -18,26 +22,20 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ReturnBtnOnManageAcc"
-            android:layout_width="44dp"
-            android:layout_height="28dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_angle_small_left"
-            android:backgroundTint="@color/app_theme_blue" />
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/ic_arrow_back" />
 
         <TextView
             android:id="@+id/ForgetText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/ReturnBtnOnManageAcc"
+            android:layout_toRightOf="@id/ReturnBtnOnManageAcc"
+            android:fontFamily="@font/calibribold"
             android:text="Manage Account"
             android:textColor="@color/app_theme_gold"
-            android:textSize="25dp"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -62,9 +60,8 @@
                         android:id="@+id/txtPersonalInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/quicksand_medium"
                         android:text="@string/personalinformation"
-                        android:textColor="@color/black"
                         android:textSize="22sp" />
 
                 </LinearLayout>
@@ -74,8 +71,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
                     android:orientation="vertical"
                     android:visibility="gone">
 
@@ -371,9 +366,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/quicksand_medium"
                         android:text="@string/managebankaccounts"
-                        android:textColor="@color/black"
                         android:textSize="22sp" />
 
                 </LinearLayout>
@@ -397,9 +391,8 @@
                         android:id="@+id/txtManageCards"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/quicksand_medium"
                         android:text="@string/managecards"
-                        android:textColor="@color/black"
                         android:textSize="22sp" />
 
                 </LinearLayout>
@@ -416,14 +409,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/quicksand_medium"
                         android:text="@string/logout"
-                        android:textColor="@color/black"
                         android:textSize="22sp" />
 
                 </LinearLayout>

@@ -79,11 +79,14 @@
     <!--Company Detail-->
     <string name="companydetails">Company Details</string>
     <string name="selectdetails">Select the details for your cleaning</string>
+    <string name="housetype">What is your house type?</string>
+    <string name="bedrooms">How many bedrooms?</string>
+    <string name="bathrooms">How many bathrooms</string>
+    <string name="services">Services</string>
+    <string name="extraservices">Customize your cleaning with optimal extra service</string>
 
     <!--Booking-->
     <string name="bookinghistory">Booking History</string>
-
-    <!--Booking-->
     <string name="notification">Notification</string>
 
 

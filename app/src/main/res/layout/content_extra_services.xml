@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCompanyDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="7dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtServiceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/companydetails"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/txtServiceTitle"
+                android:text="Lorem ipsum lorem ipsum"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtDetail1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPrice"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:text="Lorem ipsum lorem ipsum"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtDetail2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDetail1"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:text="Lorem ipsum lorem ipsum"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDetail1"
+                android:layout_marginStart="140dp"
+                android:layout_toEndOf="@+id/txtDetail2"
+                android:gravity="end" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
