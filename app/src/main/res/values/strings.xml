@@ -66,6 +66,7 @@
     <string name="done">Done</string>
     <string name="typeyourfeedback">Type your feedback...</string>
     <string name="agree">I agree</string>
+    <string name="feedback">Feedback</string>
 
     <!--Dashboard-->
     <string name="Manage">Manage</string>
