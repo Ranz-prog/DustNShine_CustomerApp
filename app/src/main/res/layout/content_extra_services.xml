@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -17,39 +17,41 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/txtServiceTitle"
+                android:id="@+id/serviceTitleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:fontFamily="@font/quicksand_bold"
                 android:text="@string/companydetails"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/txtPrice"
+                android:id="@+id/servicePriceTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/serviceTitleTv"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_below="@+id/txtServiceTitle"
                 android:text="Lorem ipsum lorem ipsum"
+                android:textColor="@color/app_theme_gold"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/txtDetail1"
+                android:id="@+id/description1Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtPrice"
+                android:layout_below="@+id/servicePriceTv"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:text="Lorem ipsum lorem ipsum"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/txtDetail2"
+                android:id="@+id/description2Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDetail1"
+                android:layout_below="@+id/description1Tv"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:text="Lorem ipsum lorem ipsum"
@@ -58,11 +60,36 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDetail1"
-                android:layout_marginStart="140dp"
-                android:layout_toEndOf="@+id/txtDetail2"
-                android:gravity="end" />
+                android:layout_below="@+id/description2Tv"
+                android:layout_alignParentEnd="true"
+                android:buttonTint="@color/app_theme_blue" />
 
+            <Button
+                android:id="@+id/addBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/plus_small" />
+
+            <TextView
+                android:id="@+id/numbersTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/addBtn"
+                android:background="@drawable/container_border"
+                android:padding="3dp"
+                android:text="0"
+                android:textSize="20dp" />
+
+            <Button
+                android:layout_marginTop="5dp"
+                android:id="@+id/minusBtn"
+                android:layout_width="25dp"
+                android:layout_toLeftOf="@+id/numbersTv"
+                android:layout_height="25dp"
+
+                android:background="@drawable/minus_small" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

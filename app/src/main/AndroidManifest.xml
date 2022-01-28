@@ -47,6 +47,7 @@
             android:exported="true" />
         <activity android:name=".ui.ActivityBookingHistory" />
         <activity android:name=".ui.ActivityNotification" />
+        <activity android:name=".ui.ActivityCheckOut" />
     </application>
 
 </manifest>
