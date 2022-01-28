@@ -2,22 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:title=""
-
-        android:icon="@drawable/ic_unselected_home"/>
+        android:icon="@drawable/ic_unselected_home"
+        android:title="Dashboard" />
     <item
         android:id="@+id/booking"
-        android:title=""
-
-        android:icon="@drawable/ic_unselected_broom"/>
+        android:icon="@drawable/ic_unselected_broom"
+        android:title="Booking" />
     <item
         android:id="@+id/message"
-        android:title=""
-
-        android:icon="@drawable/ic_unselected_message"/>
+        android:icon="@drawable/ic_unselected_message"
+        android:title="Message" />
     <item
         android:id="@+id/favorite"
-        android:title=""
-
-        android:icon="@drawable/ic_unselected_favorite"/>
+        android:icon="@drawable/ic_unselected_favorite"
+        android:title="Favorite" />
 </menu>

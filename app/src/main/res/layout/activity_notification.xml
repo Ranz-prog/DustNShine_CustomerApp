@@ -18,7 +18,7 @@
         android:id="@+id/txtBookingHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/btnReturnBooking"
+        android:layout_centerHorizontal="true"
         android:fontFamily="@font/calibribold"
         android:text="@string/notification"
         android:textColor="@color/app_theme_gold"

@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingBottom="10dp">
+    android:background="#FDFEFF"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:scrollbars="none">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,23 +18,44 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/notificationBtn"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="17dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/roundbutton"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/bell" />
+            </LinearLayout>
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/clientImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/user" />
 
             <TextView
                 android:id="@+id/clientName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/clientImage"
                 android:fontFamily="@font/quicksand_semibold"
                 android:text="@string/ClientName"
-                android:textColor="@color/black"
+                android:textColor="#1F2325"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -50,14 +72,6 @@
                 android:text="@string/Manage"
                 android:textSize="11sp"
                 android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/notificationBtn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/bell_ring" />
 
             <TextView
                 android:id="@+id/cleaningTV"
@@ -105,20 +119,21 @@
                 android:id="@+id/recommendationTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_font"
+                android:fontFamily="@font/calibribold"
                 android:text="@string/Recommendation"
                 android:textColor="@color/app_theme_gold"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/viewAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="14dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="12dp"
                 android:fontFamily="@font/quicksand_font"
-                android:text="view all"
+                android:text="Show all"
                 android:textColor="@color/line_divider_color"
                 android:textSize="15sp" />
 
@@ -128,6 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/recommendationTV"
                 android:layout_marginTop="20dp" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -142,11 +158,10 @@
                 android:id="@+id/featuredTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_font"
+                android:fontFamily="@font/calibribold"
                 android:text="@string/FeaturedServices"
                 android:textColor="@color/app_theme_gold"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -154,8 +169,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/botSide"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             android:padding="10dp">
 
             <LinearLayout
@@ -163,18 +178,39 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@drawable/container_border_2"
-                android:paddingTop="20dp"
+                android:backgroundTint="@color/general"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
+                android:paddingTop="15dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="10dp"
-                android:orientation="horizontal">
+                android:paddingBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/home_cleaning" />
+                    app:srcCompat="@drawable/ichome" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/genralcleaning"
+                    android:textColor="@color/app_theme_black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gentxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_regular"
+                    android:text="@string/congen"
+                    android:textAlignment="center"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -184,18 +220,40 @@
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/gencon"
                 android:background="@drawable/container_border_2"
-                android:orientation="horizontal"
-                android:paddingTop="20dp"
+                android:backgroundTint="@color/garage"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
+                android:paddingTop="15dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageView7"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/garage_cleaning" />
+                    app:srcCompat="@drawable/iccar" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/garagecleaning"
+                    android:textColor="@color/app_theme_black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gartxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_regular"
+                    android:text="@string/congen"
+                    android:textAlignment="center"
+                    android:textSize="14sp" />
+
             </LinearLayout>
 
 
@@ -207,8 +265,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/firstrow"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp">
@@ -218,18 +276,39 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@drawable/container_border_2"
-                android:orientation="horizontal"
-                android:paddingTop="20dp"
+                android:backgroundTint="@color/garden"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
+                android:paddingTop="15dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/garden_cleaning" />
+                    app:srcCompat="@drawable/icgarden" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/gardencleaning"
+                    android:textColor="@color/app_theme_black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/dentxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_regular"
+                    android:text="@string/congen"
+                    android:textAlignment="center"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -239,18 +318,39 @@
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/dencon"
                 android:background="@drawable/container_border_2"
-                android:orientation="horizontal"
-                android:paddingTop="20dp"
+                android:backgroundTint="@color/repair"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
+                android:paddingTop="15dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageView10"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/repair" />
+                    app:srcCompat="@drawable/icrepair" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:text="@string/repair"
+                    android:textColor="@color/app_theme_black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/reptxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_regular"
+                    android:text="@string/congen"
+                    android:textAlignment="center"
+                    android:textSize="14sp" />
             </LinearLayout>
 
 

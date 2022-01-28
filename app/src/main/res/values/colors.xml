@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#1C2126</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#EBEBED</color>
 
     <!--App Theme-->
     <color name="app_theme_blue">#38B0C8</color>
@@ -18,4 +19,15 @@
 
     <!--Line Divider Color-->
     <color name="line_divider_color">#D3DEDC</color>
+
+    <!--background featured services-->
+    <color name="garage">#EFFFB7</color>
+    <color name="general">#FFD6C9</color>
+    <color name="garden">#E9D0FE</color>
+    <color name="repair">#C8F3FF</color>
+    <color name="iconsback">#F6F6F6</color>
+
+
+
+
 </resources>

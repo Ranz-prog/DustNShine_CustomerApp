@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:paddingTop="15dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
     tools:context=".ui.ActivitySignUp">
 
     <LinearLayout
@@ -15,8 +18,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/calibribold"
+            android:text="@string/reg"
+            android:layout_gravity="center"
+            android:textColor="@color/app_theme_blue"
+            android:textSize="28sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:fontFamily="@font/quicksand_medium"
             android:text="@string/personalinformation"
             android:textColor="@color/app_theme_black"
             android:textSize="22sp" />
@@ -39,6 +52,7 @@
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/firstname"
                     android:maxLength="50"
                     android:textSize="15sp" />
@@ -55,6 +69,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/lastname"
                     android:maxLength="50"
                     android:textSize="15sp" />
@@ -73,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_layout"
                 android:cursorVisible="true"
+                android:fontFamily="@font/quicksand_regular"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:maxLength="50"
@@ -91,6 +107,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_layout"
                 android:cursorVisible="true"
+                android:fontFamily="@font/quicksand_regular"
                 android:hint="@string/mobilenumber"
                 android:maxLength="50"
                 android:textSize="15sp" />
@@ -108,6 +125,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_layout"
                 android:cursorVisible="true"
+                android:fontFamily="@font/quicksand_regular"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:maxLength="50"
@@ -126,6 +144,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_layout"
                 android:cursorVisible="true"
+                android:fontFamily="@font/quicksand_regular"
                 android:hint="@string/retypepassword"
                 android:inputType="textPassword"
                 android:maxLength="50"
@@ -160,6 +179,7 @@
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/houseno"
                     android:maxLength="50"
                     android:textSize="15sp" />
@@ -176,6 +196,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/street"
                     android:maxLength="50"
                     android:textSize="15sp" />
@@ -201,6 +222,7 @@
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/barangay"
                     android:maxLength="50"
                     android:textSize="15sp" />
@@ -217,6 +239,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/citymunicipality"
                     android:maxLength="50"
                     android:textSize="15sp" />
@@ -242,6 +265,7 @@
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/province"
                     android:maxLength="50"
                     android:textSize="15sp" />
@@ -258,6 +282,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/zipcode"
                     android:maxLength="50"
                     android:textSize="15sp" />

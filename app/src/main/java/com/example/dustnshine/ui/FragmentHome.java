@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,7 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentHome extends Fragment {
-    Button manage,notifBtn;
+    Button manage;
+    LinearLayout notifBtn;
     View view;
 
     private RecyclerView recommendationRecycler,featureRecycler;
