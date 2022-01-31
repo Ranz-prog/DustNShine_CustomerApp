@@ -71,9 +71,9 @@
 
     <!--Dashboard-->
     <string name="Manage">View Profile</string>
-    <string name="ClientName">Hi, User</string>
     <string name="CleaningCompanies">Cleaning Companies in</string>
-    <string name="Location">Dagupan City.</string>
+    <string name="Location">Dagupan City</string>
+    <string name="Address">123 Arellano Street, Dagupan City</string>
     <string name="Recommendation">Recommended</string>
     <string name="FeaturedServices">Featured Service</string>
     <string name="genralcleaning">General Cleaning</string>

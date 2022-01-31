@@ -14,18 +14,20 @@
             android:id="@+id/MangeAccTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/calibribold"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/quicksand_medium"
             android:text="Booking Service"
+            android:layout_marginTop="10dp"
             android:textColor="@color/app_theme_gold"
-            android:textSize="28sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bookingHistoryBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="6dp"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="6dp"
             android:background="@drawable/time_past"
             android:backgroundTint="@color/app_theme_blue" />
 

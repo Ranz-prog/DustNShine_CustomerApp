@@ -31,11 +31,13 @@
             android:id="@+id/ForgetText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ReturnBtnOnManageAcc"
-            android:fontFamily="@font/calibribold"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+
+            android:fontFamily="@font/quicksand_medium"
             android:text="Manage Account"
             android:textColor="@color/app_theme_gold"
-            android:textSize="26sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <LinearLayout

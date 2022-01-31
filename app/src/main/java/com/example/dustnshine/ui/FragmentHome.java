@@ -1,6 +1,7 @@
 package com.example.dustnshine.ui;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +24,11 @@ import com.example.dustnshine.adapter.feature_adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentHome extends Fragment {
-    Button manage;
-    LinearLayout notifBtn;
 
 public class FragmentHome extends Fragment implements recommendation_adapter.OnClickMessageListener{
-    Button manage,notifBtn;
 
+    ImageView manage;
+    LinearLayout notifBtn;
     View view;
 
     private RecyclerView recommendationRecycler,featureRecycler;
