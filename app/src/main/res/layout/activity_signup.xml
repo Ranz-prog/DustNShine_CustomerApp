@@ -34,6 +34,7 @@
                 app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextFirstName"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -51,6 +52,7 @@
                 app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextLastName"
                     android:layout_width="185dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_layout"
@@ -69,6 +71,7 @@
             app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_layout"
@@ -86,6 +89,7 @@
             app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextMobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -103,6 +107,7 @@
             app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -121,6 +126,7 @@
             app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPasswordConfirmation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

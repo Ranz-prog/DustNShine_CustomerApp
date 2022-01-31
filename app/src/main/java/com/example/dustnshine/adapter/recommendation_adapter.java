@@ -9,12 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.Models.recommendation_model;
+import com.example.dustnshine.models.recommendation_model;
 import com.example.dustnshine.R;
 
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class recommendation_adapter extends RecyclerView.Adapter<recommendation_adapter.ViewHolder>{
 

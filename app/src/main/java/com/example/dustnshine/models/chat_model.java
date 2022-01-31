@@ -1,4 +1,4 @@
-package com.example.dustnshine.Models;
+package com.example.dustnshine.models;
 
 public class chat_model {
 

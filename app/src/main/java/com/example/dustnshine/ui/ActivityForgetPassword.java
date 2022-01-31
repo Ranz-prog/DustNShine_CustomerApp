@@ -30,7 +30,7 @@ public class ActivityForgetPassword extends AppCompatActivity {
 
         setContentView(R.layout.activity_forgot_password);
 
-        forgotBtn = findViewById(R.id.forgetBtn);
+//        forgotBtn = findViewById(R.id.forgetBtn);
 
         // DIALOG BOX START
         dialog = new Dialog(this);

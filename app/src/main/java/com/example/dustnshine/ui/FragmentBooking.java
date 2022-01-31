@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.Models.booking_model;
+import com.example.dustnshine.models.booking_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.booking_adapter;
 

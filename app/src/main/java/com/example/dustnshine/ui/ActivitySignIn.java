@@ -2,6 +2,7 @@ package com.example.dustnshine.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,11 +15,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
+import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.models.LoginResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ActivitySignIn extends AppCompatActivity {
 
     private long backButtonCount;
 
+    private EditText editTextEmailAddress, editTextPassword;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     EditText emailSearch;
@@ -34,9 +42,13 @@ public class ActivitySignIn extends AppCompatActivity {
 
         setContentView(R.layout.activity_signin);
 
+        editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
+        editTextPassword = findViewById(R.id.editTextPassword);
+
         createAcc = findViewById(R.id.createAcc);
         signInBtn = findViewById(R.id.btnServerLogin);
         forget = findViewById(R.id.forget);
+
 
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +61,7 @@ public class ActivitySignIn extends AppCompatActivity {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userLogin();
                 Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -101,5 +114,52 @@ public class ActivitySignIn extends AppCompatActivity {
 
 
 
+    }
+
+    private void userLogin(){
+
+        String email = editTextEmailAddress.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+
+        if(email.isEmpty()){
+            editTextEmailAddress.setError("Email is required");
+            editTextEmailAddress.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editTextEmailAddress.setError("Enter a valid email");
+            editTextEmailAddress.requestFocus();
+            return;
+        }
+        if(password.isEmpty()){
+            editTextPassword.setError("Password is required");
+            editTextPassword.requestFocus();
+            return;
+        }
+        if(password.length() < 8){
+            editTextPassword.setError("Password should 8 character long");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
+
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                LoginResponse loginResponse = response.body();
+                if(response.code() == 200){
+                    Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
