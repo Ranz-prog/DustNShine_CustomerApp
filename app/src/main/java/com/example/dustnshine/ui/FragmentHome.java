@@ -15,11 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
-import com.example.dustnshine.adapter.chat_adapter;
+
 import com.example.dustnshine.models.recommendation_model;
 import com.example.dustnshine.adapter.recommendation_adapter;
 import com.example.dustnshine.models.feature_model;
-import com.example.dustnshine.adapter.feature_adapter;
 
 import java.util.ArrayList;
 import java.util.List;
