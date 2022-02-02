@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginTop="6dp"
+    android:background="@color/background"
     app:cardCornerRadius="5dp">
 
     <RelativeLayout
