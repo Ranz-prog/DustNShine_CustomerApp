@@ -93,23 +93,23 @@ public class ActivitySignIn extends AppCompatActivity {
     }
 
     public void  createNewDialog(){
-            dialogBuilder = new AlertDialog.Builder(this);
-            final  View searchPopUp = getLayoutInflater().inflate(R.layout.activity_search_email,null);
-            emailSearch = searchPopUp.findViewById(R.id.enterEmailSearch);
+        dialogBuilder = new AlertDialog.Builder(this);
+        final  View searchPopUp = getLayoutInflater().inflate(R.layout.activity_search_email,null);
+        emailSearch = searchPopUp.findViewById(R.id.enterEmailSearch);
 
-            search = searchPopUp.findViewById(R.id.searchBtn);
+        search = searchPopUp.findViewById(R.id.searchBtn);
 
-            dialogBuilder.setView(searchPopUp);
-            dialog = dialogBuilder.create();
-            dialog.show();
+        dialogBuilder.setView(searchPopUp);
+        dialog = dialogBuilder.create();
+        dialog.show();
 
-            search.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ActivitySignIn.this, ActivityForgetPassword.class);
-                    startActivity(intent);
-                }
-            });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivitySignIn.this, ActivityForgetPassword.class);
+                startActivity(intent);
+            }
+        });
 
 
 
