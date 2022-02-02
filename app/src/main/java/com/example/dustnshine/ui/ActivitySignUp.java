@@ -78,7 +78,7 @@ public class ActivitySignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerUser();
-                dialog.show(); // Showing the dialog here
+
             }
         });
 
@@ -143,14 +143,15 @@ public class ActivitySignUp extends AppCompatActivity {
         call.enqueue(new Callback<DefaultResponse>() {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                DefaultResponse dr = response.body();
+
                 if(response.code() == 201){
-                    DefaultResponse dr = response.body();
                     Toast.makeText(ActivitySignUp.this, dr.getMessage(), Toast.LENGTH_LONG).show();
-                } else if (response.code() == 422) {
-                    Toast.makeText(ActivitySignUp.this, "User Already Exist", Toast.LENGTH_LONG).show();
+                    dialog.show(); // Showing the dialog here
+                }if (response.code() == 422) {
+                    Toast.makeText(ActivitySignUp.this, "data was invalid", Toast.LENGTH_LONG).show();
                 }else {
-                    String s = response.errorBody().toString();
-                    Toast.makeText(ActivitySignUp.this, s, Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivitySignUp.this, dr.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
 

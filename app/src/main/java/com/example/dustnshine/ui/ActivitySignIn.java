@@ -62,8 +62,7 @@ public class ActivitySignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 userLogin();
-                Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
-                startActivity(intent);
+
             }
         });
 
@@ -152,7 +151,13 @@ public class ActivitySignIn extends AppCompatActivity {
                 LoginResponse loginResponse = response.body();
                 if(response.code() == 200){
                     Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
-                } else {
+                    Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                if(response.code() == 401){
+                    Toast.makeText(ActivitySignIn.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                }
+                else {
                     Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
