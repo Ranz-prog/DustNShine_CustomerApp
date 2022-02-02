@@ -19,7 +19,7 @@
     <color name="textbox_shadow">#F2F4F8</color>
 
     <!--Line Divider Color-->
-    <color name="line_divider_color">#D3DEDC</color>
+    <color name="line_divider_color">#bdbfc3</color>
 
     <!--background featured services-->
     <color name="garage">#EFFFB7</color>

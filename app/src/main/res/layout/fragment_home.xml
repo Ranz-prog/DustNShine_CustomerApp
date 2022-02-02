@@ -149,7 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/twotopside"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="35dp"
             android:orientation="vertical">
 
             <SearchView
@@ -180,10 +180,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/search_bar"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginRight="5dp"
                 android:fontFamily="@font/quicksand_font"
                 android:text="Show all"
-                android:textColor="@color/app_theme_black"
+                android:textColor="@color/line_divider_color"
                 android:textSize="12sp" />
 
             <androidx.recyclerview.widget.RecyclerView
