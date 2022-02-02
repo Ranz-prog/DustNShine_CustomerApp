@@ -25,10 +25,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="87dp"
                 android:fontFamily="@font/quicksand_medium"
-                android:paddingTop="15dp"
+                android:paddingTop="20dp"
                 android:text="@string/Location"
                 android:textAlignment="center"
-                android:textColor="#1F2325"
+                android:textColor="@color/app_theme_gold"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="22dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/roundbutton"
                 android:gravity="center_horizontal"
@@ -62,8 +62,8 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/bell" />
             </LinearLayout>
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="22dp"
                 android:elevation="10dp"
                 app:cardCornerRadius="7dp">
 
@@ -93,7 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_below="@id/topSide"
-            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
             android:background="@drawable/container2"
             android:orientation="horizontal">
 
@@ -108,10 +109,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/calibribold"
-                    android:text="Perfect Cleaning We are ready!"
-                    android:paddingTop="25dp"
                     android:paddingLeft="10dp"
+                    android:paddingTop="25dp"
                     android:paddingRight="10dp"
+                    android:text="Perfect Cleaning We are ready!"
                     android:textColor="#FFFFFF"
                     android:textSize="25sp" />
 
@@ -147,7 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/twotopside"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:orientation="vertical">
 
             <SearchView
@@ -164,12 +165,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/search_bar"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:elevation="10dp"
                 android:fontFamily="@font/quicksand_medium"
                 android:text="@string/Recommendation"
-                android:textColor="@color/app_theme_gold"
-                android:textSize="20sp"
+                android:textColor="@color/app_theme_black"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -208,8 +209,8 @@
                 android:elevation="10dp"
                 android:fontFamily="@font/quicksand_medium"
                 android:text="@string/FeaturedServices"
-                android:textColor="@color/app_theme_gold"
-                android:textSize="20sp"
+                android:textColor="@color/app_theme_black"
+                android:textSize="15sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -220,14 +221,15 @@
             android:layout_below="@id/botSide"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <LinearLayout
                 android:id="@+id/gencon"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/container_border_2"
-                android:backgroundTint="@color/general"
+                android:elevation="1dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
@@ -249,7 +251,7 @@
                     android:fontFamily="@font/quicksand_medium"
                     android:text="@string/genralcleaning"
                     android:textColor="@color/app_theme_black"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -259,17 +261,18 @@
                     android:fontFamily="@font/quicksand_regular"
                     android:text="@string/congen"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/garcon"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_height="140dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/gencon"
                 android:background="@drawable/container_border_2"
-                android:backgroundTint="@color/garage"
+                android:elevation="1dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
@@ -323,9 +326,10 @@
             <LinearLayout
                 android:id="@+id/dencon"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/container_border_2"
-                android:backgroundTint="@color/garden"
+                android:elevation="1dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
@@ -363,11 +367,12 @@
             <LinearLayout
                 android:id="@+id/repcon"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_height="140dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/dencon"
                 android:background="@drawable/container_border_2"
-                android:backgroundTint="@color/repair"
+                android:elevation="1dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
