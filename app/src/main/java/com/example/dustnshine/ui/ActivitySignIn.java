@@ -62,8 +62,6 @@ public class ActivitySignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 userLogin();
-                Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -85,9 +83,7 @@ public class ActivitySignIn extends AppCompatActivity {
 //            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();
             startActivity(intent);
-        }
-        else
-        {
+        } else {
             Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
             backButtonCount++;
         }
@@ -111,8 +107,6 @@ public class ActivitySignIn extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
-
 
     }
 
@@ -140,6 +134,9 @@ public class ActivitySignIn extends AppCompatActivity {
             editTextPassword.setError("Password should 8 character long");
             editTextPassword.requestFocus();
             return;
+        } else {
+            Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+            startActivity(intent);
         }
 
         Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
@@ -150,7 +147,7 @@ public class ActivitySignIn extends AppCompatActivity {
 
                 LoginResponse loginResponse = response.body();
                 if(response.code() == 200){
-                    Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivitySignIn.this, , Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
                 }
