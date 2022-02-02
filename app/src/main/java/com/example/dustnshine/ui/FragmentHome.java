@@ -17,8 +17,9 @@ import com.example.dustnshine.R;
 
 import com.example.dustnshine.Models.recommendation_model;
 import com.example.dustnshine.adapter.chat_adapter;
+import com.example.dustnshine.models.recommendation_model;
 import com.example.dustnshine.adapter.recommendation_adapter;
-import com.example.dustnshine.Models.feature_model;
+import com.example.dustnshine.models.feature_model;
 import com.example.dustnshine.adapter.feature_adapter;
 
 import java.util.ArrayList;

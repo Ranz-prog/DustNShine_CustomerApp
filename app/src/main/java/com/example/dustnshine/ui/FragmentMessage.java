@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.Models.chat_model;
+import com.example.dustnshine.models.chat_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.chat_adapter;
 

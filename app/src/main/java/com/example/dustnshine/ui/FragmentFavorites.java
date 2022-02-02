@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.dustnshine.Models.favorite_model;
-import com.example.dustnshine.Models.recommendation_model;
+import com.example.dustnshine.models.favorite_model;
 import com.example.dustnshine.R;
 
 import com.example.dustnshine.adapter.favorite_adapter;

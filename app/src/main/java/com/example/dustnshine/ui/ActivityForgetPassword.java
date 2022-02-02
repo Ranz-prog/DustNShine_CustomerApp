@@ -33,6 +33,8 @@ public class ActivityForgetPassword extends AppCompatActivity {
         forgotBtn = findViewById(R.id.forgetBtn);
         returnSignIn = findViewById(R.id.btnReturnForget);
 
+//        forgotBtn = findViewById(R.id.forgetBtn);
+
         // DIALOG BOX START
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.pop_up_reference);

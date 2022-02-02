@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.Models.booking_model;
+import com.example.dustnshine.models.booking_model;
 import com.example.dustnshine.R;
 
 import java.util.List;
