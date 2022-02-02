@@ -1,5 +1,6 @@
 package com.example.dustnshine.adapter;
 
+import com.example.dustnshine.Models.services_model;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

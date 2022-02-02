@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginTop="6dp"
+    android:layout_marginTop="10dp"
     android:background="@color/background"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/container_border"
-        android:orientation="vertical"
         android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/clientImage"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/user" />
 
         <TextView
             android:id="@+id/detailsTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="11dp"
+
             android:layout_toRightOf="@+id/clientImage"
+            android:fontFamily="@font/quicksand_medium"
             android:text="@string/customerdetails"
             android:textColor="@color/app_theme_blue"
-            android:textSize="16dp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
@@ -38,10 +40,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/detailsTv"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
             android:layout_toRightOf="@+id/clientImage"
+            android:fontFamily="@font/quicksand_medium"
             android:text="@string/customername"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
@@ -50,10 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/detailsTv"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
             android:layout_toRightOf="@+id/nameTv"
+            android:fontFamily="@font/quicksand_regular"
             android:text="@string/customername"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/locTv"
@@ -62,8 +64,9 @@
             android:layout_below="@+id/nameTv"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
+            android:fontFamily="@font/quicksand_medium"
             android:text="@string/locationdetails"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
@@ -74,8 +77,9 @@
             android:layout_marginLeft="10dp"
 
             android:layout_toRightOf="@+id/locTv"
+            android:fontFamily="@font/quicksand_regular"
             android:text="@string/location"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/conTv"
@@ -84,8 +88,9 @@
             android:layout_below="@+id/locTv"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
+            android:fontFamily="@font/quicksand_medium"
             android:text="@string/contactnumber"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
@@ -95,8 +100,9 @@
             android:layout_below="@+id/locTv"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/conTv"
+            android:fontFamily="@font/quicksand_regular"
             android:text="@string/contactnumber"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     //Sample comment comment

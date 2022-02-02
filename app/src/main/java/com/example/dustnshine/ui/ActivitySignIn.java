@@ -61,7 +61,9 @@ public class ActivitySignIn extends AppCompatActivity {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userLogin();
+                Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+                startActivity(intent);
+                //userLogin();
 
             }
         });
@@ -141,7 +143,7 @@ public class ActivitySignIn extends AppCompatActivity {
             return;
         }
 
-        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
+  /*---     Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
 
 
         call.enqueue(new Callback<LoginResponse>() {
@@ -166,6 +168,6 @@ public class ActivitySignIn extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
 
             }
-        });
+        });---*/
     }
 }
