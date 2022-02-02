@@ -62,6 +62,7 @@ public class ActivitySignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 userLogin();
+
             }
         });
 
@@ -83,30 +84,34 @@ public class ActivitySignIn extends AppCompatActivity {
 //            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();
             startActivity(intent);
-        } else {
+        }
+        else
+        {
             Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
             backButtonCount++;
         }
     }
 
     public void  createNewDialog(){
-            dialogBuilder = new AlertDialog.Builder(this);
-            final  View searchPopUp = getLayoutInflater().inflate(R.layout.activity_search_email,null);
-            emailSearch = searchPopUp.findViewById(R.id.enterEmailSearch);
+        dialogBuilder = new AlertDialog.Builder(this);
+        final  View searchPopUp = getLayoutInflater().inflate(R.layout.activity_search_email,null);
+        emailSearch = searchPopUp.findViewById(R.id.enterEmailSearch);
 
-            search = searchPopUp.findViewById(R.id.searchBtn);
+        search = searchPopUp.findViewById(R.id.searchBtn);
 
-            dialogBuilder.setView(searchPopUp);
-            dialog = dialogBuilder.create();
-            dialog.show();
+        dialogBuilder.setView(searchPopUp);
+        dialog = dialogBuilder.create();
+        dialog.show();
 
-            search.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ActivitySignIn.this, ActivityForgetPassword.class);
-                    startActivity(intent);
-                }
-            });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivitySignIn.this, ActivityForgetPassword.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 
@@ -134,12 +139,10 @@ public class ActivitySignIn extends AppCompatActivity {
             editTextPassword.setError("Password should 8 character long");
             editTextPassword.requestFocus();
             return;
-        } else {
-            Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
-            startActivity(intent);
         }
 
         Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
+
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
@@ -147,8 +150,14 @@ public class ActivitySignIn extends AppCompatActivity {
 
                 LoginResponse loginResponse = response.body();
                 if(response.code() == 200){
-                    Toast.makeText(ActivitySignIn.this, , Toast.LENGTH_LONG).show();
-                } else {
+                    Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                if(response.code() == 401){
+                    Toast.makeText(ActivitySignIn.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                }
+                else {
                     Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
