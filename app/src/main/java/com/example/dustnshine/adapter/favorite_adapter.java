@@ -17,16 +17,18 @@ import java.util.List;
 public class favorite_adapter extends RecyclerView.Adapter<favorite_adapter.ViewHolder>{
 
     List<favorite_model> bookingModelList;
+    private favorite_adapter.OnClickMessageListener onClickMessageListener;
 
-    public favorite_adapter(List<favorite_model> bookingModelList) {
+    public favorite_adapter(List<favorite_model> bookingModelList, favorite_adapter.OnClickMessageListener onClickMessageListener) {
         this.bookingModelList = bookingModelList;
+        this.onClickMessageListener = onClickMessageListener;
     }
 
     @NonNull
     @Override
     public favorite_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_favorite_company, parent, false);
-        favorite_adapter.ViewHolder viewHolder = new favorite_adapter.ViewHolder(view);
+        favorite_adapter.ViewHolder viewHolder = new favorite_adapter.ViewHolder(view, onClickMessageListener);
 
         return viewHolder;
     }
@@ -47,12 +49,18 @@ public class favorite_adapter extends RecyclerView.Adapter<favorite_adapter.View
         return bookingModelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public interface OnClickMessageListener {
+        void onClickMessage(int adapterPosition);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private ImageView companyImgFav;
         private TextView companyNameFav, companyAddressFav,companyRatingFav;
 
-        public ViewHolder(@NonNull View itemView) {
+        favorite_adapter.OnClickMessageListener onClickMessageListener;
+
+        public ViewHolder(@NonNull View itemView, favorite_adapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
             companyImgFav = itemView.findViewById(R.id.companyImgFav);
@@ -60,6 +68,15 @@ public class favorite_adapter extends RecyclerView.Adapter<favorite_adapter.View
             companyAddressFav = itemView.findViewById(R.id.txtAdrress);
             companyRatingFav = itemView.findViewById(R.id.ratingFavorite);
 
+            this.onClickMessageListener = (favorite_adapter.OnClickMessageListener) onClickMessageListener;
+
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            onClickMessageListener.onClickMessage(getAdapterPosition());
         }
     }
 }

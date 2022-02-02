@@ -1,5 +1,6 @@
 package com.example.dustnshine.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +19,20 @@ import com.example.dustnshine.Models.recommendation_model;
 import com.example.dustnshine.R;
 
 import com.example.dustnshine.adapter.favorite_adapter;
+import com.example.dustnshine.adapter.recommendation_adapter;
 
 import java.util.ArrayList;
 import java.util.List;
-public class FragmentFavorites extends Fragment {
+public class FragmentFavorites extends Fragment implements favorite_adapter.OnClickMessageListener{
 
     private RecyclerView favoriteRecycler;
     private View view;
     private List<favorite_model> favoriteModelList;
+
+
+    public FragmentFavorites(){
+
+    }
 
     @Nullable
     @Override
@@ -40,7 +47,7 @@ public class FragmentFavorites extends Fragment {
 
 
 
-        favoriteRecycler.setAdapter(new favorite_adapter(favoriteModels()));
+        favoriteRecycler.setAdapter(new favorite_adapter(favoriteModels(),this));
 
 
 
@@ -58,7 +65,10 @@ public class FragmentFavorites extends Fragment {
 
         return favoriteModelList;
 
-
-
+    }
+    @Override
+    public void onClickMessage(int adapterPosition) {
+        Intent intent = new Intent(getActivity(), ActivityCompanyDetails.class);
+        startActivity(intent);
     }
 }
