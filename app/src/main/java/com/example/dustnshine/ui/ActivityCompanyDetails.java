@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.dustnshine.Models.services_model;
+import com.example.dustnshine.models.services_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.services_adapter;
 
