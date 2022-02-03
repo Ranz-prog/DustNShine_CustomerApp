@@ -17,6 +17,7 @@ import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.models.LoginResponse;
+import com.example.dustnshine.storage.SharedPrefManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,10 +62,7 @@ public class ActivitySignIn extends AppCompatActivity {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
-                startActivity(intent);
-                //userLogin();
-
+                userLogin();
             }
         });
 
@@ -143,7 +141,7 @@ public class ActivitySignIn extends AppCompatActivity {
             return;
         }
 
-  /*---     Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
+        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
 
 
         call.enqueue(new Callback<LoginResponse>() {
@@ -153,6 +151,7 @@ public class ActivitySignIn extends AppCompatActivity {
                 LoginResponse loginResponse = response.body();
                 if(response.code() == 200){
                     Toast.makeText(ActivitySignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUser(loginResponse.getData().getUser());
                     Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -168,6 +167,6 @@ public class ActivitySignIn extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
 
             }
-        });---*/
+        });
     }
 }
