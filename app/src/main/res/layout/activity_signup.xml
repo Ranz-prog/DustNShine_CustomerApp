@@ -335,10 +335,11 @@
             android:layout_margin="15dp"
             android:background="@drawable/rounded_corners_button_layout"
             android:backgroundTint="@color/app_theme_blue"
+            android:fontFamily="@font/quicksand_bold"
             android:padding="10dp"
             android:text="@string/signup"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 </ScrollView>

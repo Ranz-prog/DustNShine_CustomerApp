@@ -32,6 +32,6 @@ public class splash_screen extends AppCompatActivity {
                 Intent intent = new Intent(splash_screen.this, ActivitySignIn.class);
                 startActivity(intent);
             }
-        }, 5000);
+        }, 800);
     }
 }
