@@ -16,11 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.models.booking_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.booking_adapter;
+import com.example.dustnshine.adapter.recommendation_adapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentBooking extends Fragment {
+public class FragmentBooking extends Fragment implements booking_adapter.OnClickMessageListener{
     private RecyclerView bookingRecycler;
     private View view;
     private List<booking_model> bookingModelList;
@@ -41,7 +42,7 @@ public class FragmentBooking extends Fragment {
         bookingRecycler.setHasFixedSize(true);
         bookingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        bookingRecycler.setAdapter(new booking_adapter(bookingModels()));
+        bookingRecycler.setAdapter(new booking_adapter(bookingModels(),this));
 
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +62,6 @@ public class FragmentBooking extends Fragment {
 
     private List<booking_model> bookingModels(){
 
-
-
         bookingModelList = new ArrayList<>();
 
         bookingModelList.add(new booking_model(R.drawable.user,
@@ -72,7 +71,10 @@ public class FragmentBooking extends Fragment {
 
         return bookingModelList;
 
-
-
+    }
+    @Override
+    public void onClickMessage(int adapterPosition) {
+        Intent intent = new Intent(getActivity(), ActivityCheckOut.class);
+        startActivity(intent);
     }
 }
