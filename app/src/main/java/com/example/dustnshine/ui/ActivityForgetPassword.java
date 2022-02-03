@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,9 +19,10 @@ import com.example.dustnshine.R;
 
 public class ActivityForgetPassword extends AppCompatActivity {
 
-    Button forgotBtn,returnSignIn;
+    Button forgotBtn;
     Dialog dialog;
     TextView popText;
+    LinearLayout returnSignIn;
 
 
     @Override

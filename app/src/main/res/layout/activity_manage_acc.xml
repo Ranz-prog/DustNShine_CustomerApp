@@ -14,28 +14,35 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background"
         >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:orientation="vertical" />
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ReturnBtnOnManageAcc"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/ic_arrow_back" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/roundbutton"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/back" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/ForgetText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
-
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/quicksand_medium"
             android:text="Manage Account"
             android:textColor="@color/app_theme_gold"
@@ -46,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ForgetText"
+            android:background="@color/background"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
@@ -54,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:outlineSpotShadowColor="@color/white">
+                android:outlineSpotShadowColor="@color/background">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -75,6 +83,7 @@
                     android:id="@+id/personal_info_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/background"
                     android:layout_marginTop="35dp"
                     android:orientation="vertical"
                     android:visibility="gone">
@@ -83,6 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:background="@color/background"
                         android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
 
@@ -431,8 +441,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            <View style="@style/Divider" />
-
         </LinearLayout>
+
     </RelativeLayout>
 </ScrollView>

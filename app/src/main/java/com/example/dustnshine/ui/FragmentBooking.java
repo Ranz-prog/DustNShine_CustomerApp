@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +26,7 @@ public class FragmentBooking extends Fragment implements booking_adapter.OnClick
     private RecyclerView bookingRecycler;
     private View view;
     private List<booking_model> bookingModelList;
-    Button historyBtn;
+    LinearLayout historyBtn;
 
     public FragmentBooking(){
     }

@@ -22,11 +22,10 @@ import com.example.dustnshine.R;
 
 public class ActivityManageAccount extends AppCompatActivity {
 
-    LinearLayout personalInfoView;
+    LinearLayout personalInfoView,returnHome;
     TextView txtPersonalInfo,popText;
     CardView personalInfoCardView;
-
-    Button reset,returnHome;
+    Button reset;
     Dialog dialog;
     //Comment ni Jolo
 

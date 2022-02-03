@@ -61,7 +61,9 @@ public class ActivitySignIn extends AppCompatActivity {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userLogin();
+                Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+                startActivity(intent);
+                //userLogin();
 
             }
         });
@@ -93,23 +95,23 @@ public class ActivitySignIn extends AppCompatActivity {
     }
 
     public void  createNewDialog(){
-            dialogBuilder = new AlertDialog.Builder(this);
-            final  View searchPopUp = getLayoutInflater().inflate(R.layout.activity_search_email,null);
-            emailSearch = searchPopUp.findViewById(R.id.enterEmailSearch);
+        dialogBuilder = new AlertDialog.Builder(this);
+        final  View searchPopUp = getLayoutInflater().inflate(R.layout.activity_search_email,null);
+        emailSearch = searchPopUp.findViewById(R.id.enterEmailSearch);
 
-            search = searchPopUp.findViewById(R.id.searchBtn);
+        search = searchPopUp.findViewById(R.id.searchBtn);
 
-            dialogBuilder.setView(searchPopUp);
-            dialog = dialogBuilder.create();
-            dialog.show();
+        dialogBuilder.setView(searchPopUp);
+        dialog = dialogBuilder.create();
+        dialog.show();
 
-            search.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ActivitySignIn.this, ActivityForgetPassword.class);
-                    startActivity(intent);
-                }
-            });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivitySignIn.this, ActivityForgetPassword.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -141,7 +143,7 @@ public class ActivitySignIn extends AppCompatActivity {
             return;
         }
 
-        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
+  /*---     Call<LoginResponse> call = RetrofitClient.getInstance().getApi().userLogin(email, password);
 
 
         call.enqueue(new Callback<LoginResponse>() {
@@ -166,6 +168,6 @@ public class ActivitySignIn extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
 
             }
-        });
+        });---*/
     }
 }

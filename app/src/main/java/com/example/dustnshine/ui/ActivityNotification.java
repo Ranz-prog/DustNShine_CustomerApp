@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +12,7 @@ import com.example.dustnshine.R;
 
 public class ActivityNotification extends AppCompatActivity {
 
-    Button returnHome;
+    LinearLayout returnHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

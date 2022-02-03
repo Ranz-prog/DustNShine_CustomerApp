@@ -10,7 +10,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:elevation="4dp"
         >
         <RelativeLayout
@@ -23,16 +23,16 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_angle_small_left" />
+                android:src="@drawable/back" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/message_userImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_toRightOf="@id/arrowback2"
-                android:src="@drawable/user"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/arrowback2"
+                android:src="@drawable/user" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="10dp"
@@ -81,11 +81,12 @@
             <EditText
                 android:id="@+id/message_inputMessage"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@id/message_sendMessage"
                 android:background="@drawable/container_border_3"
+                android:fontFamily="@font/quicksand_regular"
                 android:hint="Type here . . ."
                 android:paddingLeft="8dp"
                 android:textSize="12sp" />
