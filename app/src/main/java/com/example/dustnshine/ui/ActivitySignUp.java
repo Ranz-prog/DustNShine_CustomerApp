@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class ActivitySignUp extends AppCompatActivity {
 
     private TextInputEditText editTextFirstName, editTextLastName, editTextMobileNumber, editTextEmailAddress, editTextPassword, editTextPasswordConfirmation;
 
+    LinearLayout returnHome;
     Button signupBtn;
     Dialog dialog;
     TextView popText;
@@ -46,6 +48,15 @@ public class ActivitySignUp extends AppCompatActivity {
         editTextPasswordConfirmation= findViewById(R.id.editTextPasswordConfirmation);
 
         signupBtn = findViewById(R.id.btnServerLogin);
+        returnHome = findViewById(R.id.ReturnBtnOnHome);
+
+        //BackButton
+        returnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // DIALOG BOX START
         dialog = new Dialog(this);
