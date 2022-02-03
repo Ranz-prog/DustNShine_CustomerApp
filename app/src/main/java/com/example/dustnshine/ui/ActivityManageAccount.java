@@ -19,15 +19,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
+import com.example.dustnshine.models.User;
+import com.example.dustnshine.storage.SharedPrefManager;
 
 public class ActivityManageAccount extends AppCompatActivity {
 
     LinearLayout personalInfoView,returnHome;
     TextView txtPersonalInfo,popText;
     CardView personalInfoCardView;
-    Button reset;
+    Button reset, edit;
     Dialog dialog;
+    EditText fname,lname,mobileNumber,emailAdd;
+    EditText pass, retypePass,houseNo,street, barangay, city, province, zipCode; // wala pang data
+    int number;
     //Comment ni Jolo
+
+    String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +45,33 @@ public class ActivityManageAccount extends AppCompatActivity {
 
         reset = findViewById(R.id.btnServerLogin);
         returnHome = findViewById(R.id.ReturnBtnOnManageAcc);
+        edit = findViewById(R.id.btnEditDetails);
 
         personalInfoView = findViewById(R.id.personal_info_view);
         txtPersonalInfo = findViewById(R.id.txtPersonalInfo);
         personalInfoCardView = findViewById(R.id.personal_info_cardview);
 
+        fname = findViewById(R.id.FnameET);
+        lname = findViewById(R.id.LnameET);
+        mobileNumber = findViewById(R.id.MobileNoET);
+        emailAdd = findViewById(R.id.EmailAddET);
+
+        pass = findViewById(R.id.PasswordET);
+        retypePass = findViewById(R.id.RetypePassET);
+        houseNo = findViewById(R.id.HouseNoET);
+        street = findViewById(R.id.StreetET);
+        barangay = findViewById(R.id.BarangayET);
+        city = findViewById(R.id.CityET);
+        province = findViewById(R.id.ProvinceET);
+        zipCode = findViewById(R.id.ZipCodeET);
+
+        User user = SharedPrefManager.getInstance(this).getUser();
+        fname.setText(user.getFirst_name());
+        lname.setText(user.getLast_name());
+        mobileNumber.setText(user.getMobile_number());
+        emailAdd.setText(user.getEmail());
+
+        disabled();
 
         txtPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,38 +85,24 @@ public class ActivityManageAccount extends AppCompatActivity {
                 }
             }
         });
-        // DIALOG BOX START
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.pop_up_reference);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
-        }
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
 
-        Button Okay = dialog.findViewById(R.id.btn_okay);
-        popText = dialog.findViewById(R.id.popUpText);
-        String text= "Thank you. You have successfully changed your password!";// Set Message Here
-        popText.setText(text.toString());
-
-
-        Okay.setOnClickListener(new View.OnClickListener() {
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityManageAccount.this, "Success", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+                text = "Are you sure you want to change information details?";
+                number = 1;
+                dialogBox();
+                dialog.show(); // Showing the dialog here
             }
         });
-        //END OF DIALOG BOX
-
-
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                text = "Thank you. You have successfully changed your password!";
+                number = 2;
+                dialogBox();
                 dialog.show(); // Showing the dialog here
             }
         });
@@ -98,6 +113,84 @@ public class ActivityManageAccount extends AppCompatActivity {
                 finish();
             }
         });
+
+    }
+
+    public void disabled(){
+        fname.setFocusable(false);
+        lname.setFocusable(false);
+        emailAdd.setFocusable(false);
+        mobileNumber.setFocusable(false);
+
+        pass.setFocusable(false);
+        retypePass.setFocusable(false);
+        houseNo.setFocusable(false);
+        street.setFocusable(false);
+        barangay.setFocusable(false);
+        city.setFocusable(false);
+        province.setFocusable(false);
+        zipCode.setFocusable(false);
+
+    }
+
+    public void enable(){
+
+        fname.setFocusableInTouchMode(true);
+        lname.setFocusableInTouchMode(true);
+        emailAdd.setFocusableInTouchMode(true);
+        mobileNumber.setFocusableInTouchMode(true);
+
+        pass.setFocusableInTouchMode(true);
+        retypePass.setFocusableInTouchMode(true);
+        houseNo.setFocusableInTouchMode(true);
+        street.setFocusableInTouchMode(true);
+        barangay.setFocusableInTouchMode(true);
+        city.setFocusableInTouchMode(true);
+        province.setFocusableInTouchMode(true);
+        zipCode.setFocusableInTouchMode(true);
+
+    }
+
+    public void dialogBox(){
+
+        // DIALOG BOX START
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.pop_up_reference);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+        }
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+
+        Button Okay = dialog.findViewById(R.id.btn_okay);
+        popText = dialog.findViewById(R.id.popUpText);
+
+        popText.setText(text.toString());//placing message here
+
+        if (number == 1){
+
+            Okay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    enable();
+                    dialog.dismiss();
+                }
+            });
+            //END OF DIALOG BOX
+        }
+
+        else {
+            Okay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(ActivityManageAccount.this, "Success", Toast.LENGTH_SHORT).show();
+                    disabled();
+                    dialog.dismiss();
+                }
+            });
+            //END OF DIALOG BOX
+        }
 
     }
 }
