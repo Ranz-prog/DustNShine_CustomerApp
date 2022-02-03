@@ -157,10 +157,9 @@ public class ActivitySignUp extends AppCompatActivity {
                 DefaultResponse dr = response.body();
 
                 if(response.code() == 201){
-                    Toast.makeText(ActivitySignUp.this, dr.getMessage(), Toast.LENGTH_LONG).show();
                     dialog.show(); // Showing the dialog here
                 }if (response.code() == 422) {
-                    Toast.makeText(ActivitySignUp.this, "data was invalid", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivitySignUp.this, "The given data was invalid.", Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(ActivitySignUp.this, dr.getMessage(), Toast.LENGTH_LONG).show();
                 }
