@@ -31,10 +31,8 @@ public class ActivitySignIn extends AppCompatActivity {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     EditText emailSearch;
-    Button search;
-
+    Button search, signInBtn;
     TextView createAcc,forget;
-    Button signInBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +47,6 @@ public class ActivitySignIn extends AppCompatActivity {
         createAcc = findViewById(R.id.createAcc);
         signInBtn = findViewById(R.id.btnServerLogin);
         forget = findViewById(R.id.forget);
-
 
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,8 +107,6 @@ public class ActivitySignIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 
     }
 
