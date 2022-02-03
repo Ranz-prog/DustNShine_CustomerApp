@@ -1,7 +1,6 @@
 package com.example.dustnshine.ui;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -12,14 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.dustnshine.Models.services_model;
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.services_adapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ActivityCheckOut extends AppCompatActivity {
 
