@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

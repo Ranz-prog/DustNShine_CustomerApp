@@ -7,7 +7,7 @@
     android:background="@color/background"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    tools:context=".ui.ActivitySignUp">
+    tools:context=".ui.activities.ActivitySignUp">
 
     <LinearLayout
         android:layout_width="match_parent"

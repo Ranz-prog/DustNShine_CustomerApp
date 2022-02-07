@@ -7,7 +7,7 @@
     android:background="@color/app_theme_blue"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.ActivitySignIn">
+    tools:context=".ui.activities.ActivitySignIn">
 
 
     <ImageView
