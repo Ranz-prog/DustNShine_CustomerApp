@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.FragmentBooking;
 import com.example.dustnshine.ui.FragmentFavorites;
 import com.example.dustnshine.ui.FragmentHome;
