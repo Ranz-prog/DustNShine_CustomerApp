@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:scrollbars="none"
-    tools:context=".ui.ActivityCompanyDetails">
+    tools:context=".ui.activities.ActivityCompanyDetails">
 
     <RelativeLayout
         android:layout_width="match_parent"

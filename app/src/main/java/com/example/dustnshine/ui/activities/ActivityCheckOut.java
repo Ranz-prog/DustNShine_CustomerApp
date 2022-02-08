@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dustnshine.R;
 
 public class ActivityCheckOut extends AppCompatActivity {
+
+    LinearLayout btnBack;
 
     Button checkOut,agree;
     private AlertDialog.Builder dialogBuilder;
@@ -33,7 +36,14 @@ public class ActivityCheckOut extends AppCompatActivity {
 
         checkOut = findViewById(R.id.checkOutBtn);
 
+        btnBack = findViewById(R.id.ReturnBtnOncheckout);
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
