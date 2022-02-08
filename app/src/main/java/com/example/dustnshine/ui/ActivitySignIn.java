@@ -112,6 +112,15 @@ public class ActivitySignIn extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        };
+    }
+
     private void userLogin(){
 
         String email = editTextEmailAddress.getText().toString().trim();
