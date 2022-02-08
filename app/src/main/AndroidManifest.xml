@@ -56,7 +56,7 @@
         <activity android:name=".ui.activities.ActivityBookingHistory" />
         <activity android:name=".ui.activities.ActivityNotification" />
         <activity android:name=".ui.activities.ActivityCheckOut" />
-        <activity android:name=".ui.ActivityTimeAndDate" />
+        <activity android:name=".ui.activities.ActivityTimeAndDate" />
     </application>
 
 </manifest>

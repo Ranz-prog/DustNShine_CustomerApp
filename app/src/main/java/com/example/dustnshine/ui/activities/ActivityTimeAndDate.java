@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.dustnshine.R;
-import com.example.dustnshine.ui.activities.ActivityCheckOut;
-import com.example.dustnshine.ui.activities.ActivityCompanyDetails;
 
 public class ActivityTimeAndDate extends AppCompatActivity {
 
