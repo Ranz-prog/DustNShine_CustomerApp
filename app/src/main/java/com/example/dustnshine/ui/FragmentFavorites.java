@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui.fragments;
+package com.example.dustnshine.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import com.example.dustnshine.models.favorite_model;
 import com.example.dustnshine.R;
 
 import com.example.dustnshine.adapter.favorite_adapter;
-import com.example.dustnshine.ui.activities.ActivityCompanyDetails;
+import com.example.dustnshine.adapter.recommendation_adapter;
 
 import java.util.ArrayList;
 import java.util.List;

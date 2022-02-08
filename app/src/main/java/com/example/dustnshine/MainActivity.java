@@ -1,13 +1,15 @@
 package com.example.dustnshine;
 
+import java.io.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.dustnshine.ui.fragments.FragmentBooking;
-import com.example.dustnshine.ui.fragments.FragmentFavorites;
-import com.example.dustnshine.ui.fragments.FragmentHome;
-import com.example.dustnshine.ui.fragments.FragmentMessage;
+import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.FragmentBooking;
+import com.example.dustnshine.ui.FragmentFavorites;
+import com.example.dustnshine.ui.FragmentHome;
+import com.example.dustnshine.ui.FragmentMessage;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui.fragments;
+package com.example.dustnshine.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.models.chat_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.chat_adapter;
-import com.example.dustnshine.ui.MessageBox;
 
 import java.util.ArrayList;
 import java.util.List;
