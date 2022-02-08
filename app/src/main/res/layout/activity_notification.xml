@@ -46,11 +46,20 @@
         android:src="@drawable/no_transactions" />
 
     <TextView
+        android:id="@+id/noTransactionsTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgNoTransactions"
         android:layout_centerInParent="true"
         android:layout_marginTop="-89dp"
         android:text="No Transactions Yet . . . " />
+
+    <ListView
+        android:id="@+id/notifList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@+id/txtBookingHistory" />
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityCompanyDetails extends AppCompatActivity {
+    private long backButtonCount;
 
     private RecyclerView serviceRecycler;
     private List<services_model> servicesModelList;
@@ -41,7 +42,7 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityCompanyDetails.this, ActivityCheckOut.class);
+                Intent intent = new Intent(ActivityCompanyDetails.this, ActivityTimeAndDate.class);
                 startActivity(intent);
             }
         });
@@ -67,5 +68,11 @@ public class ActivityCompanyDetails extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+            finish();
     }
 }

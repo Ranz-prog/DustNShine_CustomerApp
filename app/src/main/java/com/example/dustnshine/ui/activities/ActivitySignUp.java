@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.activities;
 
 import android.app.Dialog;
 import android.os.Build;

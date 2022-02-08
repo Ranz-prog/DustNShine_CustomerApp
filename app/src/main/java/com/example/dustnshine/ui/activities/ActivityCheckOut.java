@@ -1,6 +1,7 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.activities;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -10,16 +11,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dustnshine.R;
 
 public class ActivityCheckOut extends AppCompatActivity {
 
-    Button checkOut;
+    Button checkOut,agree;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog termsNConditions;
 
     Dialog dialog;
-    TextView popText;
+    TextView popText,termsAndConditionsText;
 
 
     @Override
@@ -29,6 +33,42 @@ public class ActivityCheckOut extends AppCompatActivity {
 
         checkOut = findViewById(R.id.checkOutBtn);
 
+
+
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNewDialog();
+            }
+        });
+
+    }
+
+    public void  createNewDialog(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final  View searchPopUp = getLayoutInflater().inflate(R.layout.terms_and_conditions_pop_up,null);
+        termsAndConditionsText = searchPopUp.findViewById(R.id.termsTV);
+
+        agree = searchPopUp.findViewById(R.id.btn_accept);
+
+        dialogBuilder.setView(searchPopUp);
+        termsNConditions = dialogBuilder.create();
+        termsNConditions.show();
+
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                termsNConditions.dismiss();
+                dialogBox();
+                dialog.show();
+            }
+        });
+
+
+
+    }
+
+    public void dialogBox(){
         // DIALOG BOX START
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.pop_up_reference);
@@ -54,14 +94,6 @@ public class ActivityCheckOut extends AppCompatActivity {
             }
         });
         //END OF DIALOG BOX
-
-        checkOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.show(); // Showing the dialog here
-            }
-        });
-
     }
 
 
