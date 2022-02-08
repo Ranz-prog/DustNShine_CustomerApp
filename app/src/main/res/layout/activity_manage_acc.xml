@@ -9,7 +9,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="10dp"
-    tools:context=".ui.ActivityManageAccount">
+    tools:context=".ui.activities.ActivityManageAccount">
 
     <RelativeLayout
         android:layout_width="match_parent"

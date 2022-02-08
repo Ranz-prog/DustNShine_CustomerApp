@@ -1,6 +1,5 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.activities;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 

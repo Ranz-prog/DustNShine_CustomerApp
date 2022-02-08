@@ -24,32 +24,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ActivityCompanyDetails"
+            android:name=".ui.activities.ActivityCompanyDetails"
             android:exported="true"></activity>
         <activity
-            android:name=".ui.ActivitySignIn"
+            android:name=".ui.activities.ActivitySignIn"
             android:exported="true" />
         <activity
-            android:name=".ui.ActivitySignUp"
+            android:name=".ui.activities.ActivitySignUp"
             android:exported="true" />
         <activity
-            android:name=".ui.ActivityManageAccount"
+            android:name=".ui.activities.ActivityManageAccount"
             android:exported="true" />
         <activity
             android:name=".ui.PersonalInfoPopLayout"
             android:exported="true" />
         <activity
-            android:name=".ui.ActivitySearchEmail"
+            android:name=".ui.activities.ActivitySearchEmail"
             android:exported="true" />
         <activity
-            android:name=".ui.ActivityForgetPassword"
+            android:name=".ui.activities.ActivityForgetPassword"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity android:name=".ui.ActivityBookingHistory" />
-        <activity android:name=".ui.ActivityNotification" />
-        <activity android:name=".ui.ActivityCheckOut" />
+        <activity android:name=".ui.activities.ActivityBookingHistory" />
+        <activity android:name=".ui.activities.ActivityNotification" />
+        <activity android:name=".ui.activities.ActivityCheckOut" />
     </application>
 
 </manifest>
