@@ -9,19 +9,19 @@
         android:id="@+id/cardCompanyDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="7dp">
+        android:layout_marginTop="10dp"
+        android:background="@drawable/container_border_2">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/serviceTitleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:fontFamily="@font/quicksand_bold"
                 android:text="@string/companydetails"
                 android:textColor="@color/black"
@@ -32,19 +32,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/serviceTitleTv"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/quicksand_regular"
                 android:text="Lorem ipsum lorem ipsum"
                 android:textColor="@color/app_theme_gold"
-                android:textSize="15sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/description1Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/servicePriceTv"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/quicksand_regular"
                 android:text="Lorem ipsum lorem ipsum"
                 android:textSize="15sp" />
 
@@ -53,42 +53,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/description1Tv"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/quicksand_regular"
                 android:text="Lorem ipsum lorem ipsum"
                 android:textSize="15sp" />
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/description2Tv"
-                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/numbersTv"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
                 android:buttonTint="@color/app_theme_blue" />
 
             <Button
                 android:id="@+id/addBtn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="5dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/plus_small" />
 
             <TextView
                 android:id="@+id/numbersTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@+id/addBtn"
-                android:background="@drawable/container_border"
-                android:padding="3dp"
+                android:background="@drawable/container_counter"
                 android:text="0"
-                android:textSize="20dp" />
+                android:textAlignment="center"
+                android:textSize="16sp" />
 
             <Button
-                android:layout_marginTop="5dp"
                 android:id="@+id/minusBtn"
                 android:layout_width="25dp"
-                android:layout_toLeftOf="@+id/numbersTv"
                 android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@+id/numbersTv"
 
                 android:background="@drawable/minus_small" />
         </RelativeLayout>

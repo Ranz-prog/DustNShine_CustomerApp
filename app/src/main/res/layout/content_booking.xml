@@ -42,7 +42,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/quicksand_medium"
-            android:text="@string/customername"
+            android:text="@string/txtcustomername"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/quicksand_medium"
-            android:text="@string/locationdetails"
+            android:text="@string/txtlocationdetails"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
 
             android:layout_toRightOf="@+id/locTv"
             android:fontFamily="@font/quicksand_regular"
-            android:text="@string/location"
+            android:text="@string/Address"
             android:textSize="14sp" />
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/quicksand_medium"
-            android:text="@string/contactnumber"
+            android:text="@string/txtcontactnumber"
             android:textSize="14sp"
             android:textStyle="bold" />
 

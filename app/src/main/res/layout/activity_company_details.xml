@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.ActivityCompanyDetails" >
+    android:scrollbars="none"
+    tools:context=".ui.ActivityCompanyDetails">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,14 +15,78 @@
         <ImageView
             android:id="@+id/imgCompany"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/company1"
-            android:scaleType="fitXY"/>
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/company1" />
+
+        <LinearLayout
+            android:id="@+id/ReturnBtnOnFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/roundbutton2"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/back" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/message"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/heart"
+            app:srcCompat="@drawable/message" />
+
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/heart_red" />
+
+        <TextView
+            android:id="@+id/companyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ReturnBtnOnFavorite"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/companyname"
+            android:textColor="@color/app_theme_blue"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/CompanyAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/companyName"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/quicksand_regular"
+            android:text="@string/companyAddress"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardCompanyDetail"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/imgCompany"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -31,22 +96,23 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/quicksand_medium"
                     android:text="@string/companydetails"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"
                     android:text="Lorem ipsum lorem ipsum"
                     android:textSize="15sp" />
 
@@ -54,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"
                     android:text="Lorem ipsum lorem ipsum"
                     android:textSize="15sp" />
 
@@ -63,15 +129,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/quicksand_medium"
                     android:text="@string/companydetails"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"
                     android:text="Lorem ipsum lorem ipsum"
                     android:textSize="15sp" />
 
@@ -79,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"
                     android:text="Lorem ipsum lorem ipsum"
                     android:textSize="15sp" />
 
@@ -92,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardCompanyDetail"
-            android:layout_marginTop="46dp">
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/txtSelectDetails"
@@ -101,7 +168,7 @@
                 android:layout_marginStart="15dp"
                 android:text="@string/selectdetails"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/txthouseType"
@@ -126,7 +193,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textAlignment="center" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -199,18 +267,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/quicksand_bold"
                 android:text="@string/services"
                 android:textColor="@color/app_theme_blue"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/txtExtraServices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtServices"
-                android:layout_centerInParent="true"
+                android:layout_below="@id/txtServices"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
                 android:text="@string/extraservices"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -230,10 +298,12 @@
         <Button
             android:id="@+id/checkOutBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_below="@+id/serviceRecyclerView"
             android:backgroundTint="@color/app_theme_gold"
-            android:text="Next"/>
+            android:text="Next"
+            android:textSize="14sp" />
+
 
     </RelativeLayout>
 

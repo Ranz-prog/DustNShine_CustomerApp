@@ -51,13 +51,17 @@
 
     <!--Checkout-->
     <string name="customerdetails">Customer Details</string>
-    <string name="customername">Customer name:</string>
-    <string name="contactnumber">Contact number:</string>
-    <string name="locationdetails">Location:</string>
+    <string name="txtcustomername">Customer name:</string>
+    <string name="customername">John Doe</string>
+    <string name="txtcontactnumber">Contact number:</string>
+    <string name="contactnumber">09236789123</string>
+    <string name="txtlocationdetails">Address:</string>
+    <string name="locationdetails">123 Arellano St., Dagupan City</string>
     <string name="bookingdetails">Booking Details</string>
     <string name="paymentmethod">Payment Method</string>
     <string name="totalcost">Total Cost</string>
     <string name="changemethod">Change Method</string>
+    <string name="TotalPrice">₱ 3200</string>
     <string name="checkout">Checkout</string>
 
     <!--Feedback-->
@@ -84,6 +88,8 @@
 
 
     <!--Company Detail-->
+    <string name="companyname">Clean Solution</string>
+    <string name="companyAddress">324 Streetway, Dagupan City</string>
     <string name="companydetails">Company Details</string>
     <string name="selectdetails">Select the details for your cleaning</string>
     <string name="housetype">What is your house type?</string>

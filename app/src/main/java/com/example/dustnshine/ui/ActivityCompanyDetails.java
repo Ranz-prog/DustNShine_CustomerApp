@@ -58,7 +58,7 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         servicesModelList.add(new services_model(
                 "General","1000/ hr","Cleaning of whole house","All materials included"));
         servicesModelList.add(new services_model(
-                "Dishwashing","90/ 30 mins","Washing of dishes and kitchenware","kindly provide sponge and dishwashing liquid"));
+                "Dishwashing","90/ 30 mins","Washing of dishes and kitchenware","kindly provide sponge and soap"));
         servicesModelList.add(new services_model(
                 "Electricfan Cleaning","99 per unit(s)","Food for air Quality","Cleaning of blades and cage"));
 

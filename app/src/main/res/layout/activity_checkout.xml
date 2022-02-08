@@ -1,32 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/background">
 
     <ImageView
         android:id="@+id/imgCompany"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center|top"
-        android:src="@drawable/company1"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/checkout" />
+
+    <LinearLayout
+        android:id="@+id/ReturnBtnOncheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/roundbutton2"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/back" />
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardCustomerDetails"
         android:layout_width="match_parent"
         android:layout_height="420dp"
         android:layout_below="@+id/imgCompany"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="16dp"
-        app:cardCornerRadius="7dp">
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/txtCustomerDetails"
@@ -36,43 +58,92 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/customerdetails"
                 android:textColor="@color/app_theme_blue"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtCustomerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/txtcustomername"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/CustomerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/txtCustomerName"
+                    android:text="@string/customername"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/txtlocationdetails"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="65dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/txtLocation"
+                    android:text="@string/locationdetails"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtContactNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/txtcontactnumber"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ContactNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/txtContactNumber"
+                    android:text="@string/contactnumber"
+                    android:textSize="15sp" />
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/txtCustomerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/customername"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/locationdetails"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtContactNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/contactnumber"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/bookingdetails"
                 android:textColor="@color/app_theme_blue"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,23 +152,53 @@
                 android:layout_marginTop="80dp"
                 android:text="@string/paymentmethod"
                 android:textColor="@color/app_theme_blue"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="250dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/changemethod"
-                android:textSize="15sp" />
+                android:layout_marginBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/bank"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    app:srcCompat="@drawable/bank" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/bank"
+                    android:layout_marginLeft="10dp"
+                    android:text="Credit/ Debit Card"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/changemethod"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
                 android:text="@string/totalcost"
                 android:textColor="@color/app_theme_blue"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/TotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/TotalPrice"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -107,17 +208,11 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/checkOutBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cardCustomerDetails"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/rounded_corners_button_layout"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
         android:backgroundTint="@color/app_theme_gold"
-        android:padding="10dp"
         android:text="@string/checkout"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
 </RelativeLayout>
