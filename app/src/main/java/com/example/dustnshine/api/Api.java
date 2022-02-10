@@ -29,7 +29,6 @@ public interface Api {
     Call<LoginResponse> userLogin(
             @Field("email") String email,
             @Field("password") String password
-    );
-
+            );
 
 }
