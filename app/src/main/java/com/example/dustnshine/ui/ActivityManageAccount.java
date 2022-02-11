@@ -2,73 +2,195 @@ package com.example.dustnshine.ui;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.app.Dialog;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dustnshine.R;
+import com.example.dustnshine.models.User;
+import com.example.dustnshine.storage.SharedPrefManager;
 
 public class ActivityManageAccount extends AppCompatActivity {
 
-    Button personal, edit, cancel, save;
-    AlertDialog.Builder dialogBuilder;
-    AlertDialog dialog;
-    EditText fname, lname, email, mobile, pass,repass, house , street,  barangay,city,province, zip;
+    LinearLayout personalInfoView,returnHome;
+    TextView txtPersonalInfo,popText;
+    CardView personalInfoCardView;
+    Button reset, edit;
+    Dialog dialog;
+    EditText fname,lname,mobileNumber,emailAdd;
+    EditText pass, retypePass,houseNo,street, barangay, city, province, zipCode; // wala pang data
+    int number;
+    //Comment ni Jolo
 
+    String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_manage_acc);
 
-        personal = findViewById(R.id.PersonalInfoBtn);
+        reset = findViewById(R.id.btnServerLogin);
+        returnHome = findViewById(R.id.ReturnBtnOnManageAcc);
+        edit = findViewById(R.id.btnEditDetails);
 
-        personal.setOnClickListener(new View.OnClickListener() {
+        personalInfoView = findViewById(R.id.personal_info_view);
+        txtPersonalInfo = findViewById(R.id.txtPersonalInfo);
+        personalInfoCardView = findViewById(R.id.personal_info_cardview);
+
+        fname = findViewById(R.id.FnameET);
+        lname = findViewById(R.id.LnameET);
+        mobileNumber = findViewById(R.id.MobileNoET);
+        emailAdd = findViewById(R.id.EmailAddET);
+
+        pass = findViewById(R.id.PasswordET);
+        retypePass = findViewById(R.id.RetypePassET);
+        houseNo = findViewById(R.id.HouseNoET);
+        street = findViewById(R.id.StreetET);
+        barangay = findViewById(R.id.BarangayET);
+        city = findViewById(R.id.CityET);
+        province = findViewById(R.id.ProvinceET);
+        zipCode = findViewById(R.id.ZipCodeET);
+
+        User user = SharedPrefManager.getInstance(this).getUser();
+        fname.setText(user.getFirst_name());
+        lname.setText(user.getLast_name());
+        mobileNumber.setText(user.getMobile_number());
+        emailAdd.setText(user.getEmail());
+
+        disabled();
+
+        txtPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                createNewContactDialog();
-
+            public void onClick(View view) {
+                if (personalInfoView.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(personalInfoCardView, new AutoTransition());
+                    personalInfoView.setVisibility(View.VISIBLE);
+                } else {
+                    TransitionManager.beginDelayedTransition(personalInfoCardView, new AutoTransition());
+                    personalInfoView.setVisibility(View.GONE);
+                }
             }
         });
+
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                text = "Are you sure you want to change information details?";
+                number = 1;
+                dialogBox();
+                dialog.show(); // Showing the dialog here
+            }
+        });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                text = "Thank you. You have successfully changed your password!";
+                number = 2;
+                dialogBox();
+                dialog.show(); // Showing the dialog here
+            }
+        });
+
+        returnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
-    public void createNewContactDialog(){
-        dialogBuilder = new AlertDialog.Builder(this);
-        final View contactPopupView = getLayoutInflater().inflate(R.layout.personal_info_pop_layout,null);
-        fname = contactPopupView.findViewById(R.id.firstName);
-        lname = contactPopupView.findViewById(R.id.lastName);
-        email = contactPopupView.findViewById(R.id.email);
-        mobile = contactPopupView.findViewById(R.id.mobileNum);
-        pass = contactPopupView.findViewById(R.id.Password);
-        repass = contactPopupView.findViewById(R.id.reytpePass);
-        house = contactPopupView.findViewById(R.id.houseNo);
-        street = contactPopupView.findViewById(R.id.street);
-        barangay = contactPopupView.findViewById(R.id.barangay);
-        city = contactPopupView.findViewById(R.id.city);
-        province = contactPopupView.findViewById(R.id.province);
-        zip = contactPopupView.findViewById(R.id.zip);
+    public void disabled(){
+        fname.setFocusable(false);
+        lname.setFocusable(false);
+        emailAdd.setFocusable(false);
+        mobileNumber.setFocusable(false);
 
-        edit = contactPopupView.findViewById(R.id.edit);
-        cancel = contactPopupView.findViewById(R.id.cancel);
-        save = contactPopupView.findViewById(R.id.save);
+        pass.setFocusable(false);
+        retypePass.setFocusable(false);
+        houseNo.setFocusable(false);
+        street.setFocusable(false);
+        barangay.setFocusable(false);
+        city.setFocusable(false);
+        province.setFocusable(false);
+        zipCode.setFocusable(false);
 
-        dialogBuilder.setView(contactPopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
+    }
 
+    public void enable(){
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        fname.setFocusableInTouchMode(true);
+        lname.setFocusableInTouchMode(true);
+        emailAdd.setFocusableInTouchMode(true);
+        mobileNumber.setFocusableInTouchMode(true);
 
+        pass.setFocusableInTouchMode(true);
+        retypePass.setFocusableInTouchMode(true);
+        houseNo.setFocusableInTouchMode(true);
+        street.setFocusableInTouchMode(true);
+        barangay.setFocusableInTouchMode(true);
+        city.setFocusableInTouchMode(true);
+        province.setFocusableInTouchMode(true);
+        zipCode.setFocusableInTouchMode(true);
+
+    }
+
+    public void dialogBox(){
+
+        // DIALOG BOX START
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.pop_up_reference);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+        }
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+
+        Button Okay = dialog.findViewById(R.id.btn_okay);
+        popText = dialog.findViewById(R.id.popUpText);
+
+        popText.setText(text.toString());//placing message here
+
+        if (number == 1){
+
+            Okay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    enable();
+                    dialog.dismiss();
+                }
+            });
+            //END OF DIALOG BOX
+        }
+
+        else {
+            Okay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(ActivityManageAccount.this, "Success", Toast.LENGTH_SHORT).show();
+                    disabled();
+                    dialog.dismiss();
+                }
+            });
+            //END OF DIALOG BOX
+        }
 
     }
 }

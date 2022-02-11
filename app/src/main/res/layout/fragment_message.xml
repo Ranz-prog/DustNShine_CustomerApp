@@ -2,18 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/background"
     android:padding="10dp">
 
     <TextView
         android:id="@+id/messageTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/quicksand_medium"
         android:text="Message"
-        android:textColor="@color/app_yellow"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/quicksand_font"/>
+        android:textColor="@color/app_theme_gold"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_RecyclerView"

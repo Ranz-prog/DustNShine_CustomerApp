@@ -19,18 +19,18 @@ public class ActivitySearchEmail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_search_email);
 
-        signIn= findViewById(R.id.btnServerLogin);
+       // signIn= findViewById(R.id.btnServerLogin);
 
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivitySearchEmail.this, ActivityForgetPassword.class);
-                startActivity(intent);
-            }
-        });
+//        signIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ActivitySearchEmail.this, ActivityForgetPassword.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
 

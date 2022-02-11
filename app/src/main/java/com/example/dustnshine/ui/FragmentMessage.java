@@ -1,5 +1,6 @@
 package com.example.dustnshine.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.Models.chat_model;
+import com.example.dustnshine.models.chat_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.chat_adapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentMessage extends Fragment {
+public class FragmentMessage extends Fragment implements chat_adapter.OnClickMessageListener{
 
     private RecyclerView chatRecycler;
     private View view;
@@ -38,7 +39,7 @@ public class FragmentMessage extends Fragment {
 
 
 
-        chatRecycler.setAdapter(new chat_adapter(chatModels()));
+        chatRecycler.setAdapter(new chat_adapter(chatModels(),this));
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         chatRecycler.addItemDecoration(divider);
@@ -59,5 +60,11 @@ public class FragmentMessage extends Fragment {
 
 
 
+    }
+
+    @Override
+    public void onClickMessage(int adapterPosition) {
+        Intent intent = new Intent(getActivity(), MessageBox.class);
+        startActivity(intent);
     }
 }

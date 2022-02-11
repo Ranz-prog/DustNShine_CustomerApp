@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Dust n\' Shine</string>
+
+    //Splash Title
+    <string name="app_name">DustNShine</string>
 
     <!--Sign In-->
     <string name="signin">Sign In</string>
@@ -7,9 +9,13 @@
     <string name="password">Password</string>
     <string name="mobilenumber">Mobile Number</string>
     <string name="dustnshine">Dust n\' Shine</string>
+    <string name="newuser">New User? </string>
+    <string name="createaccount"> Create an account</string>
+    <string name="keepsignedin">Keep me signed in</string>
 
     <!--Sign Up-->
     <string name="signup">Sign Up</string>
+    <string name="reg">Registration</string>
     <string name="personalinformation">Personal Information</string>
     <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
@@ -28,11 +34,67 @@
     <string name="enteryouremail">Enter Your Email</string>
     <string name="resetyourpassword">Reset Your Password</string>
     <string name="newpassword">New Password</string>
+    <string name="forgotpassword">Forgot Password</string>
     <string name="resetcode">Reset Code</string>
     <string name="save">Save</string>
+    <string name="search">Search</string>
     <string name="enteremail">Please enter your email to search for your account</string>
 
     <!--Manage Account-->
     <string name="managecards">Manage Cards</string>
+    <string name="manageaccount">Manage Account</string>
+    <string name="viewpersonalinfo">View Personal Info</string>
+    <string name="managebankaccounts">Manage Bank Accounts</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+    <string name="logout">Logout</string>
+
+    <!--Checkout-->
+    <string name="customerdetails">Customer Details</string>
+    <string name="customername">Customer name:</string>
+    <string name="contactnumber">Contact number:</string>
+    <string name="locationdetails">Location:</string>
+    <string name="bookingdetails">Booking Details</string>
+    <string name="paymentmethod">Payment Method</string>
+    <string name="totalcost">Total Cost</string>
+    <string name="changemethod">Change Method</string>
+    <string name="checkout">Checkout</string>
+
+    <!--Feedback-->
+    <string name="feedbakcdescription">Your feedback matters. Write down your experience or what we can improve in our service.</string>
+    <string name="howsourwork">How\'s Our Work?</string>
+    <string name="rating">Rating</string>
+    <string name="done">Done</string>
+    <string name="typeyourfeedback">Type your feedback...</string>
+    <string name="agree">I agree</string>
+    <string name="feedback">Feedback</string>
+
+    <!--Dashboard-->
+    <string name="Manage">View Profile</string>
+    <string name="CleaningCompanies">Cleaning Companies in</string>
+    <string name="Location">Dagupan City</string>
+    <string name="Address">123 Arellano Street, Dagupan City</string>
+    <string name="Recommendation">Recommended</string>
+    <string name="FeaturedServices">Featured Service</string>
+    <string name="genralcleaning">General Cleaning</string>
+    <string name="congen">Cleaning of whole house</string>
+    <string name="garagecleaning">Garage Cleaning</string>
+    <string name="gardencleaning">Garden Cleaning</string>
+    <string name="repair">Repair</string>
+
+
+    <!--Company Detail-->
+    <string name="companydetails">Company Details</string>
+    <string name="selectdetails">Select the details for your cleaning</string>
+    <string name="housetype">What is your house type?</string>
+    <string name="bedrooms">How many bedrooms?</string>
+    <string name="bathrooms">How many bathrooms</string>
+    <string name="services">Services</string>
+    <string name="extraservices">Customize your cleaning with optimal extra service</string>
+
+    <!--Booking-->
+    <string name="bookinghistory">Booking History</string>
+    <string name="notification">Notification</string>
+
 
 </resources>
