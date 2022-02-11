@@ -16,11 +16,10 @@ public class UserAPIRepo {
 
     private LoginResponse loginResponse;
     private DefaultResponse defaultResponse;
+    MutableLiveData<LoginResponse> mutableLiveData = new MutableLiveData<>();
 
     //SignIn request
-    public MutableLiveData<LoginResponse> userSignIn(String email, String password){
-
-        MutableLiveData<LoginResponse> mutableLiveData = new MutableLiveData<>();
+    public void userSignIn(String email, String password){
 
         Call<LoginResponse> loginResponseCall = RetrofitClient.getInstance().getApi().userLogin(email, password);
 
@@ -28,13 +27,14 @@ public class UserAPIRepo {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
-                loginResponse = response.body();
+//                loginResponse = response.body();
 
                 if(response.code() == 200){
-                    mutableLiveData.setValue(loginResponse);
+                    mutableLiveData.postValue(response.body());
                     Log.d("TAG", loginResponse.toString());
                 }
                 else {
+
                 }
             }
 
@@ -44,10 +44,9 @@ public class UserAPIRepo {
             }
         });
 
-        return mutableLiveData;
     }
 
-    //Register User
+    //Register user
     public MutableLiveData<DefaultResponse> userSignUp(String firstName, String lastName, String mobileNumber, String email, String password, String password_confirmation){
 
         MutableLiveData<DefaultResponse> mutableLiveData = new MutableLiveData<>();
@@ -60,11 +59,11 @@ public class UserAPIRepo {
         call.enqueue(new Callback<DefaultResponse>() {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                defaultResponse = response.body();
+//                defaultResponse = response.body();
 
                 if(response.code() == 201){
                     // Showing the dialog here
-                    mutableLiveData.setValue(defaultResponse);
+                    mutableLiveData.setValue(response.body());
                 }if (response.code() == 422) {
 
                 }else {
