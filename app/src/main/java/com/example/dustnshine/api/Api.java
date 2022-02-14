@@ -1,6 +1,6 @@
 package com.example.dustnshine.api;
 
-import com.example.dustnshine.models.DefaultResponse;
+import com.example.dustnshine.models.SignUpResponse;
 import com.example.dustnshine.models.LoginResponse;
 
 import retrofit2.Call;
@@ -14,7 +14,7 @@ public interface Api {
     @FormUrlEncoded
     @Headers({"Accept: application/json"})
     @POST("register")
-    Call<DefaultResponse> registerUser(
+    Call<SignUpResponse> registerUser(
         @Field("first_name") String first_name,
         @Field("last_name") String last_name,
         @Field("mobile_number") String mobile_number,

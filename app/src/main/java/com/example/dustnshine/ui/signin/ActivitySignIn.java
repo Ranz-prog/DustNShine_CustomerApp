@@ -2,6 +2,7 @@ package com.example.dustnshine.ui.signin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -15,10 +16,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.databinding.ActivitySigninBinding;
 import com.example.dustnshine.models.LoginResponse;
+import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ActivityForgetPassword;
 import com.example.dustnshine.ui.signup.ActivitySignUp;
 
@@ -31,6 +34,7 @@ public class ActivitySignIn extends AppCompatActivity {
     private AlertDialog dialog;
     private SignInViewModel signInViewModel;
     private ActivitySigninBinding activitySigninBinding;
+    private String email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +43,28 @@ public class ActivitySignIn extends AppCompatActivity {
 
         signInViewModel = new SignInViewModel();
 
-       activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
+        activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
 
         activitySigninBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(activitySigninBinding.editTextEmailAddress.getText().toString())){
+                email = activitySigninBinding.editTextEmailAddress.getText().toString();
+                password = activitySigninBinding.editTextPassword.getText().toString();
+
+                if(TextUtils.isEmpty(email)){
                     activitySigninBinding.editTextEmailAddress.setError("Email is required");
-                } else if(Patterns.EMAIL_ADDRESS.matcher(activitySigninBinding.editTextPassword.getText().toString()).matches()) {
-                    activitySigninBinding.editTextPassword.setError("Invalid Email");
-                } else if(TextUtils.isEmpty(activitySigninBinding.editTextPassword.getText().toString())) {
+                    activitySigninBinding.editTextEmailAddress.requestFocus();
+                } if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    activitySigninBinding.editTextEmailAddress.setError("Invalid Email");
+                    activitySigninBinding.editTextEmailAddress.requestFocus();
+                } if (TextUtils.isEmpty(password)) {
                     activitySigninBinding.editTextPassword.setError("Password is required");
-                } else if(TextUtils.isEmpty(activitySigninBinding.editTextPassword.getText().toString())) {
-                    activitySigninBinding.editTextPassword.setError("Password is required");
+                    activitySigninBinding.editTextPassword.requestFocus();
+                } if (password.length() < 8) {
+                    activitySigninBinding.editTextPassword.setError("Password must be at least 8 characters");
+                    activitySigninBinding.editTextPassword.requestFocus();
                 } else {
-                    signInViewModel.getSignInRequest(activitySigninBinding.editTextEmailAddress.getText().toString(), activitySigninBinding.editTextPassword.getText().toString());
+                    signInViewModel.getSignInRequest(email, password);
                 }
             }
         });
@@ -61,9 +72,12 @@ public class ActivitySignIn extends AppCompatActivity {
         signInViewModel.setOnSignInListener(new SignInCallback() {
             @Override
             public void signInCallback(Integer statusCode, LoginResponse loginResponse) {
-                Log.d("TAG", statusCode.toString());
                 if(statusCode == 200){
                     Toast.makeText(getApplicationContext(), "Successfully Logged In", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUser(loginResponse.getData().getUser());
+                    Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else if(statusCode == 401){
                     Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_LONG).show();
                 } else {

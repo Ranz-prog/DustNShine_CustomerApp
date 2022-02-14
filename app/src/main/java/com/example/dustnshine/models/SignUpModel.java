@@ -1,7 +1,7 @@
 package com.example.dustnshine.models;
 
 public class SignUpModel {
-    private String firstName, lastName, mobileNumber, email, password, password_confirmation;
+    private String firstName, lastName, mobileNumber, email, password, passwordConfirmation;
 
     public String getFirstName() {
         return firstName;
@@ -43,11 +43,11 @@ public class SignUpModel {
         this.password = password;
     }
 
-    public String getPassword_confirmation() {
-        return password_confirmation;
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
     }
 
-    public void setPassword_confirmation(String password_confirmation) {
-        this.password_confirmation = password_confirmation;
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
     }
 }

@@ -1,10 +1,10 @@
 package com.example.dustnshine.models;
 
-public class DefaultResponse {
+public class SignUpResponse {
     private boolean error;
     private String message;
 
-    public DefaultResponse(boolean error, String message) {
+    public SignUpResponse(boolean error, String message) {
         this.error = error;
         this.message = message;
     }

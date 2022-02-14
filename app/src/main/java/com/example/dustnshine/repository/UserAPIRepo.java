@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.dustnshine.api.RetrofitClient;
-import com.example.dustnshine.models.DefaultResponse;
+import com.example.dustnshine.models.SignUpResponse;
 import com.example.dustnshine.models.LoginResponse;
 
 import retrofit2.Call;
@@ -15,7 +15,7 @@ import retrofit2.Response;
 public class UserAPIRepo {
 
     private LoginResponse loginResponse;
-    private DefaultResponse defaultResponse;
+    private SignUpResponse signUpResponse;
     MutableLiveData<LoginResponse> mutableLiveData = new MutableLiveData<>();
 
     //SignIn request
@@ -47,18 +47,18 @@ public class UserAPIRepo {
     }
 
     //Register user
-    public MutableLiveData<DefaultResponse> userSignUp(String firstName, String lastName, String mobileNumber, String email, String password, String password_confirmation){
+    public MutableLiveData<SignUpResponse> userSignUp(String firstName, String lastName, String mobileNumber, String email, String password, String password_confirmation){
 
-        MutableLiveData<DefaultResponse> mutableLiveData = new MutableLiveData<>();
+        MutableLiveData<SignUpResponse> mutableLiveData = new MutableLiveData<>();
 
-        Call<DefaultResponse> call = RetrofitClient
+        Call<SignUpResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .registerUser(firstName, lastName, mobileNumber, email, password, password_confirmation);
 
-        call.enqueue(new Callback<DefaultResponse>() {
+        call.enqueue(new Callback<SignUpResponse>() {
             @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
 //                defaultResponse = response.body();
 
                 if(response.code() == 201){
@@ -72,7 +72,7 @@ public class UserAPIRepo {
             }
 
             @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+            public void onFailure(Call<SignUpResponse> call, Throwable t) {
 
             }
         });

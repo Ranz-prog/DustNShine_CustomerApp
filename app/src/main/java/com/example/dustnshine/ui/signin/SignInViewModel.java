@@ -22,7 +22,6 @@ import retrofit2.Response;
 public class SignInViewModel extends ViewModel {
 
     private UserAPIRepo userAPIRepo;
-    private MutableLiveData<LoginResponse> mutableLiveData;
     private SignInModel signInModel;
     private SignInCallback callback;
 

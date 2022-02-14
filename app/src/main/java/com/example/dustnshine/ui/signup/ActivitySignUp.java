@@ -1,8 +1,11 @@
 package com.example.dustnshine.ui.signup;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
-import com.example.dustnshine.models.DefaultResponse;
+import com.example.dustnshine.MainActivity;
+import com.example.dustnshine.SignInCallback;
+import com.example.dustnshine.SignUpCallback;
+import com.example.dustnshine.databinding.ActivitySignupBinding;
+import com.example.dustnshine.models.LoginResponse;
+import com.example.dustnshine.models.SignUpResponse;
 import com.example.dustnshine.R;
 import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.ui.signin.ActivitySignIn;
 import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
@@ -25,29 +35,85 @@ import retrofit2.Response;
 
 public class ActivitySignUp extends AppCompatActivity {
 
-    private TextInputEditText editTextFirstName, editTextLastName, editTextMobileNumber, editTextEmailAddress, editTextPassword, editTextPasswordConfirmation;
-
     LinearLayout returnHome;
     Button signupBtn;
     Dialog dialog;
     TextView popText;
 
+    private SignUpViewModel signUpViewModel;
+    private ActivitySignupBinding activitySignupBinding;
+    private String firstName, lastName, mobileNumber, email, password, passwordConfirmation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        
-        setContentView(R.layout.activity_signup);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        signUpViewModel = new SignUpViewModel();
+
+        activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
+
+        activitySignupBinding.btnServerLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                firstName = activitySignupBinding.editTextFirstName.getText().toString();
+                lastName = activitySignupBinding.editTextLastName.getText().toString();
+                mobileNumber = activitySignupBinding.editTextMobileNumber.getText().toString();
+                email = activitySignupBinding.editTextEmailAddress.getText().toString();
+                password = activitySignupBinding.editTextPassword.getText().toString();
+                passwordConfirmation = activitySignupBinding.editTextPasswordConfirmation.getText().toString();
+
+                if (TextUtils.isEmpty(firstName)) {
+                    activitySignupBinding.editTextFirstName.setError("Email is required");
+                    activitySignupBinding.editTextFirstName.requestFocus();
+                } if (TextUtils.isEmpty(lastName)) {
+                    activitySignupBinding.editTextLastName.setError("Invalid Email");
+                    activitySignupBinding.editTextLastName.requestFocus();
+                } if (TextUtils.isEmpty(mobileNumber)) {
+                    activitySignupBinding.editTextMobileNumber.setError("Email is required");
+                    activitySignupBinding.editTextMobileNumber.requestFocus();
+                } if (TextUtils.isEmpty(email)) {
+                    activitySignupBinding.editTextEmailAddress.setError("Email is required");
+                    activitySignupBinding.editTextEmailAddress.requestFocus();
+                } if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    activitySignupBinding.editTextEmailAddress.setError("Invalid Email");
+                    activitySignupBinding.editTextEmailAddress.requestFocus();
+                } if (TextUtils.isEmpty(password)) {
+                    activitySignupBinding.editTextPassword.setError("Password is required");
+                    activitySignupBinding.editTextPassword.requestFocus();
+                } if (password.length() < 8) {
+                    activitySignupBinding.editTextPassword.setError("Password must be at least 8 characters");
+                    activitySignupBinding.editTextPassword.requestFocus();
+                } if (TextUtils.isEmpty(passwordConfirmation)) {
+                    activitySignupBinding.editTextPasswordConfirmation.setError("Password Confirmation is required");
+                    activitySignupBinding.editTextPasswordConfirmation.requestFocus();
+                } if (password != passwordConfirmation) {
+                    activitySignupBinding.editTextPasswordConfirmation.setError("Password not match");
+                    activitySignupBinding.editTextPasswordConfirmation.requestFocus();
+                } else {
+                    signUpViewModel.getSignUpRequest(activitySignupBinding.editTextFirstName.getText().toString(), activitySignupBinding.editTextLastName.getText().toString(), activitySignupBinding.editTextMobileNumber.getText().toString(), activitySignupBinding.editTextEmailAddress.getText().toString(), activitySignupBinding.editTextPassword.getText().toString(), activitySignupBinding.editTextPasswordConfirmation.getText().toString());
+                }
+            }
+        });
+
+        signUpViewModel.setOnSignInListener(new SignUpCallback() {
+            @Override
+            public void signUpCallback(Integer statusCode, SignUpResponse signUpResponse) {
+                if(statusCode == 200){
+                    Toast.makeText(getApplicationContext(), "Successfully Register", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(ActivitySignUp.this, ActivitySignIn.class);
+                    startActivity(intent);
+                    finish();
+                } else if(statusCode == 422){
+                    Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Registration Failed", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
 
-        editTextFirstName = findViewById(R.id.editTextFirstName);
-        editTextLastName = findViewById(R.id.editTextLastName);
-        editTextMobileNumber = findViewById(R.id.editTextMobileNumber);
-        editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        editTextPasswordConfirmation= findViewById(R.id.editTextPasswordConfirmation);
-
-        signupBtn = findViewById(R.id.btnServerLogin);
         returnHome = findViewById(R.id.ReturnBtnOnHome);
 
         //BackButton
@@ -85,91 +151,5 @@ public class ActivitySignUp extends AppCompatActivity {
 
         //END OF DIALOG BOX
 
-        signupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-
-            }
-        });
-
     }
-
-    // User inputs validation
-    private void registerUser(){
-        String firstName = editTextFirstName.getText().toString().trim();
-        String lastName = editTextLastName.getText().toString().trim();
-        String mobileNumber = editTextMobileNumber.getText().toString().trim();
-        String email = editTextEmailAddress.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
-        String password_confirmation = editTextPasswordConfirmation.getText().toString().trim();
-
-        if(firstName.isEmpty()){
-            editTextFirstName.setError("Email is required");
-            editTextFirstName.requestFocus();
-            return;
-        }
-        if(lastName.isEmpty()){
-            editTextLastName.setError("Email is required");
-            editTextLastName.requestFocus();
-            return;
-        }
-        if(mobileNumber.isEmpty()){
-            editTextMobileNumber.setError("Email is required");
-            editTextMobileNumber.requestFocus();
-            return;
-        }
-        if(email.isEmpty()){
-            editTextEmailAddress.setError("Email is required");
-            editTextEmailAddress.requestFocus();
-            return;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmailAddress.setError("Enter a valid email");
-            editTextEmailAddress.requestFocus();
-            return;
-        }
-        if(password.isEmpty()){
-            editTextPassword.setError("Password is required");
-            editTextPassword.requestFocus();
-            return;
-        }
-        if(password.length() < 8){
-            editTextPassword.setError("Password should 8 character long");
-            editTextPassword.requestFocus();
-            return;
-        }
-        if(password_confirmation.isEmpty()){
-            editTextPassword.setError("Password Confirmation is required");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        //Api Call
-        Call<DefaultResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .registerUser(firstName, lastName, mobileNumber, email, password, password_confirmation);
-
-        call.enqueue(new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                DefaultResponse dr = response.body();
-
-                if(response.code() == 201){
-                    dialog.show(); // Showing the dialog here
-                }if (response.code() == 422) {
-                    Toast.makeText(ActivitySignUp.this, "The given data was invalid.", Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(ActivitySignUp.this, dr.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
 }
