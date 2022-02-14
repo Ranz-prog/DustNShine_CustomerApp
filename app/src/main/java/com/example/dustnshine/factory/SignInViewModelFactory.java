@@ -13,5 +13,14 @@ public class SignInViewModelFactory extends ViewModelProvider.NewInstanceFactory
     private SignInModel signInModel;
     private Context context;
 
+    public SignInViewModelFactory(SignInModel signInModel, Context context) {
+        this.signInModel = signInModel;
+        this.context = context;
+    }
 
+    @NonNull
+    @Override
+    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+        return (T) new SignInViewModel(signInModel, context);
+    }
 }

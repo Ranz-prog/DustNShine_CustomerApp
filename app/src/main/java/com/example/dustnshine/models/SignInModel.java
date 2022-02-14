@@ -22,4 +22,18 @@ public class SignInModel {
         this.password = password;
     }
 
+    public boolean isEmailValid() {
+        if(this.email != null && !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPasswordValid() {
+
+        if(this.password != null && this.password.length() > 8){
+            return true;
+        }
+        return false;
+    }
 }
