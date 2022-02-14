@@ -1,9 +1,10 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityCompanyDetails extends AppCompatActivity {
-
+    private long backButtonCount;
+    LinearLayout btnBack;
     private RecyclerView serviceRecycler;
     private List<services_model> servicesModelList;
 
@@ -32,16 +34,25 @@ public class ActivityCompanyDetails extends AppCompatActivity {
 
         checkOut = findViewById(R.id.checkOutBtn);
 
+        btnBack = findViewById(R.id.ReturnBtnOnFavorite);
+
         serviceRecycler = findViewById(R.id.serviceList);
         serviceRecycler.setHasFixedSize(true);
         serviceRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         serviceRecycler.setAdapter(new services_adapter(servicesModels()));
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityCompanyDetails.this, ActivityCheckOut.class);
+                Intent intent = new Intent(ActivityCompanyDetails.this, ActivityTimeAndDate.class);
                 startActivity(intent);
             }
         });
@@ -67,5 +78,11 @@ public class ActivityCompanyDetails extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+            finish();
     }
 }

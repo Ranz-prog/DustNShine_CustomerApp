@@ -1,16 +1,14 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.fragments;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +18,10 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.models.recommendation_model;
 import com.example.dustnshine.adapter.recommendation_adapter;
 import com.example.dustnshine.models.feature_model;
+import com.example.dustnshine.ui.activities.ActivitySeeAllRecommendations;
+import com.example.dustnshine.ui.activities.ActivityCompanyDetails;
+import com.example.dustnshine.ui.activities.ActivityManageAccount;
+import com.example.dustnshine.ui.activities.ActivityNotification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class FragmentHome extends Fragment implements recommendation_adapter.OnC
     ImageView manage;
     LinearLayout notifBtn;
     View view;
+    TextView seeAll;
 
     private RecyclerView recommendationRecycler,featureRecycler;
     private List<feature_model> featureModelList;
@@ -48,6 +51,8 @@ public class FragmentHome extends Fragment implements recommendation_adapter.OnC
         notifBtn = view.findViewById(R.id.notificationBtn);
         recommendationRecycler = view.findViewById(R.id.companiesList);
 
+        seeAll = view.findViewById(R.id.viewAll);
+
 
         recommendationRecycler.setHasFixedSize(true);
 
@@ -57,7 +62,13 @@ public class FragmentHome extends Fragment implements recommendation_adapter.OnC
 
         recommendationRecycler.setAdapter(new recommendation_adapter(recommendationModel(),this));
 
-
+        seeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ActivitySeeAllRecommendations.class);
+                startActivity(intent);
+            }
+        });
 
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
