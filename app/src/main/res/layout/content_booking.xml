@@ -43,8 +43,7 @@
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/quicksand_medium"
             android:text="@string/txtcustomername"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/customerNameBooking"
@@ -67,7 +66,7 @@
             android:fontFamily="@font/quicksand_medium"
             android:text="@string/txtlocationdetails"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            />
 
         <TextView
             android:id="@+id/customerLocationBooking"
@@ -90,8 +89,7 @@
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/quicksand_medium"
             android:text="@string/txtcontactnumber"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/contactNumberBooking"

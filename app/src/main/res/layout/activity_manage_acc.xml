@@ -64,18 +64,21 @@
                 android:layout_margin="5dp"
                 android:outlineSpotShadowColor="@color/background">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/background">
+                    android:background="@color/background"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtPersonalInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/quicksand_medium"
+                        android:fontFamily="@font/quicksand_regular"
                         android:text="@string/personalinformation"
-                        android:textSize="22sp" />
+                        android:textSize="20sp" />
+
 
                 </LinearLayout>
 
@@ -87,6 +90,7 @@
                     android:layout_marginTop="35dp"
                     android:orientation="vertical"
                     android:visibility="gone">
+
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -109,10 +113,11 @@
                                 android:layout_marginEnd="5dp"
                                 android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
+                                android:fontFamily="@font/quicksand_regular"
                                 android:hint="@string/firstname"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -127,10 +132,11 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
+                                android:fontFamily="@font/quicksand_regular"
                                 android:hint="@string/lastname"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -147,11 +153,12 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_layout"
                             android:cursorVisible="true"
+                            android:fontFamily="@font/quicksand_regular"
                             android:hint="@string/email"
                             android:inputType="textEmailAddress"
                             android:maxLength="50"
                             android:paddingBottom="10dp"
-                            android:textSize="15sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -167,10 +174,11 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edittext_layout"
                             android:cursorVisible="true"
+                            android:fontFamily="@font/quicksand_regular"
                             android:hint="@string/mobilenumber"
                             android:maxLength="50"
                             android:paddingBottom="10dp"
-                            android:textSize="15sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -186,11 +194,12 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edittext_layout"
                             android:cursorVisible="true"
+                            android:fontFamily="@font/quicksand_regular"
                             android:hint="@string/password"
                             android:inputType="textPassword"
                             android:maxLength="50"
                             android:paddingBottom="10dp"
-                            android:textSize="15sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -206,11 +215,12 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edittext_layout"
                             android:cursorVisible="true"
+                            android:fontFamily="@font/quicksand_regular"
                             android:hint="@string/retypepassword"
                             android:inputType="textPassword"
                             android:maxLength="50"
                             android:paddingBottom="10dp"
-                            android:textSize="15sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
@@ -220,9 +230,9 @@
                         android:layout_gravity="center|start"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/quicksand_regular"
                         android:text="@string/location"
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
+                        android:textSize="20sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -244,10 +254,11 @@
                                 android:layout_marginEnd="5dp"
                                 android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
+                                android:fontFamily="@font/quicksand_regular"
                                 android:hint="@string/houseno"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -262,10 +273,11 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
+                                android:fontFamily="@font/quicksand_regular"
                                 android:hint="@string/street"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -290,10 +302,11 @@
                                 android:layout_marginEnd="5dp"
                                 android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
+                                android:fontFamily="@font/quicksand_regular"
                                 android:hint="@string/barangay"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -308,10 +321,11 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
+                                android:fontFamily="@font/quicksand_regular"
                                 android:hint="@string/citymunicipality"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -336,10 +350,11 @@
                                 android:layout_marginEnd="5dp"
                                 android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
+                                android:fontFamily="@font/quicksand_regular"
                                 android:hint="@string/province"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -354,10 +369,11 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_layout"
                                 android:cursorVisible="true"
+                                android:fontFamily="@font/quicksand_regular"
                                 android:hint="@string/zipcode"
                                 android:maxLength="50"
                                 android:paddingBottom="10dp"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -365,32 +381,31 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnEditDetails"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginStart="20dp"
-                        android:background="@drawable/rounded_corners_button_layout"
-                        android:backgroundTint="@color/app_theme_blue"
-                        android:padding="10dp"
-                        android:text="edit"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnServerLogin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                       android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="30dp"
-                        android:background="@drawable/rounded_corners_button_layout"
-                        android:backgroundTint="@color/app_theme_blue"
-                        android:padding="10dp"
-                        android:text="@string/save"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnEditDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="20dp"
+                            android:background="@drawable/rounded_corners_button_layout"
+                            android:backgroundTint="@color/app_theme_blue"
+                            android:text="edit"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnServerLogin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="30dp"
+                            android:background="@drawable/rounded_corners_button_layout"
+                            android:backgroundTint="@color/app_theme_blue"
+                            android:text="@string/save"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -413,9 +428,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/quicksand_medium"
+                        android:fontFamily="@font/quicksand_regular"
                         android:text="@string/managebankaccounts"
-                        android:textSize="22sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -439,9 +454,9 @@
                         android:id="@+id/txtManageCards"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/quicksand_medium"
+                        android:fontFamily="@font/quicksand_regular"
                         android:text="@string/managecards"
-                        android:textSize="22sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -464,9 +479,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/quicksand_medium"
+                        android:fontFamily="@font/quicksand_regular"
                         android:text="@string/logout"
-                        android:textSize="22sp" />
+                        android:textColor="#F44336"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 

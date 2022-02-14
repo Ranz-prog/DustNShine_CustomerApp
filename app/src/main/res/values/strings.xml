@@ -1,7 +1,8 @@
 <resources>
 
     //Splash Title
-    <string name="app_name">DustNShine</string>
+    <string name="app_name">DustnShine</string>
+    <string name="title">Customer</string>
 
     <!--Sign In-->
     <string name="signin">Sign In</string>
