@@ -1,11 +1,11 @@
 package com.example.dustnshine.models;
 
-public class chat_model {
+public class ChatModel {
 
     private int image;
     private  String clientname, clientMesage,timeReceived;
 
-    public chat_model(int image, String clientname, String clientMesage, String timeReceived) {
+    public ChatModel(int image, String clientname, String clientMesage, String timeReceived) {
         this.image = image;
         this.clientname = clientname;
         this.clientMesage = clientMesage;

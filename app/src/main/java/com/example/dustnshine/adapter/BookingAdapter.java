@@ -9,32 +9,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.booking_model;
+import com.example.dustnshine.models.BookingModel;
 import com.example.dustnshine.R;
 
 import java.util.List;
 
-public class booking_adapter extends RecyclerView.Adapter<booking_adapter.ViewHolder>{
+public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHolder>{
 
-    List<booking_model> bookingModelList;
-    private booking_adapter.OnClickMessageListener onClickMessageListener;
+    List<BookingModel> bookingModelList;
+    private BookingAdapter.OnClickMessageListener onClickMessageListener;
 
-    public booking_adapter(List<booking_model> bookingModelList, booking_adapter.OnClickMessageListener onClickMessageListener) {
+    public BookingAdapter(List<BookingModel> bookingModelList, BookingAdapter.OnClickMessageListener onClickMessageListener) {
         this.bookingModelList = bookingModelList;
         this.onClickMessageListener = onClickMessageListener;
     }
 
     @NonNull
     @Override
-    public booking_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BookingAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_booking, parent, false);
-        booking_adapter.ViewHolder viewHolder = new booking_adapter.ViewHolder(view, onClickMessageListener);
+        BookingAdapter.ViewHolder viewHolder = new BookingAdapter.ViewHolder(view, onClickMessageListener);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull booking_adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookingAdapter.ViewHolder holder, int position) {
 
         holder.customerImg.setImageResource(bookingModelList.get(position).getCustomerImg());
         holder.customerName.setText(bookingModelList.get(position).getCustomerName());
@@ -58,9 +58,9 @@ public class booking_adapter extends RecyclerView.Adapter<booking_adapter.ViewHo
         private ImageView customerImg;
         private TextView customerName, customerLoc,customerNum;
 
-        booking_adapter.OnClickMessageListener onClickMessageListener;
+        BookingAdapter.OnClickMessageListener onClickMessageListener;
 
-        public ViewHolder(@NonNull View itemView, booking_adapter.OnClickMessageListener onClickMessageListener) {
+        public ViewHolder(@NonNull View itemView, BookingAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
             customerImg = itemView.findViewById(R.id.clientImage);
@@ -68,7 +68,7 @@ public class booking_adapter extends RecyclerView.Adapter<booking_adapter.ViewHo
             customerLoc = itemView.findViewById(R.id.customerLocationBooking);
             customerNum = itemView.findViewById(R.id.contactNumberBooking);
 
-            this.onClickMessageListener = (booking_adapter.OnClickMessageListener) onClickMessageListener;
+            this.onClickMessageListener = (BookingAdapter.OnClickMessageListener) onClickMessageListener;
 
             itemView.setOnClickListener(this);
 

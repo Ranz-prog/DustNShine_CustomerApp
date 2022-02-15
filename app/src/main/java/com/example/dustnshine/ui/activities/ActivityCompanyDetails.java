@@ -2,28 +2,42 @@ package com.example.dustnshine.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.dustnshine.models.services_model;
+import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.models.ServiceResponse;
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.services_adapter;
+import com.example.dustnshine.adapter.ServicesAdapter;
+import com.example.dustnshine.models.ServicesModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ActivityCompanyDetails extends AppCompatActivity {
-    private long backButtonCount;
+
     LinearLayout btnBack;
     private RecyclerView serviceRecycler;
-    private List<services_model> servicesModelList;
+
+   // private List<ServiceResponse> servicesModelList;
+
+    ServicesAdapter servicesAdapter;
+    //List<ServicesModel> serviceResponse;
+
+    MutableLiveData<List<ServicesModel>> serviceMutableData;
 
     Button checkOut;
 
@@ -33,14 +47,15 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         setContentView(R.layout.activity_company_details);
 
         checkOut = findViewById(R.id.checkOutBtn);
+        servicesAdapter = new ServicesAdapter();
 
         btnBack = findViewById(R.id.ReturnBtnOnFavorite);
-
         serviceRecycler = findViewById(R.id.serviceList);
+
         serviceRecycler.setHasFixedSize(true);
         serviceRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        serviceRecycler.setAdapter(new services_adapter(servicesModels()));
+        getAllServiceDetails();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,27 +72,43 @@ public class ActivityCompanyDetails extends AppCompatActivity {
             }
         });
 
-        return;
-
-
     }
 
-    private List<services_model> servicesModels(){
+//    public MutableLiveData<List<ServicesModel>> getServiceMutableData(){
+//        return serviceMutableData;
+//    }
 
-        servicesModelList = new ArrayList<>();
+    private void getAllServiceDetails(){
 
-        servicesModelList.add(new services_model(
-                "General","1000/ hr","Cleaning of whole house","All materials included"));
-        servicesModelList.add(new services_model(
-                "Dishwashing","90/ 30 mins","Washing of dishes and kitchenware","kindly provide sponge and soap"));
-        servicesModelList.add(new services_model(
-                "Electricfan Cleaning","99 per unit(s)","Food for air Quality","Cleaning of blades and cage"));
+        Call<ServiceResponse> serviceList = RetrofitClient.getInstance().getApi().getAllServiceDetails();
 
-
-        return servicesModelList;
+        serviceList.enqueue(new Callback<ServiceResponse>() {
+            @Override
+            public void onResponse(Call<ServiceResponse> call, Response<ServiceResponse> response) {
 
 
+                if(response.isSuccessful()){
 
+                    Log.e("sucess",response.body().toString());
+                    List<ServicesModel> serviceResponses = response.body().getServices();
+                    servicesAdapter.setData(serviceResponses);
+                    serviceRecycler.setAdapter(servicesAdapter);
+
+                    Toast.makeText(ActivityCompanyDetails.this, "Success", Toast.LENGTH_LONG).show();
+
+                }
+                else{
+                    Toast.makeText(ActivityCompanyDetails.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ServiceResponse> call, Throwable t) {
+                Log.e("Juan",t.getLocalizedMessage());
+            }
+        });
     }
 
     @Override

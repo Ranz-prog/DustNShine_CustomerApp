@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
 
-import com.example.dustnshine.models.recommendation_model;
-import com.example.dustnshine.adapter.recommendation_adapter;
-import com.example.dustnshine.models.feature_model;
+import com.example.dustnshine.models.RecommendationModel;
+import com.example.dustnshine.adapter.RecommendationAdapter;
+import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.ui.activities.ActivitySeeAllRecommendations;
 import com.example.dustnshine.ui.activities.ActivityCompanyDetails;
 import com.example.dustnshine.ui.activities.ActivityManageAccount;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FragmentHome extends Fragment implements recommendation_adapter.OnClickMessageListener{
+public class FragmentHome extends Fragment implements RecommendationAdapter.OnClickMessageListener{
 
     ImageView manage;
     LinearLayout notifBtn;
@@ -35,8 +35,8 @@ public class FragmentHome extends Fragment implements recommendation_adapter.OnC
     TextView seeAll;
 
     private RecyclerView recommendationRecycler,featureRecycler;
-    private List<feature_model> featureModelList;
-    private List<recommendation_model> recommendationModelList;
+    private List<FeatureModel> featureModelList;
+    private List<RecommendationModel> recommendationModelList;
 
     public FragmentHome(){
 
@@ -60,7 +60,7 @@ public class FragmentHome extends Fragment implements recommendation_adapter.OnC
         LinearLayoutManager layoutFeature = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
-        recommendationRecycler.setAdapter(new recommendation_adapter(recommendationModel(),this));
+        recommendationRecycler.setAdapter(new RecommendationAdapter(recommendationModel(),this));
 
         seeAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,17 +91,17 @@ public class FragmentHome extends Fragment implements recommendation_adapter.OnC
 
     }
 
-    private List<recommendation_model> recommendationModel(){
+    private List<RecommendationModel> recommendationModel(){
 
         recommendationModelList = new ArrayList<>();
 
-        recommendationModelList.add(new recommendation_model(R.drawable.company1,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company1,
                 "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company2,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company2,
                 "Super Clean","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company1,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company1,
                 "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company2,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company2,
                 "Super Clean","Dagupan City","5/5"));
 
         return recommendationModelList;

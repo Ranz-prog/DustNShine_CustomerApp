@@ -1,11 +1,11 @@
 package com.example.dustnshine.models;
 
-public class recommendation_model {
+public class RecommendationModel {
 
     private int companyImg;
     private  String companyName,companyLocation,companyRating;
 
-    public recommendation_model(int companyImg, String companyName, String companyLocation, String companyRating) {
+    public RecommendationModel(int companyImg, String companyName, String companyLocation, String companyRating) {
         this.companyImg = companyImg;
         this.companyName = companyName;
         this.companyLocation = companyLocation;

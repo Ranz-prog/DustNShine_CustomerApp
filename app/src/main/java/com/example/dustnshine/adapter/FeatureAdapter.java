@@ -9,30 +9,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.feature_model;
+import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.R;
 
 import java.util.List;
 
-public class feature_adapter extends RecyclerView.Adapter<feature_adapter.ViewHolder>{
+public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.ViewHolder>{
 
-    List<feature_model> featureModelsList;
+    List<FeatureModel> featureModelsList;
 
-    public feature_adapter(List<feature_model> featureModelsList) {
+    public FeatureAdapter(List<FeatureModel> featureModelsList) {
         this.featureModelsList = featureModelsList;
     }
 
     @NonNull
     @Override
-    public feature_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FeatureAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_features, parent, false);
-        feature_adapter.ViewHolder viewHolder = new feature_adapter.ViewHolder(view);
+        FeatureAdapter.ViewHolder viewHolder = new FeatureAdapter.ViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull feature_adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FeatureAdapter.ViewHolder holder, int position) {
 
         holder.serviceImg.setImageResource(featureModelsList.get(position).getServiceImg());
         holder.serviceName.setText(featureModelsList.get(position).getServiceName());

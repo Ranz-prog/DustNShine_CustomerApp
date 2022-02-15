@@ -1,11 +1,11 @@
 package com.example.dustnshine.models;
 
-public class favorite_model {
+public class FavoriteModel {
 
     private int companyImgFav;
     private  String companyNameFav, companyAddressFav,companyRatingFav;
 
-    public favorite_model(int companyImgFav, String companyNameFav, String companyAddressFav, String companyRatingFav) {
+    public FavoriteModel(int companyImgFav, String companyNameFav, String companyAddressFav, String companyRatingFav) {
         this.companyImgFav = companyImgFav;
         this.companyNameFav = companyNameFav;
         this.companyAddressFav = companyAddressFav;

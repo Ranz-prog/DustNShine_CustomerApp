@@ -13,19 +13,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.booking_model;
+import com.example.dustnshine.models.BookingModel;
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.booking_adapter;
+import com.example.dustnshine.adapter.BookingAdapter;
 import com.example.dustnshine.ui.activities.ActivityBookingHistory;
 import com.example.dustnshine.ui.activities.ActivityCheckOut;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentBooking extends Fragment implements booking_adapter.OnClickMessageListener{
+public class FragmentBooking extends Fragment implements BookingAdapter.OnClickMessageListener{
     private RecyclerView bookingRecycler;
     private View view;
-    private List<booking_model> bookingModelList;
+    private List<BookingModel> bookingModelList;
     LinearLayout historyBtn;
 
     public FragmentBooking(){
@@ -43,7 +43,7 @@ public class FragmentBooking extends Fragment implements booking_adapter.OnClick
         bookingRecycler.setHasFixedSize(true);
         bookingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        bookingRecycler.setAdapter(new booking_adapter(bookingModels(),this));
+        bookingRecycler.setAdapter(new BookingAdapter(bookingModels(),this));
 
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,13 +61,13 @@ public class FragmentBooking extends Fragment implements booking_adapter.OnClick
 
 
 
-    private List<booking_model> bookingModels(){
+    private List<BookingModel> bookingModels(){
 
         bookingModelList = new ArrayList<>();
 
-        bookingModelList.add(new booking_model(R.drawable.user,
+        bookingModelList.add(new BookingModel(R.drawable.user,
                 "Juan Dela Cruz", "Lorem ipsum, lorem","09465886972"));
-        bookingModelList.add(new booking_model(R.drawable.user,
+        bookingModelList.add(new BookingModel(R.drawable.user,
                 "Ivan Dasigan", "Lorem ipsum, lorem","09568556314"));
 
         return bookingModelList;

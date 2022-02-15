@@ -1,8 +1,5 @@
 package com.example.dustnshine.ui.activities;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,26 +7,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.recommendation_adapter;
-import com.example.dustnshine.models.feature_model;
-import com.example.dustnshine.models.recommendation_model;
-import com.example.dustnshine.ui.activities.ActivityCompanyDetails;
-import com.example.dustnshine.ui.activities.ActivityManageAccount;
-import com.example.dustnshine.ui.activities.ActivityNotification;
+import com.example.dustnshine.adapter.RecommendationAdapter;
+import com.example.dustnshine.models.RecommendationModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivitySeeAllRecommendations extends AppCompatActivity implements recommendation_adapter.OnClickMessageListener{
+public class ActivitySeeAllRecommendations extends AppCompatActivity implements RecommendationAdapter.OnClickMessageListener{
     LinearLayout backBtn;
 
     private RecyclerView recommendationRecycler;
-    private List<recommendation_model> recommendationModelList;
+    private List<RecommendationModel> recommendationModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +36,7 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
-        recommendationRecycler.setAdapter(new recommendation_adapter(recommendationModel(),this));
+        recommendationRecycler.setAdapter(new RecommendationAdapter(recommendationModel(),this));
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,17 +50,17 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
 
     }
 
-    private List<recommendation_model> recommendationModel(){
+    private List<RecommendationModel> recommendationModel(){
 
         recommendationModelList = new ArrayList<>();
 
-        recommendationModelList.add(new recommendation_model(R.drawable.company1,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company1,
                 "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company2,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company2,
                 "Super Clean","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company1,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company1,
                 "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company2,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company2,
                 "Super Clean","Dagupan City","5/5"));
 
         return recommendationModelList;
