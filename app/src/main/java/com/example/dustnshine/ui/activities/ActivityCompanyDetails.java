@@ -31,12 +31,9 @@ public class ActivityCompanyDetails extends AppCompatActivity {
 
     LinearLayout btnBack;
     private RecyclerView serviceRecycler;
-
    // private List<ServiceResponse> servicesModelList;
-
     ServicesAdapter servicesAdapter;
     //List<ServicesModel> serviceResponse;
-
     MutableLiveData<List<ServicesModel>> serviceMutableData;
 
     Button checkOut;
