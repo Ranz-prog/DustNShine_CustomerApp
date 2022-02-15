@@ -1,5 +1,6 @@
 package com.example.dustnshine.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,36 +9,45 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.models.services_model;
 import com.example.dustnshine.R;
 
 import java.util.List;
 
-public class services_adapter extends RecyclerView.Adapter<services_adapter.ViewHolder>{
+public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder>{
 
-    List<services_model> servicesModelList;
+    private List<ServicesModel> servicesModelList;
+    private Context context;
 
-    public services_adapter(List<services_model> servicesModelList) {
+    public ServicesAdapter() {
+
+    }
+
+    public void setData(List<ServicesModel> servicesModelList) {
         this.servicesModelList = servicesModelList;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public services_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ServicesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_extra_services, parent, false);
-        services_adapter.ViewHolder viewHolder = new services_adapter.ViewHolder(view);
+        ServicesAdapter.ViewHolder viewHolder = new ServicesAdapter.ViewHolder(view);
+
+        context = parent.getContext();
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull services_adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder holder, int position) {
 
 
-        holder.serviceTitle.setText(servicesModelList.get(position).getServiceTitle());
-        holder.servicePrice.setText(servicesModelList.get(position).getServicePrice());
-        holder.serviceDetails1.setText(servicesModelList.get(position).getServiceDes1());
-        holder.serviceDetails2.setText(servicesModelList.get(position).getServiceDes2());
+        holder.serviceTitle.setText(servicesModelList.get(position).getName());
+        holder.servicePrice.setText(servicesModelList.get(position).getCreated_at());
+        holder.serviceDetails1.setText(servicesModelList.get(position).getDescription());
+        holder.serviceDetails2.setText(servicesModelList.get(position).getCreated_at());
 
 
     }
@@ -55,13 +65,11 @@ public class services_adapter extends RecyclerView.Adapter<services_adapter.View
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-
             serviceTitle = itemView.findViewById(R.id.serviceTitleTv);
             servicePrice = itemView.findViewById(R.id.servicePriceTv);
             serviceDetails1 = itemView.findViewById(R.id.description1Tv);
             serviceDetails2 = itemView.findViewById(R.id.description2Tv);
-
-
+            
         }
     }
 }

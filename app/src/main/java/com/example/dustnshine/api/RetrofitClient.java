@@ -23,7 +23,7 @@ public class RetrofitClient {
                         public Response intercept(Interceptor.Chain chain) throws IOException {
                             Request request = chain.request().newBuilder()
                                     .addHeader("Accept", "application/json")
-                                    .addHeader("Authorization","Bearer "+ "SharePrefHere_TOKEN" )
+                                    .addHeader("Authorization","Bearer " + "325|kRBoVHlEyhqLsdGKdBrek4y4e1vGSFLCEa8iANO3")
                                     .build();
                             return chain.proceed(request);
                         }

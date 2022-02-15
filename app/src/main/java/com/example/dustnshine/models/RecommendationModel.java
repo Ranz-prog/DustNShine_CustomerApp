@@ -1,11 +1,21 @@
 package com.example.dustnshine.models;
 
-public class recommendation_model {
+import com.google.gson.annotations.SerializedName;
+
+public class RecommendationModel {
+
 
     private int companyImg;
-    private  String companyName,companyLocation,companyRating;
 
-    public recommendation_model(int companyImg, String companyName, String companyLocation, String companyRating) {
+    @SerializedName("name")
+    private String companyName;
+
+    @SerializedName("location")
+    private String companyLocation;
+
+    private String companyRating;
+
+    public RecommendationModel(int companyImg, String companyName, String companyLocation, String companyRating) {
         this.companyImg = companyImg;
         this.companyName = companyName;
         this.companyLocation = companyLocation;

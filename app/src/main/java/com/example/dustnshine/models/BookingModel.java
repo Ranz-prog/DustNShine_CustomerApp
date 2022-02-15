@@ -1,11 +1,11 @@
 package com.example.dustnshine.models;
 
-public class booking_model {
+public class BookingModel {
 
     private int customerImg;
     private  String customerName, customerLocation,customerContact;
 
-    public booking_model(int customerImg, String customerName, String customerLocation, String customerContact) {
+    public BookingModel(int customerImg, String customerName, String customerLocation, String customerContact) {
         this.customerImg = customerImg;
         this.customerName = customerName;
         this.customerLocation = customerLocation;

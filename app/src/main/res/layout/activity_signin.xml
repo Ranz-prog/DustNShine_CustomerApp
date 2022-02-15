@@ -64,7 +64,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/createAcc"
+                    android:id="@+id/txtCreateAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/quicksand_regular"
@@ -107,7 +107,6 @@
                     android:inputType="textEmailAddress"
                     android:maxLength="50"
                     android:paddingBottom="10dp"
-                    android:text="@={viewModel.emailAddress}"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,12 +132,11 @@
                     android:inputType="textPassword"
                     android:maxLength="50"
                     android:paddingBottom="10dp"
-                    android:text="@={viewModel.password}"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/forget"
+                android:id="@+id/btnForgotPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/passTF"
@@ -168,7 +166,7 @@
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnServerLogin"
+                android:id="@+id/btnSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/signin_Checkbox"
@@ -177,7 +175,6 @@
                 android:background="@drawable/rounded_corners_button_layout"
                 android:backgroundTint="@color/app_theme_gold"
                 android:fontFamily="@font/quicksand_bold"
-                android:onClick="@{(v) -> viewModel.onLoginClick(v)}"
                 android:text="@string/signin"
                 android:textColor="@color/white" />
 

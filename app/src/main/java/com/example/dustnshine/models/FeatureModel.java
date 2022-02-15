@@ -1,11 +1,11 @@
 package com.example.dustnshine.models;
 
-public class feature_model {
+public class FeatureModel {
 
     private int serviceImg;
     private  String serviceName,serviceDetails;
 
-    public feature_model(int serviceImg, String serviceName, String serviceDetails) {
+    public FeatureModel(int serviceImg, String serviceName, String serviceDetails) {
         this.serviceImg = serviceImg;
         this.serviceName = serviceName;
         this.serviceDetails = serviceDetails;

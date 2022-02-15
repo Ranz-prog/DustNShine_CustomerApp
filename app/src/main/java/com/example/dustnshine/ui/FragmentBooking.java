@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -14,10 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.booking_model;
+import com.example.dustnshine.models.BookingModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.booking_adapter;
-import com.example.dustnshine.adapter.recommendation_adapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,7 @@ import java.util.List;
 public class FragmentBooking extends Fragment implements booking_adapter.OnClickMessageListener{
     private RecyclerView bookingRecycler;
     private View view;
-    private List<booking_model> bookingModelList;
+    private List<BookingModel> bookingModelList;
     LinearLayout historyBtn;
 
     public FragmentBooking(){
@@ -61,13 +59,13 @@ public class FragmentBooking extends Fragment implements booking_adapter.OnClick
 
 
 
-    private List<booking_model> bookingModels(){
+    private List<BookingModel> bookingModels(){
 
         bookingModelList = new ArrayList<>();
 
-        bookingModelList.add(new booking_model(R.drawable.user,
+        bookingModelList.add(new BookingModel(R.drawable.user,
                 "Juan Dela Cruz", "Lorem ipsum, lorem","09465886972"));
-        bookingModelList.add(new booking_model(R.drawable.user,
+        bookingModelList.add(new BookingModel(R.drawable.user,
                 "Ivan Dasigan", "Lorem ipsum, lorem","09568556314"));
 
         return bookingModelList;

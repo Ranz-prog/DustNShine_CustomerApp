@@ -9,17 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.booking_model;
+import com.example.dustnshine.models.BookingModel;
 import com.example.dustnshine.R;
 
 import java.util.List;
 
 public class booking_adapter extends RecyclerView.Adapter<booking_adapter.ViewHolder>{
 
-    List<booking_model> bookingModelList;
+    List<BookingModel> bookingModelList;
     private booking_adapter.OnClickMessageListener onClickMessageListener;
 
-    public booking_adapter(List<booking_model> bookingModelList, booking_adapter.OnClickMessageListener onClickMessageListener) {
+    public booking_adapter(List<BookingModel> bookingModelList, booking_adapter.OnClickMessageListener onClickMessageListener) {
         this.bookingModelList = bookingModelList;
         this.onClickMessageListener = onClickMessageListener;
     }

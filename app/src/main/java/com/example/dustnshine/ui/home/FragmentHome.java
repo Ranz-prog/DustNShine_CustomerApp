@@ -1,39 +1,46 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.home;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
 
-import com.example.dustnshine.models.recommendation_model;
-import com.example.dustnshine.adapter.recommendation_adapter;
-import com.example.dustnshine.models.feature_model;
+import com.example.dustnshine.models.CompanyResponse;
+import com.example.dustnshine.models.RecommendationModel;
+import com.example.dustnshine.adapter.RecommendationAdapter;
+import com.example.dustnshine.models.FeatureModel;
+import com.example.dustnshine.ui.ActivityCompanyDetails;
+import com.example.dustnshine.ui.ActivityManageAccount;
+import com.example.dustnshine.ui.ActivityNotification;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class FragmentHome extends Fragment implements recommendation_adapter.OnClickMessageListener{
+public class FragmentHome extends Fragment implements RecommendationAdapter.OnClickMessageListener{
 
     ImageView manage;
     LinearLayout notifBtn;
     View view;
 
-    private RecyclerView recommendationRecycler,featureRecycler;
-    private List<feature_model> featureModelList;
-    private List<recommendation_model> recommendationModelList;
+    private RecyclerView recommendationRecycler, featureRecycler;
+    private List<FeatureModel> featureModelList;
+    private List<RecommendationModel> recommendationModelList;
+    private List<CompanyResponse> companyResponses;
+    private FragmentHomeViewModel fragmentHomeViewModel;
+    private RecommendationAdapter recommendationAdapter;
 
     public FragmentHome(){
 
@@ -48,16 +55,12 @@ public class FragmentHome extends Fragment implements recommendation_adapter.OnC
         notifBtn = view.findViewById(R.id.notificationBtn);
         recommendationRecycler = view.findViewById(R.id.companiesList);
 
-
         recommendationRecycler.setHasFixedSize(true);
 
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutFeature = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
-
-        recommendationRecycler.setAdapter(new recommendation_adapter(recommendationModel(),this));
-
-
+        recommendationRecycler.setAdapter(new RecommendationAdapter(recommendationModel(), this));
 
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,25 +83,22 @@ public class FragmentHome extends Fragment implements recommendation_adapter.OnC
 
     }
 
-    private List<recommendation_model> recommendationModel(){
+    private List<RecommendationModel> recommendationModel(){
 
         recommendationModelList = new ArrayList<>();
 
-        recommendationModelList.add(new recommendation_model(R.drawable.company1,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company1,
                 "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company2,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company2,
                 "Super Clean","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company1,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company1,
                 "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company2,
+        recommendationModelList.add(new RecommendationModel(R.drawable.company2,
                 "Super Clean","Dagupan City","5/5"));
 
         return recommendationModelList;
 
     }
-
-
-
 
     @Override
     public void onClickMessage(int adapterPosition) {
