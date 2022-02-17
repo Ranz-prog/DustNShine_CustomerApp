@@ -1,5 +1,6 @@
 package com.example.dustnshine.api;
 
+import com.example.dustnshine.models.CompanyResponse;
 import  com.example.dustnshine.models.DefaultResponse;
 import com.example.dustnshine.models.LoginResponse;
 import com.example.dustnshine.models.ServiceResponse;
@@ -35,5 +36,9 @@ public interface Api {
 
     @GET("services")
     Call<ServiceResponse> getAllServiceDetails(
+    );
+
+    @GET("companies")
+    Call<CompanyResponse> getAllCompanies(
     );
 }

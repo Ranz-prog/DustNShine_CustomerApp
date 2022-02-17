@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -23,7 +24,7 @@ import com.example.dustnshine.storage.SharedPrefManager;
 
 public class ActivityManageAccount extends AppCompatActivity {
 
-    LinearLayout personalInfoView,returnHome;
+    LinearLayout personalInfoView,returnHome,logOut;
     TextView txtPersonalInfo,popText;
     CardView personalInfoCardView;
     Button reset, edit;
@@ -45,6 +46,7 @@ public class ActivityManageAccount extends AppCompatActivity {
         reset = findViewById(R.id.btnServerLogin);
         returnHome = findViewById(R.id.ReturnBtnOnManageAcc);
         edit = findViewById(R.id.btnEditDetails);
+        logOut= findViewById(R.id.logOutBtn);
 
         personalInfoView = findViewById(R.id.personal_info_view);
         txtPersonalInfo = findViewById(R.id.txtPersonalInfo);
@@ -113,6 +115,20 @@ public class ActivityManageAccount extends AppCompatActivity {
             }
         });
 
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
+    }
+
+    public void logout(){
+        SharedPrefManager.getInstance(this).clear();
+        Intent intent = new Intent(this,ActivitySignIn.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     public void disabled(){

@@ -1,46 +1,38 @@
 package com.example.dustnshine.models;
 
+import com.example.dustnshine.R;
+
 public class RecommendationModel {
 
     private int companyImg;
-    private  String companyName,companyLocation,companyRating;
+    private  String name,address;
 
-    public RecommendationModel(int companyImg, String companyName, String companyLocation, String companyRating) {
-        this.companyImg = companyImg;
-        this.companyName = companyName;
-        this.companyLocation = companyLocation;
-        this.companyRating = companyRating;
+    public RecommendationModel(String name, String address) {
+        this.name = name;
+        this.address = address;
     }
 
-    public int getCompanyImg() {
-        return companyImg;
+    public String getName() {
+        return name;
     }
 
-    public void setCompanyImg(int companyImg) {
-        this.companyImg = companyImg;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getCompanyLocation() {
-        return companyLocation;
-    }
-
-    public void setCompanyLocation(String companyLocation) {
-        this.companyLocation = companyLocation;
-    }
-
-    public String getCompanyRating() {
-        return companyRating;
-    }
-
-    public void setCompanyRating(String companyRating) {
-        this.companyRating = companyRating;
+    @Override
+    public String toString() {
+        return "RecommendationModel{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

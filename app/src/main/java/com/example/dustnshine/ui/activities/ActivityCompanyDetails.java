@@ -87,11 +87,9 @@ public class ActivityCompanyDetails extends AppCompatActivity {
                 if(response.isSuccessful()){
 
                     Log.e("sucess",response.body().toString());
-                    List<ServicesModel> serviceResponses = response.body().getServices();
+                    List<ServicesModel> serviceResponses = response.body().getData();
                     servicesAdapter.setData(serviceResponses);
                     serviceRecycler.setAdapter(servicesAdapter);
-
-                    Toast.makeText(ActivityCompanyDetails.this, "Success", Toast.LENGTH_LONG).show();
 
                 }
                 else{
