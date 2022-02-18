@@ -23,8 +23,8 @@ import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ActivityCompanyDetails;
-import com.example.dustnshine.ui.ActivityManageAccount;
-import com.example.dustnshine.ui.ActivityNotification;
+import com.example.dustnshine.ui.activities.ActivityManageAccount;
+import com.example.dustnshine.ui.activities.ActivityNotification;
 
 import java.util.List;
 

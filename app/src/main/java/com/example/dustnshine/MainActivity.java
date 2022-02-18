@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.dustnshine.ui.FragmentBooking;
 import com.example.dustnshine.ui.FragmentFavorites;
+import com.example.dustnshine.ui.fragments.FragmentMessage;
 import com.example.dustnshine.ui.home.FragmentHome;
-import com.example.dustnshine.ui.FragmentMessage;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
