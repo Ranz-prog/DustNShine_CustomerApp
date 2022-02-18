@@ -19,15 +19,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.dustnshine.SignUpCallback;
 import com.example.dustnshine.databinding.ActivitySignupBinding;
-import com.example.dustnshine.models.SignUpResponse;
+import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.R;
-import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.ui.signin.ActivitySignIn;
-import com.google.android.material.textfield.TextInputEditText;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ActivitySignUp extends AppCompatActivity {
 

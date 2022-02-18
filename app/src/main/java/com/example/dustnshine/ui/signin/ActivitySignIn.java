@@ -3,6 +3,7 @@ package com.example.dustnshine.ui.signin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,7 +19,7 @@ import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.databinding.ActivitySigninBinding;
-import com.example.dustnshine.models.LoginResponse;
+import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ActivityForgetPassword;
 import com.example.dustnshine.ui.signup.ActivitySignUp;
@@ -52,9 +53,6 @@ public class ActivitySignIn extends AppCompatActivity {
                 if(TextUtils.isEmpty(email)){
                     activitySigninBinding.editTextEmailAddress.setError("Email is required");
                     activitySigninBinding.editTextEmailAddress.requestFocus();
-                } if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    activitySigninBinding.editTextEmailAddress.setError("Invalid Email");
-                    activitySigninBinding.editTextEmailAddress.requestFocus();
                 } if (TextUtils.isEmpty(password)) {
                     activitySigninBinding.editTextPassword.setError("Password is required");
                     activitySigninBinding.editTextPassword.requestFocus();
@@ -69,10 +67,12 @@ public class ActivitySignIn extends AppCompatActivity {
 
         signInViewModel.setOnSignInListener(new SignInCallback() {
             @Override
-            public void signInCallback(Integer statusCode, LoginResponse loginResponse) {
+            public void signInCallback(Integer statusCode, SignInResponse signInResponse) {
                 if(statusCode == 200){
                     Toast.makeText(getApplicationContext(), "Successfully Logged In", Toast.LENGTH_LONG).show();
-                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUser(loginResponse.getData().getUser());
+                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUser(signInResponse.getData().getUser());
+                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUserToken(signInResponse.getData().getToken());
+                    Log.d("TOKEN", SharedPrefManager.getInstance(ActivitySignIn.this).getUserToken());
                     Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -136,12 +136,12 @@ public class ActivitySignIn extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-//            Intent intent = new Intent(this, MainActivity.class);
-//            startActivity(intent);
-//        };
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        };
+    }
 }

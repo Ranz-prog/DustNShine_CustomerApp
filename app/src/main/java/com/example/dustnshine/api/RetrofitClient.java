@@ -1,6 +1,9 @@
 package com.example.dustnshine.api;
 
+import android.content.Context;
+
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.signin.ActivitySignIn;
 
 import java.io.IOException;
 
@@ -15,6 +18,7 @@ public class RetrofitClient {
     private static final String BASE_URL = "https://lpn.boomtech.co/api/";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
+    private Context context;
 
     OkHttpClient defaultHttpClient = new OkHttpClient.Builder()
             .addInterceptor(
@@ -23,7 +27,6 @@ public class RetrofitClient {
                         public Response intercept(Interceptor.Chain chain) throws IOException {
                             Request request = chain.request().newBuilder()
                                     .addHeader("Accept", "application/json")
-                                    .addHeader("Authorization","Bearer " + "325|kRBoVHlEyhqLsdGKdBrek4y4e1vGSFLCEa8iANO3")
                                     .build();
                             return chain.proceed(request);
                         }

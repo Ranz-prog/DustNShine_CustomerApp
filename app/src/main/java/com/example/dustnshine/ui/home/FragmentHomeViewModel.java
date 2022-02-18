@@ -1,19 +1,6 @@
 package com.example.dustnshine.ui.home;
 
-import android.util.Log;
-
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.dustnshine.api.RetrofitClient;
-import com.example.dustnshine.models.CompanyResponse;
-import com.example.dustnshine.models.RecommendationModel;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FragmentHomeViewModel extends ViewModel {
 

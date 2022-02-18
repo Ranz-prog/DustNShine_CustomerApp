@@ -1,6 +1,5 @@
 package com.example.dustnshine.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.CompanyResponse;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.R;
 
@@ -18,12 +16,16 @@ import java.util.List;
 
 public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder>{
 
-    List<RecommendationModel> recommendationModelList;
+    private List<RecommendationModel> recommendationModelList;
     private RecommendationAdapter.OnClickMessageListener onClickMessageListener;
 
-    public RecommendationAdapter(List<RecommendationModel> recommendationModelList, RecommendationAdapter.OnClickMessageListener onClickMessageListener) {
-        this.recommendationModelList = recommendationModelList;
+    public RecommendationAdapter( RecommendationAdapter.OnClickMessageListener onClickMessageListener) {
         this.onClickMessageListener = onClickMessageListener;
+    }
+
+    public void setData(List<RecommendationModel> recommendationModelList) {
+        this.recommendationModelList = recommendationModelList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -37,15 +39,15 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
     @Override
     public void onBindViewHolder(@NonNull RecommendationAdapter.ViewHolder holder, int position) {
-//        holder.companyImage.setImageResource(recommendationModelList.get(position).getCompanyImg());
-//        holder.companyName.setText(companyList.get(position).getRecommendationModel().getCompanyName());
-//        holder.companyLocation.setText(companyList.get(position).getRecommendationModel().getCompanyLocation());
+//        holder.companyImage.setImageResource();
+        holder.companyName.setText(recommendationModelList.get(position).getName());
+        holder.companyLocation.setText(recommendationModelList.get(position).getAddress());
 //        holder.companyRating.setText(recommendationModelList.get(position).getCompanyRating());
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return recommendationModelList.size();
     }
 
     public interface OnClickMessageListener {
@@ -62,10 +64,10 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         public ViewHolder(@NonNull View itemView, RecommendationAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
-            companyImage = itemView.findViewById(R.id.companyImg);
+//            companyImage = itemView.findViewById(R.id.companyImg);
             companyName = itemView.findViewById(R.id.companyNameTV);
             companyLocation = itemView.findViewById(R.id.companyLocationTV);
-            companyRating = itemView.findViewById(R.id.companyRatingTV);
+//            companyRating = itemView.findViewById(R.id.companyRatingTV);
 
             this.onClickMessageListener = (OnClickMessageListener) onClickMessageListener;
 

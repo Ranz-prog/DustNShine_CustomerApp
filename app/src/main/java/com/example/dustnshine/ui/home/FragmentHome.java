@@ -8,25 +8,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
 
-import com.example.dustnshine.models.CompanyResponse;
+import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
+import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ActivityCompanyDetails;
 import com.example.dustnshine.ui.ActivityManageAccount;
 import com.example.dustnshine.ui.ActivityNotification;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class FragmentHome extends Fragment implements RecommendationAdapter.OnClickMessageListener{
@@ -40,7 +44,7 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
     private List<RecommendationModel> recommendationModelList;
     private List<CompanyResponse> companyResponses;
     private FragmentHomeViewModel fragmentHomeViewModel;
-    private RecommendationAdapter recommendationAdapter;
+    RecommendationAdapter recommendationAdapter;
 
     public FragmentHome(){
 
@@ -54,13 +58,14 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
         manage = view.findViewById(R.id.manageAccButton);
         notifBtn = view.findViewById(R.id.notificationBtn);
         recommendationRecycler = view.findViewById(R.id.companiesList);
+        recommendationAdapter = new RecommendationAdapter(this);
 
         recommendationRecycler.setHasFixedSize(true);
-
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        LinearLayoutManager layoutFeature = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
-        recommendationRecycler.setAdapter(new RecommendationAdapter(recommendationModel(), this));
+        getCompanies();
+//        recommendationRecycler.setAdapter(new RecommendationAdapter(recommendationModel(), this));
+
 
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,21 +88,30 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
 
     }
 
-    private List<RecommendationModel> recommendationModel(){
+    private void getCompanies(){
 
-        recommendationModelList = new ArrayList<>();
+        String userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
+        Call<CompanyResponse> serviceList = RetrofitClient.getInstance().getApi().getCompanies("Bearer " + userToken);
 
-        recommendationModelList.add(new RecommendationModel(R.drawable.company1,
-                "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new RecommendationModel(R.drawable.company2,
-                "Super Clean","Dagupan City","5/5"));
-        recommendationModelList.add(new RecommendationModel(R.drawable.company1,
-                "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new RecommendationModel(R.drawable.company2,
-                "Super Clean","Dagupan City","5/5"));
+        serviceList.enqueue(new Callback<CompanyResponse>() {
+            @Override
+            public void onResponse(Call<CompanyResponse> call, Response<CompanyResponse> response) {
+                if(response.isSuccessful()){
+                    List<RecommendationModel> recommendationModelList = response.body().getData();
+                    recommendationAdapter.setData(recommendationModelList);
+                    recommendationRecycler.setAdapter(recommendationAdapter);
+                    Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-        return recommendationModelList;
+            @Override
+            public void onFailure(Call<CompanyResponse> call, Throwable t) {
 
+            }
+        });
     }
 
     @Override

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.SignUpCallback;
 import com.example.dustnshine.api.RetrofitClient;
-import com.example.dustnshine.models.SignUpResponse;
+import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.models.SignUpModel;
 
 import retrofit2.Call;
@@ -33,7 +33,7 @@ public class SignUpViewModel extends ViewModel {
         Call<SignUpResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .registerUser(firstName, lastName, mobileNumber, email, password, passwordConfirmation);
+                .userSignUp(firstName, lastName, mobileNumber, email, password, passwordConfirmation);
 
         call.enqueue(new Callback<SignUpResponse>() {
             @Override

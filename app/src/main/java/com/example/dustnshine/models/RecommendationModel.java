@@ -4,53 +4,70 @@ import com.google.gson.annotations.SerializedName;
 
 public class RecommendationModel {
 
+    private int id;
+    private String name, email, mobile_number, tel_number, address, created_at, updated_at;
 
-    private int companyImg;
-
-    @SerializedName("name")
-    private String companyName;
-
-    @SerializedName("location")
-    private String companyLocation;
-
-    private String companyRating;
-
-    public RecommendationModel(int companyImg, String companyName, String companyLocation, String companyRating) {
-        this.companyImg = companyImg;
-        this.companyName = companyName;
-        this.companyLocation = companyLocation;
-        this.companyRating = companyRating;
+    public int getId() {
+        return id;
     }
 
-    public int getCompanyImg() {
-        return companyImg;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setCompanyImg(int companyImg) {
-        this.companyImg = companyImg;
+    public String getName() {
+        return name;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public String getEmail() {
+        return email;
     }
 
-    public String getCompanyLocation() {
-        return companyLocation;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setCompanyLocation(String companyLocation) {
-        this.companyLocation = companyLocation;
+    public String getMobile_number() {
+        return mobile_number;
     }
 
-    public String getCompanyRating() {
-        return companyRating;
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
     }
 
-    public void setCompanyRating(String companyRating) {
-        this.companyRating = companyRating;
+    public String getTel_number() {
+        return tel_number;
+    }
+
+    public void setTel_number(String tel_number) {
+        this.tel_number = tel_number;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
     }
 }

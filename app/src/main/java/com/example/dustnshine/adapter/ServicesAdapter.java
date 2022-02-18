@@ -42,14 +42,10 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder holder, int position) {
-
-
         holder.serviceTitle.setText(servicesModelList.get(position).getName());
         holder.servicePrice.setText(servicesModelList.get(position).getCreated_at());
         holder.serviceDetails1.setText(servicesModelList.get(position).getDescription());
         holder.serviceDetails2.setText(servicesModelList.get(position).getCreated_at());
-
-
     }
 
     @Override
@@ -69,7 +65,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             servicePrice = itemView.findViewById(R.id.servicePriceTv);
             serviceDetails1 = itemView.findViewById(R.id.description1Tv);
             serviceDetails2 = itemView.findViewById(R.id.description2Tv);
-            
+
         }
     }
 }

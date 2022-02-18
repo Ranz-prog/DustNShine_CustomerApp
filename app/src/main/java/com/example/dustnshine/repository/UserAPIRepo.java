@@ -5,8 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.dustnshine.api.RetrofitClient;
-import com.example.dustnshine.models.SignUpResponse;
-import com.example.dustnshine.models.LoginResponse;
+import com.example.dustnshine.response.LogoutResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -14,68 +13,27 @@ import retrofit2.Response;
 
 public class UserAPIRepo {
 
-    private LoginResponse loginResponse;
-    private SignUpResponse signUpResponse;
-    MutableLiveData<LoginResponse> mutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<LogoutResponse> signOutRequest(String userToken){
+        final MutableLiveData<LogoutResponse> logoutResponseMutableLiveData = new MutableLiveData<>();
 
-    //SignIn request
-    public void userSignIn(String email, String password){
-
-        Call<LoginResponse> loginResponseCall = RetrofitClient.getInstance().getApi().userLogin(email, password);
-
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+        Call<LogoutResponse> logoutResponseCall = RetrofitClient.getInstance().getApi().userLogOut("Bearer " + userToken);
+        logoutResponseCall.enqueue(new Callback<LogoutResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
-//                loginResponse = response.body();
-
+            public void onResponse(Call<LogoutResponse> call, Response<LogoutResponse> response) {
                 if(response.code() == 200){
-                    mutableLiveData.postValue(response.body());
-                    Log.d("TAG", loginResponse.toString());
-                }
-                else {
-
+                    logoutResponseMutableLiveData.setValue(response.body());
+                } if (response.code() == 401){
+                    Log.d("FAILURE", "Unauthenticated");
                 }
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+            public void onFailure(Call<LogoutResponse> call, Throwable t) {
+                Log.d("FAILURE", "Failure to connect");
             }
         });
 
+        return  logoutResponseMutableLiveData;
     }
 
-    //Register user
-    public MutableLiveData<SignUpResponse> userSignUp(String firstName, String lastName, String mobileNumber, String email, String password, String password_confirmation){
-
-        MutableLiveData<SignUpResponse> mutableLiveData = new MutableLiveData<>();
-
-        Call<SignUpResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .registerUser(firstName, lastName, mobileNumber, email, password, password_confirmation);
-
-        call.enqueue(new Callback<SignUpResponse>() {
-            @Override
-            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-//                defaultResponse = response.body();
-
-                if(response.code() == 201){
-                    // Showing the dialog here
-                    mutableLiveData.setValue(response.body());
-                }if (response.code() == 422) {
-
-                }else {
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SignUpResponse> call, Throwable t) {
-
-            }
-        });
-        return mutableLiveData;
-    }
 }

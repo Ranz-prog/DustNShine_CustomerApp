@@ -1,14 +1,16 @@
 package com.example.dustnshine.ui;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.Observer;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -19,13 +21,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
+import com.example.dustnshine.SignOutViewModel;
+import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.models.User;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.signin.ActivitySignIn;
 
 public class ActivityManageAccount extends AppCompatActivity {
 
     LinearLayout personalInfoView,returnHome;
-    TextView txtPersonalInfo,popText;
+    TextView txtPersonalInfo, popText, txtLogout, txtManageCards;
     CardView personalInfoCardView;
     Button reset, edit;
     Dialog dialog;
@@ -34,7 +39,9 @@ public class ActivityManageAccount extends AppCompatActivity {
     int number;
     //Comment ni Jolo
 
-    String text;
+    private String text, userToken;
+
+    private SignOutViewModel signOutViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,8 @@ public class ActivityManageAccount extends AppCompatActivity {
 
         personalInfoView = findViewById(R.id.personal_info_view);
         txtPersonalInfo = findViewById(R.id.txtPersonalInfo);
+        txtLogout = findViewById(R.id.txtLogout);
+        txtManageCards = findViewById(R.id.txtManageCards);
         personalInfoCardView = findViewById(R.id.personal_info_cardview);
 
         fname = findViewById(R.id.FnameET);
@@ -73,6 +82,10 @@ public class ActivityManageAccount extends AppCompatActivity {
 
         disabled();
 
+        signOutViewModel = new SignOutViewModel();
+        userToken = SharedPrefManager.getInstance(ActivityManageAccount.this).getUserToken();
+
+
         txtPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +96,13 @@ public class ActivityManageAccount extends AppCompatActivity {
                     TransitionManager.beginDelayedTransition(personalInfoCardView, new AutoTransition());
                     personalInfoView.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        txtLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logOutUser();
             }
         });
 
@@ -134,7 +154,6 @@ public class ActivityManageAccount extends AppCompatActivity {
     }
 
     public void enable(){
-
         fname.setFocusableInTouchMode(true);
         lname.setFocusableInTouchMode(true);
         emailAdd.setFocusableInTouchMode(true);
@@ -192,5 +211,22 @@ public class ActivityManageAccount extends AppCompatActivity {
             //END OF DIALOG BOX
         }
 
+    }
+
+    private void logOutUser(){
+        signOutViewModel.getSignOutRequest(userToken).observe(ActivityManageAccount.this, new Observer<LogoutResponse>() {
+            @Override
+            public void onChanged(LogoutResponse logoutResponse) {
+                    if(logoutResponse == null){
+                        Log.d("TAG", "No data found");
+                    } else {
+                        Toast.makeText(ActivityManageAccount.this, logoutResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        SharedPrefManager.getInstance(ActivityManageAccount.this).clear();
+                        Intent intent = new Intent(ActivityManageAccount.this, ActivitySignIn.class);
+                        startActivity(intent);
+                        finish();
+                    }
+            }
+        });
     }
 }

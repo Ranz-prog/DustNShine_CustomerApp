@@ -1,8 +1,7 @@
 package com.example.dustnshine;
 
-import com.example.dustnshine.models.LoginResponse;
-import com.example.dustnshine.models.SignUpResponse;
+import com.example.dustnshine.response.SignInResponse;
 
 public interface SignInCallback {
-    void signInCallback(Integer statusCode, LoginResponse loginResponse);
+    void signInCallback(Integer statusCode, SignInResponse signInResponse);
 }

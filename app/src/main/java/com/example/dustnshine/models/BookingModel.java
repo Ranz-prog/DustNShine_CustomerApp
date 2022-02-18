@@ -3,7 +3,7 @@ package com.example.dustnshine.models;
 public class BookingModel {
 
     private int customerImg;
-    private  String customerName, customerLocation,customerContact;
+    private String customerName, customerLocation,customerContact;
 
     public BookingModel(int customerImg, String customerName, String customerLocation, String customerContact) {
         this.customerImg = customerImg;
