@@ -1,14 +1,8 @@
 package com.example.dustnshine.models;
 
 public class ServicesModel {
-<<<<<<< HEAD
     private int id;
     private String name, description, created_at, updated_at;
-=======
-
-    private int id;
-    private String name,description,created_at, updated_at;
->>>>>>> branch_jericho
 
     public ServicesModel(int id, String name, String description, String created_at, String updated_at) {
         this.id = id;
@@ -69,7 +63,4 @@ public class ServicesModel {
                 '}';
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> branch_jericho

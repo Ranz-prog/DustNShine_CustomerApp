@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.models.ChatModel;
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.ChatAdapter;
+import com.example.dustnshine.adapter.chat_adapter;
 import com.example.dustnshine.ui.MessageBox;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentMessage extends Fragment implements ChatAdapter.OnClickMessageListener{
+public class FragmentMessage extends Fragment implements chat_adapter.OnClickMessageListener{
 
     private RecyclerView chatRecycler;
     private View view;
@@ -40,7 +40,7 @@ public class FragmentMessage extends Fragment implements ChatAdapter.OnClickMess
 
 
 
-        chatRecycler.setAdapter(new ChatAdapter(chatModels(),this));
+        chatRecycler.setAdapter(new chat_adapter(chatModels(),this));
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         chatRecycler.addItemDecoration(divider);

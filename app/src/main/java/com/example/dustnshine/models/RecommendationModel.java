@@ -1,6 +1,5 @@
 package com.example.dustnshine.models;
 
-<<<<<<< HEAD
 import com.google.gson.annotations.SerializedName;
 
 public class RecommendationModel {
@@ -14,18 +13,6 @@ public class RecommendationModel {
 
     public void setId(int id) {
         this.id = id;
-=======
-import com.example.dustnshine.R;
-
-public class RecommendationModel {
-
-    private int companyImg;
-    private  String name,address;
-
-    public RecommendationModel(String name, String address) {
-        this.name = name;
-        this.address = address;
->>>>>>> branch_jericho
     }
 
     public String getName() {
@@ -36,7 +23,6 @@ public class RecommendationModel {
         this.name = name;
     }
 
-<<<<<<< HEAD
     public String getEmail() {
         return email;
     }
@@ -61,8 +47,6 @@ public class RecommendationModel {
         this.tel_number = tel_number;
     }
 
-=======
->>>>>>> branch_jericho
     public String getAddress() {
         return address;
     }
@@ -71,7 +55,6 @@ public class RecommendationModel {
         this.address = address;
     }
 
-<<<<<<< HEAD
     public String getCreated_at() {
         return created_at;
     }
@@ -86,13 +69,5 @@ public class RecommendationModel {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
-=======
-    @Override
-    public String toString() {
-        return "RecommendationModel{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                '}';
->>>>>>> branch_jericho
     }
 }

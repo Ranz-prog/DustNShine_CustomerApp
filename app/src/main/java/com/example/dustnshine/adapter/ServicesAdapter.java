@@ -9,13 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-<<<<<<< HEAD:app/src/main/java/com/example/dustnshine/adapter/ServicesAdapter.java
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.models.services_model;
-=======
-import com.example.dustnshine.models.ServiceResponse;
-import com.example.dustnshine.models.ServicesModel;
->>>>>>> branch_jericho:app/src/main/java/com/example/dustnshine/adapter/services_adapter.java
 import com.example.dustnshine.R;
 
 import java.util.List;
@@ -47,20 +42,10 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder holder, int position) {
-<<<<<<< HEAD:app/src/main/java/com/example/dustnshine/adapter/ServicesAdapter.java
-=======
-
-
->>>>>>> branch_jericho:app/src/main/java/com/example/dustnshine/adapter/services_adapter.java
         holder.serviceTitle.setText(servicesModelList.get(position).getName());
         holder.servicePrice.setText(servicesModelList.get(position).getCreated_at());
         holder.serviceDetails1.setText(servicesModelList.get(position).getDescription());
         holder.serviceDetails2.setText(servicesModelList.get(position).getCreated_at());
-<<<<<<< HEAD:app/src/main/java/com/example/dustnshine/adapter/ServicesAdapter.java
-=======
-
-
->>>>>>> branch_jericho:app/src/main/java/com/example/dustnshine/adapter/services_adapter.java
     }
 
     @Override

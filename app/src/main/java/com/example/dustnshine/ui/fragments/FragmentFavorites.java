@@ -16,16 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.models.FavoriteModel;
 import com.example.dustnshine.R;
 
-<<<<<<< HEAD
 import com.example.dustnshine.adapter.favorite_adapter;
-=======
-import com.example.dustnshine.adapter.FavoriteAdapter;
-import com.example.dustnshine.ui.activities.ActivityCompanyDetails;
->>>>>>> branch_jericho
 
 import java.util.ArrayList;
 import java.util.List;
-public class FragmentFavorites extends Fragment implements FavoriteAdapter.OnClickMessageListener{
+public class FragmentFavorites extends Fragment implements favorite_adapter.OnClickMessageListener{
 
     private RecyclerView favoriteRecycler;
     private View view;
@@ -49,7 +44,7 @@ public class FragmentFavorites extends Fragment implements FavoriteAdapter.OnCli
 
 
 
-        favoriteRecycler.setAdapter(new FavoriteAdapter(favoriteModels(),this));
+        favoriteRecycler.setAdapter(new favorite_adapter(favoriteModels(),this));
 
 
 
