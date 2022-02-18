@@ -15,12 +15,12 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class chat_adapter extends RecyclerView.Adapter<chat_adapter.ViewHolder> {
+public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     List<ChatModel> chatModelList;
     private OnClickMessageListener onClickMessageListener;
 
-    public chat_adapter(List<ChatModel> chatModelList, OnClickMessageListener onClickMessageListener) {
+    public ChatAdapter(List<ChatModel> chatModelList, OnClickMessageListener onClickMessageListener) {
         this.chatModelList = chatModelList;
         this.onClickMessageListener = onClickMessageListener;
     }
