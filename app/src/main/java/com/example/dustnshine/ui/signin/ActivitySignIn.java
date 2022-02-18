@@ -21,7 +21,7 @@ import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.databinding.ActivitySigninBinding;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.ActivityForgetPassword;
+import com.example.dustnshine.ui.activities.ActivityForgetPassword;
 import com.example.dustnshine.ui.signup.ActivitySignUp;
 
 public class ActivitySignIn extends AppCompatActivity {
