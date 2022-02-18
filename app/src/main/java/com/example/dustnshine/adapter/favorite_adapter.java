@@ -9,17 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.favorite_model;
+import com.example.dustnshine.models.FavoriteModel;
 import com.example.dustnshine.R;
 
 import java.util.List;
 
 public class favorite_adapter extends RecyclerView.Adapter<favorite_adapter.ViewHolder>{
 
-    List<favorite_model> bookingModelList;
+    List<FavoriteModel> bookingModelList;
     private favorite_adapter.OnClickMessageListener onClickMessageListener;
 
-    public favorite_adapter(List<favorite_model> bookingModelList, favorite_adapter.OnClickMessageListener onClickMessageListener) {
+    public favorite_adapter(List<FavoriteModel> bookingModelList, favorite_adapter.OnClickMessageListener onClickMessageListener) {
         this.bookingModelList = bookingModelList;
         this.onClickMessageListener = onClickMessageListener;
     }

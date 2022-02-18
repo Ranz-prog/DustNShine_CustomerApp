@@ -8,7 +8,6 @@ import com.example.dustnshine.models.User;
 public class SharedPrefManager {
 
     private static final String SHARED_PREFERENCES_NAME = "user_shared_preferences";
-
     private static SharedPrefManager mInstance;
     private Context mContext;
 
@@ -36,11 +35,6 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-    public Boolean isLoggedIn(){
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getInt("id", -1) != -1;
-    }
-
     public User getUser(){
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         return new User(
@@ -50,6 +44,25 @@ public class SharedPrefManager {
                 sharedPreferences.getString("mobile_number", null),
                 sharedPreferences.getString("email", null)
         );
+    }
+
+    public void saveUserToken(String token){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("token", token);
+        editor.apply();
+    }
+
+    public String getUserToken(){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("token", null);
+    }
+
+
+    public Boolean isLoggedIn(){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("id", -1) != -1;
     }
 
     public void clear(){

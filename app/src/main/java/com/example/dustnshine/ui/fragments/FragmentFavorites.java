@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui.fragments;
+package com.example.dustnshine.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.dustnshine.models.favorite_model;
+import com.example.dustnshine.models.FavoriteModel;
 import com.example.dustnshine.R;
 
 import com.example.dustnshine.adapter.favorite_adapter;
-import com.example.dustnshine.ui.activities.ActivityCompanyDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,7 @@ public class FragmentFavorites extends Fragment implements favorite_adapter.OnCl
 
     private RecyclerView favoriteRecycler;
     private View view;
-    private List<favorite_model> favoriteModelList;
+    private List<FavoriteModel> favoriteModelList;
 
 
     public FragmentFavorites(){
@@ -52,13 +51,13 @@ public class FragmentFavorites extends Fragment implements favorite_adapter.OnCl
         return view;
     }
 
-    private List<favorite_model> favoriteModels(){
+    private List<FavoriteModel> favoriteModels(){
 
         favoriteModelList = new ArrayList<>();
 
-        favoriteModelList.add(new favorite_model(R.drawable.company1,
+        favoriteModelList.add(new FavoriteModel(R.drawable.company1,
                 "Clean Solutions","Dagupan City","5/5"));
-        favoriteModelList.add(new favorite_model(R.drawable.company2,
+        favoriteModelList.add(new FavoriteModel(R.drawable.company2,
                 "Super Clean","Dagupan City","5/5"));
 
         return favoriteModelList;

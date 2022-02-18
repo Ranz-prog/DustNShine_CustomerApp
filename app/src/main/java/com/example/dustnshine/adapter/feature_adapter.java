@@ -9,16 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.feature_model;
+import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.R;
 
 import java.util.List;
 
 public class feature_adapter extends RecyclerView.Adapter<feature_adapter.ViewHolder>{
 
-    List<feature_model> featureModelsList;
+    List<FeatureModel> featureModelsList;
 
-    public feature_adapter(List<feature_model> featureModelsList) {
+    public feature_adapter(List<FeatureModel> featureModelsList) {
         this.featureModelsList = featureModelsList;
     }
 

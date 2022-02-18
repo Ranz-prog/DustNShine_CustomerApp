@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui.fragments;
+package com.example.dustnshine.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,20 +14,28 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.booking_model;
+import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.models.BookingModel;
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.booking_adapter;
-import com.example.dustnshine.ui.activities.ActivityBookingHistory;
-import com.example.dustnshine.ui.activities.ActivityCheckOut;
+import com.example.dustnshine.adapter.BookingAdapter;
+import com.example.dustnshine.models.BookingServiceData;
+import com.example.dustnshine.models.RecommendationModel;
+import com.example.dustnshine.response.BookedServiceResponse;
+import com.example.dustnshine.storage.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentBooking extends Fragment implements booking_adapter.OnClickMessageListener{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class FragmentBooking extends Fragment implements BookingAdapter.OnClickMessageListener{
     private RecyclerView bookingRecycler;
     private View view;
-    private List<booking_model> bookingModelList;
+    private List<BookingModel> bookingModelList;
     LinearLayout historyBtn;
+    private BookingAdapter bookingAdapter;
 
     public FragmentBooking(){
     }
@@ -42,8 +51,10 @@ public class FragmentBooking extends Fragment implements booking_adapter.OnClick
         bookingRecycler = view.findViewById(R.id.bookingList);
         bookingRecycler.setHasFixedSize(true);
         bookingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        bookingAdapter = new BookingAdapter(this);
+        getBookedService();
 
-        bookingRecycler.setAdapter(new booking_adapter(bookingModels(),this));
+//        bookingRecycler.setAdapter(new BookingAdapter(this));
 
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,15 +70,39 @@ public class FragmentBooking extends Fragment implements booking_adapter.OnClick
 
     }
 
+    private void getBookedService(){
+        String userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
+        Call<BookedServiceResponse> bookedServiceResponseCall = RetrofitClient.getInstance().getApi().getBookedService("Bearer " + userToken);
+        bookedServiceResponseCall.enqueue(new Callback<BookedServiceResponse>() {
+            @Override
+            public void onResponse(Call<BookedServiceResponse> call, Response<BookedServiceResponse> response) {
+                if(response.isSuccessful()){
+                    List<BookingServiceData> bookingServiceData = response.body().getData();
+                    bookingAdapter.setData(bookingServiceData);
+                    bookingRecycler.setAdapter(bookingAdapter);
+                    Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BookedServiceResponse> call, Throwable t) {
+
+            }
+        });
+    }
 
 
-    private List<booking_model> bookingModels(){
+
+    private List<BookingModel> bookingModels(){
 
         bookingModelList = new ArrayList<>();
 
-        bookingModelList.add(new booking_model(R.drawable.user,
+        bookingModelList.add(new BookingModel(R.drawable.user,
                 "Juan Dela Cruz", "Lorem ipsum, lorem","09465886972"));
-        bookingModelList.add(new booking_model(R.drawable.user,
+        bookingModelList.add(new BookingModel(R.drawable.user,
                 "Ivan Dasigan", "Lorem ipsum, lorem","09568556314"));
 
         return bookingModelList;

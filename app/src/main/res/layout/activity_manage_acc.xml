@@ -477,6 +477,7 @@
                     android:background="@color/background">
 
                     <TextView
+                        android:id="@+id/txtLogout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksand_regular"
