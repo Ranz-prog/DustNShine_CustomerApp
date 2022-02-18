@@ -14,27 +14,33 @@ import com.example.dustnshine.R;
 
 import java.util.List;
 
-public class favorite_adapter extends RecyclerView.Adapter<favorite_adapter.ViewHolder>{
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder>{
 
     List<FavoriteModel> bookingModelList;
+<<<<<<< HEAD:app/src/main/java/com/example/dustnshine/adapter/favorite_adapter.java
     private favorite_adapter.OnClickMessageListener onClickMessageListener;
 
     public favorite_adapter(List<FavoriteModel> bookingModelList, favorite_adapter.OnClickMessageListener onClickMessageListener) {
+=======
+    private FavoriteAdapter.OnClickMessageListener onClickMessageListener;
+
+    public FavoriteAdapter(List<FavoriteModel> bookingModelList, FavoriteAdapter.OnClickMessageListener onClickMessageListener) {
+>>>>>>> branch_jericho:app/src/main/java/com/example/dustnshine/adapter/FavoriteAdapter.java
         this.bookingModelList = bookingModelList;
         this.onClickMessageListener = onClickMessageListener;
     }
 
     @NonNull
     @Override
-    public favorite_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavoriteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_favorite_company, parent, false);
-        favorite_adapter.ViewHolder viewHolder = new favorite_adapter.ViewHolder(view, onClickMessageListener);
+        FavoriteAdapter.ViewHolder viewHolder = new FavoriteAdapter.ViewHolder(view, onClickMessageListener);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull favorite_adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FavoriteAdapter.ViewHolder holder, int position) {
 
         holder.companyImgFav.setImageResource(bookingModelList.get(position).getCompanyImgFav());
         holder.companyNameFav.setText(bookingModelList.get(position).getCompanyNameFav());
@@ -58,9 +64,9 @@ public class favorite_adapter extends RecyclerView.Adapter<favorite_adapter.View
         private ImageView companyImgFav;
         private TextView companyNameFav, companyAddressFav,companyRatingFav;
 
-        favorite_adapter.OnClickMessageListener onClickMessageListener;
+        FavoriteAdapter.OnClickMessageListener onClickMessageListener;
 
-        public ViewHolder(@NonNull View itemView, favorite_adapter.OnClickMessageListener onClickMessageListener) {
+        public ViewHolder(@NonNull View itemView, FavoriteAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
             companyImgFav = itemView.findViewById(R.id.companyImgFav);
@@ -68,7 +74,7 @@ public class favorite_adapter extends RecyclerView.Adapter<favorite_adapter.View
             companyAddressFav = itemView.findViewById(R.id.txtAdrress);
             companyRatingFav = itemView.findViewById(R.id.ratingFavorite);
 
-            this.onClickMessageListener = (favorite_adapter.OnClickMessageListener) onClickMessageListener;
+            this.onClickMessageListener = (FavoriteAdapter.OnClickMessageListener) onClickMessageListener;
 
             itemView.setOnClickListener(this);
 

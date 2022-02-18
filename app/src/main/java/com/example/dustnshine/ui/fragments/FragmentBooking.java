@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+<<<<<<< HEAD
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.models.BookingModel;
 import com.example.dustnshine.R;
@@ -22,14 +23,24 @@ import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
+=======
+import com.example.dustnshine.models.BookingModel;
+import com.example.dustnshine.R;
+import com.example.dustnshine.adapter.BookingAdapter;
+import com.example.dustnshine.ui.activities.ActivityBookingHistory;
+import com.example.dustnshine.ui.activities.ActivityCheckOut;
+>>>>>>> branch_jericho
 
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+=======
+>>>>>>> branch_jericho
 public class FragmentBooking extends Fragment implements BookingAdapter.OnClickMessageListener{
     private RecyclerView bookingRecycler;
     private View view;
@@ -54,7 +65,11 @@ public class FragmentBooking extends Fragment implements BookingAdapter.OnClickM
         bookingAdapter = new BookingAdapter(this);
         getBookedService();
 
+<<<<<<< HEAD
 //        bookingRecycler.setAdapter(new BookingAdapter(this));
+=======
+        bookingRecycler.setAdapter(new BookingAdapter(bookingModels(),this));
+>>>>>>> branch_jericho
 
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override

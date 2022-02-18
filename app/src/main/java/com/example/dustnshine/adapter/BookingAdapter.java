@@ -11,24 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.models.BookingModel;
 import com.example.dustnshine.R;
-import com.example.dustnshine.models.BookingServiceData;
-import com.example.dustnshine.models.RecommendationModel;
 
 import java.util.List;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHolder>{
 
-    List<BookingServiceData> bookingServiceData;
+    List<BookingModel> bookingModelList;
     private BookingAdapter.OnClickMessageListener onClickMessageListener;
 
-    public BookingAdapter(BookingAdapter.OnClickMessageListener onClickMessageListener) {
-
+    public BookingAdapter(List<BookingModel> bookingModelList, BookingAdapter.OnClickMessageListener onClickMessageListener) {
+        this.bookingModelList = bookingModelList;
         this.onClickMessageListener = onClickMessageListener;
-    }
-
-    public void setData(List<BookingServiceData> bookingServiceData) {
-        this.bookingServiceData = bookingServiceData;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -43,16 +36,17 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull BookingAdapter.ViewHolder holder, int position) {
 
-//        holder.customerImg.setImageResource(bookingModelList.get(position).getCustomerImg());
-        holder.customerName.setText(bookingServiceData.get(position).getCustomer().getFirst_name() + " " + bookingServiceData.get(position).getCustomer().getLast_name());
-        holder.customerLoc.setText(bookingServiceData.get(position).getAddress());
-        holder.customerNum.setText(bookingServiceData.get(position).getCustomer().getMobile_number());
+        holder.customerImg.setImageResource(bookingModelList.get(position).getCustomerImg());
+        holder.customerName.setText(bookingModelList.get(position).getCustomerName());
+        holder.customerLoc.setText(bookingModelList.get(position).getCustomerLocation());
+        holder.customerNum.setText(bookingModelList.get(position).getCustomerContact());
+
 
     }
 
     @Override
     public int getItemCount() {
-        return bookingServiceData.size();
+        return bookingModelList.size();
     }
 
     public interface OnClickMessageListener {

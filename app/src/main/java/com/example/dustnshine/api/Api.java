@@ -1,5 +1,6 @@
 package com.example.dustnshine.api;
 
+<<<<<<< HEAD
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
@@ -10,12 +11,24 @@ import com.example.dustnshine.response.SignInResponse;
 
 import java.util.List;
 import java.util.Map;
+=======
+import com.example.dustnshine.models.CompanyResponse;
+import  com.example.dustnshine.models.DefaultResponse;
+import com.example.dustnshine.models.LoginResponse;
+import com.example.dustnshine.models.ServiceResponse;
+
+import java.util.List;
+>>>>>>> branch_jericho
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+<<<<<<< HEAD
 import retrofit2.http.Header;
+=======
+import retrofit2.http.Headers;
+>>>>>>> branch_jericho
 import retrofit2.http.POST;
 
 public interface Api {
@@ -52,8 +65,12 @@ public interface Api {
             @Field("services") List<Map<Integer, Integer>> services
     );
 
+    @GET("services")
+    Call<ServiceResponse> getAllServiceDetails(
+    );
 
     @GET("companies")
+<<<<<<< HEAD
     Call<CompanyResponse> getCompanies(@Header("Authorization") String companyRequest);
 
     @GET("services")
@@ -64,4 +81,8 @@ public interface Api {
 
 
 
+=======
+    Call<CompanyResponse> getAllCompanies(
+    );
+>>>>>>> branch_jericho
 }

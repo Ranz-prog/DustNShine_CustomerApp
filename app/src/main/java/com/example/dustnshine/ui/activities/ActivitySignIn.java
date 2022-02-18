@@ -59,9 +59,9 @@ public class ActivitySignIn extends AppCompatActivity {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
-                startActivity(intent);
-                //userLogin();
+//                Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+//                startActivity(intent);
+                userLogin();
             }
         });
 
@@ -112,14 +112,14 @@ public class ActivitySignIn extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        };
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        };
+//    }
 
     private void userLogin(){
 

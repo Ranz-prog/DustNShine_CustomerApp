@@ -11,12 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.R;
+import com.example.dustnshine.models.ServicesModel;
 
 import java.util.List;
 
 public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder>{
 
+<<<<<<< HEAD:app/src/main/java/com/example/dustnshine/adapter/RecommendationAdapter.java
     private List<RecommendationModel> recommendationModelList;
+=======
+    List<RecommendationModel> recommendationModelList;
+>>>>>>> branch_jericho:app/src/main/java/com/example/dustnshine/adapter/recommendation_adapter.java
     private RecommendationAdapter.OnClickMessageListener onClickMessageListener;
 
     public RecommendationAdapter( RecommendationAdapter.OnClickMessageListener onClickMessageListener) {
@@ -39,10 +44,16 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
     @Override
     public void onBindViewHolder(@NonNull RecommendationAdapter.ViewHolder holder, int position) {
+<<<<<<< HEAD:app/src/main/java/com/example/dustnshine/adapter/RecommendationAdapter.java
 //        holder.companyImage.setImageResource();
         holder.companyName.setText(recommendationModelList.get(position).getName());
         holder.companyLocation.setText(recommendationModelList.get(position).getAddress());
 //        holder.companyRating.setText(recommendationModelList.get(position).getCompanyRating());
+=======
+       // holder.companyImage.setImageResource(recommendationModelList.get(position).getCompanyImg());
+        holder.companyName.setText(recommendationModelList.get(position).getName());
+        holder.companyLocation.setText(recommendationModelList.get(position).getAddress());
+>>>>>>> branch_jericho:app/src/main/java/com/example/dustnshine/adapter/recommendation_adapter.java
     }
 
     @Override
@@ -64,10 +75,17 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         public ViewHolder(@NonNull View itemView, RecommendationAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
+<<<<<<< HEAD:app/src/main/java/com/example/dustnshine/adapter/RecommendationAdapter.java
 //            companyImage = itemView.findViewById(R.id.companyImg);
             companyName = itemView.findViewById(R.id.companyNameTV);
             companyLocation = itemView.findViewById(R.id.companyLocationTV);
 //            companyRating = itemView.findViewById(R.id.companyRatingTV);
+=======
+           // companyImage = itemView.findViewById(R.id.companyImg);
+            companyName = itemView.findViewById(R.id.companyNameTV);
+            companyLocation = itemView.findViewById(R.id.companyLocationTV);
+            //companyRating = itemView.findViewById(R.id.companyRatingTV);
+>>>>>>> branch_jericho:app/src/main/java/com/example/dustnshine/adapter/recommendation_adapter.java
 
             this.onClickMessageListener = (OnClickMessageListener) onClickMessageListener;
 

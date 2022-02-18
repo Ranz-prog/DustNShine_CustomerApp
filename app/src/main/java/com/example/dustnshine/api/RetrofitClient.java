@@ -1,10 +1,13 @@
 package com.example.dustnshine.api;
 
+<<<<<<< HEAD
 import android.content.Context;
 
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.signin.ActivitySignIn;
 
+=======
+>>>>>>> branch_jericho
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -13,6 +16,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class RetrofitClient {
     private static final String BASE_URL = "https://lpn.boomtech.co/api/";
@@ -27,6 +31,19 @@ public class RetrofitClient {
                         public Response intercept(Interceptor.Chain chain) throws IOException {
                             Request request = chain.request().newBuilder()
                                     .addHeader("Accept", "application/json")
+                                    .build();
+                            return chain.proceed(request);
+                        }
+                    }).build();
+
+    OkHttpClient defaultHttpClient = new OkHttpClient.Builder()
+            .addInterceptor(
+                    new Interceptor() {
+                        @Override
+                        public Response intercept(Interceptor.Chain chain) throws IOException {
+                            Request request = chain.request().newBuilder()
+                                    .addHeader("Accept", "application/json")
+                                    .addHeader("Authorization","Bearer "+ "321|977m1IBXdvmyOuMJYXTeRaem1mRAooucj9Yi3YA9" )
                                     .build();
                             return chain.proceed(request);
                         }
@@ -50,4 +67,5 @@ public class RetrofitClient {
     public Api getApi(){
         return retrofit.create(Api.class);
     }
+
 }

@@ -29,8 +29,13 @@ import com.example.dustnshine.ui.signin.ActivitySignIn;
 
 public class ActivityManageAccount extends AppCompatActivity {
 
+<<<<<<< HEAD
     LinearLayout personalInfoView,returnHome;
     TextView txtPersonalInfo, popText, txtLogout, txtManageCards;
+=======
+    LinearLayout personalInfoView,returnHome,logOut;
+    TextView txtPersonalInfo,popText;
+>>>>>>> branch_jericho
     CardView personalInfoCardView;
     Button reset, edit;
     Dialog dialog;
@@ -53,6 +58,7 @@ public class ActivityManageAccount extends AppCompatActivity {
         reset = findViewById(R.id.btnServerLogin);
         returnHome = findViewById(R.id.ReturnBtnOnManageAcc);
         edit = findViewById(R.id.btnEditDetails);
+        logOut= findViewById(R.id.logOutBtn);
 
         personalInfoView = findViewById(R.id.personal_info_view);
         txtPersonalInfo = findViewById(R.id.txtPersonalInfo);
@@ -134,6 +140,20 @@ public class ActivityManageAccount extends AppCompatActivity {
             }
         });
 
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
+    }
+
+    public void logout(){
+        SharedPrefManager.getInstance(this).clear();
+        Intent intent = new Intent(this,ActivitySignIn.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     public void disabled(){
