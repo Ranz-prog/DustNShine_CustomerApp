@@ -22,6 +22,8 @@ import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.activities.ActivityBookingHistory;
+import com.example.dustnshine.ui.activities.ActivityCheckOut;
 
 import java.util.ArrayList;
 import java.util.List;
