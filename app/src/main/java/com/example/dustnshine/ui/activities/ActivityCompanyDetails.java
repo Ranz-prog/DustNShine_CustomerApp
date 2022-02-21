@@ -17,7 +17,6 @@ import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.ServiceResponse;
 import com.example.dustnshine.models.ServicesModel;
-import com.example.dustnshine.models.services_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
@@ -34,7 +33,7 @@ import retrofit2.Response;
 public class ActivityCompanyDetails extends AppCompatActivity {
 
     private RecyclerView serviceRecycler;
-    private List<services_model> servicesModelList;
+
     private List<Map<Integer, Integer>> services;
     private Map<Integer, Integer> company;
     LinearLayout btnBack;
