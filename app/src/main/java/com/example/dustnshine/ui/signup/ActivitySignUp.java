@@ -16,11 +16,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.SignUpCallback;
 import com.example.dustnshine.databinding.ActivitySignupBinding;
+import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.R;
+import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.signin.ActivitySignIn;
 
 public class ActivitySignUp extends AppCompatActivity {
@@ -57,52 +61,29 @@ public class ActivitySignUp extends AppCompatActivity {
                 if (TextUtils.isEmpty(firstName)) {
                     activitySignupBinding.editTextFirstName.setError("Email is required");
                     activitySignupBinding.editTextFirstName.requestFocus();
-                } if (TextUtils.isEmpty(lastName)) {
+                } else if (TextUtils.isEmpty(lastName)) {
                     activitySignupBinding.editTextLastName.setError("Invalid Email");
                     activitySignupBinding.editTextLastName.requestFocus();
-                } if (TextUtils.isEmpty(mobileNumber)) {
+                } else if (TextUtils.isEmpty(mobileNumber)) {
                     activitySignupBinding.editTextMobileNumber.setError("Email is required");
                     activitySignupBinding.editTextMobileNumber.requestFocus();
-                } if (TextUtils.isEmpty(email)) {
+                } else if (TextUtils.isEmpty(email)) {
                     activitySignupBinding.editTextEmailAddress.setError("Email is required");
                     activitySignupBinding.editTextEmailAddress.requestFocus();
-                } if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    activitySignupBinding.editTextEmailAddress.setError("Invalid Email");
-                    activitySignupBinding.editTextEmailAddress.requestFocus();
-                } if (TextUtils.isEmpty(password)) {
+                } else if (TextUtils.isEmpty(password)) {
                     activitySignupBinding.editTextPassword.setError("Password is required");
                     activitySignupBinding.editTextPassword.requestFocus();
-                } if (password.length() < 8) {
+                } else if (password.length() < 8) {
                     activitySignupBinding.editTextPassword.setError("Password must be at least 8 characters");
                     activitySignupBinding.editTextPassword.requestFocus();
-                } if (TextUtils.isEmpty(passwordConfirmation)) {
+                } else if (TextUtils.isEmpty(passwordConfirmation)) {
                     activitySignupBinding.editTextPasswordConfirmation.setError("Password Confirmation is required");
                     activitySignupBinding.editTextPasswordConfirmation.requestFocus();
-                } if (password != passwordConfirmation) {
-                    activitySignupBinding.editTextPasswordConfirmation.setError("Password not match");
-                    activitySignupBinding.editTextPasswordConfirmation.requestFocus();
                 } else {
-                    signUpViewModel.getSignUpRequest(activitySignupBinding.editTextFirstName.getText().toString(), activitySignupBinding.editTextLastName.getText().toString(), activitySignupBinding.editTextMobileNumber.getText().toString(), activitySignupBinding.editTextEmailAddress.getText().toString(), activitySignupBinding.editTextPassword.getText().toString(), activitySignupBinding.editTextPasswordConfirmation.getText().toString());
+                    userSignUp(firstName, lastName, mobileNumber, email, password, passwordConfirmation);
                 }
             }
         });
-
-        signUpViewModel.setOnSignInListener(new SignUpCallback() {
-            @Override
-            public void signUpCallback(Integer statusCode, SignUpResponse signUpResponse) {
-                if(statusCode == 200){
-                    Toast.makeText(getApplicationContext(), "Successfully Register", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(ActivitySignUp.this, ActivitySignIn.class);
-                    startActivity(intent);
-                    finish();
-                } else if(statusCode == 422){
-                    Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Registration Failed", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
 
         returnHome = findViewById(R.id.ReturnBtnOnHome);
 
@@ -130,7 +111,6 @@ public class ActivitySignUp extends AppCompatActivity {
         String text= "Thank you. You have successfully Signed Up!";// Set Message Here
         popText.setText(text.toString());
 
-
         Okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,5 +121,20 @@ public class ActivitySignUp extends AppCompatActivity {
 
         //END OF DIALOG BOX
 
+    }
+
+    public void userSignUp(String firstName, String lastName, String mobileNumber, String email, String password, String passwordConfirmation){
+        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, password, passwordConfirmation).observe(ActivitySignUp.this, new Observer<SignUpResponse>() {
+            @Override
+            public void onChanged(SignUpResponse signUpResponse) {
+                if(signUpResponse == null){
+                    Toast.makeText(ActivitySignUp.this, signUpResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ActivitySignUp.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ActivitySignUp.this, ActivitySignIn.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

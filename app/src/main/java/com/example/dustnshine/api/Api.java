@@ -52,16 +52,14 @@ public interface Api {
             @Field("services") List<Map<Integer, Integer>> services
     );
 
-
     @GET("companies")
     Call<CompanyResponse> getCompanies(@Header("Authorization") String companyRequest);
 
     @GET("services")
-    Call<ServiceResponse> getAllServiceDetails(@Header("Authorization") String serviceRequest);
+    Call<ServiceResponse> getServices(@Header("Authorization") String serviceRequest);
 
     @GET("bookings")
     Call<BookedServiceResponse> getBookedService(@Header("Authorization") String bookedServiceRequest);
-
 
 
 }

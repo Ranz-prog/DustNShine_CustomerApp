@@ -218,7 +218,7 @@ public class ActivityManageAccount extends AppCompatActivity {
             @Override
             public void onChanged(LogoutResponse logoutResponse) {
                     if(logoutResponse == null){
-                        Log.d("TAG", "No data found");
+                        Log.d("TAG", "Invalid Request");
                     } else {
                         Toast.makeText(ActivityManageAccount.this, logoutResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         SharedPrefManager.getInstance(ActivityManageAccount.this).clear();

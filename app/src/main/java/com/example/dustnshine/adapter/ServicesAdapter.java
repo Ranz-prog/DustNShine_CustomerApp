@@ -20,8 +20,9 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     private List<ServicesModel> servicesModelList;
     private Context context;
 
-    public ServicesAdapter() {
-
+    public ServicesAdapter(List<ServicesModel> servicesModelList, Context context) {
+        this.servicesModelList = servicesModelList;
+        this.context = context;
     }
 
     public void setData(List<ServicesModel> servicesModelList) {

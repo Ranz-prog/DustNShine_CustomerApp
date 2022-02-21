@@ -1,5 +1,6 @@
 package com.example.dustnshine.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,12 @@ import java.util.List;
 public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder>{
 
     private List<RecommendationModel> recommendationModelList;
+    private Context context;
     private RecommendationAdapter.OnClickMessageListener onClickMessageListener;
 
-    public RecommendationAdapter( RecommendationAdapter.OnClickMessageListener onClickMessageListener) {
+    public RecommendationAdapter(List<RecommendationModel> recommendationModelList, Context context, OnClickMessageListener onClickMessageListener) {
+        this.recommendationModelList = recommendationModelList;
+        this.context = context;
         this.onClickMessageListener = onClickMessageListener;
     }
 

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
@@ -22,6 +23,7 @@ import com.example.dustnshine.databinding.ActivitySigninBinding;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ActivityForgetPassword;
+import com.example.dustnshine.ui.ActivityManageAccount;
 import com.example.dustnshine.ui.signup.ActivitySignUp;
 
 public class ActivitySignIn extends AppCompatActivity {
@@ -60,30 +62,10 @@ public class ActivitySignIn extends AppCompatActivity {
                     activitySigninBinding.editTextPassword.setError("Password must be at least 8 characters");
                     activitySigninBinding.editTextPassword.requestFocus();
                 } else {
-                    signInViewModel.getSignInRequest(email, password);
+                    userSignIn(email, password);
                 }
             }
         });
-
-        signInViewModel.setOnSignInListener(new SignInCallback() {
-            @Override
-            public void signInCallback(Integer statusCode, SignInResponse signInResponse) {
-                if(statusCode == 200){
-                    Toast.makeText(getApplicationContext(), "Successfully Logged In", Toast.LENGTH_LONG).show();
-                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUser(signInResponse.getData().getUser());
-                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUserToken(signInResponse.getData().getToken());
-                    Log.d("TOKEN", SharedPrefManager.getInstance(ActivitySignIn.this).getUserToken());
-                    Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else if(statusCode == 401){
-                    Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
 
         activitySigninBinding.txtCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +116,23 @@ public class ActivitySignIn extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void userSignIn(String email, String password){
+        signInViewModel.getSignInRequest(email, password).observe(ActivitySignIn.this, new Observer<SignInResponse>() {
+            @Override
+            public void onChanged(SignInResponse signInResponse) {
+                if(signInResponse == null){
+                    Toast.makeText(ActivitySignIn.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ActivitySignIn.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUser(signInResponse.getData().getUser());
+                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUserToken(signInResponse.getData().getToken());
+                    Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

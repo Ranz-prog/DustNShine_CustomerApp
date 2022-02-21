@@ -1,5 +1,6 @@
 package com.example.dustnshine.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,12 @@ import java.util.List;
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHolder>{
 
     List<BookingServiceData> bookingServiceData;
+    private Context context;
     private BookingAdapter.OnClickMessageListener onClickMessageListener;
 
-    public BookingAdapter(BookingAdapter.OnClickMessageListener onClickMessageListener) {
-
+    public BookingAdapter(List<BookingServiceData> bookingServiceData, Context context, OnClickMessageListener onClickMessageListener) {
+        this.bookingServiceData = bookingServiceData;
+        this.context = context;
         this.onClickMessageListener = onClickMessageListener;
     }
 

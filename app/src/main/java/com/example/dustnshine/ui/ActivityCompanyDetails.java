@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +23,8 @@ import com.example.dustnshine.models.services_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.home.FragmentHome;
+import com.example.dustnshine.ui.home.FragmentHomeViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,11 +38,12 @@ import retrofit2.Response;
 public class ActivityCompanyDetails extends AppCompatActivity {
 
     private RecyclerView serviceRecycler;
-    private List<services_model> servicesModelList;
+    private List<ServicesModel> servicesModelList;
     private List<Map<Integer, Integer>> services;
     private Map<Integer, Integer> company;
     LinearLayout btnBack;
-    ServicesAdapter servicesAdapter;
+    private ServicesAdapter servicesAdapter;
+    private CompanyDetailsViewModel companyDetailsViewModel;
     private String userToken;
     Button checkOut;
 
@@ -48,20 +53,33 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         setContentView(R.layout.activity_company_details);
         userToken = SharedPrefManager.getInstance(ActivityCompanyDetails.this).getUserToken();
         checkOut = findViewById(R.id.checkOutBtn);
-        servicesAdapter = new ServicesAdapter();
+        serviceRecycler = findViewById(R.id.serviceList);
+        servicesAdapter = new ServicesAdapter(servicesModelList, this);
 
 //        btnBack = findViewById(R.id.ReturnBtnOnFavorite);
-        serviceRecycler = findViewById(R.id.serviceList);
 
         serviceRecycler.setHasFixedSize(true);
         serviceRecycler.setLayoutManager(new LinearLayoutManager(this));
-        getAllServiceDetails();
+
+        companyDetailsViewModel = new ViewModelProvider(ActivityCompanyDetails.this).get(CompanyDetailsViewModel.class);
+        companyDetailsViewModel.getServiceList().observe(ActivityCompanyDetails.this, new Observer<List<ServicesModel>>() {
+            @Override
+            public void onChanged(List<ServicesModel> servicesModels) {
+                if(servicesModels != null){
+                    servicesModelList = servicesModels;
+                    servicesAdapter.setData(servicesModels);
+                    serviceRecycler.setAdapter(servicesAdapter);
+                }
+            }
+        });
+
+        companyDetailsViewModel.makeAPICall(userToken);
+
         company = new HashMap<Integer, Integer>();
         company.put(0, 1);
         company.put(1, 1);
         services = new ArrayList<Map<Integer, Integer>>();
         services.add(company);
-        Log.d("LOG", services.toString());
 
 //        btnBack.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -94,30 +112,6 @@ public class ActivityCompanyDetails extends AppCompatActivity {
             }
         });
 
-    }
-
-
-    private void getAllServiceDetails(){
-        Call<ServiceResponse> serviceList = RetrofitClient.getInstance().getApi().getAllServiceDetails("Bearer " + userToken);
-        serviceList.enqueue(new Callback<ServiceResponse>() {
-            @Override
-            public void onResponse(Call<ServiceResponse> call, Response<ServiceResponse> response) {
-                if(response.isSuccessful()){
-                    List<ServicesModel> serviceResponses = response.body().getData();
-                    servicesAdapter.setData(serviceResponses);
-                    serviceRecycler.setAdapter(servicesAdapter);
-                    Toast.makeText(ActivityCompanyDetails.this, "Success", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(ActivityCompanyDetails.this, "Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServiceResponse> call, Throwable t) {
-                Log.e("Failure",t.getLocalizedMessage());
-            }
-        });
     }
 
     @Override
