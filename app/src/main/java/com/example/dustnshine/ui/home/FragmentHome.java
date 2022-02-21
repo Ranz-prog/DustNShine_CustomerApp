@@ -68,19 +68,10 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
         fragmentHomeViewModel = new ViewModelProvider(FragmentHome.this).get(FragmentHomeViewModel.class);
-        fragmentHomeViewModel.getCompanyList().observe(getActivity(), new Observer<List<RecommendationModel>>() {
-            @Override
-            public void onChanged(List<RecommendationModel> recommendationModels) {
-                if(recommendationModels != null){
-                    recommendationModelList = recommendationModels;
-                    recommendationAdapter.setData(recommendationModels);
-                }
-            }
-        });
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
 
         fragmentHomeViewModel.makeAPiCall(userToken);
-//        getCompanies();
+        getCompanies();
 //        recommendationRecycler.setAdapter(new RecommendationAdapter(recommendationModel(), this));
 
 
@@ -104,31 +95,31 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
 
     }
 
-//    private void getCompanies(){
-//
-//        String userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
-//        Call<CompanyResponse> serviceList = RetrofitClient.getInstance().getApi().getCompanies("Bearer " + userToken);
-//
-//        serviceList.enqueue(new Callback<CompanyResponse>() {
-//            @Override
-//            public void onResponse(Call<CompanyResponse> call, Response<CompanyResponse> response) {
-//                if(response.isSuccessful()){
-//                    List<RecommendationModel> recommendationModelList = response.body().getData();
-//                    recommendationAdapter.setData(recommendationModelList);
-//                    recommendationRecycler.setAdapter(recommendationAdapter);
-//                    Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
-//                }
-//                else{
-//                    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CompanyResponse> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+    private void getCompanies(){
+
+        String userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
+        Call<CompanyResponse> serviceList = RetrofitClient.getInstance().getApi().getCompanies("Bearer " + userToken);
+
+        serviceList.enqueue(new Callback<CompanyResponse>() {
+            @Override
+            public void onResponse(Call<CompanyResponse> call, Response<CompanyResponse> response) {
+                if(response.isSuccessful()){
+                    List<RecommendationModel> recommendationModelList = response.body().getData();
+                    recommendationAdapter.setData(recommendationModelList);
+                    recommendationRecycler.setAdapter(recommendationAdapter);
+                    Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CompanyResponse> call, Throwable t) {
+
+            }
+        });
+    }
 
     @Override
     public void onClickMessage(int adapterPosition) {
