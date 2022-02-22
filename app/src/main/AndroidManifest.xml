@@ -47,6 +47,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.ActivitySeeAllRecommendations"
+            android:exported="true" />
         <activity android:name=".ui.ActivityBookingHistory" />
         <activity android:name=".ui.ActivityNotification" />
         <activity android:name=".ui.ActivityCheckOut" />

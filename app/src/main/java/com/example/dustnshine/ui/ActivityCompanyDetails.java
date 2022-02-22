@@ -1,5 +1,6 @@
 package com.example.dustnshine.ui;
 
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,26 +15,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.response.BookingServiceResponse;
-import com.example.dustnshine.response.ServiceResponse;
 import com.example.dustnshine.models.ServicesModel;
-import com.example.dustnshine.models.services_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.home.FragmentHome;
-import com.example.dustnshine.ui.home.FragmentHomeViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ActivityCompanyDetails extends AppCompatActivity {
 
@@ -55,31 +46,26 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         checkOut = findViewById(R.id.checkOutBtn);
         serviceRecycler = findViewById(R.id.serviceList);
         servicesAdapter = new ServicesAdapter(servicesModelList, this);
-
 //        btnBack = findViewById(R.id.ReturnBtnOnFavorite);
 
         serviceRecycler.setHasFixedSize(true);
         serviceRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         companyDetailsViewModel = new ViewModelProvider(ActivityCompanyDetails.this).get(CompanyDetailsViewModel.class);
-        companyDetailsViewModel.getServiceList().observe(ActivityCompanyDetails.this, new Observer<List<ServicesModel>>() {
-            @Override
-            public void onChanged(List<ServicesModel> servicesModels) {
-                if(servicesModels != null){
-                    servicesModelList = servicesModels;
-                    servicesAdapter.setData(servicesModels);
-                    serviceRecycler.setAdapter(servicesAdapter);
-                }
-            }
-        });
-
-        companyDetailsViewModel.makeAPICall(userToken);
+        getServices(userToken);
 
         company = new HashMap<Integer, Integer>();
         company.put(0, 1);
         company.put(1, 1);
         services = new ArrayList<Map<Integer, Integer>>();
         services.add(company);
+
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getBookingRequest(userToken, 1, "Dagupan City", "2022-05-05 00:00:00", 1000, services);
+            }
+        });
 
 //        btnBack.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -88,30 +74,35 @@ public class ActivityCompanyDetails extends AppCompatActivity {
 //            }
 //        });
 
-        checkOut.setOnClickListener(new View.OnClickListener() {
+    }
+
+    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services){
+        companyDetailsViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services).observe(ActivityCompanyDetails.this, new Observer<BookingServiceResponse>() {
             @Override
-            public void onClick(View v) {
-
-                Call<BookingServiceResponse> bookingServiceResponseCall = RetrofitClient.getInstance().getApi().bookService("Bearer " + userToken, 1, "San Fabian", "2022-05-05 00:00:00", 1000, services);
-                bookingServiceResponseCall.enqueue(new Callback<BookingServiceResponse>() {
-                    @Override
-                    public void onResponse(Call<BookingServiceResponse> call, Response<BookingServiceResponse> response) {
-                        if(response.code() == 200){
-                            Toast.makeText(ActivityCompanyDetails.this, "Booked", Toast.LENGTH_LONG).show();
-                        } else if(response.code() == 422){
-                            Toast.makeText(ActivityCompanyDetails.this, "The given data is invalid", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(ActivityCompanyDetails.this, "Success", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                    @Override
-                    public void onFailure(Call<BookingServiceResponse> call, Throwable t) {
-
-                    }
-                });
+            public void onChanged(BookingServiceResponse bookingServiceResponse) {
+                if(bookingServiceResponse == null){
+                    Toast.makeText(ActivityCompanyDetails.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ActivityCompanyDetails.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
 
+    public void getServices(String userToken){
+        companyDetailsViewModel.getServicesList(userToken).observe(ActivityCompanyDetails.this, new Observer<List<ServicesModel>>() {
+            @Override
+            public void onChanged(List<ServicesModel> servicesModels) {
+                if(servicesModels != null){
+                    servicesModelList = servicesModels;
+                    servicesAdapter.setData(servicesModels);
+                    serviceRecycler.setAdapter(servicesAdapter);
+                    Log.d("TAG", "Success");
+                } else {
+                    Log.d("TAG", "Failure");
+                }
+            }
+        });
     }
 
     @Override

@@ -1,46 +1,39 @@
 package com.example.dustnshine.ui;
 
-import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.dustnshine.api.RetrofitClient;
-import com.example.dustnshine.models.RecommendationModel;
+;
 import com.example.dustnshine.models.ServicesModel;
-import com.example.dustnshine.response.ServiceResponse;
+import com.example.dustnshine.repository.BookingAPIRepo;
+import com.example.dustnshine.response.BookingServiceResponse;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Map;;
 
 public class CompanyDetailsViewModel extends ViewModel {
+
+    private BookingAPIRepo bookingAPIRepo;
+    private MutableLiveData<BookingServiceResponse> bookingServiceResponseMutableLiveData;
     private MutableLiveData<List<ServicesModel>> serviceList;
 
     public CompanyDetailsViewModel() {
-        serviceList = new MutableLiveData<>();
+        bookingAPIRepo = new BookingAPIRepo();
     }
 
-    public MutableLiveData<List<ServicesModel>> getServiceList(){
+    public LiveData<List<ServicesModel>> getServicesList(String userToken){
+        if (serviceList == null) {
+            serviceList = bookingAPIRepo.getServices(userToken);
+        }
         return serviceList;
     }
 
-    public void makeAPICall(String userToken) {
-        Call<ServiceResponse> serviceResponseCall = RetrofitClient.getInstance().getApi().getServices("Bearer " + userToken);
-        serviceResponseCall.enqueue(new Callback<ServiceResponse>() {
-            @Override
-            public void onResponse(Call<ServiceResponse> call, Response<ServiceResponse> response) {
-                serviceList.postValue(response.body().getData());
-                Log.d("TAG", response.body().getMessage());
-            }
-
-            @Override
-            public void onFailure(Call<ServiceResponse> call, Throwable t) {
-                Log.d("TAG", "ERROR");
-            }
-        });
-
+    public LiveData<BookingServiceResponse> getBookingServiceRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services){
+        if (bookingServiceResponseMutableLiveData == null) {
+            bookingServiceResponseMutableLiveData = bookingAPIRepo.bookingRequest(userToken, company_id, address, start_datetime, total, services);
+        }
+        return bookingServiceResponseMutableLiveData;
     }
+
 }

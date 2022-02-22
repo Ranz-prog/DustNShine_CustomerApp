@@ -15,29 +15,7 @@ import retrofit2.Response;
 
 public class UserAPIRepo {
 
-    public MutableLiveData<LogoutResponse> signOutRequest(String userToken){
-        final MutableLiveData<LogoutResponse> logoutResponseMutableLiveData = new MutableLiveData<>();
-        Call<LogoutResponse> logoutResponseCall = RetrofitClient.getInstance().getApi().userLogOut("Bearer " + userToken);
-        logoutResponseCall.enqueue(new Callback<LogoutResponse>() {
-            @Override
-            public void onResponse(Call<LogoutResponse> call, Response<LogoutResponse> response) {
-                if(response.code() == 200){
-                    logoutResponseMutableLiveData.setValue(response.body());
-                }
-                if (response.code() == 401){
-                    Log.d("FAILURE", "Unauthenticated");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LogoutResponse> call, Throwable t) {
-                Log.d("FAILURE", "Failure to connect");
-            }
-        });
-
-        return  logoutResponseMutableLiveData;
-    }
-
+    //SignIn
     public MutableLiveData<SignInResponse> signInRequest(String email, String password){
         final MutableLiveData<SignInResponse> signInResponseMutableLiveData = new MutableLiveData<>();
         Call<SignInResponse> signInResponseCall = RetrofitClient.getInstance().getApi().userSignIn(email, password);
@@ -47,8 +25,8 @@ public class UserAPIRepo {
                 if(response.code() == 200){
                     signInResponseMutableLiveData.setValue(response.body());
                 }
-                if (response.code() == 401){
-                    Log.d("FAILURE", "Unauthenticated");
+                else if (response.code() == 401){
+                    signInResponseMutableLiveData.setValue(response.body());
                 }
             }
 
@@ -60,6 +38,7 @@ public class UserAPIRepo {
         return signInResponseMutableLiveData;
     }
 
+    //SignUp
     public MutableLiveData<SignUpResponse> signUpRequest(String firstName, String lastName, String mobileNumber, String email, String password, String passwordConfirmation){
         final MutableLiveData<SignUpResponse> signUpResponseMutableLiveData = new MutableLiveData<>();
         Call<SignUpResponse> signUpResponseCall = RetrofitClient.getInstance().getApi().userSignUp(firstName, lastName, mobileNumber, email, password, passwordConfirmation);
@@ -69,8 +48,8 @@ public class UserAPIRepo {
                 if(response.code() == 200){
                     signUpResponseMutableLiveData.setValue(response.body());
                 }
-                if (response.code() == 401){
-                    Log.d("FAILURE", "Unauthenticated");
+                else if (response.code() == 401){
+                    signUpResponseMutableLiveData.setValue(response.body());
                 }
             }
 
@@ -80,6 +59,30 @@ public class UserAPIRepo {
             }
         });
         return signUpResponseMutableLiveData;
+    }
+
+    //SignOut
+    public MutableLiveData<LogoutResponse> signOutRequest(String userToken){
+        final MutableLiveData<LogoutResponse> logoutResponseMutableLiveData = new MutableLiveData<>();
+        Call<LogoutResponse> logoutResponseCall = RetrofitClient.getInstance().getApi().userLogOut("Bearer " + userToken);
+        logoutResponseCall.enqueue(new Callback<LogoutResponse>() {
+            @Override
+            public void onResponse(Call<LogoutResponse> call, Response<LogoutResponse> response) {
+                if(response.code() == 200){
+                    logoutResponseMutableLiveData.setValue(response.body());
+                }
+                else if (response.code() == 401){
+                    logoutResponseMutableLiveData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LogoutResponse> call, Throwable t) {
+                Log.d("FAILURE", "Failure to connect");
+            }
+        });
+
+        return  logoutResponseMutableLiveData;
     }
 
 }
