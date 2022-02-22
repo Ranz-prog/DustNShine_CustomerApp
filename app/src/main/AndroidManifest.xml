@@ -52,7 +52,7 @@
             android:exported="true" />
         <activity android:name=".ui.ActivityBookingHistory" />
         <activity android:name=".ui.ActivityNotification" />
-        <activity android:name=".ui.ActivityCheckOut" />
+        <activity android:name=".ui.checkout.ActivityCheckOut" />
     </application>
 
 </manifest>

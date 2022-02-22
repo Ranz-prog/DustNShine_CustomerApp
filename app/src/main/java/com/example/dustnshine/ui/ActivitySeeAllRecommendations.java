@@ -35,8 +35,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ActivitySeeAllRecommendations extends AppCompatActivity implements SeeAllRecommendationsAdapter.OnClickMessageListener{
-    LinearLayout backBtn;
 
+    private LinearLayout backBtn, btnSearch;
     private RecyclerView recommendationRecycler;
     private List<RecommendationModel> recommendationModelList;
     private RecommendationAdapter recommendationAdapter;
@@ -50,7 +50,7 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
         setContentView(R.layout.activity_see_all_recommendations);
 
         backBtn = findViewById(R.id.btnHome);
-
+        btnSearch = findViewById(R.id.btnSearch);
         searchView = findViewById(R.id.favCompanyTV);
         userToken = SharedPrefManager.getInstance(ActivitySeeAllRecommendations.this).getUserToken();
         recommendationRecycler = findViewById(R.id.seeAllList);
@@ -60,16 +60,20 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
-
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 String query = searchView.getText().toString();
                 getSearchCompany(query);
             }
         });
-
 
         return;
 

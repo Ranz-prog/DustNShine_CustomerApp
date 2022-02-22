@@ -15,7 +15,6 @@ import java.util.Map;;
 public class CompanyDetailsViewModel extends ViewModel {
 
     private BookingAPIRepo bookingAPIRepo;
-    private MutableLiveData<BookingServiceResponse> bookingServiceResponseMutableLiveData;
     private MutableLiveData<List<ServicesModel>> serviceList;
 
     public CompanyDetailsViewModel() {
@@ -27,13 +26,6 @@ public class CompanyDetailsViewModel extends ViewModel {
             serviceList = bookingAPIRepo.getServices(userToken);
         }
         return serviceList;
-    }
-
-    public LiveData<BookingServiceResponse> getBookingServiceRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services){
-        if (bookingServiceResponseMutableLiveData == null) {
-            bookingServiceResponseMutableLiveData = bookingAPIRepo.bookingRequest(userToken, company_id, address, start_datetime, total, services);
-        }
-        return bookingServiceResponseMutableLiveData;
     }
 
 }

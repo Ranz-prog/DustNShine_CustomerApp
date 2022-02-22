@@ -14,11 +14,11 @@ public class FragmentHomeViewModel extends ViewModel {
     private MutableLiveData<List<RecommendationModel>> companyList;
     private BookingAPIRepo bookingAPIRepo;
 
-    public FragmentHomeViewModel(){
+    public FragmentHomeViewModel() {
         bookingAPIRepo = new BookingAPIRepo();
     }
 
-  public LiveData<List<RecommendationModel>> getCompaniesList(String userToken){
+    public LiveData<List<RecommendationModel>> getCompaniesList(String userToken) {
         if (companyList == null) {
             companyList = bookingAPIRepo.getCompanies(userToken);
         }
