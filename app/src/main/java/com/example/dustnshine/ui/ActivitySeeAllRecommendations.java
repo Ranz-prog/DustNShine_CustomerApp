@@ -1,20 +1,25 @@
 package com.example.dustnshine.ui;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.RecommendationAdapter;
+import com.example.dustnshine.adapter.SeeAllRecommendationsAdapter;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.models.SearchCompanyModel;
@@ -29,12 +34,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ActivitySeeAllRecommendations extends AppCompatActivity implements RecommendationAdapter.OnClickMessageListener{
+public class ActivitySeeAllRecommendations extends AppCompatActivity implements SeeAllRecommendationsAdapter.OnClickMessageListener{
     LinearLayout backBtn;
 
     private RecyclerView recommendationRecycler;
     private List<RecommendationModel> recommendationModelList;
     private RecommendationAdapter recommendationAdapter;
+    private SeeAllRecommendationsAdapter seeAllRecommendationsAdapter;
     private String userToken;
     private EditText searchView;
 
@@ -44,14 +50,17 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
         setContentView(R.layout.activity_see_all_recommendations);
 
         backBtn = findViewById(R.id.btnHome);
+
         searchView = findViewById(R.id.favCompanyTV);
         userToken = SharedPrefManager.getInstance(ActivitySeeAllRecommendations.this).getUserToken();
         recommendationRecycler = findViewById(R.id.seeAllList);
-        recommendationAdapter = new RecommendationAdapter(recommendationModelList, ActivitySeeAllRecommendations.this, this);
+        seeAllRecommendationsAdapter = new SeeAllRecommendationsAdapter(recommendationModelList, ActivitySeeAllRecommendations.this, this);
 
         recommendationRecycler.setHasFixedSize(true);
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
+
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +83,8 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
             public void onResponse(Call<SearchCompanyResponse> call, Response<SearchCompanyResponse> response) {
                 if(response.code() == 200){
                     List<RecommendationModel> recommendationResponses = response.body().getData();
-                    recommendationAdapter.setData(recommendationResponses);
-                    recommendationRecycler.setAdapter(recommendationAdapter);
+                    seeAllRecommendationsAdapter.setData(recommendationResponses);
+                    recommendationRecycler.setAdapter(seeAllRecommendationsAdapter);
                 } else {
                     Toast.makeText(ActivitySeeAllRecommendations.this, "Failed", Toast.LENGTH_SHORT).show();
                 }
