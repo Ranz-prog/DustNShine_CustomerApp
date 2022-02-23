@@ -1,85 +1,89 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="wrap_content"
     android:layout_marginRight="10dp"
     android:background="@drawable/recommendation_border_2"
     android:orientation="horizontal"
     android:padding="5dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/companyImageSAR"
+        android:id="@+id/compicSAR"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="150dp"
         app:cardCornerRadius="5dp">
 
         <ImageView
-            app:srcCompat="@drawable/company1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scaleType="fitXY" />
+            android:id="@+id/companyImgSAR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/company1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/companyNameTVSAR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="90dp"
+                android:text="Company Name"
+                android:textColor="@color/app_theme_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
+                android:id="@+id/imageFilterButtonSAR"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="29dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/heart_red" />
+
+            <TextView
+                android:id="@+id/companyLocationTVSAR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companyNameTVSAR"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:text="Address"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/starSAR"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_below="@id/companyNameTVSAR"
+                android:layout_marginStart="170dp"
+                android:layout_marginLeft="164dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@id/companyLocationTVSAR"
+                app:srcCompat="@drawable/star" />
+
+            <TextView
+                android:id="@+id/ratingFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/companyNameTVSAR"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@id/starSAR"
+                android:text="Rating"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
-
-    <RelativeLayout
-        android:id="@+id/company"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/companyImageSAR">
-
-        <TextView
-            android:id="@+id/companyNameTVSAR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Clean Solutions"
-            android:textColor="@color/app_theme_blue"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/companyLocationTVSAR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/companyNameTVSAR"
-            android:layout_marginStart="10dp"
-            android:text="location"
-            android:textColor="@color/app_theme_black"
-            android:textSize="13sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/companyImageSAR"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@id/company"
-        android:background="@drawable/rating_border_2"
-        android:padding="4dp">
-
-        <ImageView
-            android:id="@+id/starSAR"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="2dp"
-            android:padding="2dp"
-            app:srcCompat="@drawable/star" />
-
-        <TextView
-            android:id="@+id/companyRatingTVSAR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_toRightOf="@id/starSAR"
-            android:text="rating"
-            android:textColor="@color/app_theme_gold"
-            android:textSize="15sp" />
-
-    </RelativeLayout>
 
 
 </RelativeLayout>
