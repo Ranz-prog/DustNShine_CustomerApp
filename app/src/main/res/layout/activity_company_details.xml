@@ -1,169 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.ActivityCompanyDetails" >
+    tools:context=".ui.company_details.ActivityCompanyDetails" >
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imgCompany"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/company1"
-            android:scaleType="fitXY"/>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardCompanyDetail"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_below="@+id/imgCompany"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            app:cardCornerRadius="7dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/companydetails"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Lorem ipsum lorem ipsum"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Lorem ipsum lorem ipsum"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/companydetails"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Lorem ipsum lorem ipsum"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Lorem ipsum lorem ipsum"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
         <RelativeLayout
-            android:id="@+id/layoutDetails"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cardCompanyDetail"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputHouseType"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <ImageView
+                android:id="@+id/imgCompany"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp">
+                android:layout_height="200dp"
+                android:src="@drawable/company1"
+                android:scaleType="fitXY"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
-                    android:hint="Please describe any other needs" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/serviceRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutDetails">
-
-            <TextView
-                android:id="@+id/txtServices"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/services"
-                android:textColor="@color/app_theme_blue"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/txtExtraServices"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtServices"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/extraservices"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/serviceList"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardCompanyDetail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtExtraServices"
+                android:layout_height="180dp"
+                android:layout_below="@+id/imgCompany"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp" />
+                app:cardCornerRadius="7dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/companydetails"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Lorem ipsum lorem ipsum"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Lorem ipsum lorem ipsum"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/companydetails"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Lorem ipsum lorem ipsum"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Lorem ipsum lorem ipsum"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/layoutDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardCompanyDetail"
+                android:layout_marginTop="46dp">
+
+                <TextView
+                    android:id="@+id/txtSelectDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/selectdetails"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txthouseType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtSelectDetails"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/housetype"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputHouseType"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txthouseType"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/txtBedrooms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtInputHouseType"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/bedrooms"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputBedrooms"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtBedrooms"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/txtBathrooms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtInputBedrooms"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/bathrooms"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputBathRooms"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtBathrooms"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/serviceRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutDetails">
+
+                <TextView
+                    android:id="@+id/txtServices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/services"
+                    android:textColor="@color/app_theme_blue"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtExtraServices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtServices"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/extraservices"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/serviceList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtExtraServices"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/serviceRecyclerView"
+                android:backgroundTint="@color/app_theme_gold"
+                android:text="Next" />
 
         </RelativeLayout>
+    </ScrollView>
 
-        <Button
-            android:id="@+id/checkOutBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/serviceRecyclerView"
-            android:backgroundTint="@color/app_theme_gold"
-            android:text="Next"/>
-
-    </RelativeLayout>
-
-</ScrollView>
+</layout>

@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.booking;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

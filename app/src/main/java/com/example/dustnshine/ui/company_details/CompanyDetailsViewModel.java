@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.company_details;
 
 
 import androidx.lifecycle.LiveData;

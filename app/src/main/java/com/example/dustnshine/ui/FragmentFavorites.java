@@ -17,6 +17,7 @@ import com.example.dustnshine.models.FavoriteModel;
 import com.example.dustnshine.R;
 
 import com.example.dustnshine.adapter.FavoriteAdapter;
+import com.example.dustnshine.ui.company_details.ActivityCompanyDetails;
 
 import java.util.ArrayList;
 import java.util.List;

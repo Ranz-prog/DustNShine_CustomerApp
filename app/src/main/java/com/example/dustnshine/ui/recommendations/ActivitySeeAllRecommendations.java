@@ -1,33 +1,30 @@
-package com.example.dustnshine.ui;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+package com.example.dustnshine.ui.recommendations;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.adapter.SeeAllRecommendationsAdapter;
 import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.databinding.ActivitySeeAllRecommendationsBinding;
 import com.example.dustnshine.models.RecommendationModel;
-import com.example.dustnshine.models.SearchCompanyModel;
-import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.company_details.ActivityCompanyDetails;
+import com.example.dustnshine.ui.company_details.CompanyDetailsViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,31 +33,36 @@ import retrofit2.Response;
 
 public class ActivitySeeAllRecommendations extends AppCompatActivity implements SeeAllRecommendationsAdapter.OnClickMessageListener{
 
-    private LinearLayout backBtn, btnSearch;
+    private LinearLayout btnHome, btnSearch;
     private RecyclerView recommendationRecycler;
     private List<RecommendationModel> recommendationModelList;
-    private RecommendationAdapter recommendationAdapter;
     private SeeAllRecommendationsAdapter seeAllRecommendationsAdapter;
     private String userToken;
     private EditText searchView;
+    private ActivitySeeAllRecommendationsBinding activitySeeAllRecommendationsBinding;
+    private SeeAllRecommendationsViewModel seeAllRecommendationsViewModel;
+    private LinearLayoutManager layoutRecommendations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        activitySeeAllRecommendationsBinding = DataBindingUtil.setContentView(this, R.layout.activity_see_all_recommendations);
+        seeAllRecommendationsViewModel = new ViewModelProvider(ActivitySeeAllRecommendations.this).get(SeeAllRecommendationsViewModel.class);
         setContentView(R.layout.activity_see_all_recommendations);
 
-        backBtn = findViewById(R.id.btnHome);
+        searchView = findViewById(R.id.edtSearchCompany);
+        btnHome = findViewById(R.id.btnHome);
         btnSearch = findViewById(R.id.btnSearch);
-        searchView = findViewById(R.id.favCompanyTV);
-        userToken = SharedPrefManager.getInstance(ActivitySeeAllRecommendations.this).getUserToken();
         recommendationRecycler = findViewById(R.id.seeAllList);
-        seeAllRecommendationsAdapter = new SeeAllRecommendationsAdapter(recommendationModelList, ActivitySeeAllRecommendations.this, this);
+        userToken = SharedPrefManager.getInstance(ActivitySeeAllRecommendations.this).getUserToken();
+        seeAllRecommendationsAdapter = new SeeAllRecommendationsAdapter(recommendationModelList, ActivitySeeAllRecommendations.this, ActivitySeeAllRecommendations.this);
 
         recommendationRecycler.setHasFixedSize(true);
-        LinearLayoutManager layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -75,9 +77,24 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
             }
         });
 
-        return;
-
     }
+
+//    private void getSearchCompany(String companyName, String userToken){
+//
+//        seeAllRecommendationsViewModel.getSearchedCompany(companyName, userToken).observe(this, new Observer<List<RecommendationModel>>() {
+//            @Override
+//            public void onChanged(List<RecommendationModel> recommendationModels) {
+//                if(recommendationModels != null){
+//                    recommendationModelList = recommendationModels;
+//                    seeAllRecommendationsAdapter.setData(recommendationModels);
+//                    recommendationRecycler.setAdapter(seeAllRecommendationsAdapter);
+//                } else {
+//                    Toast.makeText(ActivitySeeAllRecommendations.this, "No Company Found", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//
+//    }
 
     private void getSearchCompany(String companyName){
 
@@ -86,8 +103,8 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
             @Override
             public void onResponse(Call<SearchCompanyResponse> call, Response<SearchCompanyResponse> response) {
                 if(response.code() == 200){
-                    List<RecommendationModel> recommendationResponses = response.body().getData();
-                    seeAllRecommendationsAdapter.setData(recommendationResponses);
+                    recommendationModelList = response.body().getData();
+                    seeAllRecommendationsAdapter.setData(recommendationModelList);
                     recommendationRecycler.setAdapter(seeAllRecommendationsAdapter);
                 } else {
                     Toast.makeText(ActivitySeeAllRecommendations.this, "Failed", Toast.LENGTH_SHORT).show();
@@ -96,33 +113,10 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
 
             @Override
             public void onFailure(Call<SearchCompanyResponse> call, Throwable t) {
-                Log.e("Juan",t.getLocalizedMessage());
+                Log.e("TAG",t.getLocalizedMessage());
 
             }
         });
-
-//        Call<CompanyResponse> companyList = RetrofitClient.getInstance().getApi().getCompanies("Bearer " + userToken);
-//
-//        companyList.enqueue(new Callback<CompanyResponse>() {
-//            @Override
-//            public void onResponse(Call<CompanyResponse> call, Response<CompanyResponse> response) {
-//
-//                if(response.isSuccessful()){
-//                    Log.e("sucess",response.body().toString());
-//                    List<RecommendationModel> recommendationResponses = response.body().getData();
-//                    recommendationAdapter.setData(recommendationResponses);
-//                    recommendationRecycler.setAdapter(recommendationAdapter);
-//                }
-//                else{
-//                    Toast.makeText(ActivitySeeAllRecommendations.this, "Failed", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CompanyResponse> call, Throwable t) {
-//                Log.e("Juan",t.getLocalizedMessage());
-//            }
-//        });
 
     }
 

@@ -1,7 +1,6 @@
 package com.example.dustnshine.repository;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -12,8 +11,8 @@ import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
+import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.response.ServiceResponse;
-import com.example.dustnshine.ui.ActivityCompanyDetails;
 
 import java.util.List;
 import java.util.Map;
@@ -115,4 +114,27 @@ public class BookingAPIRepo {
 
     }
 
+    public MutableLiveData<List<RecommendationModel>> getSearchedCompany(String companyName, String userToken){
+        final MutableLiveData<List<RecommendationModel>> searchedCompany = new MutableLiveData<>();
+        Call<SearchCompanyResponse> searchCompanyResponseCall = RetrofitClient.getInstance().getApi().getSearchedCompany(companyName, "Bearer " + userToken);
+        searchCompanyResponseCall.enqueue(new Callback<SearchCompanyResponse>() {
+            @Override
+            public void onResponse(Call<SearchCompanyResponse> call, Response<SearchCompanyResponse> response) {
+                if(response.code() == 200){
+                    searchedCompany.postValue(response.body().getData());
+                    Log.d("TAG", "Success");
+                } else {
+                    Log.d("TAG", "Failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SearchCompanyResponse> call, Throwable t) {
+
+
+            }
+        });
+
+        return searchedCompany;
+    }
 }

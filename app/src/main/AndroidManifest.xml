@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ActivityCompanyDetails"
+            android:name=".ui.company_details.ActivityCompanyDetails"
             android:exported="true"></activity>
         <activity
             android:name=".ui.signin.ActivitySignIn"
@@ -48,7 +48,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.ActivitySeeAllRecommendations"
+            android:name=".ui.recommendations.ActivitySeeAllRecommendations"
             android:exported="true" />
         <activity android:name=".ui.ActivityBookingHistory" />
         <activity android:name=".ui.ActivityNotification" />
