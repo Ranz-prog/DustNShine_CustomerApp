@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -33,6 +34,7 @@ public class ActivityCompanyDetails extends AppCompatActivity {
     private CompanyDetailsViewModel companyDetailsViewModel;
     private String userToken;
     private ActivityCompanyDetailsBinding activityCompanyDetailsBinding;
+    private Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,15 +43,19 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         activityCompanyDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_company_details);
         companyDetailsViewModel = new ViewModelProvider(ActivityCompanyDetails.this).get(CompanyDetailsViewModel.class);
         userToken = SharedPrefManager.getInstance(ActivityCompanyDetails.this).getUserToken();
+        intent = getIntent();
 
         serviceRecycler = findViewById(R.id.serviceList);
         servicesAdapter = new ServicesAdapter(servicesModelList, this);
-//        btnBack = findViewById(R.id.ReturnBtnOnFavorite);
+//        btnBack = findViewById(R.id.btnBack);
 
         serviceRecycler.setHasFixedSize(true);
         serviceRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         getServices(userToken);
+
+//        activityCompanyDetailsBinding.txtCompanyName.setText(intent.getStringExtra("COMPANY_NAME"));
+//        activityCompanyDetailsBinding.txtCompanyAddress.setText(intent.getStringExtra("COMPANY_ADDRESS"));
 
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +65,12 @@ public class ActivityCompanyDetails extends AppCompatActivity {
             }
         });
 
-//        btnBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

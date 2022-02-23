@@ -44,10 +44,8 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
     private FragmentHomeViewModel fragmentHomeViewModel;
     private RecommendationAdapter recommendationAdapter;
     private String userToken;
+    private ActivityCompanyDetails activityCompanyDetails;
 
-    public FragmentHome(){
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,6 +110,8 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
     @Override
     public void onClickMessage(int adapterPosition) {
         Intent intent = new Intent(getActivity(), ActivityCompanyDetails.class);
+        intent.putExtra("COMPANY_NAME", recommendationModelList.get(adapterPosition).getName());
+        intent.putExtra("COMPANY_ADDRESS", recommendationModelList.get(adapterPosition).getAddress());
         startActivity(intent);
     }
 }
