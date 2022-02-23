@@ -94,8 +94,23 @@ public class BookingAPIRepo {
 
     public MutableLiveData<List<BookingServiceData>> getBookedServices(String userToken){
         final MutableLiveData<List<BookingServiceData>> bookedServicesList = new MutableLiveData<>();
+        Call<BookedServiceResponse> bookedServiceResponseCall = RetrofitClient.getInstance().getApi().getBookedService("Bearer " + userToken);
+        bookedServiceResponseCall.enqueue(new Callback<BookedServiceResponse>() {
+            @Override
+            public void onResponse(Call<BookedServiceResponse> call, Response<BookedServiceResponse> response) {
+                if(response.code() == 200){
+                    bookedServicesList.setValue(response.body().getData());
+                    Log.d("TAG", "Success");
+                } else {
 
+                }
+            }
 
+            @Override
+            public void onFailure(Call<BookedServiceResponse> call, Throwable t) {
+                Log.d("FAILURE", "Failure to connect");
+            }
+        });
         return bookedServicesList;
 
     }

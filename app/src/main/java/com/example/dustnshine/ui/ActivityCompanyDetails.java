@@ -1,6 +1,7 @@
 package com.example.dustnshine.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,11 +16,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.checkout.ActivityCheckOut;
+import com.example.dustnshine.ui.signin.ActivitySignIn;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,8 +34,6 @@ public class ActivityCompanyDetails extends AppCompatActivity {
 
     private RecyclerView serviceRecycler;
     private List<ServicesModel> servicesModelList;
-    private List<Map<Integer, Integer>> services;
-    private Map<Integer, Integer> company;
     LinearLayout btnBack;
     private ServicesAdapter servicesAdapter;
     private CompanyDetailsViewModel companyDetailsViewModel;
@@ -54,16 +56,11 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         companyDetailsViewModel = new ViewModelProvider(ActivityCompanyDetails.this).get(CompanyDetailsViewModel.class);
         getServices(userToken);
 
-        company = new HashMap<Integer, Integer>();
-        company.put(0, 1);
-        company.put(1, 1);
-        services = new ArrayList<Map<Integer, Integer>>();
-        services.add(company);
-
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getBookingRequest(userToken, 1, "Dagupan City", "2022-05-05 00:00:00", 1000, services);
+                Intent intent = new Intent(ActivityCompanyDetails.this, ActivityCheckOut.class);
+                startActivity(intent);
             }
         });
 
@@ -76,18 +73,6 @@ public class ActivityCompanyDetails extends AppCompatActivity {
 
     }
 
-    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services){
-        companyDetailsViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services).observe(ActivityCompanyDetails.this, new Observer<BookingServiceResponse>() {
-            @Override
-            public void onChanged(BookingServiceResponse bookingServiceResponse) {
-                if(bookingServiceResponse == null){
-                    Toast.makeText(ActivityCompanyDetails.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(ActivityCompanyDetails.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
 
     public void getServices(String userToken){
         companyDetailsViewModel.getServicesList(userToken).observe(ActivityCompanyDetails.this, new Observer<List<ServicesModel>>() {
