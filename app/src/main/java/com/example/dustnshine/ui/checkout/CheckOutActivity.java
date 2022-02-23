@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +30,7 @@ import java.util.Map;
 
 public class CheckOutActivity extends AppCompatActivity {
 
-    private Button checkOut;
-
+    private LinearLayout btnBack;
     Dialog dialog;
     private TextView popText, txtCustomerName, txtLocation, txtContactNumber;
     private List<Map<Integer, Integer>> services;
@@ -48,13 +48,13 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_checkout);
         userToken = SharedPrefManager.getInstance(CheckOutActivity.this).getUserToken();
         intent = getIntent();
+        btnBack = findViewById(R.id.btnBack);
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
 
         activityCheckoutBinding.txtCompanyName.setText(companyName);
-
         activityCheckoutBinding.txtCustomerName.setText(SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getFirst_name() + " " + SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getLast_name());
         activityCheckoutBinding.txtContactNumber.setText(SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getMobile_number() + " " + companyID);
 
@@ -98,6 +98,13 @@ public class CheckOutActivity extends AppCompatActivity {
                 dialog.show();
                 Intent intent = new Intent(CheckOutActivity.this, CompanyDetailsActivity.class);
                 startActivity(intent);// Showing the dialog here
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
