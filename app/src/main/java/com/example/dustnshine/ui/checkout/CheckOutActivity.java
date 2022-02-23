@@ -20,14 +20,14 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityCheckoutBinding;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.company_details.ActivityCompanyDetails;
+import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ActivityCheckOut extends AppCompatActivity {
+public class CheckOutActivity extends AppCompatActivity {
 
     private Button checkOut;
 
@@ -38,16 +38,25 @@ public class ActivityCheckOut extends AppCompatActivity {
     private CheckOutViewModel checkOutViewModel;
     private String userToken;
     private ActivityCheckoutBinding activityCheckoutBinding;
-
+    private String companyName, companyAddress;
+    private int companyID;
+    private Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityCheckoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_checkout);
-        userToken = SharedPrefManager.getInstance(ActivityCheckOut.this).getUserToken();
+        userToken = SharedPrefManager.getInstance(CheckOutActivity.this).getUserToken();
+        intent = getIntent();
 
-        activityCheckoutBinding.txtCustomerName.setText(SharedPrefManager.getInstance(ActivityCheckOut.this).getUser().getFirst_name() + " " + SharedPrefManager.getInstance(ActivityCheckOut.this).getUser().getLast_name());
-        activityCheckoutBinding.txtContactNumber.setText(SharedPrefManager.getInstance(ActivityCheckOut.this).getUser().getMobile_number());
+        companyID = intent.getIntExtra("COMPANY_ID", 0);
+        companyName = intent.getStringExtra("COMPANY_NAME");
+        companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
+
+        activityCheckoutBinding.txtCompanyName.setText(companyName);
+
+        activityCheckoutBinding.txtCustomerName.setText(SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getFirst_name() + " " + SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getLast_name());
+        activityCheckoutBinding.txtContactNumber.setText(SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getMobile_number() + " " + companyID);
 
         // DIALOG BOX START
         dialog = new Dialog(this);
@@ -59,7 +68,7 @@ public class ActivityCheckOut extends AppCompatActivity {
         dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
-        checkOutViewModel = new ViewModelProvider(ActivityCheckOut.this).get(CheckOutViewModel.class);
+        checkOutViewModel = new ViewModelProvider(CheckOutActivity.this).get(CheckOutViewModel.class);
 
         Button Okay = dialog.findViewById(R.id.btn_okay);
         popText = dialog.findViewById(R.id.popUpText);
@@ -76,7 +85,7 @@ public class ActivityCheckOut extends AppCompatActivity {
         Okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityCheckOut.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckOutActivity.this, "Success", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
@@ -87,20 +96,20 @@ public class ActivityCheckOut extends AppCompatActivity {
             public void onClick(View v) {
                 getBookingRequest(userToken, 1, "San Carlos City", "2022-05-05 00:00:00", 1000, services);
                 dialog.show();
-                Intent intent = new Intent(ActivityCheckOut.this, ActivityCompanyDetails.class);
+                Intent intent = new Intent(CheckOutActivity.this, CompanyDetailsActivity.class);
                 startActivity(intent);// Showing the dialog here
             }
         });
 
     }
     public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services){
-        checkOutViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services).observe(ActivityCheckOut.this, new Observer<BookingServiceResponse>() {
+        checkOutViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services).observe(CheckOutActivity.this, new Observer<BookingServiceResponse>() {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
-                    Toast.makeText(ActivityCheckOut.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ActivityCheckOut.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

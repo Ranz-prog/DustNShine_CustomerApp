@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.dustnshine.ui.booking.FragmentBooking;
-import com.example.dustnshine.ui.FragmentFavorites;
-import com.example.dustnshine.ui.home.FragmentHome;
-import com.example.dustnshine.ui.FragmentMessage;
+import com.example.dustnshine.ui.booking.BookingFragment;
+import com.example.dustnshine.ui.FavoritesFragment;
+import com.example.dustnshine.ui.home.HomeFragment;
+import com.example.dustnshine.ui.MessageFragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(
-                R.id.flFragment, new FragmentHome()).commit();
+                R.id.flFragment, new HomeFragment()).commit();
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
-                selectedFragment = new FragmentHome();
+                selectedFragment = new HomeFragment();
             } else if (itemId == R.id.booking) {
-                selectedFragment = new FragmentBooking();
+                selectedFragment = new BookingFragment();
             }else if (itemId == R.id.message) {
-                selectedFragment = new FragmentMessage();
+                selectedFragment = new MessageFragment();
             } else if (itemId == R.id.favorite) {
-                selectedFragment = new FragmentFavorites();
+                selectedFragment = new FavoritesFragment();
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,
                     selectedFragment).commit();

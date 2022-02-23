@@ -10,8 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dustnshine.R;
 
-public class ActivityNotification extends AppCompatActivity {
-
+public class BookingHistoryActivity extends AppCompatActivity {
     LinearLayout returnHome;
 
     @Override
@@ -19,9 +18,9 @@ public class ActivityNotification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_notification);
+        setContentView(R.layout.activity_booking_history);
 
-        returnHome=findViewById(R.id.btnReturnBooking);
+        returnHome = findViewById(R.id.btnReturnBooking);
 
         returnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +28,5 @@ public class ActivityNotification extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

@@ -3,8 +3,6 @@ package com.example.dustnshine.ui.signin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -18,15 +16,13 @@ import androidx.lifecycle.Observer;
 
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
-import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.databinding.ActivitySigninBinding;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.ActivityForgetPassword;
-import com.example.dustnshine.ui.ActivityManageAccount;
-import com.example.dustnshine.ui.signup.ActivitySignUp;
+import com.example.dustnshine.ui.ForgetPasswordActivity;
+import com.example.dustnshine.ui.signup.SignUpActivity;
 
-public class ActivitySignIn extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     private long backButtonCount;
     private Button btnSearch;
@@ -70,7 +66,7 @@ public class ActivitySignIn extends AppCompatActivity {
         activitySigninBinding.txtCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivitySignIn.this, ActivitySignUp.class);
+                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -111,7 +107,7 @@ public class ActivitySignIn extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivitySignIn.this, ActivityForgetPassword.class);
+                Intent intent = new Intent(SignInActivity.this, ForgetPasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -119,16 +115,16 @@ public class ActivitySignIn extends AppCompatActivity {
     }
 
     public void userSignIn(String email, String password){
-        signInViewModel.getSignInRequest(email, password).observe(ActivitySignIn.this, new Observer<SignInResponse>() {
+        signInViewModel.getSignInRequest(email, password).observe(SignInActivity.this, new Observer<SignInResponse>() {
             @Override
             public void onChanged(SignInResponse signInResponse) {
                 if(signInResponse == null){
-                    Toast.makeText(ActivitySignIn.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ActivitySignIn.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUser(signInResponse.getData().getUser());
-                    SharedPrefManager.getInstance(ActivitySignIn.this).saveUserToken(signInResponse.getData().getToken());
-                    Intent intent = new Intent(ActivitySignIn.this, MainActivity.class);
+                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
+                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }

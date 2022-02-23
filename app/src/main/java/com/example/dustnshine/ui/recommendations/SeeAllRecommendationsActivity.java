@@ -1,8 +1,6 @@
 package com.example.dustnshine.ui.recommendations;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,8 +20,7 @@ import com.example.dustnshine.databinding.ActivitySeeAllRecommendationsBinding;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.company_details.ActivityCompanyDetails;
-import com.example.dustnshine.ui.company_details.CompanyDetailsViewModel;
+import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ActivitySeeAllRecommendations extends AppCompatActivity implements SeeAllRecommendationsAdapter.OnClickMessageListener{
+public class SeeAllRecommendationsActivity extends AppCompatActivity implements SeeAllRecommendationsAdapter.OnClickMessageListener{
 
     private LinearLayout btnHome, btnSearch;
     private RecyclerView recommendationRecycler;
@@ -48,15 +45,15 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
         super.onCreate(savedInstanceState);
 
 //        activitySeeAllRecommendationsBinding = DataBindingUtil.setContentView(this, R.layout.activity_see_all_recommendations);
-        seeAllRecommendationsViewModel = new ViewModelProvider(ActivitySeeAllRecommendations.this).get(SeeAllRecommendationsViewModel.class);
+        seeAllRecommendationsViewModel = new ViewModelProvider(SeeAllRecommendationsActivity.this).get(SeeAllRecommendationsViewModel.class);
         setContentView(R.layout.activity_see_all_recommendations);
 
         searchView = findViewById(R.id.edtSearchCompany);
         btnHome = findViewById(R.id.btnHome);
         btnSearch = findViewById(R.id.btnSearch);
         recommendationRecycler = findViewById(R.id.seeAllList);
-        userToken = SharedPrefManager.getInstance(ActivitySeeAllRecommendations.this).getUserToken();
-        seeAllRecommendationsAdapter = new SeeAllRecommendationsAdapter(recommendationModelList, ActivitySeeAllRecommendations.this, ActivitySeeAllRecommendations.this);
+        userToken = SharedPrefManager.getInstance(SeeAllRecommendationsActivity.this).getUserToken();
+        seeAllRecommendationsAdapter = new SeeAllRecommendationsAdapter(recommendationModelList, SeeAllRecommendationsActivity.this, SeeAllRecommendationsActivity.this);
 
         recommendationRecycler.setHasFixedSize(true);
         layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -107,7 +104,7 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
                     seeAllRecommendationsAdapter.setData(recommendationModelList);
                     recommendationRecycler.setAdapter(seeAllRecommendationsAdapter);
                 } else {
-                    Toast.makeText(ActivitySeeAllRecommendations.this, "Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SeeAllRecommendationsActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -122,7 +119,7 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
 
     @Override
     public void onClickMessage(int adapterPosition) {
-        Intent intent = new Intent(this, ActivityCompanyDetails.class);
+        Intent intent = new Intent(this, CompanyDetailsActivity.class);
         startActivity(intent);
     }
 }

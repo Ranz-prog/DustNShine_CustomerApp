@@ -8,9 +8,9 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dustnshine.R;
-import com.example.dustnshine.ui.signin.ActivitySignIn;
+import com.example.dustnshine.ui.signin.SignInActivity;
 
-public class splash_screen extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity {
 
     // /private TextView dustandshine;/
 
@@ -27,7 +27,7 @@ public class splash_screen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(splash_screen.this, ActivitySignIn.class);
+                Intent intent = new Intent(SplashScreen.this, SignInActivity.class);
                 startActivity(intent);
             }
         }, 5000);

@@ -20,18 +20,18 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.BookingAdapter;
 import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.ActivityBookingHistory;
-import com.example.dustnshine.ui.checkout.ActivityCheckOut;
+import com.example.dustnshine.ui.BookingHistoryActivity;
+import com.example.dustnshine.ui.checkout.CheckOutActivity;
 
 import java.util.List;
 
 
-public class FragmentBooking extends Fragment implements BookingAdapter.OnClickMessageListener {
+public class BookingFragment extends Fragment implements BookingAdapter.OnClickMessageListener {
     private RecyclerView bookingRecycler;
     private View view;
     private List<BookingServiceData> bookingServiceDataList;
     LinearLayout historyBtn;
-    private FragmentBookingViewModel fragmentBookingViewModel;
+    private BookingFragmentViewModel bookingFragmentViewModel;
     private BookingAdapter bookingAdapter;
     private String userToken;
 
@@ -45,14 +45,14 @@ public class FragmentBooking extends Fragment implements BookingAdapter.OnClickM
         bookingRecycler.setHasFixedSize(true);
         bookingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         bookingAdapter = new BookingAdapter(bookingServiceDataList, getContext(), this);
-        fragmentBookingViewModel = new ViewModelProvider(FragmentBooking.this).get(FragmentBookingViewModel.class);
+        bookingFragmentViewModel = new ViewModelProvider(BookingFragment.this).get(BookingFragmentViewModel.class);
 
         getBookedService(userToken);
 
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ActivityBookingHistory.class);
+                Intent intent = new Intent(getContext(), BookingHistoryActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,7 +62,7 @@ public class FragmentBooking extends Fragment implements BookingAdapter.OnClickM
     }
 
     private void getBookedService(String userToken) {
-        fragmentBookingViewModel.getBookedServices(userToken).observe(getActivity(), new Observer<List<BookingServiceData>>() {
+        bookingFragmentViewModel.getBookedServices(userToken).observe(getActivity(), new Observer<List<BookingServiceData>>() {
             @Override
             public void onChanged(List<BookingServiceData> bookingServiceData) {
                 if (bookingServiceData != null) {
@@ -78,7 +78,7 @@ public class FragmentBooking extends Fragment implements BookingAdapter.OnClickM
 
     @Override
     public void onClickMessage(int adapterPosition) {
-        Intent intent = new Intent(getActivity(), ActivityCheckOut.class);
+        Intent intent = new Intent(getActivity(), CheckOutActivity.class);
         startActivity(intent);
     }
 }

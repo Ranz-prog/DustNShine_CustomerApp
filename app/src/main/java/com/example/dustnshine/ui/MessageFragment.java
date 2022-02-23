@@ -20,7 +20,7 @@ import com.example.dustnshine.adapter.ChatAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentMessage extends Fragment implements ChatAdapter.OnClickMessageListener{
+public class MessageFragment extends Fragment implements ChatAdapter.OnClickMessageListener{
 
     private RecyclerView chatRecycler;
     private View view;

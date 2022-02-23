@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.manage_account;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -21,13 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
-import com.example.dustnshine.SignOutViewModel;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.models.User;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.signin.ActivitySignIn;
+import com.example.dustnshine.ui.signin.SignInActivity;
 
-public class ActivityManageAccount extends AppCompatActivity {
+public class ManageAccountActivity extends AppCompatActivity {
 
     LinearLayout personalInfoView,returnHome;
     TextView txtPersonalInfo, popText, txtLogout, txtManageCards;
@@ -41,7 +40,7 @@ public class ActivityManageAccount extends AppCompatActivity {
 
     private String text, userToken;
 
-    private SignOutViewModel signOutViewModel;
+    private ManageAccountViewModel manageAccountViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +81,8 @@ public class ActivityManageAccount extends AppCompatActivity {
 
         disabled();
 
-        signOutViewModel = new SignOutViewModel();
-        userToken = SharedPrefManager.getInstance(ActivityManageAccount.this).getUserToken();
+        manageAccountViewModel = new ManageAccountViewModel();
+        userToken = SharedPrefManager.getInstance(ManageAccountActivity.this).getUserToken();
 
 
         txtPersonalInfo.setOnClickListener(new View.OnClickListener() {
@@ -203,7 +202,7 @@ public class ActivityManageAccount extends AppCompatActivity {
             Okay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(ActivityManageAccount.this, "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManageAccountActivity.this, "Success", Toast.LENGTH_SHORT).show();
                     disabled();
                     dialog.dismiss();
                 }
@@ -214,15 +213,15 @@ public class ActivityManageAccount extends AppCompatActivity {
     }
 
     private void logOutUser(){
-        signOutViewModel.getSignOutRequest(userToken).observe(ActivityManageAccount.this, new Observer<LogoutResponse>() {
+        manageAccountViewModel.getSignOutRequest(userToken).observe(ManageAccountActivity.this, new Observer<LogoutResponse>() {
             @Override
             public void onChanged(LogoutResponse logoutResponse) {
                     if(logoutResponse == null){
                         Log.d("TAG", "Invalid Request");
                     } else {
-                        Toast.makeText(ActivityManageAccount.this, logoutResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        SharedPrefManager.getInstance(ActivityManageAccount.this).clear();
-                        Intent intent = new Intent(ActivityManageAccount.this, ActivitySignIn.class);
+                        Toast.makeText(ManageAccountActivity.this, logoutResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        SharedPrefManager.getInstance(ManageAccountActivity.this).clear();
+                        Intent intent = new Intent(ManageAccountActivity.this, SignInActivity.class);
                         startActivity(intent);
                         finish();
                     }

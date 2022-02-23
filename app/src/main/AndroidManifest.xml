@@ -15,7 +15,7 @@
             android:name=".ui.MessageBox"
             android:exported="false" />
         <activity
-            android:name=".ui.splash_screen"
+            android:name=".ui.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,35 +24,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.company_details.ActivityCompanyDetails"
+            android:name=".ui.company_details.CompanyDetailsActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".ui.signin.ActivitySignIn"
+            android:name=".ui.signin.SignInActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.signup.ActivitySignUp"
+            android:name=".ui.signup.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.ActivityManageAccount"
+            android:name=".ui.manage_account.ManageAccountActivity"
             android:exported="true" />
         <activity
             android:name=".ui.PersonalInfoPopLayout"
             android:exported="true" />
         <activity
-            android:name=".ui.ActivitySearchEmail"
+            android:name=".ui.SearchEmailActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.ActivityForgetPassword"
+            android:name=".ui.ForgetPasswordActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.recommendations.ActivitySeeAllRecommendations"
+            android:name=".ui.recommendations.SeeAllRecommendationsActivity"
             android:exported="true" />
-        <activity android:name=".ui.ActivityBookingHistory" />
-        <activity android:name=".ui.ActivityNotification" />
-        <activity android:name=".ui.checkout.ActivityCheckOut" />
+        <activity android:name=".ui.BookingHistoryActivity" />
+        <activity android:name=".ui.NotificationActivity" />
+        <activity android:name=".ui.checkout.CheckOutActivity" />
     </application>
 
 </manifest>

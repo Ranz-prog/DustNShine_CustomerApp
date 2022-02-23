@@ -21,17 +21,17 @@ import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.company_details.ActivityCompanyDetails;
-import com.example.dustnshine.ui.ActivityManageAccount;
-import com.example.dustnshine.ui.ActivityNotification;
-import com.example.dustnshine.ui.recommendations.ActivitySeeAllRecommendations;
+import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
+import com.example.dustnshine.ui.manage_account.ManageAccountActivity;
+import com.example.dustnshine.ui.NotificationActivity;
+import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsActivity;
 //import com.example.dustnshine.ui.activities.ActivityManageAccount;
 //import com.example.dustnshine.ui.activities.ActivityNotification;
 
 import java.util.List;
 
 
-public class FragmentHome extends Fragment implements RecommendationAdapter.OnClickMessageListener{
+public class HomeFragment extends Fragment implements RecommendationAdapter.OnClickMessageListener{
 
     ImageView manage;
     LinearLayout notifBtn;
@@ -41,10 +41,10 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
     private RecyclerView recommendationRecycler, featureRecycler;
     private List<FeatureModel> featureModelList;
     private List<RecommendationModel> recommendationModelList;
-    private FragmentHomeViewModel fragmentHomeViewModel;
+    private HomeFragmentViewModel homeFragmentViewModel;
     private RecommendationAdapter recommendationAdapter;
     private String userToken;
-    private ActivityCompanyDetails activityCompanyDetails;
+    private CompanyDetailsActivity companyDetailsActivity;
 
 
     @Override
@@ -63,13 +63,13 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
-        fragmentHomeViewModel = new ViewModelProvider(FragmentHome.this).get(FragmentHomeViewModel.class);
+        homeFragmentViewModel = new ViewModelProvider(HomeFragment.this).get(HomeFragmentViewModel.class);
         getCompanyList(userToken);
 
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ActivityManageAccount.class);
+                Intent intent = new Intent(getContext(), ManageAccountActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +77,7 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
         notifBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ActivityNotification.class);
+                Intent intent = new Intent(getContext(), NotificationActivity.class);
                 startActivity(intent);
             }
         });
@@ -85,7 +85,7 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
         viewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ActivitySeeAllRecommendations.class);
+                Intent intent = new Intent(getContext(), SeeAllRecommendationsActivity.class);
                 startActivity(intent);
             }
         });
@@ -95,7 +95,7 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
     }
 
     public void getCompanyList(String userToken){
-        fragmentHomeViewModel.getCompaniesList(userToken).observe(getActivity(), new Observer<List<RecommendationModel>>() {
+        homeFragmentViewModel.getCompaniesList(userToken).observe(getActivity(), new Observer<List<RecommendationModel>>() {
             @Override
             public void onChanged(List<RecommendationModel> recommendationModels) {
                 if (recommendationModels != null) {
@@ -109,7 +109,8 @@ public class FragmentHome extends Fragment implements RecommendationAdapter.OnCl
 
     @Override
     public void onClickMessage(int adapterPosition) {
-        Intent intent = new Intent(getActivity(), ActivityCompanyDetails.class);
+        Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
+        intent.putExtra("COMPANY_ID", recommendationModelList.get(adapterPosition).getId());
         intent.putExtra("COMPANY_NAME", recommendationModelList.get(adapterPosition).getName());
         intent.putExtra("COMPANY_ADDRESS", recommendationModelList.get(adapterPosition).getAddress());
         startActivity(intent);

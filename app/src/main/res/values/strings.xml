@@ -59,6 +59,7 @@
     <string name="totalcost">Total Cost</string>
     <string name="changemethod">Change Method</string>
     <string name="checkout">Checkout</string>
+    <string name="companyname">Company Name:</string>
 
     <!--Feedback-->
     <string name="feedbakcdescription">Your feedback matters. Write down your experience or what we can improve in our service.</string>

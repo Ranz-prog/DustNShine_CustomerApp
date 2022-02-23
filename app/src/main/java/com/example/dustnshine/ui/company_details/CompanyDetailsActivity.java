@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -21,11 +20,11 @@ import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.checkout.ActivityCheckOut;
+import com.example.dustnshine.ui.checkout.CheckOutActivity;
 
 import java.util.List;
 
-public class ActivityCompanyDetails extends AppCompatActivity {
+public class CompanyDetailsActivity extends AppCompatActivity {
 
     private RecyclerView serviceRecycler;
     private List<ServicesModel> servicesModelList;
@@ -34,6 +33,8 @@ public class ActivityCompanyDetails extends AppCompatActivity {
     private CompanyDetailsViewModel companyDetailsViewModel;
     private String userToken;
     private ActivityCompanyDetailsBinding activityCompanyDetailsBinding;
+    private String companyName, companyAddress;
+    private int companyID;
     private Intent intent;
 
     @Override
@@ -41,26 +42,32 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         activityCompanyDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_company_details);
-        companyDetailsViewModel = new ViewModelProvider(ActivityCompanyDetails.this).get(CompanyDetailsViewModel.class);
-        userToken = SharedPrefManager.getInstance(ActivityCompanyDetails.this).getUserToken();
+        companyDetailsViewModel = new ViewModelProvider(CompanyDetailsActivity.this).get(CompanyDetailsViewModel.class);
+        userToken = SharedPrefManager.getInstance(CompanyDetailsActivity.this).getUserToken();
         intent = getIntent();
-
+        btnBack = findViewById(R.id.btnBack);
         serviceRecycler = findViewById(R.id.serviceList);
         servicesAdapter = new ServicesAdapter(servicesModelList, this);
-//        btnBack = findViewById(R.id.btnBack);
+
+        companyID = intent.getIntExtra("COMPANY_ID", 0);
+        companyName = intent.getStringExtra("COMPANY_NAME");
+        companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
 
         serviceRecycler.setHasFixedSize(true);
         serviceRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         getServices(userToken);
 
-//        activityCompanyDetailsBinding.txtCompanyName.setText(intent.getStringExtra("COMPANY_NAME"));
-//        activityCompanyDetailsBinding.txtCompanyAddress.setText(intent.getStringExtra("COMPANY_ADDRESS"));
+        activityCompanyDetailsBinding.txtCompanyName.setText(companyName);
+        activityCompanyDetailsBinding.txtCompanyAddress.setText(companyAddress);
 
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityCompanyDetails.this, ActivityCheckOut.class);
+                Intent intent = new Intent(CompanyDetailsActivity.this, CheckOutActivity.class);
+                intent.putExtra("COMPANY_ID", companyID);
+                intent.putExtra("COMPANY_NAME", companyName);
+                intent.putExtra("COMPANY_ADDRESS", companyAddress);
                 startActivity(intent);
             }
         });
@@ -76,7 +83,7 @@ public class ActivityCompanyDetails extends AppCompatActivity {
 
 
     public void getServices(String userToken){
-        companyDetailsViewModel.getServicesList(userToken).observe(ActivityCompanyDetails.this, new Observer<List<ServicesModel>>() {
+        companyDetailsViewModel.getServicesList(userToken).observe(CompanyDetailsActivity.this, new Observer<List<ServicesModel>>() {
             @Override
             public void onChanged(List<ServicesModel> servicesModels) {
                 if(servicesModels != null){

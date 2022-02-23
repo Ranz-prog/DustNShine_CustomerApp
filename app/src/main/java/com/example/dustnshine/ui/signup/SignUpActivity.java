@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -18,16 +17,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
-import com.example.dustnshine.MainActivity;
-import com.example.dustnshine.SignUpCallback;
 import com.example.dustnshine.databinding.ActivitySignupBinding;
-import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.R;
-import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.signin.ActivitySignIn;
+import com.example.dustnshine.ui.signin.SignInActivity;
 
-public class ActivitySignUp extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     LinearLayout returnHome;
     Button signupBtn;
@@ -114,7 +109,7 @@ public class ActivitySignUp extends AppCompatActivity {
         Okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivitySignUp.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, "Success", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
@@ -124,14 +119,14 @@ public class ActivitySignUp extends AppCompatActivity {
     }
 
     public void userSignUp(String firstName, String lastName, String mobileNumber, String email, String password, String passwordConfirmation){
-        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, password, passwordConfirmation).observe(ActivitySignUp.this, new Observer<SignUpResponse>() {
+        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, password, passwordConfirmation).observe(SignUpActivity.this, new Observer<SignUpResponse>() {
             @Override
             public void onChanged(SignUpResponse signUpResponse) {
                 if(signUpResponse == null){
-                    Toast.makeText(ActivitySignUp.this, signUpResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, signUpResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ActivitySignUp.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ActivitySignUp.this, ActivitySignIn.class);
+                    Toast.makeText(SignUpActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                     startActivity(intent);
                 }
             }

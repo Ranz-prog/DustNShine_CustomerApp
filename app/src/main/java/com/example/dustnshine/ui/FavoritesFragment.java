@@ -17,18 +17,18 @@ import com.example.dustnshine.models.FavoriteModel;
 import com.example.dustnshine.R;
 
 import com.example.dustnshine.adapter.FavoriteAdapter;
-import com.example.dustnshine.ui.company_details.ActivityCompanyDetails;
+import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-public class FragmentFavorites extends Fragment implements FavoriteAdapter.OnClickMessageListener{
+public class FavoritesFragment extends Fragment implements FavoriteAdapter.OnClickMessageListener{
 
     private RecyclerView favoriteRecycler;
     private View view;
     private List<FavoriteModel> favoriteModelList;
 
 
-    public FragmentFavorites(){
+    public FavoritesFragment(){
 
     }
 
@@ -66,7 +66,7 @@ public class FragmentFavorites extends Fragment implements FavoriteAdapter.OnCli
     }
     @Override
     public void onClickMessage(int adapterPosition) {
-        Intent intent = new Intent(getActivity(), ActivityCompanyDetails.class);
+        Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
         startActivity(intent);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.dustnshine;
+package com.example.dustnshine.ui.manage_account;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -7,11 +7,11 @@ import androidx.lifecycle.ViewModel;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.repository.UserAPIRepo;
 
-public class SignOutViewModel extends ViewModel {
+public class ManageAccountViewModel extends ViewModel {
     private UserAPIRepo userAPIRepo;
     private MutableLiveData<LogoutResponse> logoutResponseMutableLiveData;
 
-    public SignOutViewModel() {
+    public ManageAccountViewModel() {
         userAPIRepo = new UserAPIRepo();
     }
 

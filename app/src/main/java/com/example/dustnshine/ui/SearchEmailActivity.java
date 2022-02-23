@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dustnshine.R;
 
-public class ActivitySearchEmail extends AppCompatActivity {
+public class SearchEmailActivity extends AppCompatActivity {
     Button signIn;
 
     @Override

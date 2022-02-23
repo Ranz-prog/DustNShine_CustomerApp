@@ -9,12 +9,12 @@ import com.example.dustnshine.repository.BookingAPIRepo;
 
 import java.util.List;
 
-public class FragmentHomeViewModel extends ViewModel {
+public class HomeFragmentViewModel extends ViewModel {
 
     private MutableLiveData<List<RecommendationModel>> companyList;
     private BookingAPIRepo bookingAPIRepo;
 
-    public FragmentHomeViewModel() {
+    public HomeFragmentViewModel() {
         bookingAPIRepo = new BookingAPIRepo();
     }
 

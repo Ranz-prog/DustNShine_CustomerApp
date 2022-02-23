@@ -2,9 +2,6 @@ package com.example.dustnshine.api;
 
 import android.content.Context;
 
-import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.signin.ActivitySignIn;
-
 import java.io.IOException;
 
 import okhttp3.Interceptor;
