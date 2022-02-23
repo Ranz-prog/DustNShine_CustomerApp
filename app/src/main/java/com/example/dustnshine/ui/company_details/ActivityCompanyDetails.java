@@ -1,34 +1,28 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.company_details;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.MainActivity;
-import com.example.dustnshine.response.BookingServiceResponse;
+import com.example.dustnshine.databinding.ActivityCompanyDetailsBinding;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.checkout.ActivityCheckOut;
-import com.example.dustnshine.ui.signin.ActivitySignIn;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ActivityCompanyDetails extends AppCompatActivity {
 
@@ -38,14 +32,16 @@ public class ActivityCompanyDetails extends AppCompatActivity {
     private ServicesAdapter servicesAdapter;
     private CompanyDetailsViewModel companyDetailsViewModel;
     private String userToken;
-    Button checkOut;
+    private ActivityCompanyDetailsBinding activityCompanyDetailsBinding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_details);
+
+        activityCompanyDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_company_details);
+        companyDetailsViewModel = new ViewModelProvider(ActivityCompanyDetails.this).get(CompanyDetailsViewModel.class);
         userToken = SharedPrefManager.getInstance(ActivityCompanyDetails.this).getUserToken();
-        checkOut = findViewById(R.id.checkOutBtn);
+
         serviceRecycler = findViewById(R.id.serviceList);
         servicesAdapter = new ServicesAdapter(servicesModelList, this);
 //        btnBack = findViewById(R.id.ReturnBtnOnFavorite);
@@ -53,10 +49,9 @@ public class ActivityCompanyDetails extends AppCompatActivity {
         serviceRecycler.setHasFixedSize(true);
         serviceRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        companyDetailsViewModel = new ViewModelProvider(ActivityCompanyDetails.this).get(CompanyDetailsViewModel.class);
         getServices(userToken);
 
-        checkOut.setOnClickListener(new View.OnClickListener() {
+        activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityCompanyDetails.this, ActivityCheckOut.class);

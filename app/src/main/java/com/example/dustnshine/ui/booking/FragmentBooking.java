@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.booking;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.BookingAdapter;
 import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.ActivityBookingHistory;
 import com.example.dustnshine.ui.checkout.ActivityCheckOut;
 
 import java.util.List;

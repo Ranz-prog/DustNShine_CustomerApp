@@ -12,16 +12,15 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
+import com.example.dustnshine.databinding.ActivityCheckoutBinding;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.ActivityCompanyDetails;
-import com.example.dustnshine.ui.CompanyDetailsViewModel;
-import com.example.dustnshine.ui.signin.ActivitySignIn;
+import com.example.dustnshine.ui.company_details.ActivityCompanyDetails;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,20 +37,17 @@ public class ActivityCheckOut extends AppCompatActivity {
     private Map<Integer, Integer> company;
     private CheckOutViewModel checkOutViewModel;
     private String userToken;
+    private ActivityCheckoutBinding activityCheckoutBinding;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkout);
-
-        checkOut = findViewById(R.id.checkOutBtn);
-        txtCustomerName = findViewById(R.id.txtCustomerName);
-        txtLocation = findViewById(R.id.txtLocation);
-        txtContactNumber= findViewById(R.id.txtContactNumber);
+        activityCheckoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_checkout);
         userToken = SharedPrefManager.getInstance(ActivityCheckOut.this).getUserToken();
 
-        txtCustomerName.setText(SharedPrefManager.getInstance(ActivityCheckOut.this).getUser().getFirst_name());
-        txtContactNumber.setText(SharedPrefManager.getInstance(ActivityCheckOut.this).getUser().getMobile_number());
+        activityCheckoutBinding.txtCustomerName.setText(SharedPrefManager.getInstance(ActivityCheckOut.this).getUser().getFirst_name() + " " + SharedPrefManager.getInstance(ActivityCheckOut.this).getUser().getLast_name());
+        activityCheckoutBinding.txtContactNumber.setText(SharedPrefManager.getInstance(ActivityCheckOut.this).getUser().getMobile_number());
 
         // DIALOG BOX START
         dialog = new Dialog(this);
@@ -67,7 +63,7 @@ public class ActivityCheckOut extends AppCompatActivity {
 
         Button Okay = dialog.findViewById(R.id.btn_okay);
         popText = dialog.findViewById(R.id.popUpText);
-        String text= "Thank you. Checkout is successful!";// Set Message Here
+        String text = "Thank you. Checkout is successful!";// Set Message Here
         popText.setText(text.toString());
 
         company = new HashMap<Integer, Integer>();
@@ -86,7 +82,7 @@ public class ActivityCheckOut extends AppCompatActivity {
         });
         //END OF DIALOG BOX
 
-        checkOut.setOnClickListener(new View.OnClickListener() {
+        activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getBookingRequest(userToken, 1, "San Carlos City", "2022-05-05 00:00:00", 1000, services);

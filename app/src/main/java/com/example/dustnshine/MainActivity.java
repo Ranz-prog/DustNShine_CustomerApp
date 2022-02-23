@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.dustnshine.ui.FragmentBooking;
+import com.example.dustnshine.ui.booking.FragmentBooking;
 import com.example.dustnshine.ui.FragmentFavorites;
 import com.example.dustnshine.ui.home.FragmentHome;
 import com.example.dustnshine.ui.FragmentMessage;

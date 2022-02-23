@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -18,25 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
 
-import com.example.dustnshine.api.RetrofitClient;
-import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.ActivityCompanyDetails;
+import com.example.dustnshine.ui.company_details.ActivityCompanyDetails;
 import com.example.dustnshine.ui.ActivityManageAccount;
 import com.example.dustnshine.ui.ActivityNotification;
-import com.example.dustnshine.ui.ActivitySeeAllRecommendations;
+import com.example.dustnshine.ui.recommendations.ActivitySeeAllRecommendations;
 //import com.example.dustnshine.ui.activities.ActivityManageAccount;
 //import com.example.dustnshine.ui.activities.ActivityNotification;
 
 import java.util.List;
-import java.util.Observable;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class FragmentHome extends Fragment implements RecommendationAdapter.OnClickMessageListener{
