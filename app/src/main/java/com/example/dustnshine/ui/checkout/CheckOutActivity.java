@@ -24,6 +24,8 @@ import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,32 +33,39 @@ import java.util.Map;
 public class CheckOutActivity extends AppCompatActivity {
 
     private LinearLayout btnBack;
-    Dialog dialog;
-    private TextView popText, txtCustomerName, txtLocation, txtContactNumber;
-    private List<Map<Integer, Integer>> services;
-    private Map<Integer, Integer> company;
+    private Dialog dialog;
+    private TextView popText;
     private CheckOutViewModel checkOutViewModel;
-    private String userToken;
     private ActivityCheckoutBinding activityCheckoutBinding;
-    private String companyName, companyAddress;
-    private int companyID;
     private Intent intent;
+    private Date dateTime;
+    private static List<Map<Integer, Integer>> services;
+    private static Map<Integer, Integer> company;
+    private static String userToken, companyName, companyAddress, customerFirstName, customerLastName, customerContactNumber, customerAddress;
+    private static int companyID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         activityCheckoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_checkout);
+        checkOutViewModel = new ViewModelProvider(CheckOutActivity.this).get(CheckOutViewModel.class);
         userToken = SharedPrefManager.getInstance(CheckOutActivity.this).getUserToken();
         intent = getIntent();
         btnBack = findViewById(R.id.btnBack);
+        dateTime = Calendar.getInstance().getTime();
+
+        customerFirstName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getFirst_name();
+        customerLastName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getLast_name();
+        customerContactNumber = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getMobile_number();
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
 
         activityCheckoutBinding.txtCompanyName.setText(companyName);
-        activityCheckoutBinding.txtCustomerName.setText(SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getFirst_name() + " " + SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getLast_name());
-        activityCheckoutBinding.txtContactNumber.setText(SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getMobile_number() + " " + companyID);
+        activityCheckoutBinding.txtCustomerName.setText(customerFirstName + " " + customerLastName);
+        activityCheckoutBinding.txtContactNumber.setText(customerContactNumber + " " + dateTime);
 
         // DIALOG BOX START
         dialog = new Dialog(this);
@@ -67,8 +76,6 @@ public class CheckOutActivity extends AppCompatActivity {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
-
-        checkOutViewModel = new ViewModelProvider(CheckOutActivity.this).get(CheckOutViewModel.class);
 
         Button Okay = dialog.findViewById(R.id.btn_okay);
         popText = dialog.findViewById(R.id.popUpText);
@@ -81,7 +88,6 @@ public class CheckOutActivity extends AppCompatActivity {
         services = new ArrayList<Map<Integer, Integer>>();
         services.add(company);
 
-
         Okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,12 +95,13 @@ public class CheckOutActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
         //END OF DIALOG BOX
 
         activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getBookingRequest(userToken, 1, "San Carlos City", "2022-05-05 00:00:00", 1000, services);
+                getBookingRequest(userToken, companyID, "San Carlos City", "2022-05-05 00:00:00", 1000, services);
                 dialog.show();
                 Intent intent = new Intent(CheckOutActivity.this, CompanyDetailsActivity.class);
                 startActivity(intent);// Showing the dialog here
@@ -121,7 +128,6 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
     }
-
 
 }
 

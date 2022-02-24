@@ -30,15 +30,15 @@ import retrofit2.Response;
 
 public class SeeAllRecommendationsActivity extends AppCompatActivity implements SeeAllRecommendationsAdapter.OnClickMessageListener{
 
-    private LinearLayout btnHome, btnSearch;
+    private LinearLayout btnBack, btnSearch;
     private RecyclerView recommendationRecycler;
     private List<RecommendationModel> recommendationModelList;
     private SeeAllRecommendationsAdapter seeAllRecommendationsAdapter;
-    private String userToken;
     private EditText searchView;
     private ActivitySeeAllRecommendationsBinding activitySeeAllRecommendationsBinding;
     private SeeAllRecommendationsViewModel seeAllRecommendationsViewModel;
     private LinearLayoutManager layoutRecommendations;
+    private static String userToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class SeeAllRecommendationsActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_see_all_recommendations);
 
         searchView = findViewById(R.id.edtSearchCompany);
-        btnHome = findViewById(R.id.btnHome);
+        btnBack = findViewById(R.id.btnBack);
         btnSearch = findViewById(R.id.btnSearch);
         recommendationRecycler = findViewById(R.id.seeAllList);
         userToken = SharedPrefManager.getInstance(SeeAllRecommendationsActivity.this).getUserToken();
@@ -59,7 +59,7 @@ public class SeeAllRecommendationsActivity extends AppCompatActivity implements 
         layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
-        btnHome.setOnClickListener(new View.OnClickListener() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
