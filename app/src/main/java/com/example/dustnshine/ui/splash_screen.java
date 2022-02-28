@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dustnshine.R;
-import com.example.dustnshine.ui.activities.ActivitySignIn;
+import com.example.dustnshine.ui.signin.ActivitySignIn;
 
 public class splash_screen extends AppCompatActivity {
 
@@ -30,6 +30,6 @@ public class splash_screen extends AppCompatActivity {
                 Intent intent = new Intent(splash_screen.this, ActivitySignIn.class);
                 startActivity(intent);
             }
-        }, 800);
+        }, 5000);
     }
 }

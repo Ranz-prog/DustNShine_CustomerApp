@@ -8,19 +8,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.chat_model;
+import com.example.dustnshine.models.ChatModel;
 import com.example.dustnshine.R;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class chat_adapter extends RecyclerView.Adapter<chat_adapter.ViewHolder> {
+public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
-    List<chat_model> chatModelList;
+    List<ChatModel> chatModelList;
     private OnClickMessageListener onClickMessageListener;
 
-    public chat_adapter(List<chat_model> chatModelList, OnClickMessageListener onClickMessageListener) {
+    public ChatAdapter(List<ChatModel> chatModelList, OnClickMessageListener onClickMessageListener) {
         this.chatModelList = chatModelList;
         this.onClickMessageListener = onClickMessageListener;
     }

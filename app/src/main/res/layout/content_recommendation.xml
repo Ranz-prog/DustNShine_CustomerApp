@@ -14,11 +14,10 @@
         app:cardCornerRadius="5dp">
 
         <ImageView
-            android:id="@+id/companyImg"
+            app:srcCompat="@drawable/company1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/company1" />
+            android:scaleType="fitXY" />
     </androidx.cardview.widget.CardView>
 
     <RelativeLayout

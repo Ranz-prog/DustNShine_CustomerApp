@@ -1,10 +1,12 @@
-package com.example.dustnshine.models;
+package com.example.dustnshine.response;
 
-public class LoginResponse {
+import com.example.dustnshine.models.Data;
+
+public class SignInResponse {
     private String message;
     private Data data;
 
-    public LoginResponse(String message, Data data) {
+    public SignInResponse(String message, Data data) {
         this.message = message;
         this.data = data;
     }

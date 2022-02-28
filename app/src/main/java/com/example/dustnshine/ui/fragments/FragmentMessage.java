@@ -13,19 +13,19 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dustnshine.models.chat_model;
+import com.example.dustnshine.models.ChatModel;
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.chat_adapter;
+import com.example.dustnshine.adapter.ChatAdapter;
 import com.example.dustnshine.ui.MessageBox;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentMessage extends Fragment implements chat_adapter.OnClickMessageListener{
+public class FragmentMessage extends Fragment implements ChatAdapter.OnClickMessageListener{
 
     private RecyclerView chatRecycler;
     private View view;
-    private List<chat_model> chatModelList;
+    private List<ChatModel> chatModelList;
 
     @Nullable
     @Override
@@ -40,7 +40,7 @@ public class FragmentMessage extends Fragment implements chat_adapter.OnClickMes
 
 
 
-        chatRecycler.setAdapter(new chat_adapter(chatModels(),this));
+        chatRecycler.setAdapter(new ChatAdapter(chatModels(),this));
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         chatRecycler.addItemDecoration(divider);
@@ -48,13 +48,13 @@ public class FragmentMessage extends Fragment implements chat_adapter.OnClickMes
         return view;
     }
 
-    private List<chat_model> chatModels(){
+    private List<ChatModel> chatModels(){
 
         chatModelList = new ArrayList<>();
 
-        chatModelList.add(new chat_model(R.drawable.user,
+        chatModelList.add(new ChatModel(R.drawable.user,
                 "Juan Dela Cruz", "Lorem ipsum, lorem ipsum","11:59"));
-        chatModelList.add(new chat_model(R.drawable.user,
+        chatModelList.add(new ChatModel(R.drawable.user,
                 "Ivan Dasigan", "Lorem ipsum, lorem ipsum","11:59"));
 
         return chatModelList;

@@ -1,35 +1,37 @@
 package com.example.dustnshine.ui.activities;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.recommendation_adapter;
-import com.example.dustnshine.models.feature_model;
-import com.example.dustnshine.models.recommendation_model;
-import com.example.dustnshine.ui.activities.ActivityCompanyDetails;
-import com.example.dustnshine.ui.activities.ActivityManageAccount;
-import com.example.dustnshine.ui.activities.ActivityNotification;
+import com.example.dustnshine.adapter.RecommendationAdapter;
+import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.models.RecommendationModel;
+import com.example.dustnshine.response.CompanyResponse;
+import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.ActivityCompanyDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivitySeeAllRecommendations extends AppCompatActivity implements recommendation_adapter.OnClickMessageListener{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ActivitySeeAllRecommendations extends AppCompatActivity implements RecommendationAdapter.OnClickMessageListener{
     LinearLayout backBtn;
+    RecommendationAdapter recommendationAdapter;
 
     private RecyclerView recommendationRecycler;
-    private List<recommendation_model> recommendationModelList;
+    private List<RecommendationModel> recommendationModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
 
         backBtn = findViewById(R.id.btnHome);
 
+//        recommendationAdapter = new RecommendationAdapter(this);
         recommendationRecycler = findViewById(R.id.seeAllList);
 
         recommendationRecycler.setHasFixedSize(true);
@@ -45,7 +48,7 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
-        recommendationRecycler.setAdapter(new recommendation_adapter(recommendationModel(),this));
+//        getAllCompanies();
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,21 +61,34 @@ public class ActivitySeeAllRecommendations extends AppCompatActivity implements 
         return;
 
     }
+    private void getAllCompanies(){
 
-    private List<recommendation_model> recommendationModel(){
+        String userToken = SharedPrefManager.getInstance(ActivitySeeAllRecommendations.this).getUserToken();
+        Call<CompanyResponse> companyList = RetrofitClient.getInstance().getApi().getCompanies("Bearer" + userToken);
 
-        recommendationModelList = new ArrayList<>();
+        companyList.enqueue(new Callback<CompanyResponse>() {
+            @Override
+            public void onResponse(Call<CompanyResponse> call, Response<CompanyResponse> response) {
 
-        recommendationModelList.add(new recommendation_model(R.drawable.company1,
-                "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company2,
-                "Super Clean","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company1,
-                "Clean Solutions","Dagupan City","5/5"));
-        recommendationModelList.add(new recommendation_model(R.drawable.company2,
-                "Super Clean","Dagupan City","5/5"));
+                if(response.isSuccessful()){
 
-        return recommendationModelList;
+                    Log.e("sucess",response.body().toString());
+                    List<RecommendationModel> recommendationResponses = response.body().getData();
+                    recommendationAdapter.setData(recommendationResponses);
+                    recommendationRecycler.setAdapter(recommendationAdapter);
+
+                }
+                else{
+                    Toast.makeText(ActivitySeeAllRecommendations.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CompanyResponse> call, Throwable t) {
+                Log.e("Juan",t.getLocalizedMessage());
+            }
+        });
 
     }
 
