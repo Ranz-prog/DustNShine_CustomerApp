@@ -21,6 +21,8 @@ import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.GarageCleaningActivity;
+import com.example.dustnshine.ui.GeneralCleaningActivity;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.manage_account.ManageAccountActivity;
 import com.example.dustnshine.ui.NotificationActivity;
@@ -34,7 +36,7 @@ import java.util.List;
 public class HomeFragment extends Fragment implements RecommendationAdapter.OnClickMessageListener{
 
     ImageView manage;
-    LinearLayout notifBtn;
+    LinearLayout notifBtn, generalCleaning, garageCleaning;
     View view;
     private TextView viewAll;
 
@@ -54,6 +56,8 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
 
         manage = view.findViewById(R.id.manageAccButton);
         notifBtn = view.findViewById(R.id.notificationBtn);
+        generalCleaning = view.findViewById(R.id.generalCleaning);
+        garageCleaning = view.findViewById(R.id.garageCleaning);
         viewAll = view.findViewById(R.id.viewAll);
         recommendationRecycler = view.findViewById(R.id.companiesList);
         recommendationAdapter = new RecommendationAdapter(recommendationModelList, getContext(),this);
@@ -86,6 +90,22 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), SeeAllRecommendationsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        generalCleaning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), GeneralCleaningActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        garageCleaning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), GarageCleaningActivity.class);
                 startActivity(intent);
             }
         });

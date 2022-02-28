@@ -62,7 +62,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
         void onClickMessage(int adapterPosition);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private ImageView customerImg;
         private TextView customerName, customerLoc,customerNum;

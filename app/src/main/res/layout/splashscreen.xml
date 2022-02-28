@@ -14,15 +14,23 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
-            android:fontFamily="@font/calibribold"
-            android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
+            android:layout_centerHorizontal="true"
             android:text="@string/app_name"
             android:textColor="#FFFFFF"
-            android:textSize="50sp"
-            android:textStyle="bold" />
+            android:textSize="50sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="310dp"
+            android:fontFamily="@font/quicksand_regular"
+            android:text="@string/title"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/imageView2"

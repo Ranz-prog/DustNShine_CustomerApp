@@ -1,6 +1,7 @@
 package com.example.dustnshine.repository;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -11,8 +12,10 @@ import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
+import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.response.ServiceResponse;
+import com.example.dustnshine.ui.GeneralCleaningActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -136,5 +139,28 @@ public class BookingAPIRepo {
         });
 
         return searchedCompany;
+    }
+
+    public MutableLiveData<List<RecommendationModel>> getFilteredService(int service, String userToken){
+
+        final MutableLiveData<List<RecommendationModel>> filteredService = new MutableLiveData<>();
+        Call<FilteredServiceResponse> serviceResponseCall = RetrofitClient.getInstance().getApi().getFilteredService(service, "Bearer " + userToken);
+        serviceResponseCall.enqueue(new Callback<FilteredServiceResponse>() {
+            @Override
+            public void onResponse(Call<FilteredServiceResponse> call, Response<FilteredServiceResponse> response) {
+                if (response.code() == 200) {
+                    filteredService.setValue(response.body().getData());
+                    Log.d("TAG", "Success");
+                } else {
+                    Log.d("TAG", "Failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FilteredServiceResponse> call, Throwable t) {
+                Log.d("TAG", "Failure to connect");
+            }
+        });
+        return filteredService;
     }
 }

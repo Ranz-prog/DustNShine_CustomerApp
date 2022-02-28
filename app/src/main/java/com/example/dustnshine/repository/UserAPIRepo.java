@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.response.SignInResponse;
@@ -24,6 +25,7 @@ public class UserAPIRepo {
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                 if(response.code() == 200){
                     signInResponseMutableLiveData.setValue(response.body());
+
                 }
                 else if (response.code() == 401){
                     signInResponseMutableLiveData.setValue(response.body());

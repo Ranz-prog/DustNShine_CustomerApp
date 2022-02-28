@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer;
 
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
+import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.databinding.ActivitySigninBinding;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
@@ -59,6 +60,24 @@ public class SignInActivity extends AppCompatActivity {
                     activitySigninBinding.editTextPassword.requestFocus();
                 } else {
                     userSignIn(email, password);
+                }
+            }
+        });
+
+        signInViewModel.setOnSignInListener(new SignInCallback() {
+            @Override
+            public void signInCallback(Integer statusCode, SignInResponse signInResponse) {
+                if(statusCode == 200){
+                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
+                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else if (statusCode == 401){
+                    Toast.makeText(SignInActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SignInActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -115,20 +134,23 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void userSignIn(String email, String password){
-        signInViewModel.getSignInRequest(email, password).observe(SignInActivity.this, new Observer<SignInResponse>() {
-            @Override
-            public void onChanged(SignInResponse signInResponse) {
-                if(signInResponse == null){
-                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
-                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
-                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
+//        signInViewModel.getSignInRequest(email, password).observe(SignInActivity.this, new Observer<SignInResponse>() {
+//            @Override
+//            public void onChanged(SignInResponse signInResponse) {
+//                if(signInResponse.getMessage() == "Succesfully Logged In"){
+//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
+//                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
+//                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                } else if (signInResponse.getMessage() == "Invalid Credentials") {
+//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+        signInViewModel.getSignInRequest(email, password);
     }
 
     @Override

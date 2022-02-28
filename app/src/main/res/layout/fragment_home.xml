@@ -226,7 +226,7 @@
             android:padding="10dp">
 
             <LinearLayout
-                android:id="@+id/gencon"
+                android:id="@+id/generalCleaning"
                 android:layout_width="150dp"
                 android:layout_height="140dp"
                 android:background="@drawable/container_border_2"
@@ -265,11 +265,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/garcon"
+                android:id="@+id/garageCleaning"
                 android:layout_width="150dp"
                 android:layout_height="140dp"
                 android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@id/gencon"
+                android:layout_toRightOf="@id/generalCleaning"
                 android:background="@drawable/container_border_2"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"

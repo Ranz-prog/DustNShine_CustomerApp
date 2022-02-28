@@ -2,6 +2,7 @@
 
     //Splash Title
     <string name="app_name">DustNShine</string>
+    <string name="title">Customer</string>
 
     <!--Sign In-->
     <string name="signin">Sign In</string>
