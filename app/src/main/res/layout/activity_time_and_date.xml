@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/background"
-    android:paddingTop="20dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingBottom="10dp">
+    android:scrollbars="none">
+
     <RelativeLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-    <LinearLayout
-        android:id="@+id/btnReturnDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/roundbutton"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_weight="1"
-            android:src="@drawable/back" />
+        <LinearLayout
+            android:id="@+id/btnReturnDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/roundbutton"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_weight="1"
+                android:src="@drawable/back" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txtBookingHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/quicksand_medium"
             android:text="Date &amp; Time"
             android:textColor="@color/app_theme_gold"
@@ -44,8 +47,7 @@
             android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtBookingHistory"
-            />
+            android:layout_below="@+id/txtBookingHistory" />
 
         <TextView
             android:id="@+id/pickTimeTv"
@@ -55,20 +57,19 @@
             android:layout_alignParentLeft="true"
             android:fontFamily="@font/quicksand_medium"
             android:text="Pick Time"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/EightAm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pickTimeTv"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/roundbuttondate"
-        android:fontFamily="@font/quicksand_bold"
-        android:text="8:00 Am"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/EightAm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pickTimeTv"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roundbuttondate"
+            android:fontFamily="@font/quicksand_regular"
+            android:text="8:00 Am"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/NineAm"
@@ -78,7 +79,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="9:00 Am"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -91,7 +92,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="10:00 Am"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -103,7 +104,7 @@
             android:layout_below="@id/EightAm"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="11:00 Am"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -116,7 +117,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="12:00 Pm"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -129,7 +130,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="1:00 pm"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -141,7 +142,7 @@
             android:layout_below="@id/ElevenAm"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="2:00 Pm"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -154,7 +155,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="3:00 Pm"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -167,7 +168,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="4:00 pm"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -180,18 +181,19 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundbuttondate"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/quicksand_regular"
             android:text="5:00 Pm"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
         <Button
             android:id="@+id/CheckOut"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/FivePm"
             android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@id/FivePm"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/app_theme_gold"
-            android:layout_height="wrap_content"
             android:text="Check Out" />
 
     </RelativeLayout>
