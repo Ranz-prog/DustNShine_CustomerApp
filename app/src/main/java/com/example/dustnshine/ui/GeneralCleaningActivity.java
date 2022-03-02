@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
@@ -37,6 +39,7 @@ public class GeneralCleaningActivity extends AppCompatActivity implements Genera
     private LinearLayoutManager linearLayoutManager;
     private static String userToken;
     private GeneralCleaningViewModel generalCleaningViewModel;
+    LinearLayout btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,15 @@ public class GeneralCleaningActivity extends AppCompatActivity implements Genera
         generalCleaningRecycler.setLayoutManager(linearLayoutManager);
 
         getFilteredService(2, userToken);
+
+        btnBack = findViewById(R.id.btnBackGeneralCleaning);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getFilteredService(int service, String userToken) {

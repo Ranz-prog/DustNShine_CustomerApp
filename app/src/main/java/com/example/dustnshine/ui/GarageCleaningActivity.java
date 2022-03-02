@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
@@ -32,6 +35,7 @@ public class GarageCleaningActivity extends AppCompatActivity implements General
     private LinearLayoutManager linearLayoutManager;
     private static String userToken;
     private GarageCleaningViewModel garageCleaningViewModel;
+    LinearLayout btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,15 @@ public class GarageCleaningActivity extends AppCompatActivity implements General
         garageCleaningRecycler.setLayoutManager(linearLayoutManager);
 
         getFilteredService(1, userToken);
+
+        btnBack = findViewById(R.id.btnBackGarageCleaning);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
