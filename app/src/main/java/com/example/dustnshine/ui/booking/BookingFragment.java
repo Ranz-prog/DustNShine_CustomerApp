@@ -27,10 +27,10 @@ import java.util.List;
 
 
 public class BookingFragment extends Fragment implements BookingAdapter.OnClickMessageListener {
-    private RecyclerView bookingRecycler;
+    private RecyclerView rvBooking;
     private View view;
     private List<BookingServiceData> bookingServiceDataList;
-    LinearLayout historyBtn;
+    private LinearLayout btnBookingHistory;
     private BookingFragmentViewModel bookingFragmentViewModel;
     private BookingAdapter bookingAdapter;
     private String userToken;
@@ -39,17 +39,17 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_booking, container, false);
-        historyBtn = view.findViewById(R.id.bookingHistoryBtn);
+        btnBookingHistory = view.findViewById(R.id.btnBookingHistory);
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
-        bookingRecycler = view.findViewById(R.id.bookingList);
-        bookingRecycler.setHasFixedSize(true);
-        bookingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvBooking = view.findViewById(R.id.rvBooking);
+        rvBooking.setHasFixedSize(true);
+        rvBooking.setLayoutManager(new LinearLayoutManager(getContext()));
         bookingAdapter = new BookingAdapter(bookingServiceDataList, getContext(), this);
         bookingFragmentViewModel = new ViewModelProvider(BookingFragment.this).get(BookingFragmentViewModel.class);
 
         getBookedService(userToken);
 
-        historyBtn.setOnClickListener(new View.OnClickListener() {
+        btnBookingHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), BookingHistoryActivity.class);
@@ -68,7 +68,7 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
                 if (bookingServiceData != null) {
                     bookingServiceDataList = bookingServiceData;
                     bookingAdapter.setData(bookingServiceData);
-                    bookingRecycler.setAdapter(bookingAdapter);
+                    rvBooking.setAdapter(bookingAdapter);
                 } else {
                     Toast.makeText(getActivity(), "No Booked Service yet", Toast.LENGTH_SHORT).show();
                 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +21,17 @@ import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.QuantityListener;
+import com.example.dustnshine.ui.TimeAndDateActivity;
 import com.example.dustnshine.ui.checkout.CheckOutActivity;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class CompanyDetailsActivity extends AppCompatActivity {
+public class CompanyDetailsActivity extends AppCompatActivity implements QuantityListener {
 
-    private RecyclerView serviceRecycler;
+    private RecyclerView rvServices;
     private List<ServicesModel> servicesModelList;
     LinearLayout btnBack;
     private ServicesAdapter servicesAdapter;
@@ -36,6 +41,8 @@ public class CompanyDetailsActivity extends AppCompatActivity {
     private String companyName, companyAddress;
     private int companyID;
     private Intent intent;
+    private static ArrayList<Integer> servicesIdList;
+    private static ArrayList<String> servicesNameList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,29 +53,35 @@ public class CompanyDetailsActivity extends AppCompatActivity {
         userToken = SharedPrefManager.getInstance(CompanyDetailsActivity.this).getUserToken();
         intent = getIntent();
         btnBack = findViewById(R.id.btnBack);
-        serviceRecycler = findViewById(R.id.serviceList);
-        servicesAdapter = new ServicesAdapter(servicesModelList, this);
+        rvServices = findViewById(R.id.rvServices);
+                servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
 
-        serviceRecycler.setHasFixedSize(true);
-        serviceRecycler.setLayoutManager(new LinearLayoutManager(this));
+        rvServices.setHasFixedSize(true);
+        rvServices.setLayoutManager(new LinearLayoutManager(this));
 
         getServices(userToken);
 
-        activityCompanyDetailsBinding.txtCompanyName.setText(companyName);
-        activityCompanyDetailsBinding.txtCompanyAddress.setText(companyAddress);
+        activityCompanyDetailsBinding.tvCompanyName.setText(companyName);
+        activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
 
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CompanyDetailsActivity.this, CheckOutActivity.class);
-                intent.putExtra("COMPANY_ID", companyID);
-                intent.putExtra("COMPANY_NAME", companyName);
-                intent.putExtra("COMPANY_ADDRESS", companyAddress);
-                startActivity(intent);
+                if(servicesIdList == null){
+                    Toast.makeText(CompanyDetailsActivity.this, "Please select services", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
+                    intent.putExtra("COMPANY_ID", companyID);
+                    intent.putExtra("COMPANY_NAME", companyName);
+                    intent.putExtra("COMPANY_ADDRESS", companyAddress);
+                    intent.putIntegerArrayListExtra("SERVICES_ID_LIST", servicesIdList);
+                    intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -89,7 +102,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
                 if(servicesModels != null){
                     servicesModelList = servicesModels;
                     servicesAdapter.setData(servicesModels);
-                    serviceRecycler.setAdapter(servicesAdapter);
+                    rvServices.setAdapter(servicesAdapter);
                     Log.d("TAG", "Success");
                 } else {
                     Log.d("TAG", "Failure");
@@ -102,5 +115,12 @@ public class CompanyDetailsActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         finish();
+    }
+
+
+    @Override
+    public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName) {
+        servicesIdList = servicesID;
+        servicesNameList = servicesName;
     }
 }

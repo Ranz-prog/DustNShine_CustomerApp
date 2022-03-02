@@ -9,7 +9,7 @@
     android:paddingBottom="10dp">
 
     <LinearLayout
-        android:id="@+id/btnReturnBooking"
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -28,7 +28,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtBookingHistory"
+        android:id="@+id/tvBookingHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

@@ -1,5 +1,6 @@
 package com.example.dustnshine.repository;
 
+import android.util.ArrayMap;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.response.ServiceResponse;
 import com.example.dustnshine.ui.GeneralCleaningActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +28,7 @@ import retrofit2.Response;
 
 public class BookingAPIRepo {
 
-    public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services){
+    public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Map<Integer, Integer>> services){
 
         final MutableLiveData<BookingServiceResponse> bookingServiceResponseMutableLiveData = new MutableLiveData<>();
         Call<BookingServiceResponse> bookingServiceResponseCall = RetrofitClient.getInstance().getApi().bookService("Bearer " + userToken, company_id, address, start_datetime, total, services);
@@ -35,8 +37,10 @@ public class BookingAPIRepo {
             public void onResponse(Call<BookingServiceResponse> call, Response<BookingServiceResponse> response) {
                 if(response.code() == 200){
                     bookingServiceResponseMutableLiveData.setValue(response.body());
+                    Log.d("STATUS", String.valueOf(response.code()));
                 } else if(response.code() == 422){
                     bookingServiceResponseMutableLiveData.setValue(response.body());
+                    Log.d("STATUS", String.valueOf(response.code()));
                 } else {
 
                 }

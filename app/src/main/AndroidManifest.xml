@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DustNShine">
         <activity
+            android:name=".ui.TimeAndDateActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.GarageCleaningActivity"
             android:exported="false" />
         <activity

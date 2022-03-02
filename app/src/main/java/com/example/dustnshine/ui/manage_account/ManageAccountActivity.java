@@ -2,6 +2,7 @@ package com.example.dustnshine.ui.manage_account;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
 import android.app.Dialog;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
+import com.example.dustnshine.databinding.ActivityManageAccountBinding;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.models.User;
 import com.example.dustnshine.storage.SharedPrefManager;
@@ -28,18 +30,15 @@ import com.example.dustnshine.ui.signin.SignInActivity;
 
 public class ManageAccountActivity extends AppCompatActivity {
 
-    LinearLayout personalInfoView,returnHome;
-    TextView txtPersonalInfo, popText, txtLogout, txtManageCards;
-    CardView personalInfoCardView;
-    Button reset, edit;
-    Dialog dialog;
-    EditText fname,lname,mobileNumber,emailAdd;
-    EditText pass, retypePass,houseNo,street, barangay, city, province, zipCode; // wala pang data
-    int number;
-    //Comment ni Jolo
-
+    private LinearLayout personalInfoView, btnBack;
+    private TextView tvPersonalInfo, popText, tvLogout, tvManageCards;
+    private CardView personalInfoCardView;
+    private Button reset, edit;
+    private Dialog dialog;
+    private EditText fname, lname, mobileNumber,emailAdd, pass, retypePass, houseNo, street, barangay, city, province, zipCode; // wala pang data
+    private static int number;
     private String text, userToken;
-
+    private ActivityManageAccountBinding activitySignupBinding;
     private ManageAccountViewModel manageAccountViewModel;
 
     @Override
@@ -47,45 +46,42 @@ public class ManageAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_manage_acc);
+        activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_manage_account);
 
-        reset = findViewById(R.id.btnServerLogin);
-        returnHome = findViewById(R.id.ReturnBtnOnManageAcc);
-        edit = findViewById(R.id.btnEditDetails);
-
+        btnBack = findViewById(R.id.btnBack);
         personalInfoView = findViewById(R.id.personal_info_view);
-        txtPersonalInfo = findViewById(R.id.txtPersonalInfo);
-        txtLogout = findViewById(R.id.txtLogout);
-        txtManageCards = findViewById(R.id.txtManageCards);
+        tvPersonalInfo = findViewById(R.id.tvPersonalInfo);
+        tvLogout = findViewById(R.id.tvLogout);
+        tvManageCards = findViewById(R.id.tvManageCards);
         personalInfoCardView = findViewById(R.id.personal_info_cardview);
 
-        fname = findViewById(R.id.FnameET);
-        lname = findViewById(R.id.LnameET);
-        mobileNumber = findViewById(R.id.MobileNoET);
-        emailAdd = findViewById(R.id.EmailAddET);
+        fname = findViewById(R.id.etFirstName);
+        lname = findViewById(R.id.etLastName);
+        mobileNumber = findViewById(R.id.etMobileNumber);
+        emailAdd = findViewById(R.id.etEmailAddress);
 
-        pass = findViewById(R.id.PasswordET);
-        retypePass = findViewById(R.id.RetypePassET);
-        houseNo = findViewById(R.id.HouseNoET);
-        street = findViewById(R.id.StreetET);
-        barangay = findViewById(R.id.BarangayET);
-        city = findViewById(R.id.CityET);
-        province = findViewById(R.id.ProvinceET);
-        zipCode = findViewById(R.id.ZipCodeET);
+        pass = findViewById(R.id.etPassword);
+        retypePass = findViewById(R.id.etRetypePassword);
+        houseNo = findViewById(R.id.etHouseNo);
+        street = findViewById(R.id.etStreet);
+        barangay = findViewById(R.id.etBarangay);
+        city = findViewById(R.id.etCityMunicipality);
+        province = findViewById(R.id.etProvince);
+        zipCode = findViewById(R.id.etProvince);
 
         User user = SharedPrefManager.getInstance(this).getUser();
-        fname.setText(user.getFirst_name());
-        lname.setText(user.getLast_name());
-        mobileNumber.setText(user.getMobile_number());
-        emailAdd.setText(user.getEmail());
+        activitySignupBinding.etFirstName.setText(user.getFirst_name());
+        activitySignupBinding.etFirstName.setText(user.getLast_name());
+        activitySignupBinding.etMobileNumber.setText(user.getMobile_number());
+        activitySignupBinding.etEmailAddress.setText(user.getEmail());
 
-        disabled();
+//        disabled();
 
         manageAccountViewModel = new ManageAccountViewModel();
         userToken = SharedPrefManager.getInstance(ManageAccountActivity.this).getUserToken();
 
 
-        txtPersonalInfo.setOnClickListener(new View.OnClickListener() {
+        tvPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (personalInfoView.getVisibility() == View.GONE){
@@ -98,7 +94,7 @@ public class ManageAccountActivity extends AppCompatActivity {
             }
         });
 
-        txtLogout.setOnClickListener(new View.OnClickListener() {
+        tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 logOutUser();
@@ -106,7 +102,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
 
 
-        edit.setOnClickListener(new View.OnClickListener() {
+        activitySignupBinding.btnEditDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 text = "Are you sure you want to change information details?";
@@ -116,7 +112,7 @@ public class ManageAccountActivity extends AppCompatActivity {
             }
         });
 
-        reset.setOnClickListener(new View.OnClickListener() {
+        activitySignupBinding.btnSaveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 text = "Thank you. You have successfully changed your password!";
@@ -126,7 +122,7 @@ public class ManageAccountActivity extends AppCompatActivity {
             }
         });
 
-        returnHome.setOnClickListener(new View.OnClickListener() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -135,39 +131,39 @@ public class ManageAccountActivity extends AppCompatActivity {
 
     }
 
-    public void disabled(){
-        fname.setFocusable(false);
-        lname.setFocusable(false);
-        emailAdd.setFocusable(false);
-        mobileNumber.setFocusable(false);
-
-        pass.setFocusable(false);
-        retypePass.setFocusable(false);
-        houseNo.setFocusable(false);
-        street.setFocusable(false);
-        barangay.setFocusable(false);
-        city.setFocusable(false);
-        province.setFocusable(false);
-        zipCode.setFocusable(false);
-
-    }
-
-    public void enable(){
-        fname.setFocusableInTouchMode(true);
-        lname.setFocusableInTouchMode(true);
-        emailAdd.setFocusableInTouchMode(true);
-        mobileNumber.setFocusableInTouchMode(true);
-
-        pass.setFocusableInTouchMode(true);
-        retypePass.setFocusableInTouchMode(true);
-        houseNo.setFocusableInTouchMode(true);
-        street.setFocusableInTouchMode(true);
-        barangay.setFocusableInTouchMode(true);
-        city.setFocusableInTouchMode(true);
-        province.setFocusableInTouchMode(true);
-        zipCode.setFocusableInTouchMode(true);
-
-    }
+//    public void disabled(){
+//        fname.setFocusable(false);
+//        lname.setFocusable(false);
+//        emailAdd.setFocusable(false);
+//        mobileNumber.setFocusable(false);
+//
+//        pass.setFocusable(false);
+//        retypePass.setFocusable(false);
+//        houseNo.setFocusable(false);
+//        street.setFocusable(false);
+//        barangay.setFocusable(false);
+//        city.setFocusable(false);
+//        province.setFocusable(false);
+//        zipCode.setFocusable(false);
+//
+//    }
+//
+//    public void enable(){
+//        fname.setFocusableInTouchMode(true);
+//        lname.setFocusableInTouchMode(true);
+//        emailAdd.setFocusableInTouchMode(true);
+//        mobileNumber.setFocusableInTouchMode(true);
+//
+//        pass.setFocusableInTouchMode(true);
+//        retypePass.setFocusableInTouchMode(true);
+//        houseNo.setFocusableInTouchMode(true);
+//        street.setFocusableInTouchMode(true);
+//        barangay.setFocusableInTouchMode(true);
+//        city.setFocusableInTouchMode(true);
+//        province.setFocusableInTouchMode(true);
+//        zipCode.setFocusableInTouchMode(true);
+//
+//    }
 
     public void dialogBox(){
 
@@ -191,7 +187,7 @@ public class ManageAccountActivity extends AppCompatActivity {
             Okay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    enable();
+//                    enable();
                     dialog.dismiss();
                 }
             });
@@ -203,7 +199,7 @@ public class ManageAccountActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(ManageAccountActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                    disabled();
+//                    disabled();
                     dialog.dismiss();
                 }
             });

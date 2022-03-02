@@ -1,9 +1,11 @@
 package com.example.dustnshine.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,17 +14,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.models.services_model;
 import com.example.dustnshine.R;
+import com.example.dustnshine.ui.QuantityListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder>{
+public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder> {
 
     private List<ServicesModel> servicesModelList;
     private Context context;
+    QuantityListener quantityListener;
+    private ArrayList<Integer> servicesID = new ArrayList<>();
+    private ArrayList<String> servicesName = new ArrayList<>();
 
-    public ServicesAdapter(List<ServicesModel> servicesModelList, Context context) {
+    public ServicesAdapter(List<ServicesModel> servicesModelList, Context context, QuantityListener quantityListener) {
         this.servicesModelList = servicesModelList;
         this.context = context;
+        this.quantityListener = quantityListener;
     }
 
     public void setData(List<ServicesModel> servicesModelList) {
@@ -43,10 +51,24 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder holder, int position) {
+        int itemPosition = position;
         holder.serviceTitle.setText(servicesModelList.get(position).getName());
         holder.servicePrice.setText(servicesModelList.get(position).getCreated_at());
         holder.serviceDetails1.setText(servicesModelList.get(position).getDescription());
         holder.serviceDetails2.setText(servicesModelList.get(position).getCreated_at());
+        holder.cbItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.cbItem.isChecked()) {
+                    servicesID.add(servicesModelList.get(itemPosition).getId());
+                    servicesName.add(servicesModelList.get(itemPosition).getName());
+                } else {
+                    servicesID.remove(servicesModelList.get(itemPosition).getId());
+                    servicesName.remove(servicesModelList.get(itemPosition).getName());
+                }
+                quantityListener.onQuantityChange(servicesID, servicesName);
+            }
+        });
     }
 
     @Override
@@ -54,14 +76,15 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         return servicesModelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-
-        private TextView serviceTitle,servicePrice, serviceDetails1,serviceDetails2;
+        private CheckBox cbItem;
+        private TextView serviceTitle, servicePrice, serviceDetails1, serviceDetails2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            cbItem = itemView.findViewById(R.id.cbItem);
             serviceTitle = itemView.findViewById(R.id.serviceTitleTv);
             servicePrice = itemView.findViewById(R.id.servicePriceTv);
             serviceDetails1 = itemView.findViewById(R.id.description1Tv);

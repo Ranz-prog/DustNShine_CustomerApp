@@ -35,10 +35,10 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements RecommendationAdapter.OnClickMessageListener{
 
-    ImageView manage;
-    LinearLayout notifBtn, generalCleaning, garageCleaning;
-    View view;
-    private TextView viewAll;
+    private ImageView btnManageAccount;
+    private LinearLayout btnNotification, generalCleaning, garageCleaning;
+    private View view;
+    private TextView btnShowAll;
 
     private RecyclerView recommendationRecycler, featureRecycler;
     private List<FeatureModel> featureModelList;
@@ -54,11 +54,11 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        manage = view.findViewById(R.id.manageAccButton);
-        notifBtn = view.findViewById(R.id.notificationBtn);
+        btnManageAccount = view.findViewById(R.id.btnManageAccount);
+        btnNotification = view.findViewById(R.id.btnNotification);
         generalCleaning = view.findViewById(R.id.generalCleaning);
         garageCleaning = view.findViewById(R.id.garageCleaning);
-        viewAll = view.findViewById(R.id.viewAll);
+        btnShowAll = view.findViewById(R.id.btnShowAll);
         recommendationRecycler = view.findViewById(R.id.companiesList);
         recommendationAdapter = new RecommendationAdapter(recommendationModelList, getContext(),this);
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         homeFragmentViewModel = new ViewModelProvider(HomeFragment.this).get(HomeFragmentViewModel.class);
         getCompanyList(userToken);
 
-        manage.setOnClickListener(new View.OnClickListener() {
+        btnManageAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ManageAccountActivity.class);
@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
             }
         });
 
-        notifBtn.setOnClickListener(new View.OnClickListener() {
+        btnNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), NotificationActivity.class);
@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
             }
         });
 
-        viewAll.setOnClickListener(new View.OnClickListener() {
+        btnShowAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), SeeAllRecommendationsActivity.class);

@@ -61,7 +61,7 @@
                 app:srcCompat="@drawable/heart_red" />
 
             <TextView
-                android:id="@+id/txtCompanyName"
+                android:id="@+id/tvCompanyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btnBack"
@@ -74,10 +74,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtCompanyAddress"
+                android:id="@+id/tvCompanyAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtCompanyName"
+                android:layout_below="@+id/tvCompanyName"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/quicksand_regular"
                 android:text="companyAddress"
@@ -190,7 +190,7 @@
                 android:layout_below="@+id/layoutDetails">
 
                 <TextView
-                    android:id="@+id/txtServices"
+                    android:id="@+id/tvServices"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -204,7 +204,7 @@
                     android:id="@+id/txtExtraServices"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/txtServices"
+                    android:layout_below="@id/tvServices"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="15dp"
                     android:text="@string/extraservices"
@@ -212,7 +212,7 @@
                     android:textSize="15sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/serviceList"
+                    android:id="@+id/rvServices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtExtraServices"
@@ -229,9 +229,8 @@
                 android:layout_height="60dp"
                 android:layout_below="@+id/serviceRecyclerView"
                 android:backgroundTint="@color/app_theme_gold"
-                android:text="Next"
+                android:text="@string/next"
                 android:textSize="14sp" />
-
 
         </RelativeLayout>
     </ScrollView>

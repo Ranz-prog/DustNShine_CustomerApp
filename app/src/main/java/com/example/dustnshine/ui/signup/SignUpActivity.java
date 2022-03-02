@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.SignUpCallback;
@@ -23,15 +24,15 @@ import com.example.dustnshine.databinding.ActivitySignupBinding;
 import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.R;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsActivity;
+import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsViewModel;
 import com.example.dustnshine.ui.signin.SignInActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    LinearLayout returnHome;
-    Button signupBtn;
-    Dialog dialog;
-    TextView popText;
-
+    private LinearLayout btnBack;
+    private Dialog dialog;
+    private TextView popText;
     private SignUpViewModel signUpViewModel;
     private ActivitySignupBinding activitySignupBinding;
     private static String firstName, lastName, mobileNumber, email, password, passwordConfirmation;
@@ -41,42 +42,42 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        signUpViewModel = new SignUpViewModel();
+        signUpViewModel = new ViewModelProvider(SignUpActivity.this).get(SignUpViewModel.class);
         activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
-        returnHome = findViewById(R.id.ReturnBtnOnHome);
+        btnBack = findViewById(R.id.btnBack);
 
-        activitySignupBinding.btnServerLogin.setOnClickListener(new View.OnClickListener() {
+        activitySignupBinding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                firstName = activitySignupBinding.editTextFirstName.getText().toString();
-                lastName = activitySignupBinding.editTextLastName.getText().toString();
-                mobileNumber = activitySignupBinding.editTextMobileNumber.getText().toString();
-                email = activitySignupBinding.editTextEmailAddress.getText().toString();
-                password = activitySignupBinding.editTextPassword.getText().toString();
-                passwordConfirmation = activitySignupBinding.editTextPasswordConfirmation.getText().toString();
+                firstName = activitySignupBinding.etFirstName.getText().toString();
+                lastName = activitySignupBinding.etLastName.getText().toString();
+                mobileNumber = activitySignupBinding.etMobileNumber.getText().toString();
+                email = activitySignupBinding.etEmailAddress.getText().toString();
+                password = activitySignupBinding.etPassword.getText().toString();
+                passwordConfirmation = activitySignupBinding.etPasswordConfirmation.getText().toString();
 
                 if (TextUtils.isEmpty(firstName)) {
-                    activitySignupBinding.editTextFirstName.setError("Email is required");
-                    activitySignupBinding.editTextFirstName.requestFocus();
+                    activitySignupBinding.etFirstName.setError("Email is required");
+                    activitySignupBinding.etFirstName.requestFocus();
                 } else if (TextUtils.isEmpty(lastName)) {
-                    activitySignupBinding.editTextLastName.setError("Invalid Email");
-                    activitySignupBinding.editTextLastName.requestFocus();
+                    activitySignupBinding.etLastName.setError("Invalid Email");
+                    activitySignupBinding.etLastName.requestFocus();
                 } else if (TextUtils.isEmpty(mobileNumber)) {
-                    activitySignupBinding.editTextMobileNumber.setError("Email is required");
-                    activitySignupBinding.editTextMobileNumber.requestFocus();
+                    activitySignupBinding.etMobileNumber.setError("Email is required");
+                    activitySignupBinding.etMobileNumber.requestFocus();
                 } else if (TextUtils.isEmpty(email)) {
-                    activitySignupBinding.editTextEmailAddress.setError("Email is required");
-                    activitySignupBinding.editTextEmailAddress.requestFocus();
+                    activitySignupBinding.etEmailAddress.setError("Email is required");
+                    activitySignupBinding.etEmailAddress.requestFocus();
                 } else if (TextUtils.isEmpty(password)) {
-                    activitySignupBinding.editTextPassword.setError("Password is required");
-                    activitySignupBinding.editTextPassword.requestFocus();
+                    activitySignupBinding.etPassword.setError("Password is required");
+                    activitySignupBinding.etPassword.requestFocus();
                 } else if (password.length() < 8) {
-                    activitySignupBinding.editTextPassword.setError("Password must be at least 8 characters");
-                    activitySignupBinding.editTextPassword.requestFocus();
+                    activitySignupBinding.etPassword.setError("Password must be at least 8 characters");
+                    activitySignupBinding.etPassword.requestFocus();
                 } else if (TextUtils.isEmpty(passwordConfirmation)) {
-                    activitySignupBinding.editTextPasswordConfirmation.setError("Password Confirmation is required");
-                    activitySignupBinding.editTextPasswordConfirmation.requestFocus();
+                    activitySignupBinding.etPasswordConfirmation.setError("Password Confirmation is required");
+                    activitySignupBinding.etPasswordConfirmation.requestFocus();
                 } else {
                     userSignUp(firstName, lastName, mobileNumber, email, password, passwordConfirmation);
                 }
@@ -99,7 +100,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         //BackButton
-        returnHome.setOnClickListener(new View.OnClickListener() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

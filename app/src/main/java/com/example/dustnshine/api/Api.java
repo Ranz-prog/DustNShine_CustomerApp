@@ -1,5 +1,7 @@
 package com.example.dustnshine.api;
 
+import android.util.ArrayMap;
+
 import com.example.dustnshine.models.SearchCompanyModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
@@ -11,6 +13,7 @@ import com.example.dustnshine.response.ServiceResponse;
 import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.response.SignInResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,7 +57,7 @@ public interface Api {
             @Field("address") String address,
             @Field("start_datetime") String start_datetime,
             @Field("total") int total,
-            @Field("services") List<Map<Integer, Integer>> services
+            @Field("services") ArrayList<Map<Integer, Integer>> services
     );
 
     @GET("companies")

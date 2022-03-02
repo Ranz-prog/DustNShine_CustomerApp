@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
@@ -32,32 +32,31 @@ public class SignInActivity extends AppCompatActivity {
     private AlertDialog dialog;
     private SignInViewModel signInViewModel;
     private ActivitySigninBinding activitySigninBinding;
-    private String email, password;
+    private static String email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        signInViewModel = new SignInViewModel();
-
+        signInViewModel = new ViewModelProvider(SignInActivity.this).get(SignInViewModel.class);
         activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
 
         activitySigninBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                email = activitySigninBinding.editTextEmailAddress.getText().toString();
-                password = activitySigninBinding.editTextPassword.getText().toString();
+                email = activitySigninBinding.etEmailAddress.getText().toString();
+                password = activitySigninBinding.etPassword.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
-                    activitySigninBinding.editTextEmailAddress.setError("Email is required");
-                    activitySigninBinding.editTextEmailAddress.requestFocus();
+                    activitySigninBinding.etEmailAddress.setError("Email is required");
+                    activitySigninBinding.etEmailAddress.requestFocus();
                 } if (TextUtils.isEmpty(password)) {
-                    activitySigninBinding.editTextPassword.setError("Password is required");
-                    activitySigninBinding.editTextPassword.requestFocus();
+                    activitySigninBinding.etPassword.setError("Password is required");
+                    activitySigninBinding.etPassword.requestFocus();
                 } if (password.length() < 8) {
-                    activitySigninBinding.editTextPassword.setError("Password must be at least 8 characters");
-                    activitySigninBinding.editTextPassword.requestFocus();
+                    activitySigninBinding.etPassword.setError("Password must be at least 8 characters");
+                    activitySigninBinding.etPassword.requestFocus();
                 } else {
                     userSignIn(email, password);
                 }
@@ -89,7 +88,6 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         activitySigninBinding.btnForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override

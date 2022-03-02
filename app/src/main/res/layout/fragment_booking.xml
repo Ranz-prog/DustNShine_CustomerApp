@@ -24,12 +24,12 @@
             android:textStyle="bold" />
 
         <LinearLayout
-            android:id="@+id/bookingHistoryBtn"
+            android:id="@+id/btnBookingHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/roundbutton"
             android:gravity="center_horizontal"
             android:orientation="vertical"
@@ -53,7 +53,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/bookingList"
+                android:id="@+id/rvBooking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp" />

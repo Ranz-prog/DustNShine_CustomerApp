@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.ArrayMap;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -22,7 +25,9 @@ import com.example.dustnshine.databinding.ActivityCheckoutBinding;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
+import com.example.dustnshine.ui.home.HomeFragment;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,11 +43,13 @@ public class CheckOutActivity extends AppCompatActivity {
     private CheckOutViewModel checkOutViewModel;
     private ActivityCheckoutBinding activityCheckoutBinding;
     private Intent intent;
-    private Date dateTime;
-    private static List<Map<Integer, Integer>> services;
-    private static Map<Integer, Integer> company;
-    private static String userToken, companyName, companyAddress, customerFirstName, customerLastName, customerContactNumber, customerAddress;
+    private static ArrayList<Integer> selectedServices;
+    private static ArrayList<String> servicesNameList;
+    private static ArrayList<Map<Integer, Integer>> services;
+    private static Map<Integer, Integer> serviceList;
+    private static String userToken, companyName, companyAddress, customerFirstName, customerLastName, customerContactNumber, customerAddress, selectedDate, selectedTime;
     private static int companyID;
+//    private HashMap[] services;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +60,6 @@ public class CheckOutActivity extends AppCompatActivity {
         userToken = SharedPrefManager.getInstance(CheckOutActivity.this).getUserToken();
         intent = getIntent();
         btnBack = findViewById(R.id.btnBack);
-        dateTime = Calendar.getInstance().getTime();
 
         customerFirstName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getFirst_name();
         customerLastName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getLast_name();
@@ -62,10 +68,23 @@ public class CheckOutActivity extends AppCompatActivity {
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
+        selectedDate = intent.getStringExtra("SELECTED_DATE");
+        selectedTime = intent.getStringExtra("SELECTED_TIME");
+        selectedServices = intent.getIntegerArrayListExtra("SERVICES_ID_LIST");
+        servicesNameList = intent.getStringArrayListExtra("SERVICES_NAME_LIST");
 
-        activityCheckoutBinding.txtCompanyName.setText(companyName);
-        activityCheckoutBinding.txtCustomerName.setText(customerFirstName + " " + customerLastName);
-        activityCheckoutBinding.txtContactNumber.setText(customerContactNumber + " " + dateTime);
+        activityCheckoutBinding.tvCompanyName.setText(companyName);
+        activityCheckoutBinding.tvCustomerName.setText(customerFirstName + " " + customerLastName);
+        activityCheckoutBinding.tvContactNumber.setText(customerContactNumber);
+        activityCheckoutBinding.tvDateAndTime.setText(selectedDate + " " + selectedTime);
+        activityCheckoutBinding.tvServiceName.setText(servicesNameList.toString());
+
+        serviceList = new HashMap<Integer, Integer>();
+        getServices(serviceList, selectedServices);
+        Log.d("SERVICES", String.valueOf(serviceList));
+        services = new ArrayList<Map<Integer, Integer>>();
+        services.add(serviceList);
+        Log.d("TAG", String.valueOf(services));
 
         // DIALOG BOX START
         dialog = new Dialog(this);
@@ -82,12 +101,6 @@ public class CheckOutActivity extends AppCompatActivity {
         String text = "Thank you. Checkout is successful!";// Set Message Here
         popText.setText(text.toString());
 
-        company = new HashMap<Integer, Integer>();
-        company.put(0, 1);
-        company.put(1, 1);
-        services = new ArrayList<Map<Integer, Integer>>();
-        services.add(company);
-
         Okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,10 +114,9 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getBookingRequest(userToken, companyID, "San Carlos City", "2022-05-05 00:00:00", 1000, services);
+                getBookingRequest(userToken, companyID, "San Fabian City", "2022-02-15 01:08:45", 2000, services);
                 dialog.show();
-                Intent intent = new Intent(CheckOutActivity.this, CompanyDetailsActivity.class);
-                startActivity(intent);// Showing the dialog here
+                // Showing the dialog here
             }
         });
 
@@ -116,7 +128,7 @@ public class CheckOutActivity extends AppCompatActivity {
         });
 
     }
-    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services){
+    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Map<Integer, Integer>> services){
         checkOutViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services).observe(CheckOutActivity.this, new Observer<BookingServiceResponse>() {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
@@ -127,6 +139,13 @@ public class CheckOutActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void getServices(Map<Integer, Integer> services, ArrayList<Integer> servicesList){
+        for(int i = 0; i < servicesList.size(); i++){
+            services.put(i, servicesList.get(i));
+            Log.d("TAG", services.toString());
+        }
     }
 
 }

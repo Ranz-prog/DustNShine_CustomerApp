@@ -61,6 +61,8 @@
     <string name="changemethod">Change Method</string>
     <string name="checkout">Checkout</string>
     <string name="companyname">Company Name:</string>
+    <string name="dateandtime">Date and Time</string>
+    <string name="servicename">Service Name</string>
 
     <!--Feedback-->
     <string name="feedbakcdescription">Your feedback matters. Write down your experience or what we can improve in our service.</string>
@@ -84,7 +86,6 @@
     <string name="gardencleaning">Garden Cleaning</string>
     <string name="repair">Repair</string>
 
-
     <!--Company Detail-->
     <string name="companydetails">Company Details</string>
     <string name="selectdetails">Select the details for your cleaning</string>
@@ -97,6 +98,19 @@
     <!--Booking-->
     <string name="bookinghistory">Booking History</string>
     <string name="notification">Notification</string>
+    <string name="next">Next</string>
+
+    <!--Date and Time-->
+    <string name="eightam">8:00 AM</string>
+    <string name="nineam">9:00 AM</string>
+    <string name="tenam">10:00 AM</string>
+    <string name="elevenam">11:00 AM</string>
+    <string name="twelvepm">12:00 PM</string>
+    <string name="onepm">1:00 PM</string>
+    <string name="twopm">2:00 PM</string>
+    <string name="threepm">3:00 PM</string>
+    <string name="fourpm">4:00 PM</string>
+    <string name="fivepm">5:00 PM</string>
 
 
 </resources>
