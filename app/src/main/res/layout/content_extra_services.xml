@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -66,6 +66,33 @@
                 android:layout_alignParentEnd="true"
                 android:buttonTint="@color/app_theme_blue" />
 
+            <RelativeLayout
+                android:id="@+id/describeNeeds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbItem"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputHouseType"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="18sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:gravity="center"
+                        android:hint="Please describe any other needs" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
             <Button
                 android:id="@+id/addBtn"
                 android:layout_width="25dp"
@@ -96,4 +123,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+</RelativeLayout>

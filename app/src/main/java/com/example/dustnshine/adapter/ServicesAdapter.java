@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.models.services_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.ui.QuantityListener;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,13 +58,31 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         holder.servicePrice.setText(servicesModelList.get(position).getCreated_at());
         holder.serviceDetails1.setText(servicesModelList.get(position).getDescription());
         holder.serviceDetails2.setText(servicesModelList.get(position).getCreated_at());
+
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.describe.getLayoutParams();
+        params.height = 0;
+        params.width = 0;
+        holder.describe.setLayoutParams(params);
+
+        holder.describe.setVisibility(View.INVISIBLE);
+
         holder.cbItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (holder.cbItem.isChecked()) {
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.describe.getLayoutParams();
+                    params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+                    params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
+                    holder.describe.setLayoutParams(params);
+                    holder.describe.setVisibility(View.VISIBLE);
                     servicesID.add(servicesModelList.get(itemPosition).getId());
                     servicesName.add(servicesModelList.get(itemPosition).getName());
                 } else {
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.describe.getLayoutParams();
+                    params.height = 0;
+                    params.width = 0;
+                    holder.describe.setLayoutParams(params);
+                    holder.describe.setVisibility(View.INVISIBLE);
                     servicesID.remove(servicesModelList.get(itemPosition).getId());
                     servicesName.remove(servicesModelList.get(itemPosition).getName());
                 }
@@ -80,6 +100,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
         private CheckBox cbItem;
         private TextView serviceTitle, servicePrice, serviceDetails1, serviceDetails2;
+        private RelativeLayout describe;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,6 +111,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             servicePrice = itemView.findViewById(R.id.servicePriceTv);
             serviceDetails1 = itemView.findViewById(R.id.description1Tv);
             serviceDetails2 = itemView.findViewById(R.id.description2Tv);
+
+            describe = itemView.findViewById(R.id.describeNeeds);
 
         }
     }
