@@ -16,11 +16,11 @@
             android:id="@+id/favCompanyTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/quicksand_medium"
-            android:text="Favorite Companies"
-            android:textColor="@color/app_theme_gold"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Favorite Companies"
+            android:textColor="@color/app_theme_gold"
             android:textSize="20sp"
             android:textStyle="bold" />
 

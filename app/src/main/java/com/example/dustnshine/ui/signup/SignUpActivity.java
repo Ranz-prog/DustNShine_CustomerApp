@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ import com.example.dustnshine.ui.signin.SignInActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private LinearLayout btnBack;
+    private ImageView btnBack;
     private Dialog dialog;
     private TextView popText;
     private SignUpViewModel signUpViewModel;

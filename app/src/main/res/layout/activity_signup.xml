@@ -8,8 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,29 +21,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background"
-                android:paddingBottom="10dp"
                 android:paddingTop="15dp"
-                >
+                android:paddingBottom="10dp">
 
-                <LinearLayout
+
+                <ImageView
                     android:id="@+id/btnBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/roundbutton"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/back" />
 
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/back" />
-                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -60,6 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/quicksand_medium"
                 android:text="@string/personalinformation"
@@ -80,14 +71,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFirstName"
-                        android:layout_width="180dp"
+                        android:layout_width="170dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/firstname"
-                        android:maxLength="50"
+                        android:maxLength="15"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,13 +91,14 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etLastName"
-                        android:layout_width="185dp"
+                        android:layout_width="170dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/lastname"
-                        android:maxLength="50"
+                        android:maxLength="15"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,10 +116,12 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:maxLength="50"
+                    android:maxLength="20"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,11 +136,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
                     android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/mobilenumber"
-                    android:maxLength="50"
+                    android:maxLength="11"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,20 +150,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxStrokeWidth="0dp"
-                app:passwordToggleEnabled="true"
-                app:boxStrokeWidthFocused="0dp">
+                app:boxStrokeWidthFocused="0dp"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
                     android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:maxLength="50"
+                    android:maxLength="15"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,20 +173,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxStrokeWidth="0dp"
-                app:passwordToggleEnabled="true"
-                app:boxStrokeWidthFocused="0dp">
+                app:boxStrokeWidthFocused="0dp"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPasswordConfirmation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
                     android:fontFamily="@font/quicksand_regular"
                     android:hint="@string/retypepassword"
                     android:inputType="textPassword"
-                    android:maxLength="50"
+                    android:maxLength="15"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -215,14 +216,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etHouseNo"
-                        android:layout_width="130dp"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
+                        android:layout_marginStart="10dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/houseno"
-                        android:maxLength="50"
+                        android:maxLength="5"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -234,13 +236,14 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etStreet"
-                        android:layout_width="235dp"
+                        android:layout_width="225dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/street"
-                        android:maxLength="50"
+                        android:maxLength="15"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -263,11 +266,12 @@
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
+                        android:layout_marginStart="10dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/barangay"
-                        android:maxLength="50"
+                        android:maxLength="15"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -279,13 +283,14 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etCityMunicipality"
-                        android:layout_width="190dp"
+                        android:layout_width="165dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/citymunicipality"
-                        android:maxLength="50"
+                        android:maxLength="15"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -308,11 +313,12 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
+                        android:layout_marginStart="10dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/province"
-                        android:maxLength="50"
+                        android:maxLength="15"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -330,7 +336,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/zipcode"
-                        android:maxLength="50"
+                        android:maxLength="5"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
