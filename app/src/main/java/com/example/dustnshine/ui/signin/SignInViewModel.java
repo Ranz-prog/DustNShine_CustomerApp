@@ -10,6 +10,7 @@ import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.repository.UserAPIRepo;
+import com.example.dustnshine.response.UserManagementResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,14 +18,14 @@ import retrofit2.Response;
 
 public class SignInViewModel extends ViewModel {
 
+    private UserAPIRepo userAPIRepo;
     private SignInCallback signInCallback;
+    //    private MutableLiveData<SignInResponse> signInResponseMutableLiveData;
+    private MutableLiveData<UserManagementResponse> userManagementResponseMutableLiveData;
 
-//    private UserAPIRepo userAPIRepo;
-//    private MutableLiveData<SignInResponse> signInResponseMutableLiveData;
-//
-//    public SignInViewModel() {
-//        userAPIRepo = new UserAPIRepo();
-//    }
+    public SignInViewModel() {
+        userAPIRepo = new UserAPIRepo();
+    }
 //
 //    public LiveData<SignInResponse> getSignInRequest(String email, String password){
 //        if (signInResponseMutableLiveData == null) {
@@ -50,5 +51,12 @@ public class SignInViewModel extends ViewModel {
 
     public void setOnSignInListener(SignInCallback signinCallback){
         signInCallback = signinCallback;
+    }
+
+    public LiveData<UserManagementResponse> getUserInformationRequest(String userToken){
+        if (userManagementResponseMutableLiveData == null) {
+            userManagementResponseMutableLiveData = userAPIRepo.getUserInformation(userToken);
+        }
+        return userManagementResponseMutableLiveData;
     }
 }

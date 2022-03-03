@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.repository.UserAPIRepo;
+import com.example.dustnshine.response.UserManagementResponse;
 
 public class ManageAccountViewModel extends ViewModel {
     private UserAPIRepo userAPIRepo;
@@ -21,4 +22,5 @@ public class ManageAccountViewModel extends ViewModel {
         }
         return logoutResponseMutableLiveData;
     }
+
 }

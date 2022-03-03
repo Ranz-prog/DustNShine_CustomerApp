@@ -3,6 +3,7 @@ package com.example.dustnshine.ui.company_details;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -71,7 +72,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(servicesIdList == null){
+                if(servicesNameList == null){
                     Toast.makeText(CompanyDetailsActivity.this, "Please select services", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);

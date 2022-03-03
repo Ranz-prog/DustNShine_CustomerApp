@@ -83,8 +83,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
                     params.width = 0;
                     holder.describe.setLayoutParams(params);
                     holder.describe.setVisibility(View.INVISIBLE);
-                    servicesID.remove(servicesModelList.get(itemPosition).getId());
-                    servicesName.remove(servicesModelList.get(itemPosition).getName());
+                    servicesID.remove(servicesModelList.get(itemPosition));
+                    servicesName.remove(servicesModelList.get(itemPosition));
                 }
                 quantityListener.onQuantityChange(servicesID, servicesName);
             }

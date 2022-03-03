@@ -12,6 +12,7 @@ import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.response.ServiceResponse;
 import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.response.SignInResponse;
+import com.example.dustnshine.response.UserManagementResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,14 @@ public interface Api {
         @Field("last_name") String last_name,
         @Field("mobile_number") String mobile_number,
         @Field("email") String email,
+        @Field("house_number") String house_number,
+        @Field("street") String street,
+        @Field("barangay") String barangay,
+        @Field("municipality") String municipality,
+        @Field("province") String province,
+        @Field("latitude") double latitude,
+        @Field("longitude") double longitude,
+        @Field("zipcode") String zipcode,
         @Field("password") String password,
         @Field("password_confirmation") String password_confirmation
     );
@@ -68,6 +77,9 @@ public interface Api {
 
     @GET("bookings")
     Call<BookedServiceResponse> getBookedService(@Header("Authorization") String bookedServiceRequest);
+
+    @GET("user-management")
+    Call<UserManagementResponse> getUserInformation(@Header("Authorization") String userInformationRequest);
 
     @GET("search-company/{keyword}")
     Call<SearchCompanyResponse> getSearchedCompany(@Path("keyword") String keyword, @Header("Authorization") String searchCompanyRequest);
