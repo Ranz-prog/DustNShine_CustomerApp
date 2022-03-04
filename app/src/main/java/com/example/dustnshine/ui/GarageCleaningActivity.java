@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class GarageCleaningActivity extends AppCompatActivity implements General
     private LinearLayoutManager linearLayoutManager;
     private static String userToken;
     private GarageCleaningViewModel garageCleaningViewModel;
-    LinearLayout btnBack;
+    ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class GarageCleaningActivity extends AppCompatActivity implements General
 
         getFilteredService(1, userToken);
 
-        btnBack = findViewById(R.id.btnBackGarageCleaning);
+        btnBack = findViewById(R.id.backGarage);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
