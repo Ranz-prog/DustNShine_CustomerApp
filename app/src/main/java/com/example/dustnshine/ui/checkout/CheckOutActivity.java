@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,7 @@ import java.util.Map;
 
 public class CheckOutActivity extends AppCompatActivity {
 
-    private LinearLayout btnBack;
+    private ImageView btnBack;
     private Dialog dialog;
     private TextView popText;
     private CheckOutViewModel checkOutViewModel;
@@ -61,7 +62,7 @@ public class CheckOutActivity extends AppCompatActivity {
         userToken = SharedPrefManager.getInstance(CheckOutActivity.this).getUserToken();
         addressModel = SharedPrefManager.getInstance(CheckOutActivity.this).getUserAddress();
         intent = getIntent();
-        btnBack = findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.backCheckout);
 
         customerFirstName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getFirst_name();
         customerLastName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getLast_name();

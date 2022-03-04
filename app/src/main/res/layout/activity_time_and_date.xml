@@ -5,36 +5,27 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:background="@color/background">
 
-        <LinearLayout
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp"
+
+        <ImageView
+            android:id="@+id/backDandT"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/roundbutton2"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/back" />
-        </LinearLayout>
+            android:layout_weight="1"
+            app:srcCompat="@drawable/back" />
 
         <TextView
             android:id="@+id/txtBookingHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/quicksand_medium"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingTop="10dp"
             android:text="Date &amp; Time"
             android:textColor="@color/app_theme_gold"
             android:textSize="20sp"
@@ -58,10 +49,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:fontFamily="@font/quicksand_medium"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Pick Time"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="17sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnEightAM"
@@ -70,10 +60,10 @@
                 android:layout_below="@id/pickTimeTv"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/eightam"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNineAM"
@@ -83,10 +73,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/nineam"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnTenAM"
@@ -96,10 +86,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/tenam"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnElevenAM"
@@ -108,10 +98,10 @@
                 android:layout_below="@id/btnEightAM"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/elevenam"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnTwelvePM"
@@ -121,10 +111,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/twelvepm"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnOnePM"
@@ -134,10 +124,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/onepm"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnTwoPM"
@@ -146,10 +136,10 @@
                 android:layout_below="@id/btnElevenAM"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/twopm"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnThreePM"
@@ -159,10 +149,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/threepm"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFourPM"
@@ -172,10 +162,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/fourpm"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFivePM"
@@ -185,10 +175,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/fivepm"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -198,8 +188,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/app_theme_gold"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/next"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 

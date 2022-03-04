@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -39,7 +41,7 @@ public class GeneralCleaningActivity extends AppCompatActivity implements Genera
     private LinearLayoutManager linearLayoutManager;
     private static String userToken;
     private GeneralCleaningViewModel generalCleaningViewModel;
-    LinearLayout btnBack;
+    ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class GeneralCleaningActivity extends AppCompatActivity implements Genera
 
         getFilteredService(2, userToken);
 
-        btnBack = findViewById(R.id.btnBackGeneralCleaning);
+        btnBack = findViewById(R.id.backGeneral);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

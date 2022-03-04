@@ -222,7 +222,6 @@
                             android:layout_marginBottom="15dp"
                             android:fontFamily="@font/montserrat_medium"
                             android:text="@string/location"
-                            android:textColor="@color/black"
                             android:textSize="17sp" />
 
                         <LinearLayout

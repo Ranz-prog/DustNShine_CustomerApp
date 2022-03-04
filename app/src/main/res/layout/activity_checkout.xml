@@ -15,26 +15,15 @@
             android:scaleType="fitXY"
             android:src="@drawable/checkout" />
 
-        <LinearLayout
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+
+        <ImageView
+            android:id="@+id/backCheckout"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/roundbutton2"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/back" />
-        </LinearLayout>
+            android:layout_weight="1"
+            app:srcCompat="@drawable/back" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardCustomerDetails"
@@ -57,6 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/customerdetails"
                     android:textColor="@color/app_theme_blue"
                     android:textSize="17sp" />
@@ -71,8 +61,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="@string/customername"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
 
@@ -96,8 +87,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="@string/locationdetails"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -120,8 +112,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="@string/contactnumber"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -140,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/bookingdetails"
                     android:textColor="@color/app_theme_blue"
                     android:textSize="17sp" />
@@ -154,8 +148,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="@string/companyname"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -179,8 +174,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="@string/dateandtime"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -203,8 +199,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="@string/servicename"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -223,6 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="80dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/paymentmethod"
                     android:textColor="@color/app_theme_blue"
                     android:textSize="17sp" />
@@ -283,9 +281,10 @@
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:backgroundTint="@color/app_theme_gold"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/checkout"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
