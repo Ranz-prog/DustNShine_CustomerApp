@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     Button forgotBtn;
     Dialog dialog;
     TextView popText;
-    LinearLayout returnSignIn;
+    ImageView returnSignIn;
 
 
     @Override
@@ -31,7 +32,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password);
 
         forgotBtn = findViewById(R.id.forgetBtn);
-        returnSignIn = findViewById(R.id.btnReturnForget);
+        returnSignIn = findViewById(R.id.backforgot);
 
 //        forgotBtn = findViewById(R.id.forgetBtn);
 

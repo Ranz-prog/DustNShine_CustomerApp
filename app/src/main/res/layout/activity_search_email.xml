@@ -18,9 +18,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/montserrat_medium"
             android:text="@string/findyouraccount"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="17sp" />
 
 
         <LinearLayout
@@ -34,11 +35,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="@string/enteremail"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -55,12 +57,13 @@
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/roboto_regular"
                     android:gravity="center|start|bottom"
                     android:hint="@string/enteryouremail"
                     android:inputType="textEmailAddress"
                     android:maxLength="50"
                     android:paddingBottom="10dp"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -70,10 +73,11 @@
                 android:layout_gravity="center|end|bottom"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/app_theme_blue"
+                android:fontFamily="@font/montserrat_regular"
                 android:padding="10dp"
                 android:text="@string/search"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 

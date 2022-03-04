@@ -32,10 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_medium"
             android:text="Clean Solutions"
             android:textColor="@color/app_theme_blue"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/companyLocationTV"
@@ -43,9 +43,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/companyNameTV"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_regular"
             android:text="location"
             android:textColor="@color/app_theme_black"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -75,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:layout_toRightOf="@id/star"
+            android:fontFamily="@font/montserrat_medium"
             android:text="rating"
             android:textColor="@color/app_theme_gold"
             android:textSize="15sp" />

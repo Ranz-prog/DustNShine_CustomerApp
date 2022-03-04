@@ -27,9 +27,9 @@
 
                 <ImageView
                     android:id="@+id/btnBack"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/back" />
 
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="20dp"
-                    android:fontFamily="@font/quicksand_medium"
+                    android:fontFamily="@font/montserrat_bold"
                     android:paddingTop="10dp"
                     android:text="@string/reg"
                     android:textColor="@color/app_theme_gold"
@@ -52,10 +52,10 @@
                 android:layout_height="wrap_content"
 
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/quicksand_medium"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/personalinformation"
                 android:textColor="@color/app_theme_black"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -77,10 +77,10 @@
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/roboto_regular"
                         android:hint="@string/firstname"
                         android:maxLength="15"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -96,10 +96,10 @@
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/roboto_regular"
                         android:hint="@string/lastname"
                         android:maxLength="15"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -114,15 +114,15 @@
                     android:id="@+id/etEmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_layout"
-                    android:cursorVisible="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/quicksand_regular"
+                    android:background="@drawable/edittext_layout"
+                    android:cursorVisible="true"
+                    android:fontFamily="@font/roboto_regular"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:maxLength="20"
-                    android:textSize="15sp" />
+                    android:maxLength="30"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -135,15 +135,15 @@
                     android:id="@+id/etMobileNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
-                    android:fontFamily="@font/quicksand_regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:hint="@string/mobilenumber"
                     android:maxLength="11"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -157,16 +157,16 @@
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
-                    android:fontFamily="@font/quicksand_regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:maxLength="15"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -180,16 +180,16 @@
                     android:id="@+id/etPasswordConfirmation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/edittext_layout"
                     android:cursorVisible="true"
-                    android:fontFamily="@font/quicksand_regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:hint="@string/retypepassword"
                     android:inputType="textPassword"
                     android:maxLength="15"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -198,9 +198,10 @@
                 android:layout_gravity="center|start"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/location"
                 android:textColor="@color/app_theme_black"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -218,14 +219,14 @@
                         android:id="@+id/etHouseNo"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/roboto_regular"
                         android:hint="@string/houseno"
                         android:maxLength="5"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -238,13 +239,13 @@
                         android:id="@+id/etStreet"
                         android:layout_width="225dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/roboto_regular"
                         android:hint="@string/street"
                         android:maxLength="15"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -265,14 +266,14 @@
                         android:id="@+id/etBarangay"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/roboto_regular"
                         android:hint="@string/barangay"
                         android:maxLength="15"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -285,13 +286,13 @@
                         android:id="@+id/etCityMunicipality"
                         android:layout_width="165dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/roboto_regular"
                         android:hint="@string/citymunicipality"
                         android:maxLength="15"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -312,14 +313,14 @@
                         android:id="@+id/etProvince"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/roboto_regular"
                         android:hint="@string/province"
                         android:maxLength="15"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -334,10 +335,10 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_layout"
                         android:cursorVisible="true"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/roboto_regular"
                         android:hint="@string/zipcode"
                         android:maxLength="5"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -350,10 +351,11 @@
                 android:layout_margin="15dp"
                 android:background="@drawable/rounded_corners_button_layout"
                 android:backgroundTint="@color/app_theme_blue"
+                android:fontFamily="@font/montserrat_regular"
                 android:padding="10dp"
                 android:text="@string/signup"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
     </ScrollView>

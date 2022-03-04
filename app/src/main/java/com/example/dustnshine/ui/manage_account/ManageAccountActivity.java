@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,8 @@ import com.example.dustnshine.ui.signin.SignInActivity;
 
 public class ManageAccountActivity extends AppCompatActivity {
 
-    private LinearLayout personalInfoView, btnBack;
+    private ImageView btnBack;
+    private LinearLayout personalInfoView;
     private TextView tvPersonalInfo, popText, tvLogout, tvManageCards;
     private CardView personalInfoCardView;
     private Button reset, edit;
@@ -48,7 +50,7 @@ public class ManageAccountActivity extends AppCompatActivity {
 
         activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_manage_account);
 
-        btnBack = findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.backManageAcc);
         personalInfoView = findViewById(R.id.personal_info_view);
         tvPersonalInfo = findViewById(R.id.tvPersonalInfo);
         tvLogout = findViewById(R.id.tvLogout);

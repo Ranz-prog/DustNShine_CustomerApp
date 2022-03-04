@@ -11,11 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/quicksand_medium"
+        android:fontFamily="@font/montserrat_bold"
         android:text="Message"
         android:textColor="@color/app_theme_gold"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_RecyclerView"
