@@ -136,9 +136,9 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
-                    Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

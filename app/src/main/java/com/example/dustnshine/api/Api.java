@@ -64,7 +64,7 @@ public interface Api {
             @Header("Authorization") String bookingRequest,
             @Field("company_id") int company_id,
             @Field("address") String address,
-            @Field("start_datetime") String start_datetime,
+            @Field("sched_datetime") String sched_datetime,
             @Field("total") int total,
             @Field("services") ArrayList<Map<Integer, Integer>> services
     );
