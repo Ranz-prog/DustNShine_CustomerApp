@@ -2,6 +2,7 @@ package com.example.dustnshine.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,32 +60,25 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         holder.serviceDetails1.setText(servicesModelList.get(position).getDescription());
         holder.serviceDetails2.setText(servicesModelList.get(position).getCreated_at());
 
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.describe.getLayoutParams();
-        params.height = 0;
-        params.width = 0;
-        holder.describe.setLayoutParams(params);
-
-        holder.describe.setVisibility(View.INVISIBLE);
-
+        holder.cbItem.setChecked(false);
         holder.cbItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (holder.cbItem.isChecked()) {
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.describe.getLayoutParams();
-                    params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
-                    params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
-                    holder.describe.setLayoutParams(params);
-                    holder.describe.setVisibility(View.VISIBLE);
                     servicesID.add(servicesModelList.get(itemPosition).getId());
                     servicesName.add(servicesModelList.get(itemPosition).getName());
+                    Log.d("Nagana", servicesID.toString());
+
+
                 } else {
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.describe.getLayoutParams();
-                    params.height = 0;
-                    params.width = 0;
-                    holder.describe.setLayoutParams(params);
-                    holder.describe.setVisibility(View.INVISIBLE);
-                    servicesID.remove(servicesModelList.get(itemPosition).getId());
-                    servicesName.remove(servicesModelList.get(itemPosition).getName());
+
+                    int index = servicesID.indexOf(servicesModelList.get(itemPosition).getId());
+                    int index2 = servicesName.indexOf(servicesModelList.get(itemPosition).getName());
+                    servicesID.remove(index);
+                    servicesName.remove(index2);
+
+
+                    Log.d("D nagana", servicesID.toString());
                 }
                 quantityListener.onQuantityChange(servicesID, servicesName);
             }
@@ -112,7 +106,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             serviceDetails1 = itemView.findViewById(R.id.description1Tv);
             serviceDetails2 = itemView.findViewById(R.id.description2Tv);
 
-            describe = itemView.findViewById(R.id.describeNeeds);
+
 
         }
     }

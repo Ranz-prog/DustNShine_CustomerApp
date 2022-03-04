@@ -57,6 +57,8 @@ public class TimeAndDateActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 finish();
+                servicesIDList.removeAll(servicesIDList);
+                servicesNameList.removeAll(servicesNameList);
             }
         });
 

@@ -3,6 +3,7 @@ package com.example.dustnshine.ui.signin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dustnshine.MainActivity;
@@ -19,8 +21,10 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.databinding.ActivitySigninBinding;
 import com.example.dustnshine.response.SignInResponse;
+import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ForgetPasswordActivity;
+import com.example.dustnshine.ui.manage_account.ManageAccountActivity;
 import com.example.dustnshine.ui.signup.SignUpActivity;
 
 public class SignInActivity extends AppCompatActivity {
@@ -70,6 +74,7 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
+                    getUserInformation(signInResponse.getData().getToken());
                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -151,12 +156,30 @@ public class SignInActivity extends AppCompatActivity {
         signInViewModel.getSignInRequest(email, password);
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-//            Intent intent = new Intent(this, MainActivity.class);
-//            startActivity(intent);
-//        };
-//    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        };
+    }
+
+    public void getUserInformation(String userToken){
+        signInViewModel.getUserInformationRequest(userToken).observe(SignInActivity.this, new Observer<UserManagementResponse>() {
+            @Override
+            public void onChanged(UserManagementResponse userManagementResponse) {
+                if(userManagementResponse == null){
+                    Log.d("TAG", "Invalid Request");
+                } else {
+                    SharedPrefManager.getInstance(SignInActivity.this).saveUserAddress(userManagementResponse.getData().get(0).getAddress().get(0));
+                    Log.d("TAG", userManagementResponse.getData().get(0).getAddress().get(0).getBarangay());
+                }
+            }
+        });
+    }
+
+
+
 }

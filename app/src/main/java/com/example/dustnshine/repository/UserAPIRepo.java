@@ -6,9 +6,14 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.models.ServicesModel;
+import com.example.dustnshine.models.UserManagementModel;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.SignUpResponse;
+import com.example.dustnshine.response.UserManagementResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,9 +46,9 @@ public class UserAPIRepo {
     }
 
     //SignUp
-    public MutableLiveData<SignUpResponse> signUpRequest(String firstName, String lastName, String mobileNumber, String email, String password, String passwordConfirmation){
+    public MutableLiveData<SignUpResponse> signUpRequest(String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, String zipcode, double latitude, double longitude, String password, String passwordConfirmation){
         final MutableLiveData<SignUpResponse> signUpResponseMutableLiveData = new MutableLiveData<>();
-        Call<SignUpResponse> signUpResponseCall = RetrofitClient.getInstance().getApi().userSignUp(firstName, lastName, mobileNumber, email, password, passwordConfirmation);
+        Call<SignUpResponse> signUpResponseCall = RetrofitClient.getInstance().getApi().userSignUp(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, latitude, longitude, zipcode, password, passwordConfirmation);
         signUpResponseCall.enqueue(new Callback<SignUpResponse>() {
             @Override
             public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
@@ -85,6 +90,28 @@ public class UserAPIRepo {
         });
 
         return  logoutResponseMutableLiveData;
+    }
+
+    public MutableLiveData<UserManagementResponse> getUserInformation(String userToken){
+        final MutableLiveData<UserManagementResponse> userManagementModelMutableLiveData = new MutableLiveData<>();
+        Call<UserManagementResponse> userManagementResponseCall = RetrofitClient.getInstance().getApi().getUserInformation("Bearer " + userToken);
+        userManagementResponseCall.enqueue(new Callback<UserManagementResponse>() {
+            @Override
+            public void onResponse(Call<UserManagementResponse> call, Response<UserManagementResponse> response) {
+                if(response.code() == 200){
+                    userManagementModelMutableLiveData.setValue(response.body());
+                    Log.d("TAG", "Getting info success");
+                } else {
+                    Log.d("TAG", "Getting info unsuccessful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserManagementResponse> call, Throwable t) {
+                Log.d("ERROR", t.getLocalizedMessage());
+            }
+        });
+        return userManagementModelMutableLiveData;
     }
 
 }

@@ -36,7 +36,8 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView popText;
     private SignUpViewModel signUpViewModel;
     private ActivitySignupBinding activitySignupBinding;
-    private static String firstName, lastName, mobileNumber, email, password, passwordConfirmation;
+    private static String firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation;
+    private static double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,12 @@ public class SignUpActivity extends AppCompatActivity {
                 lastName = activitySignupBinding.etLastName.getText().toString();
                 mobileNumber = activitySignupBinding.etMobileNumber.getText().toString();
                 email = activitySignupBinding.etEmailAddress.getText().toString();
+                house_number =activitySignupBinding.etHouseNo.getText().toString();
+                street = activitySignupBinding.etStreet.getText().toString();
+                barangay = activitySignupBinding.etBarangay.getText().toString();
+                municipality = activitySignupBinding.etCityMunicipality.getText().toString();
+                province = activitySignupBinding.etProvince.getText().toString();
+                zipcode = activitySignupBinding.etZipCode.getText().toString();
                 password = activitySignupBinding.etPassword.getText().toString();
                 passwordConfirmation = activitySignupBinding.etPasswordConfirmation.getText().toString();
 
@@ -80,7 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
                     activitySignupBinding.etPasswordConfirmation.setError("Password Confirmation is required");
                     activitySignupBinding.etPasswordConfirmation.requestFocus();
                 } else {
-                    userSignUp(firstName, lastName, mobileNumber, email, password, passwordConfirmation);
+                    userSignUp(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, 1234.01, 98.01, zipcode, password, passwordConfirmation);
                 }
             }
         });
@@ -94,8 +101,10 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (statusCode == 422){
                     Toast.makeText(SignUpActivity.this, "The given data was invalid.", Toast.LENGTH_SHORT).show();
-                } else {
+                } else if (statusCode == 500){
                     Toast.makeText(SignUpActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -135,8 +144,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    public void userSignUp(String firstName, String lastName, String mobileNumber, String email, String password, String passwordConfirmation){
-        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, password, passwordConfirmation);
+    public void userSignUp(String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, double latitude, double longitude, String zipcode, String password, String passwordConfirmation){
+        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, latitude, longitude, zipcode, password, passwordConfirmation);
 //        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, password, passwordConfirmation).observe(SignUpActivity.this, new Observer<SignUpResponse>() {
 //            @Override
 //            public void onChanged(SignUpResponse signUpResponse) {

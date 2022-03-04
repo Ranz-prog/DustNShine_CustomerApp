@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
 
+import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
@@ -39,6 +41,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
     private LinearLayout btnNotification, generalCleaning, garageCleaning;
     private View view;
     private TextView btnShowAll;
+    private TextView tvCityMunicipality, tvAddress;
 
     private RecyclerView recommendationRecycler, featureRecycler;
     private List<FeatureModel> featureModelList;
@@ -47,17 +50,22 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
     private RecommendationAdapter recommendationAdapter;
     private String userToken;
     private CompanyDetailsActivity companyDetailsActivity;
+    private AddressModel addressModel;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
+        homeFragmentViewModel = new ViewModelProvider(HomeFragment.this).get(HomeFragmentViewModel.class);
+        addressModel = SharedPrefManager.getInstance(getContext()).getUserAddress();
 
         btnManageAccount = view.findViewById(R.id.btnManageAccount);
         btnNotification = view.findViewById(R.id.btnNotification);
         generalCleaning = view.findViewById(R.id.generalCleaning);
         garageCleaning = view.findViewById(R.id.garageCleaning);
+        tvCityMunicipality = view.findViewById(R.id.tvCityMunicipality);
+        tvAddress = view.findViewById(R.id.tvAddress);
         btnShowAll = view.findViewById(R.id.btnShowAll);
         recommendationRecycler = view.findViewById(R.id.companiesList);
         recommendationAdapter = new RecommendationAdapter(recommendationModelList, getContext(),this);
@@ -67,7 +75,8 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
-        homeFragmentViewModel = new ViewModelProvider(HomeFragment.this).get(HomeFragmentViewModel.class);
+        tvCityMunicipality.setText(addressModel.getMunicipality());
+        tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
         getCompanyList(userToken);
 
         btnManageAccount.setOnClickListener(new View.OnClickListener() {

@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityCheckoutBinding;
+import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
@@ -49,7 +50,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private static Map<Integer, Integer> serviceList;
     private static String userToken, companyName, companyAddress, customerFirstName, customerLastName, customerContactNumber, customerAddress, selectedDate, selectedTime;
     private static int companyID;
-//    private HashMap[] services;
+    private AddressModel addressModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_checkout);
         checkOutViewModel = new ViewModelProvider(CheckOutActivity.this).get(CheckOutViewModel.class);
         userToken = SharedPrefManager.getInstance(CheckOutActivity.this).getUserToken();
+        addressModel = SharedPrefManager.getInstance(CheckOutActivity.this).getUserAddress();
         intent = getIntent();
         btnBack = findViewById(R.id.btnBack);
 
@@ -78,6 +80,7 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.tvContactNumber.setText(customerContactNumber);
         activityCheckoutBinding.tvDateAndTime.setText(selectedDate + " " + selectedTime);
         activityCheckoutBinding.tvServiceName.setText(servicesNameList.toString());
+        activityCheckoutBinding.tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
 
         serviceList = new HashMap<Integer, Integer>();
         getServices(serviceList, selectedServices);
@@ -133,9 +136,9 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
-                    Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

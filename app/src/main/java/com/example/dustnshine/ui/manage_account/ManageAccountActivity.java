@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -24,10 +25,13 @@ import android.widget.Toast;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityManageAccountBinding;
+import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.models.User;
+import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.signin.SignInActivity;
+import com.example.dustnshine.ui.signin.SignInViewModel;
 
 public class ManageAccountActivity extends AppCompatActivity {
 
@@ -49,6 +53,8 @@ public class ManageAccountActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_manage_account);
+        manageAccountViewModel =  new ViewModelProvider(ManageAccountActivity.this).get(ManageAccountViewModel.class);
+        userToken = SharedPrefManager.getInstance(ManageAccountActivity.this).getUserToken();
 
         btnBack = findViewById(R.id.backManageAcc);
         personalInfoView = findViewById(R.id.personal_info_view);
@@ -72,16 +78,20 @@ public class ManageAccountActivity extends AppCompatActivity {
         zipCode = findViewById(R.id.etProvince);
 
         User user = SharedPrefManager.getInstance(this).getUser();
+        AddressModel addressModel = SharedPrefManager.getInstance(this).getUserAddress();
+
         activitySignupBinding.etFirstName.setText(user.getFirst_name());
-        activitySignupBinding.etFirstName.setText(user.getLast_name());
+        activitySignupBinding.etLastName.setText(user.getLast_name());
         activitySignupBinding.etMobileNumber.setText(user.getMobile_number());
         activitySignupBinding.etEmailAddress.setText(user.getEmail());
+        activitySignupBinding.etHouseNo.setText(String.valueOf(addressModel.getHouse_number()));
+        activitySignupBinding.etStreet.setText(addressModel.getStreet());
+        activitySignupBinding.etBarangay.setText(addressModel.getBarangay());
+        activitySignupBinding.etCityMunicipality.setText(addressModel.getMunicipality());
+        activitySignupBinding.etProvince.setText(addressModel.getProvince());
+        activitySignupBinding.etZipCode.setText(addressModel.getZipcode());
 
 //        disabled();
-
-        manageAccountViewModel = new ManageAccountViewModel();
-        userToken = SharedPrefManager.getInstance(ManageAccountActivity.this).getUserToken();
-
 
         tvPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,4 +236,5 @@ public class ManageAccountActivity extends AppCompatActivity {
             }
         });
     }
+
 }

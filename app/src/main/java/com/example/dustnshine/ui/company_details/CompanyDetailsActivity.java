@@ -3,6 +3,7 @@ package com.example.dustnshine.ui.company_details;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -68,18 +69,27 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.tvCompanyName.setText(companyName);
         activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
 
+
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(servicesIdList == null){
+                if(servicesNameList == null ){
                     Toast.makeText(CompanyDetailsActivity.this, "Please select services", Toast.LENGTH_SHORT).show();
                 } else {
+                    Log.d("Kinuha mong Service", servicesNameList.toString());
+
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
                     intent.putExtra("COMPANY_NAME", companyName);
                     intent.putExtra("COMPANY_ADDRESS", companyAddress);
                     intent.putIntegerArrayListExtra("SERVICES_ID_LIST", servicesIdList);
                     intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
+
+                    servicesNameList.clear();
+                    servicesIdList.clear();
+                    Intent restart = getIntent();
+                    finish();
+                    startActivity(restart);
                     startActivity(intent);
                 }
             }
@@ -89,6 +99,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             @Override
             public void onClick(View v) {
                 finish();
+
             }
         });
 
@@ -120,7 +131,15 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
 
     @Override
     public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName) {
-        servicesIdList = servicesID;
-        servicesNameList = servicesName;
+
+        if(servicesID == null || servicesName == null){
+            Log.d("Null na sya", "wala sya laman kaya oki lang");
+        }
+
+        else{
+            servicesIdList = servicesID;
+            servicesNameList = servicesName;
+            Log.d("Para d nakaka lito", "Palitan ko yung message daw");
+        }
     }
 }
