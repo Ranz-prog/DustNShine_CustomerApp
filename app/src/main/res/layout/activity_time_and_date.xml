@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,6 +50,7 @@
             android:layout_marginTop="10dp" />
 
         <RelativeLayout
+            android:id="@+id/pickTimeRelative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/calendar"
@@ -195,6 +198,7 @@
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_below="@+id/pickTimeRelative"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/app_theme_gold"
@@ -202,5 +206,5 @@
             android:textColor="@color/white" />
 
     </RelativeLayout>
-
+    </ScrollView>
 </layout>

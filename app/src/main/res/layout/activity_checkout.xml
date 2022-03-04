@@ -2,6 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -279,6 +282,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCheckOut"
+            android:layout_below="@+id/cardCustomerDetails"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
@@ -288,5 +292,7 @@
             android:textSize="14sp" />
 
     </RelativeLayout>
+
+    </ScrollView>
 
 </layout>
