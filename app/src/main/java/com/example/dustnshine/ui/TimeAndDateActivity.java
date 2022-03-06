@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -26,7 +28,7 @@ import java.util.Date;
 
 public class TimeAndDateActivity extends AppCompatActivity{
 
-    private LinearLayout btnBack;
+    private ImageView btnBack;
     private Intent intent;
     private static String companyName, companyAddress, selectedDate, selectedTime;
     private static int companyID;
@@ -44,7 +46,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         activityTimeAndDateBinding = DataBindingUtil.setContentView(this, R.layout.activity_time_and_date);
 
-        btnBack = findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.backDandT);
         calendarView = findViewById(R.id.calendar);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         intent = getIntent();

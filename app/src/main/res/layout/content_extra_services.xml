@@ -22,10 +22,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/quicksand_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/companydetails"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/servicePriceTv"
@@ -34,8 +34,10 @@
                 android:layout_below="@+id/serviceTitleTv"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Lorem ipsum lorem ipsum"
                 android:textColor="@color/app_theme_gold"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/description1Tv"
@@ -45,6 +47,9 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp" />
+                android:fontFamily="@font/roboto_regular"
+                android:text="Lorem ipsum lorem ipsum"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/description2Tv"
@@ -54,6 +59,9 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp" />
+                android:fontFamily="@font/roboto_regular"
+                android:text="Lorem ipsum lorem ipsum"
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/cbItem"

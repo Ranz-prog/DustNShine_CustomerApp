@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
 
     private RecyclerView rvServices;
     private List<ServicesModel> servicesModelList;
-    LinearLayout btnBack;
+    private ImageView btnBack;
     private ServicesAdapter servicesAdapter;
     private CompanyDetailsViewModel companyDetailsViewModel;
     private String userToken;
@@ -53,7 +54,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         companyDetailsViewModel = new ViewModelProvider(CompanyDetailsActivity.this).get(CompanyDetailsViewModel.class);
         userToken = SharedPrefManager.getInstance(CompanyDetailsActivity.this).getUserToken();
         intent = getIntent();
-        btnBack = findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.backCompanyDetails);
         rvServices = findViewById(R.id.rvServices);
         servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
 
