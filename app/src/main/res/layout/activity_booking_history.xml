@@ -38,20 +38,35 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imgNoTransactions"
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_centerInParent="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/no_transactions" />
-
-    <TextView
+    <RelativeLayout
+        android:id="@+id/middleSide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imgNoTransactions"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="-72dp"
-        android:text="No Transactions Yet . . . " />
+        android:layout_below="@+id/tvBookingHistory"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBookingHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+    </RelativeLayout>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imgNoTransactions"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="400dp"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:src="@drawable/no_transactions" />-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/imgNoTransactions"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginTop="-72dp"-->
+<!--        android:text="No Transactions Yet . . . " />-->
 
 </RelativeLayout>

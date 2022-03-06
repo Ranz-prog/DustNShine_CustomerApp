@@ -10,12 +10,12 @@
     android:paddingBottom="10dp">
 
 
-        <ImageView
-            android:id="@+id/backNotification"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/back" />
+    <ImageView
+        android:id="@+id/backNotification"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/back" />
 
     <TextView
         android:id="@+id/txtBookingHistory"
@@ -27,20 +27,36 @@
         android:textColor="@color/app_theme_gold"
         android:textSize="20sp" />
 
-    <ImageView
-        android:id="@+id/imgNoTransactions"
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_centerInParent="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/no_transactions" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imgNoTransactions"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="-89dp"
-        android:text="No Transactions Yet . . . " />
+        android:background="@color/background"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/tvConfirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Confirmation of Work Done!"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imgNoTransactions"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="400dp"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:src="@drawable/no_transactions" />-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/imgNoTransactions"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginTop="-89dp"-->
+<!--        android:text="No Transactions Yet . . . " />-->
 
 </RelativeLayout>

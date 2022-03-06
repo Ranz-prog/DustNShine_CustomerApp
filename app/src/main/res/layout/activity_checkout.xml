@@ -217,6 +217,31 @@
                         android:textSize="15sp" />
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/notes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/notes"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvNotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@+id/notes"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -265,12 +290,11 @@
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/TotalPrice"
+                    android:id="@+id/tvTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
-                    android:text="1000"
                     android:textSize="15sp" />
 
             </LinearLayout>

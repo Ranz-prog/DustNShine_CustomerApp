@@ -25,6 +25,7 @@ import com.example.dustnshine.databinding.ActivityCheckoutBinding;
 import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.QuantityListener;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.home.HomeFragment;
 
@@ -44,13 +45,16 @@ public class CheckOutActivity extends AppCompatActivity {
     private CheckOutViewModel checkOutViewModel;
     private ActivityCheckoutBinding activityCheckoutBinding;
     private Intent intent;
-    private static ArrayList<Integer> selectedServices;
+    private static ArrayList<Integer> servicesIDList;
     private static ArrayList<String> servicesNameList;
+    private static ArrayList<Integer> servicesPriceList;
+    private static String notes;
     private static ArrayList<Map<Integer, Integer>> services;
     private static Map<Integer, Integer> serviceList;
     private static String userToken, companyName, companyAddress, customerFirstName, customerLastName, customerContactNumber, customerAddress, selectedDate, selectedTime;
     private static int companyID;
     private AddressModel addressModel;
+    private static int total;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +67,10 @@ public class CheckOutActivity extends AppCompatActivity {
         intent = getIntent();
         btnBack = findViewById(R.id.btnBack);
 
+        servicesIDList = new ArrayList<Integer>();
+        servicesNameList = new ArrayList<String>();
+        servicesPriceList = new ArrayList<Integer>();
+
         customerFirstName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getFirst_name();
         customerLastName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getLast_name();
         customerContactNumber = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getMobile_number();
@@ -72,8 +80,12 @@ public class CheckOutActivity extends AppCompatActivity {
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
         selectedDate = intent.getStringExtra("SELECTED_DATE");
         selectedTime = intent.getStringExtra("SELECTED_TIME");
-        selectedServices = intent.getIntegerArrayListExtra("SERVICES_ID_LIST");
+        servicesIDList = intent.getIntegerArrayListExtra("SERVICES_ID_LIST");
         servicesNameList = intent.getStringArrayListExtra("SERVICES_NAME_LIST");
+        servicesPriceList = intent.getIntegerArrayListExtra("SERVICES_PRICE_LIST");
+        notes = intent.getStringExtra("NOTES");
+
+        total = servicesPrice(servicesPriceList);
 
         activityCheckoutBinding.tvCompanyName.setText(companyName);
         activityCheckoutBinding.tvCustomerName.setText(customerFirstName + " " + customerLastName);
@@ -81,13 +93,13 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.tvDateAndTime.setText(selectedDate + " " + selectedTime);
         activityCheckoutBinding.tvServiceName.setText(servicesNameList.toString());
         activityCheckoutBinding.tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
+        activityCheckoutBinding.tvNotes.setText(notes);
+        activityCheckoutBinding.tvTotal.setText(String.valueOf(total));
 
-        serviceList = new HashMap<Integer, Integer>();
-        getServices(serviceList, selectedServices);
-        Log.d("SERVICES", String.valueOf(serviceList));
         services = new ArrayList<Map<Integer, Integer>>();
+        serviceList = new HashMap<Integer, Integer>();
+        getServices(serviceList, servicesIDList);
         services.add(serviceList);
-        Log.d("TAG", String.valueOf(services));
 
         // DIALOG BOX START
         dialog = new Dialog(this);
@@ -117,7 +129,8 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getBookingRequest(userToken, companyID, "San Fabian City", "2022-02-15 01:08:45", 2000, services);
+                getBookingRequest(userToken, companyID, "Dagupan City", selectedDate + " " + selectedTime, total, services, notes);
+                Log.d("SERVICES", String.valueOf(services));
                 dialog.show();
                 // Showing the dialog here
             }
@@ -131,8 +144,8 @@ public class CheckOutActivity extends AppCompatActivity {
         });
 
     }
-    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Map<Integer, Integer>> services){
-        checkOutViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services).observe(CheckOutActivity.this, new Observer<BookingServiceResponse>() {
+    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services, String notes){
+        checkOutViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services, notes).observe(CheckOutActivity.this, new Observer<BookingServiceResponse>() {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
@@ -147,9 +160,19 @@ public class CheckOutActivity extends AppCompatActivity {
     public void getServices(Map<Integer, Integer> services, ArrayList<Integer> servicesList){
         for(int i = 0; i < servicesList.size(); i++){
             services.put(i, servicesList.get(i));
-            Log.d("TAG", services.toString());
         }
     }
+
+    public int servicesPrice(ArrayList<Integer> price)
+    {
+        int sum = 0;
+        for(int i = 0; i < price.size(); i++)
+        {
+            sum = sum + price.get(i);
+        }
+        return sum;
+    }
+
 
 }
 

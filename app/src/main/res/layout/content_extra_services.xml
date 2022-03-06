@@ -34,7 +34,6 @@
                 android:layout_below="@+id/serviceTitleTv"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Lorem ipsum lorem ipsum"
                 android:textColor="@color/app_theme_gold"
                 android:textSize="15sp" />
 
@@ -45,7 +44,6 @@
                 android:layout_below="@+id/servicePriceTv"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:text="Lorem ipsum lorem ipsum"
                 android:textSize="15sp" />
 
             <TextView
@@ -55,7 +53,6 @@
                 android:layout_below="@+id/description1Tv"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:text="Lorem ipsum lorem ipsum"
                 android:textSize="15sp" />
 
             <CheckBox

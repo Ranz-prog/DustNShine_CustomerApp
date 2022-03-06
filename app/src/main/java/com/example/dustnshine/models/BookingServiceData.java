@@ -9,7 +9,7 @@ import java.util.Map;
 public class BookingServiceData {
     private int user_id, status, id, company_id, total;
     private String address, start_datetime, updated_at, created_at;
-    private ArrayList<ServiceDetailsModel> services;
+    private List<ServiceDetailsModel> services;
     private List workers;
     private CustomerModel customer;
 
@@ -85,11 +85,11 @@ public class BookingServiceData {
         this.created_at = created_at;
     }
 
-    public ArrayList<ServiceDetailsModel> getServices() {
+    public List<ServiceDetailsModel> getServices() {
         return services;
     }
 
-    public void setServices(ArrayList<ServiceDetailsModel> services) {
+    public void setServices(List<ServiceDetailsModel> services) {
         this.services = services;
     }
 

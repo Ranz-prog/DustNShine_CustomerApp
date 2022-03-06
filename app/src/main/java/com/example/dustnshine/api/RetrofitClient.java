@@ -2,6 +2,8 @@ package com.example.dustnshine.api;
 
 import android.content.Context;
 
+import com.grapesnberries.curllogger.CurlLoggerInterceptor;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -15,11 +17,11 @@ public class RetrofitClient {
     private static final String BASE_URL = "https://lpn.boomtech.co/api/";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
-    private Context context;
+    private String TAG = "TAG";
 
     OkHttpClient defaultHttpClient = new OkHttpClient.Builder()
             .addInterceptor(
-                    new Interceptor() {
+                    new CurlLoggerInterceptor() {
                         @Override
                         public Response intercept(Interceptor.Chain chain) throws IOException {
                             Request request = chain.request().newBuilder()
@@ -27,9 +29,19 @@ public class RetrofitClient {
                                     .build();
                             return chain.proceed(request);
                         }
-                    }).build();
+                    }
+//                    new Interceptor() {
+//                        @Override
+//                        public Response intercept(Interceptor.Chain chain) throws IOException {
+//                            Request request = chain.request().newBuilder()
+//                                    .addHeader("Accept", "application/json")
+//                                    .build();
+//                            return chain.proceed(request);
+//                        }
+//                    }
+            ).build();
 
-    private RetrofitClient(){
+    private RetrofitClient() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -38,13 +50,13 @@ public class RetrofitClient {
     }
 
     public static synchronized RetrofitClient getInstance() {
-        if(mInstance == null) {
+        if (mInstance == null) {
             mInstance = new RetrofitClient();
         }
         return mInstance;
     }
 
-    public Api getApi(){
+    public Api getApi() {
         return retrofit.create(Api.class);
     }
 }

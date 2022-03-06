@@ -1,24 +1,22 @@
 package com.example.dustnshine.repository;
 
-import android.util.ArrayMap;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.models.BookingHistoryModel;
 import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.BookedServiceResponse;
+import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.response.ServiceResponse;
-import com.example.dustnshine.ui.GeneralCleaningActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +26,14 @@ import retrofit2.Response;
 
 public class BookingAPIRepo {
 
-    public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Map<Integer, Integer>> services){
+    public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services, String notes){
 
         final MutableLiveData<BookingServiceResponse> bookingServiceResponseMutableLiveData = new MutableLiveData<>();
-        Call<BookingServiceResponse> bookingServiceResponseCall = RetrofitClient.getInstance().getApi().bookService("Bearer " + userToken, company_id, address, start_datetime, total, services);
+        Call<BookingServiceResponse> bookingServiceResponseCall = RetrofitClient.getInstance().getApi().bookService("Bearer " + userToken, company_id, address, start_datetime, total, services, notes);
         bookingServiceResponseCall.enqueue(new Callback<BookingServiceResponse>() {
             @Override
             public void onResponse(Call<BookingServiceResponse> call, Response<BookingServiceResponse> response) {
+                Log.d("Services", String.valueOf(call.request()));
                 if(response.code() == 200){
                     bookingServiceResponseMutableLiveData.setValue(response.body());
                     Log.d("STATUS", String.valueOf(response.code()));
@@ -42,7 +41,7 @@ public class BookingAPIRepo {
                     bookingServiceResponseMutableLiveData.setValue(response.body());
                     Log.d("STATUS", String.valueOf(response.code()));
                 } else {
-
+                    Log.d("STATUS", String.valueOf(response.code()));
                 }
             }
             @Override
@@ -167,4 +166,27 @@ public class BookingAPIRepo {
         });
         return filteredService;
     }
+
+    public MutableLiveData<List<BookingHistoryModel>> getBookingHistory(String userToken){
+        final MutableLiveData<List<BookingHistoryModel>> bookingHistory = new MutableLiveData<>();
+        Call<BookingHistoryResponse> bookingHistoryResponseCall = RetrofitClient.getInstance().getApi().getBookingHistory("Bearer " + userToken);
+        bookingHistoryResponseCall.enqueue(new Callback<BookingHistoryResponse>() {
+            @Override
+            public void onResponse(Call<BookingHistoryResponse> call, Response<BookingHistoryResponse> response) {
+                if (response.code() == 200) {
+                    bookingHistory.setValue(response.body().getData());
+                    Log.d("TAG", "Success");
+                } else {
+                    Log.d("TAG", "Failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BookingHistoryResponse> call, Throwable t) {
+                Log.d("TAG", "Failure to connect");
+            }
+        });
+        return bookingHistory;
+    }
+
 }

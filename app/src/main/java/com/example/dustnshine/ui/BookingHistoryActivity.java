@@ -5,13 +5,33 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.R;
+import com.example.dustnshine.adapter.BookingAdapter;
+import com.example.dustnshine.adapter.BookingHistoryAdapter;
+import com.example.dustnshine.models.BookingHistoryModel;
+import com.example.dustnshine.models.BookingServiceData;
+import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.booking.BookingFragment;
+import com.example.dustnshine.ui.booking.BookingFragmentViewModel;
 
-public class BookingHistoryActivity extends AppCompatActivity {
-    LinearLayout returnHome;
+import java.util.List;
+
+public class BookingHistoryActivity extends AppCompatActivity implements BookingHistoryAdapter.OnClickMessageListener {
+
+    private LinearLayout btnBack;
+    private RecyclerView rvBookingHistory;
+    private List<BookingHistoryModel> bookingHistoryModelList;
+    private BookingHistoryAdapter bookingHistoryAdapter;
+    private BookingHistoryViewModel bookingHistoryViewModel;
+    private String userToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +40,41 @@ public class BookingHistoryActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_booking_history);
 
-        returnHome = findViewById(R.id.btnReturnBooking);
+        btnBack = findViewById(R.id.btnBack);
+        rvBookingHistory = findViewById(R.id.rvBookingHistory);
+        userToken = SharedPrefManager.getInstance(BookingHistoryActivity.this).getUserToken();
+        rvBookingHistory.setHasFixedSize(true);
+        rvBookingHistory.setLayoutManager(new LinearLayoutManager(BookingHistoryActivity.this));
+        bookingHistoryAdapter = new BookingHistoryAdapter(bookingHistoryModelList, BookingHistoryActivity.this, this);
+        bookingHistoryViewModel = new ViewModelProvider(BookingHistoryActivity.this).get(BookingHistoryViewModel.class);
 
-        returnHome.setOnClickListener(new View.OnClickListener() {
+        getBookingHistory(userToken);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+    }
+
+    private void getBookingHistory(String userToken) {
+        bookingHistoryViewModel.getBookingHistory(userToken).observe(BookingHistoryActivity.this, new Observer<List<BookingHistoryModel>>() {
+            @Override
+            public void onChanged(List<BookingHistoryModel> bookingHistoryModels) {
+                if (bookingHistoryModels != null) {
+                    bookingHistoryModelList = bookingHistoryModels;
+                    bookingHistoryAdapter.setData(bookingHistoryModelList);
+                    rvBookingHistory.setAdapter(bookingHistoryAdapter);
+                } else {
+                    Toast.makeText(BookingHistoryActivity.this, "No Transactions yet", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onClickMessage(int adapterPosition) {
+
     }
 }

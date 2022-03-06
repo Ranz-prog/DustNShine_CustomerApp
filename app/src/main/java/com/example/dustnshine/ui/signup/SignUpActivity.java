@@ -86,6 +86,24 @@ public class SignUpActivity extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(passwordConfirmation)) {
                     activitySignupBinding.etPasswordConfirmation.setError("Password Confirmation is required");
                     activitySignupBinding.etPasswordConfirmation.requestFocus();
+                } else if (TextUtils.isEmpty(house_number)) {
+                    activitySignupBinding.etHouseNo.setError("Please input your house no.");
+                    activitySignupBinding.etHouseNo.requestFocus();
+                } else if (TextUtils.isEmpty(street)) {
+                    activitySignupBinding.etStreet.setError("Please input your street");
+                    activitySignupBinding.etStreet.requestFocus();
+                } else if (TextUtils.isEmpty(barangay)) {
+                    activitySignupBinding.etBarangay.setError("Please input your barangay");
+                    activitySignupBinding.etBarangay.requestFocus();
+                } else if (TextUtils.isEmpty(municipality)) {
+                    activitySignupBinding.etCityMunicipality.setError("Please input your city/municipality");
+                    activitySignupBinding.etCityMunicipality.requestFocus();
+                } else if (TextUtils.isEmpty(province)) {
+                    activitySignupBinding.etProvince.setError("Please input your province");
+                    activitySignupBinding.etProvince.requestFocus();
+                } else if (TextUtils.isEmpty(zipcode)) {
+                    activitySignupBinding.etZipCode.setError("Please input your zipcode");
+                    activitySignupBinding.etZipCode.requestFocus();
                 } else {
                     userSignUp(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, 1234.01, 98.01, zipcode, password, passwordConfirmation);
                 }

@@ -2,8 +2,10 @@ package com.example.dustnshine.api;
 
 import android.util.ArrayMap;
 
+import com.example.dustnshine.models.BookingHistoryModel;
 import com.example.dustnshine.models.SearchCompanyModel;
 import com.example.dustnshine.response.BookedServiceResponse;
+import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
@@ -32,20 +34,20 @@ public interface Api {
     @FormUrlEncoded
     @POST("register")
     Call<SignUpResponse> userSignUp(
-        @Field("first_name") String first_name,
-        @Field("last_name") String last_name,
-        @Field("mobile_number") String mobile_number,
-        @Field("email") String email,
-        @Field("house_number") String house_number,
-        @Field("street") String street,
-        @Field("barangay") String barangay,
-        @Field("municipality") String municipality,
-        @Field("province") String province,
-        @Field("latitude") double latitude,
-        @Field("longitude") double longitude,
-        @Field("zipcode") String zipcode,
-        @Field("password") String password,
-        @Field("password_confirmation") String password_confirmation
+            @Field("first_name") String first_name,
+            @Field("last_name") String last_name,
+            @Field("mobile_number") String mobile_number,
+            @Field("email") String email,
+            @Field("house_number") String house_number,
+            @Field("street") String street,
+            @Field("barangay") String barangay,
+            @Field("municipality") String municipality,
+            @Field("province") String province,
+            @Field("latitude") double latitude,
+            @Field("longitude") double longitude,
+            @Field("zipcode") String zipcode,
+            @Field("password") String password,
+            @Field("password_confirmation") String password_confirmation
     );
 
     @FormUrlEncoded
@@ -53,7 +55,7 @@ public interface Api {
     Call<SignInResponse> userSignIn(
             @Field("email") String email,
             @Field("password") String password
-            );
+    );
 
     @POST("logout")
     Call<LogoutResponse> userLogOut(@Header("Authorization") String logoutRequest);
@@ -66,7 +68,17 @@ public interface Api {
             @Field("address") String address,
             @Field("sched_datetime") String sched_datetime,
             @Field("total") int total,
-            @Field("services") ArrayList<Map<Integer, Integer>> services
+            @Field("services") List<Map<Integer, Integer>> services,
+            @Field("note") String note
+    );
+
+    @FormUrlEncoded
+    @POST("feedback")
+    Call<BookingServiceResponse> userFeedback(
+            @Header("Authorization") String bookingRequest,
+            @Field("company_id") int company_id,
+            @Field("address") String address,
+            @Field("sched_datetime") String sched_datetime
     );
 
     @GET("companies")
@@ -87,4 +99,6 @@ public interface Api {
     @GET("filter-service/{service}")
     Call<FilteredServiceResponse> getFilteredService(@Path("service") int service, @Header("Authorization") String filterServiceRequest);
 
+    @GET("history")
+    Call<BookingHistoryResponse> getBookingHistory(@Header("Authorization") String bookingHistoryRequest);
 }

@@ -36,6 +36,8 @@ public class TimeAndDateActivity extends AppCompatActivity{
     private ActivityTimeAndDateBinding activityTimeAndDateBinding;
     private static ArrayList<Integer> servicesIDList;
     private static ArrayList<String> servicesNameList;
+    private static ArrayList<Integer> servicesPriceList;
+    private String notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,12 @@ public class TimeAndDateActivity extends AppCompatActivity{
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
         servicesIDList = intent.getIntegerArrayListExtra("SERVICES_ID_LIST");
         servicesNameList = intent.getStringArrayListExtra("SERVICES_NAME_LIST");
+        servicesPriceList = intent.getIntegerArrayListExtra("SERVICES_PRICE_LIST");
+        notes = intent.getStringExtra("NOTES");
+
+        Log.d("Nagana", servicesIDList.toString());
+        Log.d("Nagana", servicesNameList.toString());
+        Log.d("Nagana", servicesPriceList.toString());
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +84,8 @@ public class TimeAndDateActivity extends AppCompatActivity{
             public void onClick(View view) {
                 if(selectedDate == null || selectedTime == null){
                     Toast.makeText(TimeAndDateActivity.this, "Please select Date and Time", Toast.LENGTH_SHORT).show();
+                } else if(selectedDate == null) {
+
                 } else {
                     Intent intent = new Intent(TimeAndDateActivity.this, CheckOutActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
@@ -83,6 +93,8 @@ public class TimeAndDateActivity extends AppCompatActivity{
                     intent.putExtra("COMPANY_ADDRESS", companyAddress);
                     intent.putIntegerArrayListExtra("SERVICES_ID_LIST", servicesIDList);
                     intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
+                    intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
+                    intent.putExtra("NOTES", notes);
                     intent.putExtra("SELECTED_DATE", selectedDate);
                     intent.putExtra("SELECTED_TIME", selectedTime);
                     startActivity(intent);
@@ -93,7 +105,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnEightAM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "8:00 AM";
+                selectedTime = "08:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnTenAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -110,7 +122,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnNineAM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "9:00 AM";
+                selectedTime = "09:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnTenAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -127,7 +139,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnTenAM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "10:00 AM";
+                selectedTime = "10:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -144,7 +156,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnElevenAM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "11:00 AM";
+                selectedTime = "11:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -161,7 +173,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnTwelvePM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "12:00 PM";
+                selectedTime = "12:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -178,7 +190,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnOnePM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "1:00 PM";
+                selectedTime = "13:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -195,7 +207,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnTwoPM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "2:00 PM";
+                selectedTime = "14:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -212,7 +224,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnThreePM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "3:00 PM";
+                selectedTime = "15:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -229,7 +241,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnFourPM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "4:00 PM";
+                selectedTime = "16:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
@@ -246,7 +258,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnFivePM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedTime = "5:00 PM";
+                selectedTime = "17:00:00";
                 view.setBackgroundResource(R.drawable.datetime_selected_round_button);
                 activityTimeAndDateBinding.btnEightAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);
                 activityTimeAndDateBinding.btnNineAM.setBackgroundResource(R.drawable.datetime_unselected_round_button);

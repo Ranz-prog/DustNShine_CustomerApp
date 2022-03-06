@@ -3,7 +3,6 @@ package com.example.dustnshine.ui.company_details;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -24,7 +23,6 @@ import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.QuantityListener;
 import com.example.dustnshine.ui.TimeAndDateActivity;
-import com.example.dustnshine.ui.checkout.CheckOutActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +42,8 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     private Intent intent;
     private static ArrayList<Integer> servicesIdList;
     private static ArrayList<String> servicesNameList;
+    private static ArrayList<Integer> servicesPriceList;
+    private static String notes;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         intent = getIntent();
         btnBack = findViewById(R.id.btnBack);
         rvServices = findViewById(R.id.rvServices);
-                servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
+        servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
@@ -63,30 +63,33 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
 
         rvServices.setHasFixedSize(true);
         rvServices.setLayoutManager(new LinearLayoutManager(this));
-
         getServices(userToken);
 
         activityCompanyDetailsBinding.tvCompanyName.setText(companyName);
         activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
 
-
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(servicesNameList == null ){
+                if (servicesNameList == null) {
                     Toast.makeText(CompanyDetailsActivity.this, "Please select services", Toast.LENGTH_SHORT).show();
-                } else {
+                } else if(notes == null){
+                    notes = activityCompanyDetailsBinding.etNotes.getText().toString();
+                    Toast.makeText(CompanyDetailsActivity.this, "Notes is empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     Log.d("Kinuha mong Service", servicesNameList.toString());
-
+                    notes = activityCompanyDetailsBinding.etNotes.getText().toString();
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
                     intent.putExtra("COMPANY_NAME", companyName);
                     intent.putExtra("COMPANY_ADDRESS", companyAddress);
                     intent.putIntegerArrayListExtra("SERVICES_ID_LIST", servicesIdList);
                     intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
-
-                    servicesNameList.clear();
-                    servicesIdList.clear();
+                    intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
+                    intent.putExtra("NOTES", notes);
+//                    servicesNameList.clear();
+//                    servicesIdList.clear();
                     Intent restart = getIntent();
                     finish();
                     startActivity(restart);
@@ -105,12 +108,11 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
 
     }
 
-
-    public void getServices(String userToken){
+    public void getServices(String userToken) {
         companyDetailsViewModel.getServicesList(userToken).observe(CompanyDetailsActivity.this, new Observer<List<ServicesModel>>() {
             @Override
             public void onChanged(List<ServicesModel> servicesModels) {
-                if(servicesModels != null){
+                if (servicesModels != null) {
                     servicesModelList = servicesModels;
                     servicesAdapter.setData(servicesModels);
                     rvServices.setAdapter(servicesAdapter);
@@ -123,22 +125,19 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         finish();
     }
 
 
     @Override
-    public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName) {
-
-        if(servicesID == null || servicesName == null){
+    public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName, ArrayList<Integer> servicesPrice) {
+        if (servicesID == null || servicesName == null) {
             Log.d("Null na sya", "wala sya laman kaya oki lang");
-        }
-
-        else{
+        } else {
             servicesIdList = servicesID;
             servicesNameList = servicesName;
+            servicesPriceList = servicesPrice;
             Log.d("Para d nakaka lito", "Palitan ko yung message daw");
         }
     }

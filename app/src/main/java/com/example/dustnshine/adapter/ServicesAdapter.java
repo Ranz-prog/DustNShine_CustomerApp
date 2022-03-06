@@ -29,6 +29,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     QuantityListener quantityListener;
     private ArrayList<Integer> servicesID = new ArrayList<>();
     private ArrayList<String> servicesName = new ArrayList<>();
+    private ArrayList<Integer> servicesPrice = new ArrayList<>();
 
     public ServicesAdapter(List<ServicesModel> servicesModelList, Context context, QuantityListener quantityListener) {
         this.servicesModelList = servicesModelList;
@@ -56,8 +57,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder holder, int position) {
         int itemPosition = position;
         holder.serviceTitle.setText(servicesModelList.get(position).getName());
-        holder.servicePrice.setText(servicesModelList.get(position).getCreated_at());
-        holder.serviceDetails1.setText(servicesModelList.get(position).getDescription());
+        holder.servicePrice.setText(servicesModelList.get(position).getDescription());
+        holder.serviceDetails1.setText("P" + " " + String.valueOf(servicesModelList.get(position).getPrice()) + "/" + servicesModelList.get(position).getTime());
         holder.serviceDetails2.setText(servicesModelList.get(position).getCreated_at());
 
         holder.cbItem.setChecked(false);
@@ -67,20 +68,22 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
                 if (holder.cbItem.isChecked()) {
                     servicesID.add(servicesModelList.get(itemPosition).getId());
                     servicesName.add(servicesModelList.get(itemPosition).getName());
+                    servicesPrice.add(servicesModelList.get(itemPosition).getPrice());
                     Log.d("Nagana", servicesID.toString());
-
-
+                    Log.d("Nagana", servicesName.toString());
+                    Log.d("Nagana", servicesPrice.toString());
                 } else {
-
                     int index = servicesID.indexOf(servicesModelList.get(itemPosition).getId());
                     int index2 = servicesName.indexOf(servicesModelList.get(itemPosition).getName());
+                    int index3 = servicesPrice.indexOf(servicesModelList.get(itemPosition).getPrice());
                     servicesID.remove(index);
                     servicesName.remove(index2);
-
-
+                    servicesPrice.remove(index3);
                     Log.d("D nagana", servicesID.toString());
+                    Log.d("D nagana", servicesName.toString());
+                    Log.d("D nagana", servicesPrice.toString());
                 }
-                quantityListener.onQuantityChange(servicesID, servicesName);
+                quantityListener.onQuantityChange(servicesID, servicesName, servicesPrice);
             }
         });
     }
@@ -105,8 +108,6 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             servicePrice = itemView.findViewById(R.id.servicePriceTv);
             serviceDetails1 = itemView.findViewById(R.id.description1Tv);
             serviceDetails2 = itemView.findViewById(R.id.description2Tv);
-
-
 
         }
     }

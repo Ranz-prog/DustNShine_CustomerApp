@@ -72,9 +72,9 @@ public class SignInActivity extends AppCompatActivity {
             public void signInCallback(Integer statusCode, SignInResponse signInResponse) {
                 if(statusCode == 200){
                     Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    getUserInformation(signInResponse.getData().getToken());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
-                    getUserInformation(signInResponse.getData().getToken());
                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -157,6 +157,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -174,12 +175,8 @@ public class SignInActivity extends AppCompatActivity {
                     Log.d("TAG", "Invalid Request");
                 } else {
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserAddress(userManagementResponse.getData().get(0).getAddress().get(0));
-                    Log.d("TAG", userManagementResponse.getData().get(0).getAddress().get(0).getBarangay());
                 }
             }
         });
     }
-
-
-
 }

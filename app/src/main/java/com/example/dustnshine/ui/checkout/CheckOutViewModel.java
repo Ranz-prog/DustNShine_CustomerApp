@@ -23,9 +23,9 @@ public class CheckOutViewModel extends ViewModel {
         bookingAPIRepo = new BookingAPIRepo();
     }
 
-    public LiveData<BookingServiceResponse> getBookingServiceRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Map<Integer, Integer>> services){
+    public LiveData<BookingServiceResponse> getBookingServiceRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services, String notes){
         if (bookingServiceResponseMutableLiveData == null) {
-            bookingServiceResponseMutableLiveData = bookingAPIRepo.bookingRequest(userToken, company_id, address, start_datetime, total, services);
+            bookingServiceResponseMutableLiveData = bookingAPIRepo.bookingRequest(userToken, company_id, address, start_datetime, total, services, notes);
         }
         return bookingServiceResponseMutableLiveData;
     }

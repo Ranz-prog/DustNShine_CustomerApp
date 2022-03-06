@@ -164,7 +164,6 @@
                 android:layout_marginTop="10dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txtInputHouseType"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -172,6 +171,7 @@
                     android:textSize="18sp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNotes"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginHorizontal="10dp"

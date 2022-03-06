@@ -2,6 +2,7 @@ package com.example.dustnshine.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,6 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
         homeFragmentViewModel = new ViewModelProvider(HomeFragment.this).get(HomeFragmentViewModel.class);
-        addressModel = SharedPrefManager.getInstance(getContext()).getUserAddress();
 
         btnManageAccount = view.findViewById(R.id.btnManageAccount);
         btnNotification = view.findViewById(R.id.btnNotification);
@@ -75,6 +75,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recommendationRecycler.setLayoutManager(layoutRecommendations);
 
+        addressModel = SharedPrefManager.getInstance(getContext()).getUserAddress();
         tvCityMunicipality.setText(addressModel.getMunicipality());
         tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
         getCompanyList(userToken);
