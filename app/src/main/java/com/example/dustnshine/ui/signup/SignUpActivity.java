@@ -66,19 +66,22 @@ public class SignUpActivity extends AppCompatActivity {
                 passwordConfirmation = activitySignupBinding.etPasswordConfirmation.getText().toString();
 
                 if (TextUtils.isEmpty(firstName)) {
-                    activitySignupBinding.etFirstName.setError("Email is required");
+                    activitySignupBinding.etFirstName.setError("Please enter your First Name");
                     activitySignupBinding.etFirstName.requestFocus();
                 } else if (TextUtils.isEmpty(lastName)) {
-                    activitySignupBinding.etLastName.setError("Invalid Email");
+                    activitySignupBinding.etLastName.setError("Please enter your Last Name");
                     activitySignupBinding.etLastName.requestFocus();
-                } else if (TextUtils.isEmpty(mobileNumber)) {
-                    activitySignupBinding.etMobileNumber.setError("Email is required");
-                    activitySignupBinding.etMobileNumber.requestFocus();
                 } else if (TextUtils.isEmpty(email)) {
-                    activitySignupBinding.etEmailAddress.setError("Email is required");
+                    activitySignupBinding.etEmailAddress.setError("Please enter your Email Address");
                     activitySignupBinding.etEmailAddress.requestFocus();
+                } else if (TextUtils.isEmpty(mobileNumber)) {
+                    activitySignupBinding.etMobileNumber.setError("Please enter your Mobile Number");
+                    activitySignupBinding.etMobileNumber.requestFocus();
+                } else if (mobileNumber.length() < 11 || mobileNumber.length() > 11 ) {
+                    activitySignupBinding.etMobileNumber.setError("Mobile number must be 11 characters");
+                    activitySignupBinding.etMobileNumber.requestFocus();
                 } else if (TextUtils.isEmpty(password)) {
-                    activitySignupBinding.etPassword.setError("Password is required");
+                    activitySignupBinding.etPassword.setError("Please enter your Password");
                     activitySignupBinding.etPassword.requestFocus();
                 } else if (password.length() < 8) {
                     activitySignupBinding.etPassword.setError("Password must be at least 8 characters");
@@ -86,23 +89,26 @@ public class SignUpActivity extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(passwordConfirmation)) {
                     activitySignupBinding.etPasswordConfirmation.setError("Password Confirmation is required");
                     activitySignupBinding.etPasswordConfirmation.requestFocus();
+                }  else if (!(password.equals(passwordConfirmation))) {
+                    activitySignupBinding.etPasswordConfirmation.setError("Re-typed password does not match");
+                    activitySignupBinding.etPasswordConfirmation.requestFocus();
                 } else if (TextUtils.isEmpty(house_number)) {
-                    activitySignupBinding.etHouseNo.setError("Please input your house no.");
+                    activitySignupBinding.etHouseNo.setError("Please enter your House No.");
                     activitySignupBinding.etHouseNo.requestFocus();
                 } else if (TextUtils.isEmpty(street)) {
-                    activitySignupBinding.etStreet.setError("Please input your street");
+                    activitySignupBinding.etStreet.setError("Please enter your Street");
                     activitySignupBinding.etStreet.requestFocus();
                 } else if (TextUtils.isEmpty(barangay)) {
-                    activitySignupBinding.etBarangay.setError("Please input your barangay");
+                    activitySignupBinding.etBarangay.setError("Please enter your Barangay");
                     activitySignupBinding.etBarangay.requestFocus();
                 } else if (TextUtils.isEmpty(municipality)) {
-                    activitySignupBinding.etCityMunicipality.setError("Please input your city/municipality");
+                    activitySignupBinding.etCityMunicipality.setError("Please enter your City/ Municipality");
                     activitySignupBinding.etCityMunicipality.requestFocus();
                 } else if (TextUtils.isEmpty(province)) {
-                    activitySignupBinding.etProvince.setError("Please input your province");
+                    activitySignupBinding.etProvince.setError("Please enter your Province");
                     activitySignupBinding.etProvince.requestFocus();
                 } else if (TextUtils.isEmpty(zipcode)) {
-                    activitySignupBinding.etZipCode.setError("Please input your zipcode");
+                    activitySignupBinding.etZipCode.setError("Please enter your Zipcode");
                     activitySignupBinding.etZipCode.requestFocus();
                 } else {
                     userSignUp(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, 1234.01, 98.01, zipcode, password, passwordConfirmation);

@@ -61,17 +61,20 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         holder.serviceDetails1.setText("P" + " " + String.valueOf(servicesModelList.get(position).getPrice()) + "/" + servicesModelList.get(position).getTime());
         holder.serviceDetails2.setText(servicesModelList.get(position).getCreated_at());
 
-        holder.cbItem.setChecked(false);
+
         holder.cbItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (holder.cbItem.isChecked()) {
+
                     servicesID.add(servicesModelList.get(itemPosition).getId());
                     servicesName.add(servicesModelList.get(itemPosition).getName());
+
                     servicesPrice.add(servicesModelList.get(itemPosition).getPrice());
-                    Log.d("Nagana", servicesID.toString());
-                    Log.d("Nagana", servicesName.toString());
-                    Log.d("Nagana", servicesPrice.toString());
+                    Log.d("Checked", servicesID.toString());
+                    Log.d("Checked", servicesName.toString());
+                    Log.d("Checked", servicesPrice.toString());
+
                 } else {
                     int index = servicesID.indexOf(servicesModelList.get(itemPosition).getId());
                     int index2 = servicesName.indexOf(servicesModelList.get(itemPosition).getName());
@@ -79,12 +82,14 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
                     servicesID.remove(index);
                     servicesName.remove(index2);
                     servicesPrice.remove(index3);
-                    Log.d("D nagana", servicesID.toString());
-                    Log.d("D nagana", servicesName.toString());
-                    Log.d("D nagana", servicesPrice.toString());
+                    Log.d("Unchecked", servicesID.toString());
+                    Log.d("Unchecked", servicesName.toString());
+                    Log.d("Unchecked", servicesPrice.toString());
                 }
                 quantityListener.onQuantityChange(servicesID, servicesName, servicesPrice);
+
             }
+
         });
     }
 
