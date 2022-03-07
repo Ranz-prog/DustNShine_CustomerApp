@@ -79,6 +79,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/firstname"
+                        android:inputType="text"
                         android:maxLength="15"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -98,6 +99,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/lastname"
+                        android:inputType="text"
                         android:maxLength="15"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -142,6 +144,7 @@
                     android:cursorVisible="true"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/mobilenumber"
+                    android:inputType="number"
                     android:maxLength="11"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -225,6 +228,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/houseno"
+                        android:inputType="number"
                         android:maxLength="5"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -244,6 +248,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/street"
+                        android:inputType="text"
                         android:maxLength="15"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -272,6 +277,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/barangay"
+                        android:inputType="text"
                         android:maxLength="15"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -291,6 +297,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/citymunicipality"
+                        android:inputType="text"
                         android:maxLength="15"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -319,6 +326,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/province"
+                        android:inputType="text"
                         android:maxLength="15"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -337,6 +345,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/zipcode"
+                        android:inputType="number"
                         android:maxLength="5"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>

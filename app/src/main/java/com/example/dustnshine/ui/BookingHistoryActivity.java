@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class BookingHistoryActivity extends AppCompatActivity implements BookingHistoryAdapter.OnClickMessageListener {
 
-    private LinearLayout btnBack;
+    private ImageView btnBack;
     private RecyclerView rvBookingHistory;
     private List<BookingHistoryModel> bookingHistoryModelList;
     private BookingHistoryAdapter bookingHistoryAdapter;
@@ -40,7 +41,7 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
 
         setContentView(R.layout.activity_booking_history);
 
-        btnBack = findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.backBookingHistory);
         rvBookingHistory = findViewById(R.id.rvBookingHistory);
         userToken = SharedPrefManager.getInstance(BookingHistoryActivity.this).getUserToken();
         rvBookingHistory.setHasFixedSize(true);

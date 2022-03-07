@@ -69,7 +69,7 @@ public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRec
             super(itemView);
 
 //            companyImage = itemView.findViewById(R.id.companyImg);
-            companyName = itemView.findViewById(R.id.companyNameTVSAR);
+            companyName = itemView.findViewById(R.id.companyNameTVFavSAR);
             companyLocation = itemView.findViewById(R.id.companyLocationTVSAR);
 //            companyRating = itemView.findViewById(R.id.companyRatingTV);
 

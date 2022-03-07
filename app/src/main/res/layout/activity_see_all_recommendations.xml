@@ -10,62 +10,33 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
 
-            <LinearLayout
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="7dp"
-                android:background="@drawable/roundbutton"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/back" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/backSAR"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/back" />
 
 
             <EditText
                 android:id="@+id/edtSearchCompany"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="5dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/btnSearch"
-                android:layout_toRightOf="@+id/btnBack"
+                android:layout_toRightOf="@+id/backSAR"
                 android:background="@drawable/roundbutton"
-                android:fontFamily="@font/quicksand_medium"
-                android:hint="search..."
+                android:fontFamily="@font/roboto_regular"
+                android:hint="Search..."
                 android:padding="8dp"
-                android:textColor="@color/app_theme_gold"
-                android:textSize="15sp" />
+                android:textColorHighlight="@color/app_theme_black"
+                android:textColorLink="@color/line_divider_color"
+                android:textSize="14sp" />
 
-            <LinearLayout
-                android:id="@+id/btnSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="7dp"
-                android:background="@drawable/roundbutton"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="10dp">
 
-                <Button
-                    android:id="@+id/searchIcon"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/search" />
-            </LinearLayout>
 
 
             <RelativeLayout
@@ -82,6 +53,26 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp" />
             </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/btnSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundbutton"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/searchIcon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/searchic" />
+            </LinearLayout>
         </RelativeLayout>
 
 </ScrollView>
