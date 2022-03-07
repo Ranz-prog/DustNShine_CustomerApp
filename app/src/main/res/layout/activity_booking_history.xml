@@ -8,31 +8,19 @@
     android:paddingRight="10dp"
     android:paddingBottom="10dp">
 
-    <LinearLayout
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/roundbutton"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_weight="1"
-            android:src="@drawable/back" />
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/backBookingHistory"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_weight="1"
+        android:src="@drawable/back" />
 
     <TextView
         android:id="@+id/tvBookingHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/quicksand_medium"
+        android:fontFamily="@font/montserrat_bold"
         android:text="@string/bookinghistory"
         android:textColor="@color/app_theme_gold"
         android:textSize="20sp"

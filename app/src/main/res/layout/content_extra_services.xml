@@ -33,7 +33,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/serviceTitleTv"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Lorem ipsum lorem ipsum"
                 android:textColor="@color/app_theme_gold"
@@ -67,37 +66,10 @@
                 android:id="@+id/cbItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/description2Tv"
                 android:layout_alignParentEnd="true"
                 android:buttonTint="@color/app_theme_blue" />
 
 
-            <Button
-                android:id="@+id/addBtn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="5dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/plus_small" />
-
-            <TextView
-                android:id="@+id/numbersTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/addBtn"
-                android:background="@drawable/container_border"
-                android:padding="3dp"
-                android:text="0"
-                android:textSize="20dp" />
-
-            <Button
-                android:layout_marginTop="5dp"
-                android:id="@+id/minusBtn"
-                android:layout_width="25dp"
-                android:layout_toLeftOf="@+id/numbersTv"
-                android:layout_height="25dp"
-
-                android:background="@drawable/minus_small" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

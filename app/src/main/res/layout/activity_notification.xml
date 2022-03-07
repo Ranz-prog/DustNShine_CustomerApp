@@ -37,6 +37,7 @@
             android:id="@+id/tvConfirmation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="Confirmation of Work Done!"
             android:textSize="17sp" />

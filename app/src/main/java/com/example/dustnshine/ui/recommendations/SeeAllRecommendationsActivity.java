@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -31,7 +32,8 @@ import retrofit2.Response;
 
 public class SeeAllRecommendationsActivity extends AppCompatActivity implements SeeAllRecommendationsAdapter.OnClickMessageListener{
 
-    private LinearLayout btnBack, btnSearch;
+    private LinearLayout  btnSearch;
+    private ImageView btnBack;
     private RecyclerView rvRecommendations;
     private List<RecommendationModel> recommendationModelList;
     private SeeAllRecommendationsAdapter seeAllRecommendationsAdapter;
@@ -50,7 +52,7 @@ public class SeeAllRecommendationsActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_see_all_recommendations);
 
         searchView = findViewById(R.id.edtSearchCompany);
-        btnBack = findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.backSAR);
         btnSearch = findViewById(R.id.btnSearch);
         rvRecommendations = findViewById(R.id.rvRecommendations);
         userToken = SharedPrefManager.getInstance(SeeAllRecommendationsActivity.this).getUserToken();
