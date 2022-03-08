@@ -182,7 +182,7 @@
                             android:layout_width="330dp"
                             android:layout_height="wrap_content"
                             app:boxStrokeWidth="0dp"
-
+                            app:passwordToggleEnabled="true"
                             app:boxStrokeWidthFocused="0dp">
 
                             <com.google.android.material.textfield.TextInputEditText
