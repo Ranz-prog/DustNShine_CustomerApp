@@ -3,6 +3,7 @@ package com.example.dustnshine.ui.manage_account;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -23,15 +24,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityManageAccountBinding;
 import com.example.dustnshine.models.AddressModel;
+import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.models.User;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.home.HomeFragment;
 import com.example.dustnshine.ui.signin.SignInActivity;
-import com.example.dustnshine.ui.signin.SignInViewModel;
 
 public class ManageAccountActivity extends AppCompatActivity {
 
@@ -41,11 +44,14 @@ public class ManageAccountActivity extends AppCompatActivity {
     private CardView personalInfoCardView;
     private Button reset, edit;
     private Dialog dialog;
-    private EditText fname, lname, mobileNumber,emailAdd, pass, retypePass, houseNo, street, barangay, city, province, zipCode; // wala pang data
     private static int number;
     private String text, userToken;
     private ActivityManageAccountBinding activitySignupBinding;
     private ManageAccountViewModel manageAccountViewModel;
+    private static String firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, password, passwordConfirmation;
+    private static int userID;
+    private EditText etFirstName;
+    private Fragment homeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,8 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_manage_account);
         manageAccountViewModel =  new ViewModelProvider(ManageAccountActivity.this).get(ManageAccountViewModel.class);
         userToken = SharedPrefManager.getInstance(ManageAccountActivity.this).getUserToken();
+        etFirstName = findViewById(R.id.etFirstName);
+        homeFragment = new HomeFragment();
 
         btnBack = findViewById(R.id.backManageAcc);
         personalInfoView = findViewById(R.id.personal_info_view);
@@ -62,36 +70,23 @@ public class ManageAccountActivity extends AppCompatActivity {
         tvLogout = findViewById(R.id.tvLogout);
         tvManageCards = findViewById(R.id.tvManageCards);
         personalInfoCardView = findViewById(R.id.personal_info_cardview);
-
-        fname = findViewById(R.id.etFirstName);
-        lname = findViewById(R.id.etLastName);
-        mobileNumber = findViewById(R.id.etMobileNumber);
-        emailAdd = findViewById(R.id.etEmailAddress);
-
-        pass = findViewById(R.id.etPassword);
-        retypePass = findViewById(R.id.etRetypePassword);
-        houseNo = findViewById(R.id.etHouseNo);
-        street = findViewById(R.id.etStreet);
-        barangay = findViewById(R.id.etBarangay);
-        city = findViewById(R.id.etCityMunicipality);
-        province = findViewById(R.id.etProvince);
-        zipCode = findViewById(R.id.etProvince);
+        getUserInformation(userToken);
+        disabled();
 
         User user = SharedPrefManager.getInstance(this).getUser();
         AddressModel addressModel = SharedPrefManager.getInstance(this).getUserAddress();
+//        activitySignupBinding.etFirstName.setText(user.getFirst_name());
+//        activitySignupBinding.etLastName.setText(user.getLast_name());
+//        activitySignupBinding.etMobileNumber.setText(user.getMobile_number());
+//        activitySignupBinding.etEmailAddress.setText(user.getEmail());
+//        activitySignupBinding.etHouseNo.setText(String.valueOf(addressModel.getHouse_number()));
+//        activitySignupBinding.etStreet.setText(addressModel.getStreet());
+//        activitySignupBinding.etBarangay.setText(addressModel.getBarangay());
+//        activitySignupBinding.etCityMunicipality.setText(addressModel.getMunicipality());
+//        activitySignupBinding.etProvince.setText(addressModel.getProvince());
+//        activitySignupBinding.etZipCode.setText(addressModel.getZipcode());
 
-        activitySignupBinding.etFirstName.setText(user.getFirst_name());
-        activitySignupBinding.etLastName.setText(user.getLast_name());
-        activitySignupBinding.etMobileNumber.setText(user.getMobile_number());
-        activitySignupBinding.etEmailAddress.setText(user.getEmail());
-        activitySignupBinding.etHouseNo.setText(String.valueOf(addressModel.getHouse_number()));
-        activitySignupBinding.etStreet.setText(addressModel.getStreet());
-        activitySignupBinding.etBarangay.setText(addressModel.getBarangay());
-        activitySignupBinding.etCityMunicipality.setText(addressModel.getMunicipality());
-        activitySignupBinding.etProvince.setText(addressModel.getProvince());
-        activitySignupBinding.etZipCode.setText(addressModel.getZipcode());
-
-//        disabled();
+        disabled();
 
         tvPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,13 +101,19 @@ public class ManageAccountActivity extends AppCompatActivity {
             }
         });
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+            }
+        });
+
         tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 logOutUser();
             }
         });
-
 
         activitySignupBinding.btnEditDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,55 +128,57 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.btnSaveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text = "Thank you. You have successfully changed your password!";
+                text = "Thank you. You have successfully changed your information!";
                 number = 2;
+                firstName = activitySignupBinding.etFirstName.getText().toString();
+                lastName = activitySignupBinding.etLastName.getText().toString();
+                mobileNumber = activitySignupBinding.etMobileNumber.getText().toString();
+                email = activitySignupBinding.etEmailAddress.getText().toString();
+                houseNumber = activitySignupBinding.etHouseNo.getText().toString();
+                street = activitySignupBinding.etStreet.getText().toString();
+                barangay = activitySignupBinding.etBarangay.getText().toString();
+                cityMunicipality = activitySignupBinding.etCityMunicipality.getText().toString();
+                province = activitySignupBinding.etProvince.getText().toString();
+                zipcode = activitySignupBinding.etZipCode.getText().toString();
+                password = activitySignupBinding.etPassword.getText().toString();
+                passwordConfirmation = activitySignupBinding.etRetypePassword.getText().toString();
+                updateUserInformation(userID, userToken, firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, "123456789", "123456789");
                 dialogBox();
                 dialog.show(); // Showing the dialog here
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
     }
 
-//    public void disabled(){
-//        fname.setFocusable(false);
-//        lname.setFocusable(false);
-//        emailAdd.setFocusable(false);
-//        mobileNumber.setFocusable(false);
-//
-//        pass.setFocusable(false);
-//        retypePass.setFocusable(false);
-//        houseNo.setFocusable(false);
-//        street.setFocusable(false);
-//        barangay.setFocusable(false);
-//        city.setFocusable(false);
-//        province.setFocusable(false);
-//        zipCode.setFocusable(false);
-//
-//    }
-//
-//    public void enable(){
-//        fname.setFocusableInTouchMode(true);
-//        lname.setFocusableInTouchMode(true);
-//        emailAdd.setFocusableInTouchMode(true);
-//        mobileNumber.setFocusableInTouchMode(true);
-//
-//        pass.setFocusableInTouchMode(true);
-//        retypePass.setFocusableInTouchMode(true);
-//        houseNo.setFocusableInTouchMode(true);
-//        street.setFocusableInTouchMode(true);
-//        barangay.setFocusableInTouchMode(true);
-//        city.setFocusableInTouchMode(true);
-//        province.setFocusableInTouchMode(true);
-//        zipCode.setFocusableInTouchMode(true);
-//
-//    }
+    public void disabled(){
+        activitySignupBinding.etFirstName.setEnabled(false);
+        activitySignupBinding.etLastName.setEnabled(false);
+        activitySignupBinding.etMobileNumber.setEnabled(false);
+        activitySignupBinding.etEmailAddress.setEnabled(false);
+        activitySignupBinding.etHouseNo.setEnabled(false);
+        activitySignupBinding.etStreet.setEnabled(false);
+        activitySignupBinding.etBarangay.setEnabled(false);
+        activitySignupBinding.etCityMunicipality.setEnabled(false);
+        activitySignupBinding.etProvince.setEnabled(false);
+        activitySignupBinding.etZipCode.setEnabled(false);
+        activitySignupBinding.etPassword.setEnabled(false);
+        activitySignupBinding.etRetypePassword.setEnabled(false);
+    }
+
+    public void enable(){
+        activitySignupBinding.etFirstName.setEnabled(true);
+        activitySignupBinding.etLastName.setEnabled(true);
+        activitySignupBinding.etMobileNumber.setEnabled(true);
+        activitySignupBinding.etEmailAddress.setEnabled(true);
+        activitySignupBinding.etHouseNo.setEnabled(true);
+        activitySignupBinding.etStreet.setEnabled(true);
+        activitySignupBinding.etBarangay.setEnabled(true);
+        activitySignupBinding.etCityMunicipality.setEnabled(true);
+        activitySignupBinding.etProvince.setEnabled(true);
+        activitySignupBinding.etZipCode.setEnabled(true);
+        activitySignupBinding.etPassword.setEnabled(true);
+        activitySignupBinding.etRetypePassword.setEnabled(true);
+    }
 
     public void dialogBox(){
 
@@ -199,7 +202,7 @@ public class ManageAccountActivity extends AppCompatActivity {
             Okay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    enable();
+                    enable();
                     dialog.dismiss();
                 }
             });
@@ -210,8 +213,7 @@ public class ManageAccountActivity extends AppCompatActivity {
             Okay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(ManageAccountActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//                    disabled();
+                    disabled();
                     dialog.dismiss();
                 }
             });
@@ -220,7 +222,7 @@ public class ManageAccountActivity extends AppCompatActivity {
 
     }
 
-    private void logOutUser(){
+    public void logOutUser(){
         manageAccountViewModel.getSignOutRequest(userToken).observe(ManageAccountActivity.this, new Observer<LogoutResponse>() {
             @Override
             public void onChanged(LogoutResponse logoutResponse) {
@@ -233,6 +235,59 @@ public class ManageAccountActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
+            }
+        });
+    }
+
+    public void getUserInformation(String userToken){
+        manageAccountViewModel.getUserInformationRequest(userToken).observe(ManageAccountActivity.this, new Observer<UserManagementResponse>() {
+            @Override
+            public void onChanged(UserManagementResponse userManagementResponse) {
+                if(userManagementResponse == null){
+                    Log.d("TAG", "Invalid Request");
+                } else {
+//                    SharedPrefManager.getInstance(ManageAccountActivity.this).saveUser();
+                    SharedPrefManager.getInstance(ManageAccountActivity.this).saveUserAddress(userManagementResponse.getData().get(0).getAddress().get(0));
+                    userID = userManagementResponse.getData().get(0).getId();
+                    activitySignupBinding.etFirstName.setText(userManagementResponse.getData().get(0).getFirst_name());
+                    activitySignupBinding.etLastName.setText(userManagementResponse.getData().get(0).getLast_name());
+                    activitySignupBinding.etEmailAddress.setText(userManagementResponse.getData().get(0).getEmail());
+                    activitySignupBinding.etMobileNumber.setText(userManagementResponse.getData().get(0).getMobile_number());
+//                    activitySignupBinding.etPassword.setText(userManagementResponse.getData().get(0).getMobile_number());
+//                    activitySignupBinding.etRetypePassword.setText(userManagementResponse.getData().get(0).getMobile_number());
+                    activitySignupBinding.etHouseNo.setText(String.valueOf(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number()));
+                    activitySignupBinding.etStreet.setText(userManagementResponse.getData().get(0).getAddress().get(0).getStreet());
+                    activitySignupBinding.etBarangay.setText(userManagementResponse.getData().get(0).getAddress().get(0).getBarangay());
+                    activitySignupBinding.etCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
+                    activitySignupBinding.etProvince.setText(userManagementResponse.getData().get(0).getAddress().get(0).getProvince());
+                    activitySignupBinding.etZipCode.setText(userManagementResponse.getData().get(0).getAddress().get(0).getZipcode());
+                }
+            }
+        });
+    }
+
+    public void updateUserInformation(int user_id, String userToken, String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, String zipcode,  String password, String passwordConfirmation){
+        manageAccountViewModel.userInformationUpdate(user_id, userToken, firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation).observe(ManageAccountActivity.this, new Observer<UserManagementResponse>() {
+            @Override
+            public void onChanged(UserManagementResponse userManagementResponse) {
+                if(userManagementResponse == null){
+                    Log.d("TAG", "Invalid Request");
+                } else {
+                    Log.d("TAG", "Updated Successfully");
+                }
+            }
+        });
+    }
+
+    public void userChangePassword(String userToken, String oldPassword, String password, String newPassword){
+        manageAccountViewModel.getChangePasswordRequest(userToken, oldPassword, password, newPassword).observe(ManageAccountActivity.this, new Observer<ChangePasswordResponse>() {
+            @Override
+            public void onChanged(ChangePasswordResponse changePasswordResponse) {
+                if(changePasswordResponse == null){
+                    Log.d("TAG", "Invalid Request");
+                } else {
+                    Log.d("TAG", "Updated Successfully");
+                }
             }
         });
     }

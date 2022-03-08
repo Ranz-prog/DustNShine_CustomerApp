@@ -13,6 +13,7 @@ import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
+import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.response.ServiceResponse;
@@ -188,5 +189,29 @@ public class BookingAPIRepo {
         });
         return bookingHistory;
     }
+
+    public MutableLiveData<ReviewResponse> putReview(String userToken, int booking_id, String comment, int rating){
+        final MutableLiveData<ReviewResponse> feedbackResponseMutableLiveData = new MutableLiveData<>();
+        Call<ReviewResponse> feedbackResponseCall= RetrofitClient.getInstance().getApi().userReview("Bearer " + userToken, booking_id, comment, rating);
+        feedbackResponseCall.enqueue(new Callback<ReviewResponse>() {
+            @Override
+            public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
+                if (response.code() == 200) {
+                    feedbackResponseMutableLiveData.setValue(response.body());
+                    Log.d("TAG", "Success");
+                } else {
+                    Log.d("TAG", String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReviewResponse> call, Throwable t) {
+                Log.d("TAG", "Failure to connect");
+            }
+        });
+        return feedbackResponseMutableLiveData;
+    }
+
+
 
 }

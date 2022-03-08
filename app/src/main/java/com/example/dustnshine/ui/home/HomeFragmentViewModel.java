@@ -6,16 +6,21 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.repository.BookingAPIRepo;
+import com.example.dustnshine.repository.UserAPIRepo;
+import com.example.dustnshine.response.UserManagementResponse;
 
 import java.util.List;
 
 public class HomeFragmentViewModel extends ViewModel {
 
     private MutableLiveData<List<RecommendationModel>> companyList;
+    private MutableLiveData<UserManagementResponse> userManagementResponseMutableLiveData;
     private BookingAPIRepo bookingAPIRepo;
+    private UserAPIRepo userAPIRepo;
 
     public HomeFragmentViewModel() {
         bookingAPIRepo = new BookingAPIRepo();
+        userAPIRepo = new UserAPIRepo();
     }
 
     public LiveData<List<RecommendationModel>> getCompaniesList(String userToken) {
@@ -24,4 +29,12 @@ public class HomeFragmentViewModel extends ViewModel {
         }
         return companyList;
     }
+
+    public LiveData<UserManagementResponse> getUserInformationRequest(String userToken){
+        if (userManagementResponseMutableLiveData == null) {
+            userManagementResponseMutableLiveData = userAPIRepo.getUserInformation(userToken);
+        }
+        return userManagementResponseMutableLiveData;
+    }
+
 }

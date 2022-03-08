@@ -27,6 +27,9 @@ import com.example.dustnshine.ui.ForgetPasswordActivity;
 import com.example.dustnshine.ui.manage_account.ManageAccountActivity;
 import com.example.dustnshine.ui.signup.SignUpActivity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignInActivity extends AppCompatActivity {
 
     private long backButtonCount;
@@ -37,6 +40,9 @@ public class SignInActivity extends AppCompatActivity {
     private SignInViewModel signInViewModel;
     private ActivitySigninBinding activitySigninBinding;
     private static String email, password;
+    private static final String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+    private Pattern pattern;
+    private Matcher matcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +51,25 @@ public class SignInActivity extends AppCompatActivity {
 
         signInViewModel = new ViewModelProvider(SignInActivity.this).get(SignInViewModel.class);
         activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
+        pattern = Pattern.compile(regex);
 
         activitySigninBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 email = activitySigninBinding.etEmailAddress.getText().toString();
                 password = activitySigninBinding.etPassword.getText().toString();
+                matcher = pattern.matcher(email);
 
                 if(TextUtils.isEmpty(email)){
                     activitySigninBinding.etEmailAddress.setError("Email is required");
                     activitySigninBinding.etEmailAddress.requestFocus();
-                } if (TextUtils.isEmpty(password)) {
+                } else if (!matcher.matches()) {
+                    activitySigninBinding.etEmailAddress.setError("Invalid email");
+                    activitySigninBinding.etEmailAddress.requestFocus();
+                } else if (TextUtils.isEmpty(password)) {
                     activitySigninBinding.etPassword.setError("Password is required");
                     activitySigninBinding.etPassword.requestFocus();
-                } if (password.length() < 8) {
+                } else if (password.length() < 8) {
                     activitySigninBinding.etPassword.setError("Password must be at least 8 characters");
                     activitySigninBinding.etPassword.requestFocus();
                 } else {

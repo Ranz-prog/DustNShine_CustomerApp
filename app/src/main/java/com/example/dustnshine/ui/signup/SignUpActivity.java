@@ -29,6 +29,9 @@ import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsActivity;
 import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsViewModel;
 import com.example.dustnshine.ui.signin.SignInActivity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private ImageView btnBack;
@@ -38,6 +41,9 @@ public class SignUpActivity extends AppCompatActivity {
     private ActivitySignupBinding activitySignupBinding;
     private static String firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation;
     private static double latitude, longitude;
+    private static final String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+    private Pattern pattern;
+    private Matcher matcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpViewModel = new ViewModelProvider(SignUpActivity.this).get(SignUpViewModel.class);
         activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
         btnBack = findViewById(R.id.btnBack);
+        pattern = Pattern.compile(regex);
 
         activitySignupBinding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
                 zipcode = activitySignupBinding.etZipCode.getText().toString();
                 password = activitySignupBinding.etPassword.getText().toString();
                 passwordConfirmation = activitySignupBinding.etPasswordConfirmation.getText().toString();
+                matcher = pattern.matcher(email);
 
                 if (TextUtils.isEmpty(firstName)) {
                     activitySignupBinding.etFirstName.setError("Please enter your First Name");
@@ -71,6 +79,12 @@ public class SignUpActivity extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(lastName)) {
                     activitySignupBinding.etLastName.setError("Please enter your Last Name");
                     activitySignupBinding.etLastName.requestFocus();
+                } else if (TextUtils.isEmpty(mobileNumber)) {
+                    activitySignupBinding.etMobileNumber.setError("Email is required");
+                    activitySignupBinding.etMobileNumber.requestFocus();
+                } else if (!matcher.matches()) {
+                    activitySignupBinding.etEmailAddress.setError("Invalid email");
+                    activitySignupBinding.etEmailAddress.requestFocus();
                 } else if (TextUtils.isEmpty(email)) {
                     activitySignupBinding.etEmailAddress.setError("Please enter your Email Address");
                     activitySignupBinding.etEmailAddress.requestFocus();

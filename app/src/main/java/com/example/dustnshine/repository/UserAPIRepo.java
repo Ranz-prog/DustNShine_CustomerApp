@@ -8,6 +8,7 @@ import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.models.UserManagementModel;
+import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.SignUpResponse;
@@ -114,4 +115,48 @@ public class UserAPIRepo {
         return userManagementModelMutableLiveData;
     }
 
+    public MutableLiveData<UserManagementResponse> putUserInformationUpdates(int user_id, String userToken, String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, String zipcode,  String password, String passwordConfirmation){
+        final MutableLiveData<UserManagementResponse> userManagementResponseMutableLiveData = new MutableLiveData<>();
+        Call<UserManagementResponse> userManagementResponseCall = RetrofitClient.getInstance().getApi().userInformationUpdate(user_id, "Bearer " + userToken, firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation);
+        userManagementResponseCall.enqueue(new Callback<UserManagementResponse>() {
+            @Override
+            public void onResponse(Call<UserManagementResponse> call, Response<UserManagementResponse> response) {
+                if(response.code() == 200){
+                    userManagementResponseMutableLiveData.setValue(response.body());
+                    Log.d("TAG", "Updating Info Success");
+                } else {
+                    Log.d("TAG", String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserManagementResponse> call, Throwable t) {
+                Log.d("FAILURE", "Failure to connect");
+            }
+        });
+        return userManagementResponseMutableLiveData;
+    }
+
+    public MutableLiveData<ChangePasswordResponse> userChangePassword(String userToken, String oldPassword, String password, String newPassword){
+        final MutableLiveData<ChangePasswordResponse> changePasswordResponseMutableLiveData = new MutableLiveData<>();
+        Call<ChangePasswordResponse> changePasswordResponseCall = RetrofitClient.getInstance().getApi().userChangePassword("Bearer " + userToken, oldPassword, password, newPassword);
+        changePasswordResponseCall.enqueue(new Callback<ChangePasswordResponse>() {
+            @Override
+            public void onResponse(Call<ChangePasswordResponse> call, Response<ChangePasswordResponse> response) {
+                if(response.code() == 200){
+                    changePasswordResponseMutableLiveData.setValue(response.body());
+                    Log.d("TAG", "Updating Info Success");
+                } else {
+                    Log.d("TAG", String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ChangePasswordResponse> call, Throwable t) {
+                Log.d("FAILURE", "Failure to connect");
+            }
+        });
+
+        return changePasswordResponseMutableLiveData;
+    }
 }

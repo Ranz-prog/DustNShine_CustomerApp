@@ -23,6 +23,7 @@ import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
+import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.GarageCleaningActivity;
 import com.example.dustnshine.ui.GeneralCleaningActivity;
@@ -70,6 +71,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         recommendationRecycler = view.findViewById(R.id.companiesList);
         recommendationAdapter = new RecommendationAdapter(recommendationModelList, getContext(),this);
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
+        getUserInformation(userToken);
 
         recommendationRecycler.setHasFixedSize(true);
         LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -132,6 +134,20 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
                     recommendationModelList = recommendationModels;
                     recommendationAdapter.setData(recommendationModels);
                     recommendationRecycler.setAdapter(recommendationAdapter);
+                }
+            }
+        });
+    }
+
+    public void getUserInformation(String userToken){
+        homeFragmentViewModel.getUserInformationRequest(userToken).observe(getActivity(), new Observer<UserManagementResponse>() {
+            @Override
+            public void onChanged(UserManagementResponse userManagementResponse) {
+                if(userManagementResponse == null){
+                    Log.d("TAG", "Invalid Request");
+                } else {
+                    tvCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
+                    tvAddress.setText(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().get(0).getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
                 }
             }
         });

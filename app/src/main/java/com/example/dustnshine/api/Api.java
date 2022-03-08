@@ -1,13 +1,11 @@
 package com.example.dustnshine.api;
 
-import android.util.ArrayMap;
-
-import com.example.dustnshine.models.BookingHistoryModel;
-import com.example.dustnshine.models.SearchCompanyModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
+import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.CompanyResponse;
+import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.response.SearchCompanyResponse;
@@ -16,7 +14,6 @@ import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.UserManagementResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +23,8 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface Api {
 
@@ -51,6 +48,25 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @PUT("user-management/{user_id}")
+    Call<UserManagementResponse> userInformationUpdate(
+            @Path("user_id") int user_id,
+            @Header("Authorization") String updateInformationRequest,
+            @Field("first_name") String first_name,
+            @Field("last_name") String last_name,
+            @Field("mobile_number") String mobile_number,
+            @Field("email") String email,
+            @Field("house_number") String house_number,
+            @Field("street") String street,
+            @Field("barangay") String barangay,
+            @Field("municipality") String municipality,
+            @Field("province") String province,
+            @Field("zipcode") String zipcode,
+            @Field("password") String password,
+            @Field("password_confirmation") String password_confirmation
+    );
+
+    @FormUrlEncoded
     @POST("login")
     Call<SignInResponse> userSignIn(
             @Field("email") String email,
@@ -59,6 +75,15 @@ public interface Api {
 
     @POST("logout")
     Call<LogoutResponse> userLogOut(@Header("Authorization") String logoutRequest);
+
+    @FormUrlEncoded
+    @POST("change-password")
+    Call<ChangePasswordResponse> userChangePassword(
+            @Header("Authorization") String changePasswordRequest,
+            @Field("old_password") String old_password,
+            @Field("password") String password,
+            @Field("confirm_password") String confirm_password
+    );
 
     @FormUrlEncoded
     @POST("bookings")
@@ -73,12 +98,12 @@ public interface Api {
     );
 
     @FormUrlEncoded
-    @POST("feedback")
-    Call<BookingServiceResponse> userFeedback(
+    @POST("reviews")
+    Call<ReviewResponse> userReview(
             @Header("Authorization") String bookingRequest,
-            @Field("company_id") int company_id,
-            @Field("address") String address,
-            @Field("sched_datetime") String sched_datetime
+            @Field("booking_id") int booking_id,
+            @Field("comment") String comment,
+            @Field("rating") int rating
     );
 
     @GET("companies")

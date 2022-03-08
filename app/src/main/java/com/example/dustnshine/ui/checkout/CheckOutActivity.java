@@ -25,6 +25,7 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityCheckoutBinding;
 import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.response.BookingServiceResponse;
+import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.QuantityListener;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
@@ -67,6 +68,7 @@ public class CheckOutActivity extends AppCompatActivity {
         addressModel = SharedPrefManager.getInstance(CheckOutActivity.this).getUserAddress();
         intent = getIntent();
         btnBack = findViewById(R.id.backCheckout);
+        getUserInformation(userToken);
 
         servicesIDList = new ArrayList<Integer>();
         servicesNameList = new ArrayList<String>();
@@ -89,11 +91,11 @@ public class CheckOutActivity extends AppCompatActivity {
         total = servicesPrice(servicesPriceList);
 
         activityCheckoutBinding.tvCompanyName.setText(companyName);
-        activityCheckoutBinding.tvCustomerName.setText(customerFirstName + " " + customerLastName);
-        activityCheckoutBinding.tvContactNumber.setText(customerContactNumber);
+//        activityCheckoutBinding.tvCustomerName.setText(customerFirstName + " " + customerLastName);
+//        activityCheckoutBinding.tvContactNumber.setText(customerContactNumber);
         activityCheckoutBinding.tvDateAndTime.setText(selectedDate + " " + selectedTime);
         activityCheckoutBinding.tvServiceName.setText(servicesNameList.toString());
-        activityCheckoutBinding.tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
+//        activityCheckoutBinding.tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
         activityCheckoutBinding.tvNotes.setText(notes);
         activityCheckoutBinding.tvTotal.setText(String.valueOf(total));
 
@@ -150,9 +152,9 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
-                   // Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CheckOutActivity.this, "Booking Success", Toast.LENGTH_SHORT).show();
                 } else {
-                    //Toast.makeText(CheckOutActivity.this, bookingServiceResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CheckOutActivity.this, "Booking Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -164,16 +166,30 @@ public class CheckOutActivity extends AppCompatActivity {
         }
     }
 
-    public int servicesPrice(ArrayList<Integer> price)
+    public int servicesPrice(ArrayList<Integer> priceList)
     {
-        int sum = 0;
-        for(int i = 0; i < price.size(); i++)
+        int price = 0;
+        for(int i = 0; i < priceList.size(); i++)
         {
-            sum = sum + price.get(i);
+            price = price + priceList.get(i);
         }
-        return sum;
+        return price;
     }
 
+    public void getUserInformation(String userToken){
+        checkOutViewModel.getUserInformationRequest(userToken).observe(CheckOutActivity.this, new Observer<UserManagementResponse>() {
+            @Override
+            public void onChanged(UserManagementResponse userManagementResponse) {
+                if(userManagementResponse == null){
+                    Log.d("TAG", "Invalid Request");
+                } else {
+                    activityCheckoutBinding.tvCustomerName.setText(userManagementResponse.getData().get(0).getFirst_name() + " " + userManagementResponse.getData().get(0).getLast_name());
+                    activityCheckoutBinding.tvContactNumber.setText(userManagementResponse.getData().get(0).getMobile_number());
+                    activityCheckoutBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().get(0).getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
+                }
+            }
+        });
+    }
 
 }
 
