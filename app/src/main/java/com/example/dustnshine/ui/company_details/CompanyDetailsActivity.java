@@ -69,40 +69,26 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.tvCompanyName.setText(companyName);
         activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
 
-
-
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (servicesNameList == null) {
-                    Toast.makeText(CompanyDetailsActivity.this, "Please select services", Toast.LENGTH_SHORT).show();
+                if (servicesNameList == null|| servicesNameList.size() == 0) {
+                    Toast.makeText(CompanyDetailsActivity.this, "No service selected", Toast.LENGTH_SHORT).show();
                 } else if (notes == null) {
                     notes = activityCompanyDetailsBinding.etNotes.getText().toString();
                     Toast.makeText(CompanyDetailsActivity.this, "Notes is empty", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("Kinuha mong Service", servicesNameList.toString());
                     notes = activityCompanyDetailsBinding.etNotes.getText().toString();
-
-                    if (servicesIdList == null || servicesIdList.toString().equals(null)) {
-                        Toast.makeText(CompanyDetailsActivity.this, "Please select services", Toast.LENGTH_SHORT).show();
-                    } else {
-
-                        Log.d("Service Name", servicesNameList.toString());
-                        Log.d("Service ID", servicesIdList.toString());
-
-
                         Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                         intent.putExtra("COMPANY_ID", companyID);
                         intent.putExtra("COMPANY_NAME", companyName);
                         intent.putExtra("COMPANY_ADDRESS", companyAddress);
                         intent.putIntegerArrayListExtra("SERVICES_ID_LIST", servicesIdList);
                         intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
-
                         intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
                         intent.putExtra("NOTES", notes);
-//                    servicesNameList.clear();
-//                    servicesIdList.clear();
+
                         notes =null;
                         servicesNameList = null;
                         servicesIdList = null;
@@ -112,11 +98,8 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                         startActivity(restart);
                         startActivity(intent);
                     }
-                }
             }
         });
-
-
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,8 +109,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             }
         });
     }
-
-
 
     public void getServices(String userToken) {
         companyDetailsViewModel.getServicesList(userToken).observe(CompanyDetailsActivity.this, new Observer<List<ServicesModel>>() {
@@ -150,12 +131,8 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         finish();
     }
 
-
     @Override
-
     public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName, ArrayList<Integer> servicesPrice) {
-
-
 
         if(servicesID.toString() == "" || servicesName.toString() == "" || servicesID.contains(" ")){
 
@@ -165,10 +142,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             servicesNameList = servicesName;
             servicesPriceList = servicesPrice;
 
-            Log.d("Para d nakaka lito", "Palitan ko yung message daw");
-
         }
-
 
     }
 }
