@@ -167,14 +167,14 @@ public class SignInActivity extends AppCompatActivity {
         signInViewModel.getSignInRequest(email, password);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        };
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        };
+//    }
 
     public void getUserInformation(String userToken){
         signInViewModel.getUserInformationRequest(userToken).observe(SignInActivity.this, new Observer<UserManagementResponse>() {
