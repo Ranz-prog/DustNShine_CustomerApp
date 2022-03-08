@@ -10,7 +10,7 @@
     android:background="@color/background">
 
     <ImageView
-        android:id="@+id/backFeedback"
+        android:id="@+id/btnBack"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="10dp"
@@ -100,7 +100,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtRating"
-            android:numStars="5">
+            android:numStars="5"
+            android:progressTint="@color/app_theme_gold"
+            android:progressBackgroundTint="@color/app_theme_gold">
 
         </RatingBar>
 

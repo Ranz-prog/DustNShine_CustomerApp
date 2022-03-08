@@ -57,12 +57,12 @@
     <string name="locationdetails">Location:</string>
     <string name="bookingdetails">Booking Details</string>
     <string name="paymentmethod">Payment Method</string>
-    <string name="totalcost">Total Cost</string>
+    <string name="totalcost">Total Cost:</string>
     <string name="changemethod">Change Method</string>
     <string name="checkout">Checkout</string>
     <string name="companyname">Company Name:</string>
     <string name="dateandtime">Date and Time:</string>
-    <string name="servicename">Service Name:</string>
+    <string name="servicename">Services:</string>
     <string name="notes">Notes:</string>
 
     <!--Feedback-->
@@ -100,6 +100,8 @@
     <string name="bookinghistory">Booking History</string>
     <string name="notification">Notification</string>
     <string name="next">Next</string>
+    <string name="bookingDetails">Booking Details:</string>
+
 
     <!--Date and Time-->
     <string name="eightam">8:00 AM</string>

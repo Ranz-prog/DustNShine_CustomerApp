@@ -156,7 +156,7 @@ public class ManageAccountActivity extends AppCompatActivity {
                 zipcode = activitySignupBinding.etZipCode.getText().toString();
                 password = activitySignupBinding.etPassword.getText().toString();
 
-                updateUserInformation(userID, userToken, firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, "123456789", "123456789");
+                updateUserInformation(userID, userToken, firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, password, password);
                 dialogBox();
                 dialog.show(); // Showing the dialog here
             }
@@ -175,10 +175,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etProvince.setEnabled(false);
         activitySignupBinding.etZipCode.setEnabled(false);
         activitySignupBinding.etPassword.setEnabled(false);
-
         activitySignupBinding.btnEditPassword.setEnabled(false);
-
-
     }
 
     public void enable(){
@@ -194,12 +191,11 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etZipCode.setEnabled(true);
         activitySignupBinding.etPassword.setEnabled(true);
         activitySignupBinding.btnEditPassword.setEnabled(true);
-
     }
 
     public void editPasswordDialogBox(){
 
-        EditText oldPass, newPass, retypedNewPass;
+        EditText etOldPass, etNewPassword, etConfirmPassword;
         Button cancel, save;
 
         editPassword = new Dialog(this);
@@ -214,9 +210,9 @@ public class ManageAccountActivity extends AppCompatActivity {
         cancel = editPassword.findViewById(R.id.cancelNewPassword);
         save = editPassword.findViewById(R.id.saveNewPassword);
 
-        oldPass = editPassword.findViewById(R.id.oldPass);
-        newPass = editPassword.findViewById(R.id.newPass);
-        retypedNewPass = editPassword.findViewById(R.id.reTypeNewPass);
+        etOldPass = editPassword.findViewById(R.id.oldPass);
+        etNewPassword = editPassword.findViewById(R.id.newPass);
+        etConfirmPassword = editPassword.findViewById(R.id.reTypeNewPass);
 
         cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -230,18 +226,20 @@ public class ManageAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(oldPass.getText().toString().isEmpty()){
+                if(etOldPass.getText().toString().isEmpty()){
                     Toast.makeText(ManageAccountActivity.this, "Enter your old password", Toast.LENGTH_SHORT).show();
-                }else if(newPass.getText().toString().isEmpty()){
+                } else if(!etOldPass.getText().toString().equals(SharedPrefManager.getInstance(ManageAccountActivity.this).getPassword())){
+                    Toast.makeText(ManageAccountActivity.this, "Old password not correct", Toast.LENGTH_SHORT).show();
+                } else if(etNewPassword.getText().toString().isEmpty()){
                     Toast.makeText(ManageAccountActivity.this, "Enter your new password", Toast.LENGTH_SHORT).show();
-                }else if(retypedNewPass.getText().toString().isEmpty()){
+                } else if(etNewPassword.getText().toString().length() < 8){
+                    Toast.makeText(ManageAccountActivity.this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
+                } else if(etConfirmPassword.getText().toString().isEmpty()){
                     Toast.makeText(ManageAccountActivity.this, "Re-type your new password", Toast.LENGTH_SHORT).show();
-                }else if(oldPass.getText().toString() != password){
-                    Toast.makeText(ManageAccountActivity.this, "Old password does not match", Toast.LENGTH_SHORT).show();
-                } else if(newPass.getText().toString() != retypedNewPass.getText().toString()){
-                    Toast.makeText(ManageAccountActivity.this, "Retyped password does not match", Toast.LENGTH_SHORT).show();
-                }else{
-                    password = newPass.getText().toString();
+                } else if(!etConfirmPassword.getText().toString().equals(etNewPassword.getText().toString())){
+                    Toast.makeText(ManageAccountActivity.this, "Password do not match", Toast.LENGTH_SHORT).show();
+                } else {
+                    userChangePassword(userToken, etOldPass.getText().toString(), etNewPassword.getText().toString(), etConfirmPassword.getText().toString());
                     Toast.makeText(ManageAccountActivity.this, "Successfully Changed Password", Toast.LENGTH_SHORT).show();
                     editPassword.dismiss();
                 }

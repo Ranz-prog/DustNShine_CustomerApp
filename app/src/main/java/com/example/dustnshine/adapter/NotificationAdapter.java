@@ -18,9 +18,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     private List<BookingHistoryModel> bookingHistoryModelList;
     private Context context;
-    private BookingHistoryAdapter.OnClickMessageListener onClickMessageListener;
+    private NotificationAdapter.OnClickMessageListener onClickMessageListener;
 
-    public NotificationAdapter(List<BookingHistoryModel> bookingHistoryModelList, Context context, BookingHistoryAdapter.OnClickMessageListener onClickMessageListener) {
+    public NotificationAdapter(List<BookingHistoryModel> bookingHistoryModelList, Context context, OnClickMessageListener onClickMessageListener) {
         this.bookingHistoryModelList = bookingHistoryModelList;
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;

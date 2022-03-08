@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
@@ -24,6 +26,7 @@ public class FeedbackActivity extends AppCompatActivity {
     private static String userToken;
     private Button btnReview;
     private int rating;
+    private ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +38,28 @@ public class FeedbackActivity extends AppCompatActivity {
         btnReview = findViewById(R.id.btnReview);
         feedbackActivityViewModel = new ViewModelProvider(FeedbackActivity.this).get(FeedbackActivityViewModel.class);
         userToken = SharedPrefManager.getInstance(FeedbackActivity.this).getUserToken();
+        btnBack = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rating = (int) ratingBar.getRating();
-                putReviewRequest(userToken, 204, etFeedback.getText().toString(), rating);
-                Intent intent = new Intent(FeedbackActivity.this, NotificationActivity.class);
-                startActivity(intent);
+                if(etFeedback.getText().toString().isEmpty()){
+                    Toast.makeText(FeedbackActivity.this, "Please give your feedback", Toast.LENGTH_SHORT).show();
+                } else if(rating == 0){
+                    Toast.makeText(FeedbackActivity.this, "Please give your rating", Toast.LENGTH_SHORT).show();
+                } else {
+                    putReviewRequest(userToken, 207, etFeedback.getText().toString(), rating);
+                    Intent intent = new Intent(getApplication(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

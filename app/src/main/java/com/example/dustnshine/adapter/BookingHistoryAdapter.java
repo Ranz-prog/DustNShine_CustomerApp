@@ -36,7 +36,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
     @NonNull
     @Override
     public BookingHistoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_booking, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_booking_history, parent, false);
         BookingHistoryAdapter.ViewHolder viewHolder = new BookingHistoryAdapter.ViewHolder(view, onClickMessageListener);
 
         return viewHolder;
@@ -44,7 +44,8 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
 
     @Override
     public void onBindViewHolder(@NonNull BookingHistoryAdapter.ViewHolder holder, int position) {
-        holder.customerLoc.setText(String.valueOf(bookingHistoryModelList.get(position).getUser_id()));
+        holder.customerName.setText(String.valueOf(bookingHistoryModelList.get(position).getNote()));
+        holder.customerLoc.setText(String.valueOf(bookingHistoryModelList.get(position).getSched_datetime()));
         holder.customerNum.setText(String.valueOf(bookingHistoryModelList.get(position).getTotal()));
     }
 

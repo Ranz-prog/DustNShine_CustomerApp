@@ -184,7 +184,7 @@ public class BookingAPIRepo {
 
             @Override
             public void onFailure(Call<BookingHistoryResponse> call, Throwable t) {
-                Log.d("TAG", "Failure to connect");
+                Log.d("TAG", t.getLocalizedMessage());
             }
         });
         return bookingHistory;

@@ -1,14 +1,17 @@
 package com.example.dustnshine.models;
 
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 public class BookingHistoryModel {
     private int id, user_id, company_id, status, total;
-    private String sched_datetime, start_datetime, end_datetime, address, created_at, updated_at, note, reviews;
+    private String sched_datetime, start_datetime, end_datetime, address, created_at, updated_at, note;
+    private ReviewModel reviews;
     private double latitude, longitude;
     private List<ServiceDetailsModel> services;
 
-    public BookingHistoryModel(int id, int user_id, int company_id, int status, int total, String sched_datetime, String start_datetime, String end_datetime, String address, String created_at, String updated_at, String note, String reviews, double latitude, double longitude, List<ServiceDetailsModel> services) {
+    public BookingHistoryModel(int id, int user_id, int company_id, int status, int total, String sched_datetime, String start_datetime, String end_datetime, String address, String created_at, String updated_at, String note, ReviewModel reviews, double latitude, double longitude, List<ServiceDetailsModel> services) {
         this.id = id;
         this.user_id = user_id;
         this.company_id = company_id;
@@ -123,11 +126,11 @@ public class BookingHistoryModel {
         this.note = note;
     }
 
-    public String getReviews() {
+    public ReviewModel getReviews() {
         return reviews;
     }
 
-    public void setReviews(String reviews) {
+    public void setReviews(ReviewModel reviews) {
         this.reviews = reviews;
     }
 
