@@ -202,7 +202,7 @@
 
                         </com.google.android.material.textfield.TextInputLayout>
                             <ImageButton
-                                android:id="@+id/EditPassword"
+                                android:id="@+id/btnEditPassword"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="15dp"
@@ -366,11 +366,26 @@
                             android:layout_height="wrap_content">
 
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/btnEditDetails"
+                                android:id="@+id/btnCancel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_marginStart="20dp"
+                                android:backgroundTint="@color/app_theme_blue"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="10dp"
+                                android:text="@string/cancel"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnEditDetails"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_toStartOf="@+id/btnSaveDetails"
+                                android:layout_toEndOf="@+id/btnCancel"
                                 android:backgroundTint="@color/app_theme_blue"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:padding="10dp"

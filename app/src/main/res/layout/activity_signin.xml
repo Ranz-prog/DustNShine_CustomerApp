@@ -46,8 +46,17 @@
                 android:gravity="center"
                 android:text="DustNShine"
                 android:textColor="@color/app_theme_blue"
-                android:textSize="28sp"
-                />
+                android:textSize="28sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="Sign In"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -58,9 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/upperPartContainer"
-            android:layout_marginLeft="45dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="45dp">
+            android:layout_marginRight="40dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/userTF"

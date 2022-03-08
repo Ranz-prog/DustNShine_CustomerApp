@@ -75,22 +75,10 @@ public class ManageAccountActivity extends AppCompatActivity {
         tvManageCards = findViewById(R.id.tvManageCards);
         personalInfoCardView = findViewById(R.id.personal_info_cardview);
 
-        editPass = findViewById(R.id.EditPassword);
+        editPass = findViewById(R.id.btnEditPassword);
         getUserInformation(userToken);
+        activitySignupBinding.btnSaveDetails.setEnabled(false);
         disabled();
-
-        User user = SharedPrefManager.getInstance(this).getUser();
-        AddressModel addressModel = SharedPrefManager.getInstance(this).getUserAddress();
-//        activitySignupBinding.etFirstName.setText(user.getFirst_name());
-//        activitySignupBinding.etLastName.setText(user.getLast_name());
-//        activitySignupBinding.etMobileNumber.setText(user.getMobile_number());
-//        activitySignupBinding.etEmailAddress.setText(user.getEmail());
-//        activitySignupBinding.etHouseNo.setText(String.valueOf(addressModel.getHouse_number()));
-//        activitySignupBinding.etStreet.setText(addressModel.getStreet());
-//        activitySignupBinding.etBarangay.setText(addressModel.getBarangay());
-//        activitySignupBinding.etCityMunicipality.setText(addressModel.getMunicipality());
-//        activitySignupBinding.etProvince.setText(addressModel.getProvince());
-//        activitySignupBinding.etZipCode.setText(addressModel.getZipcode());
 
         disabled();
 
@@ -118,7 +106,8 @@ public class ManageAccountActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+                Intent intent = new Intent(getApplication(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -126,6 +115,17 @@ public class ManageAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 logOutUser();
+            }
+        });
+
+        activitySignupBinding.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TransitionManager.beginDelayedTransition(personalInfoCardView, new AutoTransition());
+                personalInfoView.setVisibility(View.GONE);
+                activitySignupBinding.btnEditDetails.setEnabled(true);
+                activitySignupBinding.btnSaveDetails.setEnabled(false);
+                disabled();
             }
         });
 
@@ -161,7 +161,6 @@ public class ManageAccountActivity extends AppCompatActivity {
                 dialog.show(); // Showing the dialog here
             }
         });
-
     }
 
     public void disabled(){
@@ -176,7 +175,8 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etProvince.setEnabled(false);
         activitySignupBinding.etZipCode.setEnabled(false);
         activitySignupBinding.etPassword.setEnabled(false);
-        activitySignupBinding.EditPassword.setEnabled(false);
+
+        activitySignupBinding.btnEditPassword.setEnabled(false);
 
 
     }
@@ -193,7 +193,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etProvince.setEnabled(true);
         activitySignupBinding.etZipCode.setEnabled(true);
         activitySignupBinding.etPassword.setEnabled(true);
-        activitySignupBinding.EditPassword.setEnabled(true);
+        activitySignupBinding.btnEditPassword.setEnabled(true);
 
     }
 
@@ -252,7 +252,6 @@ public class ManageAccountActivity extends AppCompatActivity {
     }
 
     public void dialogBox(){
-
         // DIALOG BOX START
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.pop_up_reference);
@@ -273,6 +272,8 @@ public class ManageAccountActivity extends AppCompatActivity {
             Okay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    activitySignupBinding.btnEditDetails.setEnabled(false);
+                    activitySignupBinding.btnSaveDetails.setEnabled(true);
                     enable();
                     dialog.dismiss();
                 }
@@ -284,6 +285,8 @@ public class ManageAccountActivity extends AppCompatActivity {
             Okay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    activitySignupBinding.btnEditDetails.setEnabled(true);
+                    activitySignupBinding.btnSaveDetails.setEnabled(false);
                     disabled();
                     dialog.dismiss();
                 }
@@ -324,8 +327,7 @@ public class ManageAccountActivity extends AppCompatActivity {
                     activitySignupBinding.etLastName.setText(userManagementResponse.getData().get(0).getLast_name());
                     activitySignupBinding.etEmailAddress.setText(userManagementResponse.getData().get(0).getEmail());
                     activitySignupBinding.etMobileNumber.setText(userManagementResponse.getData().get(0).getMobile_number());
-//                    activitySignupBinding.etPassword.setText(userManagementResponse.getData().get(0).getMobile_number());
-//                    activitySignupBinding.etRetypePassword.setText(userManagementResponse.getData().get(0).getMobile_number());
+                    activitySignupBinding.etPassword.setText(SharedPrefManager.getInstance(ManageAccountActivity.this).getPassword());
                     activitySignupBinding.etHouseNo.setText(String.valueOf(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number()));
                     activitySignupBinding.etStreet.setText(userManagementResponse.getData().get(0).getAddress().get(0).getStreet());
                     activitySignupBinding.etBarangay.setText(userManagementResponse.getData().get(0).getAddress().get(0).getBarangay());
@@ -363,4 +365,10 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplication(), MainActivity.class);
+        startActivity(intent);
+    }
 }

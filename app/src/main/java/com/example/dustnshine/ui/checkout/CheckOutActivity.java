@@ -124,9 +124,9 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CheckOutActivity.this, "Service successfully booked", Toast.LENGTH_LONG).show();
-                dialog.dismiss();
-                Intent intent = new Intent(CheckOutActivity.this, MainActivity.class);
+                Intent intent = new Intent(getApplication(), MainActivity.class);
                 startActivity(intent);
+                dialog.dismiss();
             }
         });
 
