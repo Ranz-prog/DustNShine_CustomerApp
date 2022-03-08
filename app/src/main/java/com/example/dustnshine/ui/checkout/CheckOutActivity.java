@@ -21,6 +21,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityCheckoutBinding;
 import com.example.dustnshine.models.AddressModel;
@@ -122,8 +123,10 @@ public class CheckOutActivity extends AppCompatActivity {
         Okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CheckOutActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckOutActivity.this, "Service successfully booked", Toast.LENGTH_LONG).show();
                 dialog.dismiss();
+                Intent intent = new Intent(CheckOutActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -135,6 +138,8 @@ public class CheckOutActivity extends AppCompatActivity {
                 getBookingRequest(userToken, companyID, "Dagupan City", selectedDate + " " + selectedTime, total, services, notes);
                 Log.d("SERVICES", String.valueOf(services));
                 dialog.show();
+
+
                 // Showing the dialog here
             }
         });

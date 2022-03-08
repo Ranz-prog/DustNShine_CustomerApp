@@ -169,10 +169,20 @@
                                 android:textSize="15sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputLayout
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/background"
+                            android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/PasswordBox"
+                            android:layout_width="330dp"
+                            android:layout_height="wrap_content"
                             app:boxStrokeWidth="0dp"
+
                             app:boxStrokeWidthFocused="0dp">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -189,29 +199,17 @@
                                 android:maxLength="20"
                                 android:paddingBottom="10dp"
                                 android:textSize="15sp" />
+
                         </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:boxStrokeWidth="0dp"
-                            app:boxStrokeWidthFocused="0dp">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etRetypePassword"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                            <ImageButton
+                                android:id="@+id/EditPassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_marginTop="15dp"
-                                android:background="@drawable/edittext_layout"
-                                android:cursorVisible="true"
-                                android:layout_marginEnd="5dp"
-                                android:layout_marginStart="5dp"
-                                android:hint="@string/retypepassword"
-                                android:inputType="textPassword"
-                                android:maxLength="20"
-                                android:paddingBottom="10dp"
-                                android:textSize="15sp" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                                android:backgroundTint="@color/white"
+                                android:src="@drawable/ic_baseline_edit_24"/>
+                        </LinearLayout>
+
 
                         <TextView
                             android:id="@+id/tvLocation"

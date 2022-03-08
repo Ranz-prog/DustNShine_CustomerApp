@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.CharacterPickerDialog;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -52,6 +54,7 @@ public class ManageAccountActivity extends AppCompatActivity {
     private static int userID;
     private EditText etFirstName;
     private Fragment homeFragment;
+    private ImageButton editPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,8 @@ public class ManageAccountActivity extends AppCompatActivity {
         tvLogout = findViewById(R.id.tvLogout);
         tvManageCards = findViewById(R.id.tvManageCards);
         personalInfoCardView = findViewById(R.id.personal_info_cardview);
+
+        editPass = findViewById(R.id.EditPassword);
         getUserInformation(userToken);
         disabled();
 
@@ -87,6 +92,13 @@ public class ManageAccountActivity extends AppCompatActivity {
 //        activitySignupBinding.etZipCode.setText(addressModel.getZipcode());
 
         disabled();
+
+        editPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         tvPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +153,7 @@ public class ManageAccountActivity extends AppCompatActivity {
                 province = activitySignupBinding.etProvince.getText().toString();
                 zipcode = activitySignupBinding.etZipCode.getText().toString();
                 password = activitySignupBinding.etPassword.getText().toString();
-                passwordConfirmation = activitySignupBinding.etRetypePassword.getText().toString();
+                
                 updateUserInformation(userID, userToken, firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, "123456789", "123456789");
                 dialogBox();
                 dialog.show(); // Showing the dialog here
@@ -162,7 +174,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etProvince.setEnabled(false);
         activitySignupBinding.etZipCode.setEnabled(false);
         activitySignupBinding.etPassword.setEnabled(false);
-        activitySignupBinding.etRetypePassword.setEnabled(false);
+
     }
 
     public void enable(){
@@ -177,7 +189,46 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etProvince.setEnabled(true);
         activitySignupBinding.etZipCode.setEnabled(true);
         activitySignupBinding.etPassword.setEnabled(true);
-        activitySignupBinding.etRetypePassword.setEnabled(true);
+
+    }
+
+    public void editPasswordDialogBox(){
+
+        EditText oldPass, newPass, retypedNewPass;
+        Button cancel, save;
+
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.change_password_dialogbox);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+        }
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+
+        cancel = dialog.findViewById(R.id.cancelNewPassword);
+        save = dialog.findViewById(R.id.saveNewPassword);
+
+        oldPass = dialog.findViewById(R.id.oldPass);
+        newPass = dialog.findViewById(R.id.newPass);
+        retypedNewPass = dialog.findViewById(R.id.reTypeNewPass);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    enable();
+                    dialog.dismiss();
+                }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
+
     }
 
     public void dialogBox(){
