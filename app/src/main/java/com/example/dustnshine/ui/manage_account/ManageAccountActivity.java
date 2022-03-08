@@ -35,6 +35,7 @@ import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.models.User;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.home.HomeFragment;
 import com.example.dustnshine.ui.signin.SignInActivity;
 
@@ -45,7 +46,7 @@ public class ManageAccountActivity extends AppCompatActivity {
     private TextView tvPersonalInfo, popText, tvLogout, tvManageCards;
     private CardView personalInfoCardView;
     private Button reset, edit;
-    private Dialog dialog;
+    private Dialog dialog,editPassword;
     private static int number;
     private String text, userToken;
     private ActivityManageAccountBinding activitySignupBinding;
@@ -96,7 +97,8 @@ public class ManageAccountActivity extends AppCompatActivity {
         editPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                editPasswordDialogBox();
+                editPassword.show();
             }
         });
 
@@ -153,7 +155,7 @@ public class ManageAccountActivity extends AppCompatActivity {
                 province = activitySignupBinding.etProvince.getText().toString();
                 zipcode = activitySignupBinding.etZipCode.getText().toString();
                 password = activitySignupBinding.etPassword.getText().toString();
-                
+
                 updateUserInformation(userID, userToken, firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, "123456789", "123456789");
                 dialogBox();
                 dialog.show(); // Showing the dialog here
@@ -174,6 +176,8 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etProvince.setEnabled(false);
         activitySignupBinding.etZipCode.setEnabled(false);
         activitySignupBinding.etPassword.setEnabled(false);
+        activitySignupBinding.EditPassword.setEnabled(false);
+
 
     }
 
@@ -189,6 +193,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etProvince.setEnabled(true);
         activitySignupBinding.etZipCode.setEnabled(true);
         activitySignupBinding.etPassword.setEnabled(true);
+        activitySignupBinding.EditPassword.setEnabled(true);
 
     }
 
@@ -197,27 +202,27 @@ public class ManageAccountActivity extends AppCompatActivity {
         EditText oldPass, newPass, retypedNewPass;
         Button cancel, save;
 
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.change_password_dialogbox);
+        editPassword = new Dialog(this);
+        editPassword.setContentView(R.layout.change_password_dialogbox);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+            editPassword.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
         }
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+        editPassword.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        editPassword.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
+        editPassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
-        cancel = dialog.findViewById(R.id.cancelNewPassword);
-        save = dialog.findViewById(R.id.saveNewPassword);
+        cancel = editPassword.findViewById(R.id.cancelNewPassword);
+        save = editPassword.findViewById(R.id.saveNewPassword);
 
-        oldPass = dialog.findViewById(R.id.oldPass);
-        newPass = dialog.findViewById(R.id.newPass);
-        retypedNewPass = dialog.findViewById(R.id.reTypeNewPass);
+        oldPass = editPassword.findViewById(R.id.oldPass);
+        newPass = editPassword.findViewById(R.id.newPass);
+        retypedNewPass = editPassword.findViewById(R.id.reTypeNewPass);
 
         cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     enable();
-                    dialog.dismiss();
+                    editPassword.dismiss();
                 }
         });
 
@@ -225,7 +230,22 @@ public class ManageAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                dialog.dismiss();
+                if(oldPass.getText().toString().isEmpty()){
+                    Toast.makeText(ManageAccountActivity.this, "Enter your old password", Toast.LENGTH_SHORT).show();
+                }else if(newPass.getText().toString().isEmpty()){
+                    Toast.makeText(ManageAccountActivity.this, "Enter your new password", Toast.LENGTH_SHORT).show();
+                }else if(retypedNewPass.getText().toString().isEmpty()){
+                    Toast.makeText(ManageAccountActivity.this, "Re-type your new password", Toast.LENGTH_SHORT).show();
+                }else if(oldPass.getText().toString() != password){
+                    Toast.makeText(ManageAccountActivity.this, "Old password does not match", Toast.LENGTH_SHORT).show();
+                } else if(newPass.getText().toString() != retypedNewPass.getText().toString()){
+                    Toast.makeText(ManageAccountActivity.this, "Retyped password does not match", Toast.LENGTH_SHORT).show();
+                }else{
+                    password = newPass.getText().toString();
+                    Toast.makeText(ManageAccountActivity.this, "Successfully Changed Password", Toast.LENGTH_SHORT).show();
+                    editPassword.dismiss();
+                }
+
             }
         });
 
