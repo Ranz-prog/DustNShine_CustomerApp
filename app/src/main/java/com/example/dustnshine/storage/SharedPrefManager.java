@@ -3,7 +3,6 @@ package com.example.dustnshine.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.dustnshine.models.Address;
 import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.models.User;
 
@@ -46,6 +45,22 @@ public class SharedPrefManager {
                 sharedPreferences.getString("mobile_number", null),
                 sharedPreferences.getString("email", null)
         );
+    }
+
+    public void savePassword(String password){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("password", password);
+
+        editor.apply();
+    }
+
+    public String getPassword(){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+
+        return sharedPreferences.getString("password", null);
+
     }
 
     public void saveUserAddress(AddressModel addressModel){

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,7 +26,6 @@ import com.example.dustnshine.ui.TimeAndDateActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CompanyDetailsActivity extends AppCompatActivity implements QuantityListener {
 
@@ -80,24 +78,24 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                     Toast.makeText(CompanyDetailsActivity.this, "Notes is empty", Toast.LENGTH_SHORT).show();
                 } else {
                     notes = activityCompanyDetailsBinding.etNotes.getText().toString();
-                        Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
-                        intent.putExtra("COMPANY_ID", companyID);
-                        intent.putExtra("COMPANY_NAME", companyName);
-                        intent.putExtra("COMPANY_ADDRESS", companyAddress);
-                        intent.putIntegerArrayListExtra("SERVICES_ID_LIST", servicesIdList);
-                        intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
-                        intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
-                        intent.putExtra("NOTES", notes);
+                    Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
+                    intent.putExtra("COMPANY_ID", companyID);
+                    intent.putExtra("COMPANY_NAME", companyName);
+                    intent.putExtra("COMPANY_ADDRESS", companyAddress);
+                    intent.putIntegerArrayListExtra("SERVICES_ID_LIST", servicesIdList);
+                    intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
+                    intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
+                    intent.putExtra("NOTES", notes);
 
-                        notes =null;
-                        servicesNameList = null;
-                        servicesIdList = null;
-                        servicesPriceList = null;
-                        Intent restart = getIntent();
-                        finish();
-                        startActivity(restart);
-                        startActivity(intent);
-                    }
+                    notes =null;
+                    servicesNameList = null;
+                    servicesIdList = null;
+                    servicesPriceList = null;
+                    Intent restart = getIntent();
+                    finish();
+                    startActivity(restart);
+                    startActivity(intent);
+                }
             }
         });
 

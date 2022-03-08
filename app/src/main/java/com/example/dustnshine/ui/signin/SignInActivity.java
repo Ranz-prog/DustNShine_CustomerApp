@@ -24,7 +24,6 @@ import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ForgetPasswordActivity;
-import com.example.dustnshine.ui.manage_account.ManageAccountActivity;
 import com.example.dustnshine.ui.signup.SignUpActivity;
 
 import java.util.regex.Matcher;
@@ -86,6 +85,7 @@ public class SignInActivity extends AppCompatActivity {
                     getUserInformation(signInResponse.getData().getToken());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
+                    SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -167,16 +167,14 @@ public class SignInActivity extends AppCompatActivity {
         signInViewModel.getSignInRequest(email, password);
     }
 
-
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-//            Intent intent = new Intent(this, MainActivity.class);
-//            startActivity(intent);
-//        };
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        };
+    }
 
     public void getUserInformation(String userToken){
         signInViewModel.getUserInformationRequest(userToken).observe(SignInActivity.this, new Observer<UserManagementResponse>() {

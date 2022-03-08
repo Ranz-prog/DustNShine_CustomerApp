@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.R;
 
@@ -17,6 +18,8 @@ public class NotificationActivity extends AppCompatActivity {
 
     ImageView returnHome;
     private TextView tvConfirmation;
+    private RecyclerView rvNotification;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,7 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
 
         returnHome = findViewById(R.id.backNotification);
-        tvConfirmation = findViewById(R.id.tvConfirmation);
+//        tvConfirmation = findViewById(R.id.tvConfirmation);
 
         returnHome.setOnClickListener(new View.OnClickListener() {
             @Override

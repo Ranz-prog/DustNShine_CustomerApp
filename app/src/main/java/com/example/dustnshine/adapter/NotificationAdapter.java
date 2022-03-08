@@ -1,8 +1,6 @@
 package com.example.dustnshine.adapter;
 
-
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,13 +14,13 @@ import com.example.dustnshine.models.BookingHistoryModel;
 
 import java.util.List;
 
-public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAdapter.ViewHolder> {
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
 
     private List<BookingHistoryModel> bookingHistoryModelList;
     private Context context;
     private BookingHistoryAdapter.OnClickMessageListener onClickMessageListener;
 
-    public BookingHistoryAdapter(List<BookingHistoryModel> bookingHistoryModelList, Context context, OnClickMessageListener onClickMessageListener) {
+    public NotificationAdapter(List<BookingHistoryModel> bookingHistoryModelList, Context context, BookingHistoryAdapter.OnClickMessageListener onClickMessageListener) {
         this.bookingHistoryModelList = bookingHistoryModelList;
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;
@@ -35,17 +33,13 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
 
     @NonNull
     @Override
-    public BookingHistoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_booking, parent, false);
-        BookingHistoryAdapter.ViewHolder viewHolder = new BookingHistoryAdapter.ViewHolder(view, onClickMessageListener);
-
-        return viewHolder;
+    public NotificationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookingHistoryAdapter.ViewHolder holder, int position) {
-        holder.customerLoc.setText(String.valueOf(bookingHistoryModelList.get(position).getUser_id()));
-        holder.customerNum.setText(String.valueOf(bookingHistoryModelList.get(position).getTotal()));
+    public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position) {
+
     }
 
     @Override
@@ -57,13 +51,12 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
         void onClickMessage(int adapterPosition);
     }
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private ImageView customerImg;
         private TextView customerName, customerLoc,customerNum;
 
-        BookingHistoryAdapter.OnClickMessageListener onClickMessageListener;
+        NotificationAdapter.OnClickMessageListener onClickMessageListener;
 
         public ViewHolder(@NonNull View itemView, BookingHistoryAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
@@ -73,7 +66,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
             customerLoc = itemView.findViewById(R.id.customerLocationBooking);
             customerNum = itemView.findViewById(R.id.contactNumberBooking);
 
-            this.onClickMessageListener = (BookingHistoryAdapter.OnClickMessageListener) onClickMessageListener;
+            this.onClickMessageListener = (NotificationAdapter.OnClickMessageListener) onClickMessageListener;
 
             itemView.setOnClickListener(this);
 
