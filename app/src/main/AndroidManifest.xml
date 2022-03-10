@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DustNShine">
         <activity
-            android:name=".ui.FeedbackActivity"
+            android:name=".ui.feedback.FeedbackActivity"
             android:exported="false" />
         <activity
             android:name=".ui.TimeAndDateActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.GarageCleaningActivity"
+            android:name=".ui.garage_cleaning.GarageCleaningActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.GeneralCleaningActivity"
+            android:name=".ui.general_cleaning.GeneralCleaningActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MessageBox"
@@ -62,8 +62,8 @@
         <activity
             android:name=".ui.recommendations.SeeAllRecommendationsActivity"
             android:exported="true" />
-        <activity android:name=".ui.BookingHistoryActivity" />
-        <activity android:name=".ui.NotificationActivity" />
+        <activity android:name=".ui.booking_history.BookingHistoryActivity" />
+        <activity android:name=".ui.notification.NotificationActivity" />
         <activity android:name=".ui.checkout.CheckOutActivity" />
     </application>
 

@@ -5,6 +5,7 @@ import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.CompanyResponse;
+import com.example.dustnshine.response.NotificationResponse;
 import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.LogoutResponse;
@@ -103,7 +104,7 @@ public interface Api {
             @Header("Authorization") String bookingRequest,
             @Field("booking_id") int booking_id,
             @Field("comment") String comment,
-            @Field("rating") int rating
+            @Field("rating") double rating
     );
 
     @GET("companies")
@@ -126,4 +127,7 @@ public interface Api {
 
     @GET("history")
     Call<BookingHistoryResponse> getBookingHistory(@Header("Authorization") String bookingHistoryRequest);
+
+    @GET("notification")
+    Call<NotificationResponse> getDoneServices(@Header("Authorization") String doneServicesRequest);
 }

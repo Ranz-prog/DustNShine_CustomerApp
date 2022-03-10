@@ -20,7 +20,7 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.BookingAdapter;
 import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.BookingHistoryActivity;
+import com.example.dustnshine.ui.booking_history.BookingHistoryActivity;
 import com.example.dustnshine.ui.checkout.CheckOutActivity;
 
 import java.util.List;

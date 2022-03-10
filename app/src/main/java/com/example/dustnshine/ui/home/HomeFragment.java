@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,11 +24,11 @@ import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.GarageCleaningActivity;
-import com.example.dustnshine.ui.GeneralCleaningActivity;
+import com.example.dustnshine.ui.garage_cleaning.GarageCleaningActivity;
+import com.example.dustnshine.ui.general_cleaning.GeneralCleaningActivity;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.manage_account.ManageAccountActivity;
-import com.example.dustnshine.ui.NotificationActivity;
+import com.example.dustnshine.ui.notification.NotificationActivity;
 import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsActivity;
 //import com.example.dustnshine.ui.activities.ActivityManageAccount;
 //import com.example.dustnshine.ui.activities.ActivityNotification;
@@ -159,6 +158,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         intent.putExtra("COMPANY_ID", recommendationModelList.get(adapterPosition).getId());
         intent.putExtra("COMPANY_NAME", recommendationModelList.get(adapterPosition).getName());
         intent.putExtra("COMPANY_ADDRESS", recommendationModelList.get(adapterPosition).getAddress());
+        intent.putExtra("COMPANY_IMAGE", recommendationModelList.get(adapterPosition).getCompany_image());
         startActivity(intent);
     }
 }

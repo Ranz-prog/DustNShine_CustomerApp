@@ -1,17 +1,18 @@
 package com.example.dustnshine.models;
 
 public class ReviewModel {
-    private int id, customer_id, booking_id, rating;
+    private int id, customer_id, booking_id;
     private String comment, created_at, updated_at;
+    private double rating;
 
-    public ReviewModel(int id, int customer_id, int booking_id, int rating, String comment, String created_at, String updated_at) {
+    public ReviewModel(int id, int customer_id, int booking_id, String comment, String created_at, String updated_at, double rating) {
         this.id = id;
         this.customer_id = customer_id;
         this.booking_id = booking_id;
-        this.rating = rating;
         this.comment = comment;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.rating = rating;
     }
 
     public int getId() {
@@ -38,14 +39,6 @@ public class ReviewModel {
         this.booking_id = booking_id;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -68,5 +61,13 @@ public class ReviewModel {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

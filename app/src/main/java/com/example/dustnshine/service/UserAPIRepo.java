@@ -1,20 +1,15 @@
-package com.example.dustnshine.repository;
+package com.example.dustnshine.service;
 
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
-import com.example.dustnshine.models.ServicesModel;
-import com.example.dustnshine.models.UserManagementModel;
 import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.LogoutResponse;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.response.UserManagementResponse;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

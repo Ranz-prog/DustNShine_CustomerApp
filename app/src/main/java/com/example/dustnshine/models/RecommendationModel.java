@@ -1,11 +1,22 @@
 package com.example.dustnshine.models;
 
-import com.google.gson.annotations.SerializedName;
 
 public class RecommendationModel {
 
     private int id;
-    private String name, email, mobile_number, tel_number, address, created_at, updated_at;
+    private String name, email, mobile_number, tel_number, address, created_at, updated_at, company_image;
+
+    public RecommendationModel(int id, String name, String email, String mobile_number, String tel_number, String address, String created_at, String updated_at, String company_image) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.mobile_number = mobile_number;
+        this.tel_number = tel_number;
+        this.address = address;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.company_image = company_image;
+    }
 
     public int getId() {
         return id;
@@ -69,5 +80,13 @@ public class RecommendationModel {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getCompany_image() {
+        return company_image;
+    }
+
+    public void setCompany_image(String company_image) {
+        this.company_image = company_image;
     }
 }

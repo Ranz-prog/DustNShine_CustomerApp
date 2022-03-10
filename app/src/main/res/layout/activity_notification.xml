@@ -26,41 +26,42 @@
         android:textColor="@color/app_theme_gold"
         android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background"
-        android:layout_marginTop="50dp">
-
-        <TextView
-            android:id="@+id/tvConfirmation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="Confirmation of Work Done"
-            android:textSize="17sp" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_marginTop="80dp"
-        style="@style/Divider" />
-
-
-<!--    <RelativeLayout-->
-<!--        android:id="@+id/middleSide"-->
-<!--        android:layout_width="wrap_content"-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/tvNotification"-->
-<!--        android:orientation="vertical">-->
+<!--        android:background="@color/background"-->
+<!--        android:layout_marginTop="50dp">-->
 
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/rvNotification"-->
+<!--        <TextView-->
+<!--            android:id="@+id/tvConfirmation"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="20dp" />-->
-<!--    </RelativeLayout>-->
+<!--            android:fontFamily="@font/montserrat_medium"-->
+<!--            android:text="Confirmation of Work Done"-->
+<!--            android:textSize="17sp" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    <View-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        style="@style/Divider" />-->
+
+
+    <RelativeLayout
+        android:id="@+id/middleSide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNotification"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
 
 <!--    <ImageView-->
 <!--        android:id="@+id/imgNoTransactions"-->

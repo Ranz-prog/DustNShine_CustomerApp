@@ -1,12 +1,11 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.booking_history;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.models.BookingHistoryModel;
-import com.example.dustnshine.models.BookingServiceData;
-import com.example.dustnshine.repository.BookingAPIRepo;
+import com.example.dustnshine.service.BookingAPIRepo;
 
 import java.util.List;
 

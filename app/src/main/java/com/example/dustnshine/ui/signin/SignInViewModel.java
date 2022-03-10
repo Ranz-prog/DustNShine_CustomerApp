@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.response.SignInResponse;
-import com.example.dustnshine.repository.UserAPIRepo;
+import com.example.dustnshine.service.UserAPIRepo;
 import com.example.dustnshine.response.UserManagementResponse;
 
 import retrofit2.Call;

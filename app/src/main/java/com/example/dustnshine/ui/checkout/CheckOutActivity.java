@@ -92,11 +92,9 @@ public class CheckOutActivity extends AppCompatActivity {
         total = servicesPrice(servicesPriceList);
 
         activityCheckoutBinding.tvCompanyName.setText(companyName);
-//        activityCheckoutBinding.tvCustomerName.setText(customerFirstName + " " + customerLastName);
-//        activityCheckoutBinding.tvContactNumber.setText(customerContactNumber);
+
         activityCheckoutBinding.tvDateAndTime.setText(selectedDate + " " + selectedTime);
         activityCheckoutBinding.tvServiceName.setText(servicesNameList.toString());
-//        activityCheckoutBinding.tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
         activityCheckoutBinding.tvNotes.setText(notes);
         activityCheckoutBinding.tvTotal.setText(String.valueOf(total));
 

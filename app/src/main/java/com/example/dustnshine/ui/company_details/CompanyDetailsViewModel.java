@@ -6,11 +6,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 ;
 import com.example.dustnshine.models.ServicesModel;
-import com.example.dustnshine.repository.BookingAPIRepo;
-import com.example.dustnshine.response.BookingServiceResponse;
+import com.example.dustnshine.service.BookingAPIRepo;
 
 import java.util.List;
-import java.util.Map;;
+;
 
 public class CompanyDetailsViewModel extends ViewModel {
 

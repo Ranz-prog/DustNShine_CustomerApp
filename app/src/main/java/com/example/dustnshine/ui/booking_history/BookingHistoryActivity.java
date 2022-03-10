@@ -1,11 +1,9 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.booking_history;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.R;
-import com.example.dustnshine.adapter.BookingAdapter;
 import com.example.dustnshine.adapter.BookingHistoryAdapter;
 import com.example.dustnshine.models.BookingHistoryModel;
-import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.booking.BookingFragment;
-import com.example.dustnshine.ui.booking.BookingFragmentViewModel;
 
 import java.util.List;
 

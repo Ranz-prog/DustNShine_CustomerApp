@@ -46,14 +46,13 @@ public class ManageAccountActivity extends AppCompatActivity {
     private TextView tvPersonalInfo, popText, tvLogout, tvManageCards;
     private CardView personalInfoCardView;
     private Button reset, edit;
-    private Dialog dialog,editPassword;
+    private Dialog dialog, changePassword;
     private static int number;
     private String text, userToken;
     private ActivityManageAccountBinding activitySignupBinding;
     private ManageAccountViewModel manageAccountViewModel;
     private static String firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, password, passwordConfirmation;
     private static int userID;
-    private EditText etFirstName;
     private Fragment homeFragment;
     private ImageButton editPass;
 
@@ -65,7 +64,6 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_manage_account);
         manageAccountViewModel =  new ViewModelProvider(ManageAccountActivity.this).get(ManageAccountViewModel.class);
         userToken = SharedPrefManager.getInstance(ManageAccountActivity.this).getUserToken();
-        etFirstName = findViewById(R.id.etFirstName);
         homeFragment = new HomeFragment();
 
         btnBack = findViewById(R.id.backManageAcc);
@@ -80,13 +78,11 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.btnSaveDetails.setEnabled(false);
         disabled();
 
-        disabled();
-
         editPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editPasswordDialogBox();
-                editPassword.show();
+                changePassword.show();
             }
         });
 
@@ -196,33 +192,33 @@ public class ManageAccountActivity extends AppCompatActivity {
     public void editPasswordDialogBox(){
 
         EditText etOldPass, etNewPassword, etConfirmPassword;
-        Button cancel, save;
+        Button btnCancel, btnSave;
 
-        editPassword = new Dialog(this);
-        editPassword.setContentView(R.layout.change_password_dialogbox);
+        changePassword = new Dialog(this);
+        changePassword.setContentView(R.layout.change_password_dialogbox);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            editPassword.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+            changePassword.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
         }
-        editPassword.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        editPassword.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
-        editPassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+        changePassword.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        changePassword.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
+        changePassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
-        cancel = editPassword.findViewById(R.id.cancelNewPassword);
-        save = editPassword.findViewById(R.id.saveNewPassword);
+        btnCancel = changePassword.findViewById(R.id.cancelNewPassword);
+        btnSave = changePassword.findViewById(R.id.saveNewPassword);
 
-        etOldPass = editPassword.findViewById(R.id.oldPass);
-        etNewPassword = editPassword.findViewById(R.id.newPass);
-        etConfirmPassword = editPassword.findViewById(R.id.reTypeNewPass);
+        etOldPass = changePassword.findViewById(R.id.etOldPassword);
+        etNewPassword = changePassword.findViewById(R.id.etNewPassword);
+        etConfirmPassword = changePassword.findViewById(R.id.etConfirmNewPassword);
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     enable();
-                    editPassword.dismiss();
+                    changePassword.dismiss();
                 }
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -241,12 +237,10 @@ public class ManageAccountActivity extends AppCompatActivity {
                 } else {
                     userChangePassword(userToken, etOldPass.getText().toString(), etNewPassword.getText().toString(), etConfirmPassword.getText().toString());
                     Toast.makeText(ManageAccountActivity.this, "Successfully Changed Password", Toast.LENGTH_SHORT).show();
-                    editPassword.dismiss();
+                    changePassword.dismiss();
                 }
-
             }
         });
-
     }
 
     public void dialogBox(){

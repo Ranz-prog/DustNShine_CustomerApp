@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.dustnshine.databinding.ActivityCompanyDetailsBinding;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.R;
@@ -23,6 +24,7 @@ import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.QuantityListener;
 import com.example.dustnshine.ui.TimeAndDateActivity;
+import com.example.dustnshine.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +38,14 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     private CompanyDetailsViewModel companyDetailsViewModel;
     private String userToken;
     private ActivityCompanyDetailsBinding activityCompanyDetailsBinding;
-    private String companyName, companyAddress;
+    private String companyName, companyAddress, companyImage;
     private int companyID;
     private Intent intent;
     private static ArrayList<Integer> servicesIdList;
     private static ArrayList<String> servicesNameList;
     private static ArrayList<Integer> servicesPriceList;
     private static String notes;
+    private AppConstants appConstants;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
+        companyImage = intent.getStringExtra("COMPANY_IMAGE");
 
         rvServices.setHasFixedSize(true);
         rvServices.setLayoutManager(new LinearLayoutManager(this));
@@ -66,6 +70,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
 
         activityCompanyDetailsBinding.tvCompanyName.setText(companyName);
         activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
+        Glide.with(CompanyDetailsActivity.this).load(appConstants.BASE_URL + companyImage).into(activityCompanyDetailsBinding.imgCompanyImage);
 
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +91,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                     intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
                     intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
                     intent.putExtra("NOTES", notes);
-
                     notes =null;
                     servicesNameList = null;
                     servicesIdList = null;

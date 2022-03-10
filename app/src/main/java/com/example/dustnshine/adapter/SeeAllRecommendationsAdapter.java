@@ -4,22 +4,30 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.R;
+import com.example.dustnshine.utils.AppConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRecommendationsAdapter.ViewHolder>{
+public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRecommendationsAdapter.ViewHolder> {
 
     private List<RecommendationModel> recommendationModelList;
+    private List<RecommendationModel> recommendationModels;
     private Context context;
     private SeeAllRecommendationsAdapter.OnClickMessageListener onClickMessageListener;
+    private AppConstants appConstants;
 
     public SeeAllRecommendationsAdapter(List<RecommendationModel> recommendationModelList, Context context, OnClickMessageListener onClickMessageListener) {
         this.recommendationModelList = recommendationModelList;
@@ -43,9 +51,9 @@ public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRec
 
     @Override
     public void onBindViewHolder(@NonNull SeeAllRecommendationsAdapter.ViewHolder holder, int position) {
-//        holder.companyImage.setImageResource();
-        holder.companyName.setText(recommendationModelList.get(position).getName());
-        holder.companyLocation.setText(recommendationModelList.get(position).getAddress());
+        Glide.with(context).load(appConstants.BASE_URL + recommendationModelList.get(position).getCompany_image()).into(holder.imgCompanyImage);
+        holder.tvCompanyName.setText(recommendationModelList.get(position).getName());
+        holder.tvCompanyLocation.setText(recommendationModelList.get(position).getAddress());
 //        holder.companyRating.setText(recommendationModelList.get(position).getCompanyRating());
     }
 
@@ -58,19 +66,19 @@ public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRec
         void onClickMessage(int adapterPosition);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView companyImage;
-        private TextView companyName,companyLocation,companyRating;
+        private ImageView imgCompanyImage;
+        private TextView tvCompanyName, tvCompanyLocation, companyRating;
 
         SeeAllRecommendationsAdapter.OnClickMessageListener onClickMessageListener;
 
         public ViewHolder(@NonNull View itemView, SeeAllRecommendationsAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
-//            companyImage = itemView.findViewById(R.id.companyImg);
-            companyName = itemView.findViewById(R.id.companyNameTVFavSAR);
-            companyLocation = itemView.findViewById(R.id.companyLocationTVSAR);
+            imgCompanyImage = itemView.findViewById(R.id.imgCompanyImage);
+            tvCompanyName = itemView.findViewById(R.id.tvCompanyName);
+            tvCompanyLocation = itemView.findViewById(R.id.tvCompanyAddress);
 //            companyRating = itemView.findViewById(R.id.companyRatingTV);
 
             this.onClickMessageListener = (OnClickMessageListener) onClickMessageListener;
@@ -78,9 +86,11 @@ public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRec
             itemView.setOnClickListener(this);
 
         }
+
         @Override
         public void onClick(View v) {
             onClickMessageListener.onClickMessage(getAdapterPosition());
         }
     }
 }
+

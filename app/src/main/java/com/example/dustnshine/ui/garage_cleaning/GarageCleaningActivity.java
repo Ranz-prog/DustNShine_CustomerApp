@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.garage_cleaning;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -7,26 +7,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.GarageCleaningAdapter;
 import com.example.dustnshine.adapter.GeneralCleaningAdapter;
-import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.models.RecommendationModel;
-import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class GarageCleaningActivity extends AppCompatActivity implements GeneralCleaningAdapter.OnClickMessageListener {
 

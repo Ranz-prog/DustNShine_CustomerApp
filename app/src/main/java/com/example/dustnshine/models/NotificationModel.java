@@ -2,14 +2,15 @@ package com.example.dustnshine.models;
 
 import java.util.List;
 
-public class BookingHistoryModel {
+public class NotificationModel {
     private int id, user_id, company_id, status, total;
     private String sched_datetime, start_datetime, end_datetime, address, created_at, updated_at, note;
     private List<ReviewModel> reviews;
     private double latitude, longitude;
     private List<ServiceDetailsModel> services;
+    private List<WorkersModel> workers;
 
-    public BookingHistoryModel(int id, int user_id, int company_id, int status, int total, String sched_datetime, String start_datetime, String end_datetime, String address, String created_at, String updated_at, String note, List<ReviewModel> reviews, double latitude, double longitude, List<ServiceDetailsModel> services) {
+    public NotificationModel(int id, int user_id, int company_id, int status, int total, String sched_datetime, String start_datetime, String end_datetime, String address, String created_at, String updated_at, String note, List<ReviewModel> reviews, double latitude, double longitude, List<ServiceDetailsModel> services, List<WorkersModel> workers) {
         this.id = id;
         this.user_id = user_id;
         this.company_id = company_id;
@@ -26,6 +27,7 @@ public class BookingHistoryModel {
         this.latitude = latitude;
         this.longitude = longitude;
         this.services = services;
+        this.workers = workers;
     }
 
     public int getId() {
@@ -156,4 +158,11 @@ public class BookingHistoryModel {
         this.services = services;
     }
 
+    public List<WorkersModel> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(List<WorkersModel> workers) {
+        this.workers = workers;
+    }
 }

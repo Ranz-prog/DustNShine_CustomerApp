@@ -1,4 +1,4 @@
-package com.example.dustnshine.repository;
+package com.example.dustnshine.service;
 
 import android.util.Log;
 
@@ -7,12 +7,14 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.models.BookingHistoryModel;
 import com.example.dustnshine.models.BookingServiceData;
+import com.example.dustnshine.models.NotificationModel;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
+import com.example.dustnshine.response.NotificationResponse;
 import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.SearchCompanyResponse;
@@ -27,8 +29,8 @@ import retrofit2.Response;
 
 public class BookingAPIRepo {
 
+    // Booking Request
     public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services, String notes){
-
         final MutableLiveData<BookingServiceResponse> bookingServiceResponseMutableLiveData = new MutableLiveData<>();
         Call<BookingServiceResponse> bookingServiceResponseCall = RetrofitClient.getInstance().getApi().bookService("Bearer " + userToken, company_id, address, start_datetime, total, services, notes);
         bookingServiceResponseCall.enqueue(new Callback<BookingServiceResponse>() {
@@ -54,6 +56,7 @@ public class BookingAPIRepo {
         return bookingServiceResponseMutableLiveData;
     }
 
+    // Get Services
     public MutableLiveData<List<ServicesModel>> getServices(String userToken){
         final MutableLiveData<List<ServicesModel>> servicesList = new MutableLiveData<>();
         Call<ServiceResponse> serviceResponseCall = RetrofitClient.getInstance().getApi().getServices("Bearer " + userToken);
@@ -76,6 +79,7 @@ public class BookingAPIRepo {
         return servicesList;
     }
 
+    // Get Companies
     public MutableLiveData<List<RecommendationModel>> getCompanies(String userToken){
         final MutableLiveData<List<RecommendationModel>> companyList = new MutableLiveData<>();
         Call<CompanyResponse> companyResponseCall = RetrofitClient.getInstance().getApi().getCompanies("Bearer " + userToken);
@@ -98,6 +102,7 @@ public class BookingAPIRepo {
         return companyList;
     }
 
+    // Get Booked Services
     public MutableLiveData<List<BookingServiceData>> getBookedServices(String userToken){
         final MutableLiveData<List<BookingServiceData>> bookedServicesList = new MutableLiveData<>();
         Call<BookedServiceResponse> bookedServiceResponseCall = RetrofitClient.getInstance().getApi().getBookedService("Bearer " + userToken);
@@ -118,9 +123,9 @@ public class BookingAPIRepo {
             }
         });
         return bookedServicesList;
-
     }
 
+    // Get SearchedCompany
     public MutableLiveData<List<RecommendationModel>> getSearchedCompany(String companyName, String userToken){
         final MutableLiveData<List<RecommendationModel>> searchedCompany = new MutableLiveData<>();
         Call<SearchCompanyResponse> searchCompanyResponseCall = RetrofitClient.getInstance().getApi().getSearchedCompany(companyName, "Bearer " + userToken);
@@ -128,7 +133,7 @@ public class BookingAPIRepo {
             @Override
             public void onResponse(Call<SearchCompanyResponse> call, Response<SearchCompanyResponse> response) {
                 if(response.code() == 200){
-                    searchedCompany.postValue(response.body().getData());
+                    searchedCompany.setValue(response.body().getData());
                     Log.d("TAG", "Success");
                 } else {
                     Log.d("TAG", "Failed");
@@ -141,10 +146,10 @@ public class BookingAPIRepo {
 
             }
         });
-
         return searchedCompany;
     }
 
+    //Get Filtered Service by Company
     public MutableLiveData<List<RecommendationModel>> getFilteredService(int service, String userToken){
 
         final MutableLiveData<List<RecommendationModel>> filteredService = new MutableLiveData<>();
@@ -168,6 +173,7 @@ public class BookingAPIRepo {
         return filteredService;
     }
 
+    // Get Booking History
     public MutableLiveData<List<BookingHistoryModel>> getBookingHistory(String userToken){
         final MutableLiveData<List<BookingHistoryModel>> bookingHistory = new MutableLiveData<>();
         Call<BookingHistoryResponse> bookingHistoryResponseCall = RetrofitClient.getInstance().getApi().getBookingHistory("Bearer " + userToken);
@@ -190,7 +196,8 @@ public class BookingAPIRepo {
         return bookingHistory;
     }
 
-    public MutableLiveData<ReviewResponse> putReview(String userToken, int booking_id, String comment, int rating){
+    // Put Review
+    public MutableLiveData<ReviewResponse> putReview(String userToken, int booking_id, String comment, double rating){
         final MutableLiveData<ReviewResponse> feedbackResponseMutableLiveData = new MutableLiveData<>();
         Call<ReviewResponse> feedbackResponseCall= RetrofitClient.getInstance().getApi().userReview("Bearer " + userToken, booking_id, comment, rating);
         feedbackResponseCall.enqueue(new Callback<ReviewResponse>() {
@@ -212,6 +219,28 @@ public class BookingAPIRepo {
         return feedbackResponseMutableLiveData;
     }
 
+    // Get Done Services
+    public MutableLiveData<List<NotificationModel>> getDoneServices(String userToken){
+        final MutableLiveData<List<NotificationModel>> doneServices = new MutableLiveData<>();
+        Call<NotificationResponse> doneServicesResponseCall = RetrofitClient.getInstance().getApi().getDoneServices("Bearer " + userToken);
+        doneServicesResponseCall.enqueue(new Callback<NotificationResponse>() {
+            @Override
+            public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
+                if (response.code() == 200) {
+                    doneServices.setValue(response.body().getData());
+                    Log.d("CODE", String.valueOf(response.code()));
+                } else {
+                    Log.d("TAG", "Failed");
+                    Log.d("CODE", String.valueOf(response.code()));
+                }
+            }
 
+            @Override
+            public void onFailure(Call<NotificationResponse> call, Throwable t) {
+                Log.d("TAG", t.getLocalizedMessage());
+            }
+        });
+        return doneServices;
+    }
 
 }

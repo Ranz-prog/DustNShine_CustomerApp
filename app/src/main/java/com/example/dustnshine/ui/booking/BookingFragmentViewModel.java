@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.models.BookingServiceData;
-import com.example.dustnshine.repository.BookingAPIRepo;
+import com.example.dustnshine.service.BookingAPIRepo;
 
 import java.util.List;
 

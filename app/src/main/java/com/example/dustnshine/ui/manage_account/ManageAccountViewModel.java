@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.LogoutResponse;
-import com.example.dustnshine.repository.UserAPIRepo;
+import com.example.dustnshine.service.UserAPIRepo;
 import com.example.dustnshine.response.UserManagementResponse;
 
 public class ManageAccountViewModel extends ViewModel {

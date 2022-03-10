@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.feedback;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -25,8 +25,10 @@ public class FeedbackActivity extends AppCompatActivity {
     private FeedbackActivityViewModel feedbackActivityViewModel;
     private static String userToken;
     private Button btnReview;
-    private int rating;
+    private double rating;
     private ImageView btnBack;
+    private Intent intent;
+    private static int bookingID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class FeedbackActivity extends AppCompatActivity {
         feedbackActivityViewModel = new ViewModelProvider(FeedbackActivity.this).get(FeedbackActivityViewModel.class);
         userToken = SharedPrefManager.getInstance(FeedbackActivity.this).getUserToken();
         btnBack = findViewById(R.id.btnBack);
+        intent = getIntent();
+
+        bookingID = intent.getIntExtra("BOOKING_ID", 0);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,13 +55,13 @@ public class FeedbackActivity extends AppCompatActivity {
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rating = (int) ratingBar.getRating();
+                rating = ratingBar.getRating();
                 if(etFeedback.getText().toString().isEmpty()){
                     Toast.makeText(FeedbackActivity.this, "Please give your feedback", Toast.LENGTH_SHORT).show();
                 } else if(rating == 0){
                     Toast.makeText(FeedbackActivity.this, "Please give your rating", Toast.LENGTH_SHORT).show();
                 } else {
-                    putReviewRequest(userToken, 207, etFeedback.getText().toString(), rating);
+                    putReviewRequest(userToken, bookingID, etFeedback.getText().toString(), rating);
                     Intent intent = new Intent(getApplication(), MainActivity.class);
                     startActivity(intent);
                 }
@@ -65,7 +70,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
     }
 
-    public void putReviewRequest(String userToken, int booking_id, String comment, int rating){
+    public void putReviewRequest(String userToken, int booking_id, String comment, double rating){
         feedbackActivityViewModel.putReview(userToken, booking_id, comment, rating).observe(FeedbackActivity.this, new Observer<ReviewResponse>() {
             @Override
             public void onChanged(ReviewResponse reviewResponse) {

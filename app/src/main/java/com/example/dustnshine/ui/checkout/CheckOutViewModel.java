@@ -1,18 +1,14 @@
 package com.example.dustnshine.ui.checkout;
 
-import android.util.ArrayMap;
-import android.view.View;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.dustnshine.repository.BookingAPIRepo;
-import com.example.dustnshine.repository.UserAPIRepo;
+import com.example.dustnshine.service.BookingAPIRepo;
+import com.example.dustnshine.service.UserAPIRepo;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.UserManagementResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

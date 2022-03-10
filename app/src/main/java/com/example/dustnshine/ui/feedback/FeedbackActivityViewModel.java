@@ -1,10 +1,10 @@
-package com.example.dustnshine.ui;
+package com.example.dustnshine.ui.feedback;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.dustnshine.repository.BookingAPIRepo;
+import com.example.dustnshine.service.BookingAPIRepo;
 import com.example.dustnshine.response.ReviewResponse;
 
 public class FeedbackActivityViewModel extends ViewModel {
@@ -15,7 +15,7 @@ public class FeedbackActivityViewModel extends ViewModel {
         bookingAPIRepo = new BookingAPIRepo();
     }
 
-    public LiveData<ReviewResponse> putReview(String userToken, int booking_id, String comment, int rating){
+    public LiveData<ReviewResponse> putReview(String userToken, int booking_id, String comment, double rating){
         if (responseMutableLiveData == null) {
             responseMutableLiveData = bookingAPIRepo.putReview(userToken, booking_id, comment, rating);
         }

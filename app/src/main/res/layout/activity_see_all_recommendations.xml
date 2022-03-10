@@ -19,31 +19,40 @@
                 app:srcCompat="@drawable/back" />
 
 
-            <EditText
-                android:id="@+id/edtSearchCompany"
+<!--            <EditText-->
+<!--                android:id="@+id/edtSearchCompany"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_toLeftOf="@+id/btnSearch"-->
+<!--                android:layout_toRightOf="@+id/backSAR"-->
+<!--                android:background="@drawable/roundbutton"-->
+<!--                android:fontFamily="@font/roboto_regular"-->
+<!--                android:hint="Search..."-->
+<!--                android:padding="8dp"-->
+<!--                android:textColorHighlight="@color/app_theme_black"-->
+<!--                android:textColorLink="@color/line_divider_color"-->
+<!--                android:textSize="14sp" />-->
+
+            <SearchView
+                android:id="@+id/sbSearchCompany"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/btnSearch"
-                android:layout_toRightOf="@+id/backSAR"
-                android:background="@drawable/roundbutton"
-                android:fontFamily="@font/roboto_regular"
-                android:hint="Search..."
-                android:padding="8dp"
-                android:textColorHighlight="@color/app_theme_black"
-                android:textColorLink="@color/line_divider_color"
-                android:textSize="14sp" />
-
-
-
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/backSAR"
+                android:background="@drawable/container1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:queryHint="Search. . . " />
 
             <RelativeLayout
                 android:id="@+id/middleSide"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/edtSearchCompany"
+                android:layout_below="@+id/sbSearchCompany"
                 android:orientation="vertical">
 
 
@@ -54,25 +63,25 @@
                     android:layout_marginTop="10dp" />
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/btnSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/roundbutton"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="10dp">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/btnSearch"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/roundbutton"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp">-->
 
-                <ImageView
-                    android:id="@+id/searchIcon"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/searchic" />
-            </LinearLayout>
+<!--                <ImageView-->
+<!--                    android:id="@+id/searchIcon"-->
+<!--                    android:layout_width="18dp"-->
+<!--                    android:layout_height="18dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/searchic" />-->
+<!--            </LinearLayout>-->
         </RelativeLayout>
 
 </ScrollView>

@@ -1,6 +1,7 @@
 package com.example.dustnshine.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,40 +12,45 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.models.BookingHistoryModel;
+import com.example.dustnshine.models.NotificationModel;
 
 import java.util.List;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
 
-    private List<BookingHistoryModel> bookingHistoryModelList;
+    private List<NotificationModel> notificationModelList;
     private Context context;
     private NotificationAdapter.OnClickMessageListener onClickMessageListener;
 
-    public NotificationAdapter(List<BookingHistoryModel> bookingHistoryModelList, Context context, OnClickMessageListener onClickMessageListener) {
-        this.bookingHistoryModelList = bookingHistoryModelList;
+    public NotificationAdapter(List<NotificationModel> notificationModelList, Context context, OnClickMessageListener onClickMessageListener) {
+        this.notificationModelList = notificationModelList;
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;
     }
 
-    public void setData(List<BookingHistoryModel> bookingHistoryModelList) {
-        this.bookingHistoryModelList = bookingHistoryModelList;
+    public void setData(List<NotificationModel> notificationModelList) {
+        this.notificationModelList = notificationModelList;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public NotificationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_done_services, parent, false);
+        NotificationAdapter.ViewHolder viewHolder = new NotificationAdapter.ViewHolder(view, onClickMessageListener);
+
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position) {
-
+        holder.tvServicesName.setText(notificationModelList.get(position).getServices().toString());
+        holder.tvWorkerName.setText(notificationModelList.get(position).getWorkers().get(0).getFirst_name() + " " + notificationModelList.get(position).getWorkers().get(0).getLast_name());
     }
 
     @Override
     public int getItemCount() {
-        return bookingHistoryModelList.size();
+        return notificationModelList.size();
     }
 
     public interface OnClickMessageListener {
@@ -53,18 +59,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private ImageView customerImg;
-        private TextView customerName, customerLoc,customerNum;
+        private TextView tvServicesName, tvWorkerName;
 
         NotificationAdapter.OnClickMessageListener onClickMessageListener;
 
-        public ViewHolder(@NonNull View itemView, BookingHistoryAdapter.OnClickMessageListener onClickMessageListener) {
+        public ViewHolder(@NonNull View itemView, NotificationAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
-            customerImg = itemView.findViewById(R.id.clientImage);
-            customerName = itemView.findViewById(R.id.customerNameBooking);
-            customerLoc = itemView.findViewById(R.id.customerLocationBooking);
-            customerNum = itemView.findViewById(R.id.contactNumberBooking);
+            tvServicesName = itemView.findViewById(R.id.tvServicesName);
+            tvWorkerName = itemView.findViewById(R.id.tvWorkerName);
 
             this.onClickMessageListener = (NotificationAdapter.OnClickMessageListener) onClickMessageListener;
 

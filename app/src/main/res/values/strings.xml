@@ -115,5 +115,9 @@
     <string name="fourpm">4:00 PM</string>
     <string name="fivepm">5:00 PM</string>
 
+    <!--Notification-->
+    <string name="servicedone">service is done!</string>
+
+
 
 </resources>

@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.models.RecommendationModel;
-import com.example.dustnshine.repository.BookingAPIRepo;
-import com.example.dustnshine.repository.UserAPIRepo;
+import com.example.dustnshine.service.BookingAPIRepo;
+import com.example.dustnshine.service.UserAPIRepo;
 import com.example.dustnshine.response.UserManagementResponse;
 
 import java.util.List;

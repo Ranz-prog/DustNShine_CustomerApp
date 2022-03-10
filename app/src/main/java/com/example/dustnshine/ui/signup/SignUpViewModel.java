@@ -2,16 +2,11 @@ package com.example.dustnshine.ui.signup;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
-import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.SignUpCallback;
 import com.example.dustnshine.api.RetrofitClient;
-import com.example.dustnshine.repository.UserAPIRepo;
-import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.SignUpResponse;
 
 import retrofit2.Call;
