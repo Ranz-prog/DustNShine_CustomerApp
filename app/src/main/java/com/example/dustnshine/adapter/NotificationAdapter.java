@@ -1,6 +1,7 @@
 package com.example.dustnshine.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position) {
         holder.tvServicesName.setText(notificationModelList.get(position).getServices().toString());
+        Log.d("SERVICES", notificationModelList.get(position).getServices().toString());
         holder.tvWorkerName.setText(notificationModelList.get(position).getWorkers().get(0).getFirst_name() + " " + notificationModelList.get(position).getWorkers().get(0).getLast_name());
     }
 

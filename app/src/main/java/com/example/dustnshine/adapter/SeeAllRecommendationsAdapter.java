@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.R;
+import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.utils.AppConstants;
 
 import java.util.ArrayList;
@@ -23,20 +24,19 @@ import java.util.List;
 
 public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRecommendationsAdapter.ViewHolder> {
 
-    private List<RecommendationModel> recommendationModelList;
-    private List<RecommendationModel> recommendationModels;
+    private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
     private Context context;
     private SeeAllRecommendationsAdapter.OnClickMessageListener onClickMessageListener;
     private AppConstants appConstants;
 
-    public SeeAllRecommendationsAdapter(List<RecommendationModel> recommendationModelList, Context context, OnClickMessageListener onClickMessageListener) {
-        this.recommendationModelList = recommendationModelList;
+    public SeeAllRecommendationsAdapter(List<RecommendedCompaniesModel> recommendedCompaniesModelList, Context context, OnClickMessageListener onClickMessageListener) {
+        this.recommendedCompaniesModelList = recommendedCompaniesModelList;
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;
     }
 
-    public void setData(List<RecommendationModel> recommendationModelList) {
-        this.recommendationModelList = recommendationModelList;
+    public void setData(List<RecommendedCompaniesModel> recommendedCompaniesModelList) {
+        this.recommendedCompaniesModelList = recommendedCompaniesModelList;
         notifyDataSetChanged();
     }
 
@@ -51,15 +51,15 @@ public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRec
 
     @Override
     public void onBindViewHolder(@NonNull SeeAllRecommendationsAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load(appConstants.BASE_URL + recommendationModelList.get(position).getCompany_image()).into(holder.imgCompanyImage);
-        holder.tvCompanyName.setText(recommendationModelList.get(position).getName());
-        holder.tvCompanyLocation.setText(recommendationModelList.get(position).getAddress());
-//        holder.companyRating.setText(recommendationModelList.get(position).getCompanyRating());
+        Glide.with(context).load(appConstants.BASE_URL + recommendedCompaniesModelList.get(position).getCompany().getCompany_image()).into(holder.imgCompanyImage);
+        holder.tvCompanyName.setText(recommendedCompaniesModelList.get(position).getCompany().getName());
+        holder.tvCompanyLocation.setText(recommendedCompaniesModelList.get(position).getCompany().getAddress());
+        holder.tvCompanyRating.setText(String.valueOf(recommendedCompaniesModelList.get(position).getRating()));
     }
 
     @Override
     public int getItemCount() {
-        return recommendationModelList.size();
+        return recommendedCompaniesModelList.size();
     }
 
     public interface OnClickMessageListener {
@@ -69,7 +69,7 @@ public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRec
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView imgCompanyImage;
-        private TextView tvCompanyName, tvCompanyLocation, companyRating;
+        private TextView tvCompanyName, tvCompanyLocation, tvCompanyRating;
 
         SeeAllRecommendationsAdapter.OnClickMessageListener onClickMessageListener;
 
@@ -79,7 +79,7 @@ public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRec
             imgCompanyImage = itemView.findViewById(R.id.imgCompanyImage);
             tvCompanyName = itemView.findViewById(R.id.tvCompanyName);
             tvCompanyLocation = itemView.findViewById(R.id.tvCompanyAddress);
-//            companyRating = itemView.findViewById(R.id.companyRatingTV);
+            tvCompanyRating = itemView.findViewById(R.id.tvCompanyRating);
 
             this.onClickMessageListener = (OnClickMessageListener) onClickMessageListener;
 

@@ -5,22 +5,22 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.models.RecommendationModel;
-import com.example.dustnshine.service.BookingAPIRepo;
+import com.example.dustnshine.service.BookingAPIService;
 
 import java.util.List;
 
 public class GeneralCleaningViewModel extends ViewModel {
 
     private MutableLiveData<List<RecommendationModel>> companyList;
-    private BookingAPIRepo bookingAPIRepo;
+    private BookingAPIService bookingAPIService;
 
     public GeneralCleaningViewModel() {
-        bookingAPIRepo = new BookingAPIRepo();
+        bookingAPIService = new BookingAPIService();
     }
 
     public LiveData<List<RecommendationModel>> getFilteredService(int service, String userToken){
         if (companyList == null) {
-            companyList = bookingAPIRepo.getFilteredService(service, userToken);
+            companyList = bookingAPIService.getFilteredService(service, userToken);
         }
         return companyList;
     }

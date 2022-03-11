@@ -22,6 +22,7 @@ import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
+import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.garage_cleaning.GarageCleaningActivity;
@@ -46,7 +47,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
 
     private RecyclerView recommendationRecycler, featureRecycler;
     private List<FeatureModel> featureModelList;
-    private List<RecommendationModel> recommendationModelList;
+    private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
     private HomeFragmentViewModel homeFragmentViewModel;
     private RecommendationAdapter recommendationAdapter;
     private String userToken;
@@ -68,7 +69,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         tvAddress = view.findViewById(R.id.tvAddress);
         btnShowAll = view.findViewById(R.id.btnShowAll);
         recommendationRecycler = view.findViewById(R.id.companiesList);
-        recommendationAdapter = new RecommendationAdapter(recommendationModelList, getContext(),this);
+        recommendationAdapter = new RecommendationAdapter(recommendedCompaniesModelList, getContext(),this);
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
         getUserInformation(userToken);
 
@@ -79,7 +80,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         addressModel = SharedPrefManager.getInstance(getContext()).getUserAddress();
         tvCityMunicipality.setText(addressModel.getMunicipality());
         tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
-        getCompanyList(userToken);
+        getRecommendedCompanyList(userToken);
 
         btnManageAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,12 +126,12 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
 
     }
 
-    public void getCompanyList(String userToken){
-        homeFragmentViewModel.getCompaniesList(userToken).observe(getActivity(), new Observer<List<RecommendationModel>>() {
+    public void getRecommendedCompanyList(String userToken){
+        homeFragmentViewModel.getRecommendedCompaniesList(userToken).observe(getActivity(), new Observer<List<RecommendedCompaniesModel>>() {
             @Override
-            public void onChanged(List<RecommendationModel> recommendationModels) {
+            public void onChanged(List<RecommendedCompaniesModel> recommendationModels) {
                 if (recommendationModels != null) {
-                    recommendationModelList = recommendationModels;
+                    recommendedCompaniesModelList = recommendationModels;
                     recommendationAdapter.setData(recommendationModels);
                     recommendationRecycler.setAdapter(recommendationAdapter);
                 }
@@ -155,10 +156,10 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
     @Override
     public void onClickMessage(int adapterPosition) {
         Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
-        intent.putExtra("COMPANY_ID", recommendationModelList.get(adapterPosition).getId());
-        intent.putExtra("COMPANY_NAME", recommendationModelList.get(adapterPosition).getName());
-        intent.putExtra("COMPANY_ADDRESS", recommendationModelList.get(adapterPosition).getAddress());
-        intent.putExtra("COMPANY_IMAGE", recommendationModelList.get(adapterPosition).getCompany_image());
+        intent.putExtra("COMPANY_ID", recommendedCompaniesModelList.get(adapterPosition).getId());
+        intent.putExtra("COMPANY_NAME", recommendedCompaniesModelList.get(adapterPosition).getCompany().getName());
+        intent.putExtra("COMPANY_ADDRESS", recommendedCompaniesModelList.get(adapterPosition).getCompany().getAddress());
+        intent.putExtra("COMPANY_IMAGE", recommendedCompaniesModelList.get(adapterPosition).getCompany().getCompany_image());
         startActivity(intent);
     }
 }

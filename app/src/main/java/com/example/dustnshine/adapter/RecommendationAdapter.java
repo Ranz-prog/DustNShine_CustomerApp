@@ -13,25 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.R;
+import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.utils.AppConstants;
 
 import java.util.List;
 
 public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder>{
 
-    private List<RecommendationModel> recommendationModelList;
+    private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
     private Context context;
     private RecommendationAdapter.OnClickMessageListener onClickMessageListener;
     private AppConstants appConstants;
 
-    public RecommendationAdapter(List<RecommendationModel> recommendationModelList, Context context, OnClickMessageListener onClickMessageListener) {
-        this.recommendationModelList = recommendationModelList;
+    public RecommendationAdapter(List<RecommendedCompaniesModel> recommendedCompaniesModelList, Context context, OnClickMessageListener onClickMessageListener) {
+        this.recommendedCompaniesModelList = recommendedCompaniesModelList;
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;
     }
 
-    public void setData(List<RecommendationModel> recommendationModelList) {
-        this.recommendationModelList = recommendationModelList;
+    public void setData(List<RecommendedCompaniesModel> recommendedCompaniesModelList) {
+        this.recommendedCompaniesModelList = recommendedCompaniesModelList;
         notifyDataSetChanged();
     }
 
@@ -46,15 +47,15 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
     @Override
     public void onBindViewHolder(@NonNull RecommendationAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load(appConstants.BASE_URL + recommendationModelList.get(position).getCompany_image()).into(holder.imgCompanyImage);
-        holder.tvCompanyName.setText(recommendationModelList.get(position).getName());
-        holder.tvCompanyLocation.setText(recommendationModelList.get(position).getAddress());
-//        holder.companyRating.setText(recommendationModelList.get(position).getCompanyRating());
+        Glide.with(context).load(appConstants.BASE_URL + recommendedCompaniesModelList.get(position).getCompany().getCompany_image()).into(holder.imgCompanyImage);
+        holder.tvCompanyName.setText(recommendedCompaniesModelList.get(position).getCompany().getName());
+        holder.tvCompanyLocation.setText(recommendedCompaniesModelList.get(position).getCompany().getAddress());
+        holder.tvCompanyRating.setText(String.valueOf(recommendedCompaniesModelList.get(position).getRating()));
     }
 
     @Override
     public int getItemCount() {
-        return recommendationModelList.size();
+        return recommendedCompaniesModelList.size();
     }
 
     public interface OnClickMessageListener {
@@ -64,7 +65,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private ImageView imgCompanyImage;
-        private TextView tvCompanyName, tvCompanyLocation, companyRating;
+        private TextView tvCompanyName, tvCompanyLocation, tvCompanyRating;
 
         RecommendationAdapter.OnClickMessageListener onClickMessageListener;
 
@@ -74,7 +75,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             imgCompanyImage = itemView.findViewById(R.id.imgCompanyImage);
             tvCompanyName = itemView.findViewById(R.id.companyNameTV);
             tvCompanyLocation = itemView.findViewById(R.id.companyLocationTV);
-//            companyRating = itemView.findViewById(R.id.companyRatingTV);
+            tvCompanyRating = itemView.findViewById(R.id.tvCompanyRating);
 
             this.onClickMessageListener = (OnClickMessageListener) onClickMessageListener;
 

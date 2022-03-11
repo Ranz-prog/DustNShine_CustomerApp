@@ -6,6 +6,7 @@ import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.response.NotificationResponse;
+import com.example.dustnshine.response.RecommendedCompaniesResponse;
 import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.LogoutResponse;
@@ -15,6 +16,7 @@ import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.UserManagementResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -94,7 +96,7 @@ public interface Api {
             @Field("address") String address,
             @Field("sched_datetime") String sched_datetime,
             @Field("total") int total,
-            @Field("services") List<Map<Integer, Integer>> services,
+            @Field("services") ArrayList<Integer> services,
             @Field("note") String note
     );
 
@@ -109,6 +111,9 @@ public interface Api {
 
     @GET("companies")
     Call<CompanyResponse> getCompanies(@Header("Authorization") String companyRequest);
+
+    @GET("recommendations")
+    Call<RecommendedCompaniesResponse> getRecommendedCompanies(@Header("Authorization") String recommendedCompanyRequest);
 
     @GET("services")
     Call<ServiceResponse> getServices(@Header("Authorization") String serviceRequest);

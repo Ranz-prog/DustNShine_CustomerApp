@@ -50,11 +50,12 @@ public class CheckOutActivity extends AppCompatActivity {
     private Intent intent;
     private static ArrayList<Integer> servicesIDList;
     private static ArrayList<String> servicesNameList;
+    private static ArrayList<Integer> service;
     private static ArrayList<Integer> servicesPriceList;
     private static String notes;
-    private static ArrayList<Map<Integer, Integer>> services;
+    private static List<Map<Integer, Integer>> services;
     private static Map<Integer, Integer> serviceList;
-    private static String userToken, companyName, companyAddress, customerFirstName, customerLastName, customerContactNumber, customerAddress, selectedDate, selectedTime;
+    private static String userToken, companyName, companyAddress, customerAddress, selectedDate, selectedTime;
     private static int companyID;
     private AddressModel addressModel;
     private static int total;
@@ -74,10 +75,6 @@ public class CheckOutActivity extends AppCompatActivity {
         servicesIDList = new ArrayList<Integer>();
         servicesNameList = new ArrayList<String>();
         servicesPriceList = new ArrayList<Integer>();
-
-        customerFirstName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getFirst_name();
-        customerLastName = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getLast_name();
-        customerContactNumber = SharedPrefManager.getInstance(CheckOutActivity.this).getUser().getMobile_number();
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
@@ -100,6 +97,9 @@ public class CheckOutActivity extends AppCompatActivity {
 
         services = new ArrayList<Map<Integer, Integer>>();
         serviceList = new HashMap<Integer, Integer>();
+//        service = new ArrayList<Integer>();
+//        service.add(0, 1);
+//        service.add(1, 2);
         getServices(serviceList, servicesIDList);
         services.add(serviceList);
 
@@ -133,7 +133,7 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getBookingRequest(userToken, companyID, "Dagupan City", selectedDate + " " + selectedTime, total, services, notes);
+                getBookingRequest(userToken, companyID, customerAddress, selectedDate + " " + selectedTime, total, servicesIDList, notes);
                 Log.d("SERVICES", String.valueOf(services));
                 dialog.show();
 
@@ -150,7 +150,7 @@ public class CheckOutActivity extends AppCompatActivity {
         });
 
     }
-    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services, String notes){
+    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Integer> services, String notes){
         checkOutViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services, notes).observe(CheckOutActivity.this, new Observer<BookingServiceResponse>() {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
@@ -189,6 +189,7 @@ public class CheckOutActivity extends AppCompatActivity {
                     activityCheckoutBinding.tvCustomerName.setText(userManagementResponse.getData().get(0).getFirst_name() + " " + userManagementResponse.getData().get(0).getLast_name());
                     activityCheckoutBinding.tvContactNumber.setText(userManagementResponse.getData().get(0).getMobile_number());
                     activityCheckoutBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().get(0).getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
+                    customerAddress = userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality();
                 }
             }
         });

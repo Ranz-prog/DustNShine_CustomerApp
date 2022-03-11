@@ -5,21 +5,21 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.models.BookingHistoryModel;
-import com.example.dustnshine.service.BookingAPIRepo;
+import com.example.dustnshine.service.BookingAPIService;
 
 import java.util.List;
 
 public class BookingHistoryViewModel extends ViewModel {
-    private BookingAPIRepo bookingAPIRepo;
+    private BookingAPIService bookingAPIService;
     private MutableLiveData<List<BookingHistoryModel>> modelMutableLiveData;
 
     public BookingHistoryViewModel() {
-        bookingAPIRepo = new BookingAPIRepo();
+        bookingAPIService = new BookingAPIService();
     }
 
     public LiveData<List<BookingHistoryModel>> getBookingHistory(String userToken){
         if (modelMutableLiveData == null) {
-            modelMutableLiveData = bookingAPIRepo.getBookingHistory(userToken);
+            modelMutableLiveData = bookingAPIService.getBookingHistory(userToken);
         }
         return modelMutableLiveData;
     }

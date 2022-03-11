@@ -5,34 +5,35 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.models.RecommendationModel;
-import com.example.dustnshine.service.BookingAPIRepo;
-import com.example.dustnshine.service.UserAPIRepo;
+import com.example.dustnshine.models.RecommendedCompaniesModel;
+import com.example.dustnshine.service.BookingAPIService;
+import com.example.dustnshine.service.UserAPIService;
 import com.example.dustnshine.response.UserManagementResponse;
 
 import java.util.List;
 
 public class HomeFragmentViewModel extends ViewModel {
 
-    private MutableLiveData<List<RecommendationModel>> companyList;
+    private MutableLiveData<List<RecommendedCompaniesModel>> recommendedCompanyList;
     private MutableLiveData<UserManagementResponse> userManagementResponseMutableLiveData;
-    private BookingAPIRepo bookingAPIRepo;
-    private UserAPIRepo userAPIRepo;
+    private BookingAPIService bookingAPIService;
+    private UserAPIService userAPIService;
 
     public HomeFragmentViewModel() {
-        bookingAPIRepo = new BookingAPIRepo();
-        userAPIRepo = new UserAPIRepo();
+        bookingAPIService = new BookingAPIService();
+        userAPIService = new UserAPIService();
     }
 
-    public LiveData<List<RecommendationModel>> getCompaniesList(String userToken) {
-        if (companyList == null) {
-            companyList = bookingAPIRepo.getCompanies(userToken);
+    public LiveData<List<RecommendedCompaniesModel>> getRecommendedCompaniesList(String userToken) {
+        if (recommendedCompanyList == null) {
+            recommendedCompanyList = bookingAPIService.getRecommendedCompanies(userToken);
         }
-        return companyList;
+        return recommendedCompanyList;
     }
 
     public LiveData<UserManagementResponse> getUserInformationRequest(String userToken){
         if (userManagementResponseMutableLiveData == null) {
-            userManagementResponseMutableLiveData = userAPIRepo.getUserInformation(userToken);
+            userManagementResponseMutableLiveData = userAPIService.getUserInformation(userToken);
         }
         return userManagementResponseMutableLiveData;
     }

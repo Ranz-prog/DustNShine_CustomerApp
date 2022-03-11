@@ -21,6 +21,7 @@ import com.example.dustnshine.adapter.SeeAllRecommendationsAdapter;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.databinding.ActivitySeeAllRecommendationsBinding;
 import com.example.dustnshine.models.RecommendationModel;
+import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
@@ -37,6 +38,7 @@ public class SeeAllRecommendationsActivity extends AppCompatActivity implements 
     private LinearLayout  btnSearch;
     private ImageView btnBack;
     private RecyclerView rvRecommendations;
+    private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
     private List<RecommendationModel> recommendationModelList;
     private SeeAllRecommendationsAdapter seeAllRecommendationsAdapter;
     private SearchView sbSearchCompany;
@@ -57,7 +59,7 @@ public class SeeAllRecommendationsActivity extends AppCompatActivity implements 
         btnBack = findViewById(R.id.backSAR);
         rvRecommendations = findViewById(R.id.rvRecommendations);
         userToken = SharedPrefManager.getInstance(SeeAllRecommendationsActivity.this).getUserToken();
-        seeAllRecommendationsAdapter = new SeeAllRecommendationsAdapter(recommendationModelList, SeeAllRecommendationsActivity.this, this);
+        seeAllRecommendationsAdapter = new SeeAllRecommendationsAdapter(recommendedCompaniesModelList, SeeAllRecommendationsActivity.this, this);
 
         rvRecommendations.setHasFixedSize(true);
         layoutRecommendations = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -75,7 +77,7 @@ public class SeeAllRecommendationsActivity extends AppCompatActivity implements 
         sbSearchCompany.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                getSearchCompany(s, userToken);
+//                getSearchCompany(s, userToken);
                 return true;
             }
 
@@ -105,40 +107,40 @@ public class SeeAllRecommendationsActivity extends AppCompatActivity implements 
 //    }
 
     private void getCompanies(String userToken){
-        seeAllRecommendationsViewModel.getCompanyList(userToken).observe(SeeAllRecommendationsActivity.this, new Observer<List<RecommendationModel>>() {
+        seeAllRecommendationsViewModel.getRecommendedCompaniesList(userToken).observe(SeeAllRecommendationsActivity.this, new Observer<List<RecommendedCompaniesModel>>() {
             @Override
-            public void onChanged(List<RecommendationModel> recommendationModels) {
+            public void onChanged(List<RecommendedCompaniesModel> recommendationModels) {
                 if(recommendationModels != null){
-                    recommendationModelList = recommendationModels;
-                    seeAllRecommendationsAdapter.setData(recommendationModelList);
+                    recommendedCompaniesModelList = recommendationModels;
+                    seeAllRecommendationsAdapter.setData(recommendationModels);
                     rvRecommendations.setAdapter(seeAllRecommendationsAdapter);
                 }
             }
         });
     }
 
-    private void getSearchCompany(String companyName, String userToken){
-        Call<SearchCompanyResponse> searchCompanyResponseCall = RetrofitClient.getInstance().getApi().getSearchedCompany(companyName, "Bearer " + userToken);
-        searchCompanyResponseCall.enqueue(new Callback<SearchCompanyResponse>() {
-            @Override
-            public void onResponse(Call<SearchCompanyResponse> call, Response<SearchCompanyResponse> response) {
-                if(response.code() == 200){
-                    recommendationModelList = response.body().getData();
-                    seeAllRecommendationsAdapter.setData(recommendationModelList);
-                    rvRecommendations.setAdapter(seeAllRecommendationsAdapter);
-                } else {
-                    Toast.makeText(SeeAllRecommendationsActivity.this, "No company found", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SearchCompanyResponse> call, Throwable t) {
-                Log.e("TAG",t.getLocalizedMessage());
-
-            }
-        });
-
-    }
+//    private void getSearchCompany(String companyName, String userToken){
+//        Call<SearchCompanyResponse> searchCompanyResponseCall = RetrofitClient.getInstance().getApi().getSearchedCompany(companyName, "Bearer " + userToken);
+//        searchCompanyResponseCall.enqueue(new Callback<SearchCompanyResponse>() {
+//            @Override
+//            public void onResponse(Call<SearchCompanyResponse> call, Response<SearchCompanyResponse> response) {
+//                if(response.code() == 200){
+//                    recommendationModelList = response.body().getData();
+//                    seeAllRecommendationsAdapter.setData(recommendationModelList);
+//                    rvRecommendations.setAdapter(seeAllRecommendationsAdapter);
+//                } else {
+//                    Toast.makeText(SeeAllRecommendationsActivity.this, "No company found", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<SearchCompanyResponse> call, Throwable t) {
+//                Log.e("TAG",t.getLocalizedMessage());
+//
+//            }
+//        });
+//
+//    }
 
     @Override
     public void onClickMessage(int adapterPosition) {

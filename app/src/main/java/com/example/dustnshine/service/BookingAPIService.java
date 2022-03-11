@@ -9,17 +9,20 @@ import com.example.dustnshine.models.BookingHistoryModel;
 import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.models.NotificationModel;
 import com.example.dustnshine.models.RecommendationModel;
+import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.response.NotificationResponse;
+import com.example.dustnshine.response.RecommendedCompaniesResponse;
 import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.SearchCompanyResponse;
 import com.example.dustnshine.response.ServiceResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,10 +30,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookingAPIRepo {
+public class BookingAPIService {
 
     // Booking Request
-    public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Map<Integer, Integer>> services, String notes){
+    public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Integer> services, String notes){
         final MutableLiveData<BookingServiceResponse> bookingServiceResponseMutableLiveData = new MutableLiveData<>();
         Call<BookingServiceResponse> bookingServiceResponseCall = RetrofitClient.getInstance().getApi().bookService("Bearer " + userToken, company_id, address, start_datetime, total, services, notes);
         bookingServiceResponseCall.enqueue(new Callback<BookingServiceResponse>() {
@@ -241,6 +244,31 @@ public class BookingAPIRepo {
             }
         });
         return doneServices;
+    }
+
+    // Get Recommended Companies
+    public MutableLiveData<List<RecommendedCompaniesModel>> getRecommendedCompanies(String userToken){
+        final MutableLiveData<List<RecommendedCompaniesModel>> recommendedCompanies = new MutableLiveData<>();
+        Call<RecommendedCompaniesResponse> recommendedCompaniesResponseCall = RetrofitClient.getInstance().getApi().getRecommendedCompanies("Bearer " + userToken);
+        recommendedCompaniesResponseCall.enqueue(new Callback<RecommendedCompaniesResponse>() {
+            @Override
+            public void onResponse(Call<RecommendedCompaniesResponse> call, Response<RecommendedCompaniesResponse> response) {
+                if (response.code() == 200) {
+                    recommendedCompanies.setValue(response.body().getData());
+                    Log.d("CODE", String.valueOf(response.code()));
+                } else {
+                    Log.d("TAG", "Failed");
+                    Log.d("CODE", String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RecommendedCompaniesResponse> call, Throwable t) {
+                Log.d("CODE", t.getLocalizedMessage());
+            }
+        });
+
+        return recommendedCompanies;
     }
 
 }

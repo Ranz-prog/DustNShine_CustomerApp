@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.response.SignInResponse;
-import com.example.dustnshine.service.UserAPIRepo;
+import com.example.dustnshine.service.UserAPIService;
 import com.example.dustnshine.response.UserManagementResponse;
 
 import retrofit2.Call;
@@ -18,13 +18,13 @@ import retrofit2.Response;
 
 public class SignInViewModel extends ViewModel {
 
-    private UserAPIRepo userAPIRepo;
+    private UserAPIService userAPIService;
     private SignInCallback signInCallback;
     //    private MutableLiveData<SignInResponse> signInResponseMutableLiveData;
     private MutableLiveData<UserManagementResponse> userManagementResponseMutableLiveData;
 
     public SignInViewModel() {
-        userAPIRepo = new UserAPIRepo();
+        userAPIService = new UserAPIService();
     }
 //
 //    public LiveData<SignInResponse> getSignInRequest(String email, String password){
@@ -55,7 +55,7 @@ public class SignInViewModel extends ViewModel {
 
     public LiveData<UserManagementResponse> getUserInformationRequest(String userToken){
         if (userManagementResponseMutableLiveData == null) {
-            userManagementResponseMutableLiveData = userAPIRepo.getUserInformation(userToken);
+            userManagementResponseMutableLiveData = userAPIService.getUserInformation(userToken);
         }
         return userManagementResponseMutableLiveData;
     }

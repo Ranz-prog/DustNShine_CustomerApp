@@ -72,7 +72,7 @@ sabi na eh haha
             app:srcCompat="@drawable/star" />
 
         <TextView
-            android:id="@+id/companyRatingTV"
+            android:id="@+id/tvCompanyRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"

@@ -1,8 +1,6 @@
 package com.example.dustnshine.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.models.ServicesModel;
-import com.example.dustnshine.models.services_model;
 import com.example.dustnshine.R;
 import com.example.dustnshine.ui.QuantityListener;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
