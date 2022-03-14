@@ -75,14 +75,14 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                notes = activityCompanyDetailsBinding.etNotes.getText().toString();
 
                 if (servicesNameList == null|| servicesNameList.size() == 0) {
                     Toast.makeText(CompanyDetailsActivity.this, "No service selected", Toast.LENGTH_SHORT).show();
-                } else if (notes == null) {
-                    notes = activityCompanyDetailsBinding.etNotes.getText().toString();
+                } else if (notes == null || notes.isEmpty()) {
                     Toast.makeText(CompanyDetailsActivity.this, "Notes is empty", Toast.LENGTH_SHORT).show();
                 } else {
-                    notes = activityCompanyDetailsBinding.etNotes.getText().toString();
+
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
                     intent.putExtra("COMPANY_NAME", companyName);
