@@ -76,12 +76,13 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             @Override
             public void onClick(View view) {
                 notes = activityCompanyDetailsBinding.etNotes.getText().toString();
-                Log.d("NOTES", notes);
-                if (servicesNameList == null || servicesNameList.size() == 0) {
+                if (servicesNameList == null|| servicesNameList.size() == 0) {
                     Toast.makeText(CompanyDetailsActivity.this, "No service selected", Toast.LENGTH_SHORT).show();
-                } if (notes.isEmpty()) {
+                } else if (notes == null || notes.isEmpty()) {
                     Toast.makeText(CompanyDetailsActivity.this, "Notes is empty", Toast.LENGTH_SHORT).show();
                 } else {
+
+
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
                     intent.putExtra("COMPANY_NAME", companyName);
