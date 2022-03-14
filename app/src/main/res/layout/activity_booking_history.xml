@@ -38,23 +38,28 @@
             android:id="@+id/rvBookingHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:visibility="gone"/>
+
     </RelativeLayout>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imgNoTransactions"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="400dp"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/no_transactions" />-->
+    <ImageView
+        android:id="@+id/imgNoTransactions"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/no_transactions"
+        android:visibility="visible"/>
 
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/imgNoTransactions"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_marginTop="-72dp"-->
-<!--        android:text="No Transactions Yet . . . " />-->
+    <TextView
+        android:id="@+id/tvNoTransactions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgNoTransactions"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="-72dp"
+        android:text="@string/notransactionsyet"
+        android:visibility="visible"/>
 
 </RelativeLayout>

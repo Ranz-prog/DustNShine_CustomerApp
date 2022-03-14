@@ -25,7 +25,7 @@ public class CheckOutViewModel extends ViewModel {
         userAPIService = new UserAPIService();
     }
 
-    public LiveData<BookingServiceResponse> getBookingServiceRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Integer> services, String notes){
+    public LiveData<BookingServiceResponse> getBookingServiceRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Integer> services, String notes){
         if (bookingServiceResponseMutableLiveData == null) {
             bookingServiceResponseMutableLiveData = bookingAPIService.bookingRequest(userToken, company_id, address, start_datetime, total, services, notes);
         }

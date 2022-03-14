@@ -101,6 +101,7 @@
     <string name="notification">Notification</string>
     <string name="next">Next</string>
     <string name="bookingDetails">Booking Details:</string>
+    <string name="notransactionsyet">No Transactions Yet . . .</string>
 
 
     <!--Date and Time-->
