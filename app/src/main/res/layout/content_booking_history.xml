@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginTop="10dp"
@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/container_border"
         android:padding="10dp">
 
@@ -18,7 +18,6 @@
             android:id="@+id/clientImage"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_centerVertical="true"
             android:src="@drawable/user" />
 
         <TextView
@@ -55,31 +54,10 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tvDateTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvServices"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/clientImage"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Scheduled Date and Time: "
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tvDateAndTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvServices"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tvDateTime"
-            android:fontFamily="@font/roboto_regular"
-            android:textSize="14sp" />
-
-        <TextView
             android:id="@+id/tvCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvDateTime"
+            android:layout_below="@+id/tvServices"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
@@ -90,23 +68,55 @@
             android:id="@+id/tvTotalCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvDateTime"
+            android:layout_below="@+id/tvServices"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/tvCost"
             android:fontFamily="@font/roboto_regular"
             android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/lineDividerHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/clientImage"
+            android:layout_marginTop="4dp"
+            app:dividerColor="@color/line_divider_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lineDividerHorizontal"
+            android:layout_marginTop="4dp">
+
+            <ImageView
+                android:id="@+id/clockId"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="65dp"
+                android:src="@drawable/ic_baseline_access_time_24" />
+
+            <TextView
+                android:id="@+id/tvDateAndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/clockId"
+                android:fontFamily="@font/roboto_medium"
+                android:singleLine="true"
+                android:text="03-12-2022 09:00:00"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/cardView">
-
-
-
-    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
 
