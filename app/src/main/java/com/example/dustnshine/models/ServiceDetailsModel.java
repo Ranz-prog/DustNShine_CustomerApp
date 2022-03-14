@@ -61,4 +61,9 @@ public class ServiceDetailsModel {
     public void setPivot(PivotModel pivot) {
         this.pivot = pivot;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

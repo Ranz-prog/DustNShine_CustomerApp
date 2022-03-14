@@ -165,4 +165,27 @@ public class NotificationModel {
     public void setWorkers(List<WorkersModel> workers) {
         this.workers = workers;
     }
+
+    @Override
+    public String toString() {
+        return "NotificationModel{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", company_id=" + company_id +
+                ", status=" + status +
+                ", total=" + total +
+                ", sched_datetime='" + sched_datetime + '\'' +
+                ", start_datetime='" + start_datetime + '\'' +
+                ", end_datetime='" + end_datetime + '\'' +
+                ", address='" + address + '\'' +
+                ", created_at='" + created_at + '\'' +
+                ", updated_at='" + updated_at + '\'' +
+                ", note='" + note + '\'' +
+                ", reviews=" + reviews +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", services=" + services +
+                ", workers=" + workers +
+                '}';
+    }
 }

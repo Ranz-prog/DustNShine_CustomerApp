@@ -46,8 +46,8 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
         btnBookingHistory = view.findViewById(R.id.btnBookingHistory);
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
         rvBooking = view.findViewById(R.id.rvBooking);
-        tvNoTransactions = view.findViewById(R.id.tvNoTransactions);
-        imgNoTransactions = view.findViewById(R.id.imgNoTransactions);
+//        tvNoTransactions = view.findViewById(R.id.tvNoTransactions);
+//        imgNoTransactions = view.findViewById(R.id.imgNoTransactions);
         rvBooking.setHasFixedSize(true);
         rvBooking.setLayoutManager(new LinearLayoutManager(getContext()));
         bookingAdapter = new BookingAdapter(bookingServiceDataList, getContext(), this);
@@ -62,7 +62,6 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
                 startActivity(intent);
             }
         });
-
         return view;
 
     }

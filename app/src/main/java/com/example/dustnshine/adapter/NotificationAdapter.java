@@ -15,6 +15,8 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.models.BookingHistoryModel;
 import com.example.dustnshine.models.NotificationModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {

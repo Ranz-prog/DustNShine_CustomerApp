@@ -26,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="11dp"
-
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/bookingdetails"
@@ -35,32 +34,31 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/nameTv"
+            android:id="@+id/tvServices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/detailsTv"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/notes"
+            android:text="@string/services"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/customerNameBooking"
+            android:id="@+id/tvServicesName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/detailsTv"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/nameTv"
+            android:layout_toRightOf="@+id/tvServices"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/customername"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/locTv"
+            android:id="@+id/tvDateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nameTv"
+            android:layout_below="@+id/tvServices"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
@@ -68,22 +66,20 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/customerLocationBooking"
+            android:id="@+id/tvDateAndTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nameTv"
+            android:layout_below="@+id/tvServices"
             android:layout_marginLeft="10dp"
-
-            android:layout_toRightOf="@+id/locTv"
+            android:layout_toRightOf="@+id/tvDateTime"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/location"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/conTv"
+            android:id="@+id/tvCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/locTv"
+            android:layout_below="@+id/tvDateTime"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
@@ -91,14 +87,13 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/contactNumberBooking"
+            android:id="@+id/tvTotalCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/locTv"
+            android:layout_below="@+id/tvDateTime"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/conTv"
+            android:layout_toRightOf="@+id/tvCost"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/contactnumber"
             android:textSize="14sp" />
     </RelativeLayout>
 

@@ -44,9 +44,9 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
 
     @Override
     public void onBindViewHolder(@NonNull BookingHistoryAdapter.ViewHolder holder, int position) {
-        holder.customerName.setText(String.valueOf(bookingHistoryModelList.get(position).getNote()));
-        holder.customerLoc.setText(String.valueOf(bookingHistoryModelList.get(position).getSched_datetime()));
-        holder.customerNum.setText(String.valueOf(bookingHistoryModelList.get(position).getTotal()));
+        holder.tvServicesName.setText(bookingHistoryModelList.get(position).getServices().toString());
+        holder.tvDateAndTime.setText(String.valueOf(bookingHistoryModelList.get(position).getSched_datetime()));
+        holder.tvTotalCost.setText(String.valueOf(bookingHistoryModelList.get(position).getTotal()));
     }
 
     @Override
@@ -62,17 +62,17 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private ImageView customerImg;
-        private TextView customerName, customerLoc,customerNum;
+        private TextView tvDateAndTime, tvServicesName,tvTotalCost;
 
         BookingHistoryAdapter.OnClickMessageListener onClickMessageListener;
 
         public ViewHolder(@NonNull View itemView, BookingHistoryAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
-            customerImg = itemView.findViewById(R.id.clientImage);
-            customerName = itemView.findViewById(R.id.customerNameBooking);
-            customerLoc = itemView.findViewById(R.id.customerLocationBooking);
-            customerNum = itemView.findViewById(R.id.contactNumberBooking);
+//            customerImg = itemView.findViewById(R.id.clientImage);
+            tvServicesName = itemView.findViewById(R.id.tvServicesName);
+            tvDateAndTime = itemView.findViewById(R.id.tvDateAndTime);
+            tvTotalCost = itemView.findViewById(R.id.tvTotalCost);
 
             this.onClickMessageListener = (BookingHistoryAdapter.OnClickMessageListener) onClickMessageListener;
 

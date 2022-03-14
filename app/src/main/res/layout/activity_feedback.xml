@@ -33,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center">
 
         <TextView
@@ -104,20 +105,18 @@
             android:progressTint="@color/app_theme_gold">
 
         </RatingBar>
-        
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_alignParentBottom="true"
             android:background="@drawable/rounded_corners_button_layout"
             android:backgroundTint="@color/app_theme_gold"
-            android:fontFamily="@font/montserrat_regular"
             android:padding="10dp"
             android:text="@string/done"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="18sp"/>
 
     </RelativeLayout>
 
