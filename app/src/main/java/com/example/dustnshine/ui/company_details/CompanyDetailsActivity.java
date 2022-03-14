@@ -75,14 +75,13 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (servicesNameList == null|| servicesNameList.size() == 0) {
+                notes = activityCompanyDetailsBinding.etNotes.getText().toString();
+                Log.d("NOTES", notes);
+                if (servicesNameList == null || servicesNameList.size() == 0) {
                     Toast.makeText(CompanyDetailsActivity.this, "No service selected", Toast.LENGTH_SHORT).show();
-                } else if (notes == null) {
-                    notes = activityCompanyDetailsBinding.etNotes.getText().toString();
+                } if (notes.isEmpty()) {
                     Toast.makeText(CompanyDetailsActivity.this, "Notes is empty", Toast.LENGTH_SHORT).show();
                 } else {
-                    notes = activityCompanyDetailsBinding.etNotes.getText().toString();
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
                     intent.putExtra("COMPANY_NAME", companyName);
@@ -91,7 +90,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                     intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
                     intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
                     intent.putExtra("NOTES", notes);
-                    notes =null;
+                    notes = null;
                     servicesNameList = null;
                     servicesIdList = null;
                     servicesPriceList = null;
@@ -136,7 +135,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     @Override
     public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName, ArrayList<Integer> servicesPrice) {
 
-        if(servicesID.toString() == "" || servicesName.toString() == "" || servicesID.contains(" ")){
+        if (servicesID.toString() == "" || servicesName.toString() == "" || servicesID.contains(" ")){
 
             Log.d("Null na sya", "wala sya laman kaya oki lang");
         } else {

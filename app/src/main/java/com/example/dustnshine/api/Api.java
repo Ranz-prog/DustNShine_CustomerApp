@@ -96,7 +96,7 @@ public interface Api {
             @Field("address") String address,
             @Field("sched_datetime") String sched_datetime,
             @Field("total") int total,
-            @Field("services") List<Integer> services,
+            @Field("services[]") List<Integer> services,
             @Field("note") String note
     );
 

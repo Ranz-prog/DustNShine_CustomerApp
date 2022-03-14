@@ -50,11 +50,8 @@ public class CheckOutActivity extends AppCompatActivity {
     private Intent intent;
     private static ArrayList<Integer> servicesIDList;
     private static ArrayList<String> servicesNameList;
-    private static List<Integer> service;
     private static ArrayList<Integer> servicesPriceList;
     private static String notes;
-    private static List<Map<Integer, Integer>> services;
-    private static Map<Integer, Integer> serviceList;
     private static String userToken, companyName, companyAddress, customerAddress, selectedDate, selectedTime;
     private static int companyID;
     private AddressModel addressModel;
@@ -95,14 +92,6 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.tvNotes.setText(notes);
         activityCheckoutBinding.tvTotal.setText(String.valueOf(total));
 
-        services = new ArrayList<Map<Integer, Integer>>();
-        serviceList = new HashMap<Integer, Integer>();
-        service = new ArrayList<Integer>();
-        service.add(0, 2);
-        services.toArray();
-        getServices(serviceList, servicesIDList);
-        services.add(serviceList);
-
         // DIALOG BOX START
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.pop_up_reference);
@@ -129,12 +118,11 @@ public class CheckOutActivity extends AppCompatActivity {
         });
 
         //END OF DIALOG BOX
-
         activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getBookingRequest(userToken, companyID, customerAddress, selectedDate + " " + selectedTime, total, service, notes);
-                Log.d("SERVICES", String.valueOf(service));
+                getBookingRequest(userToken, companyID, customerAddress, selectedDate + " " + selectedTime, total, servicesIDList, notes);
+                Log.d("SERVICES", String.valueOf(servicesIDList));
                 dialog.show();
 
 
@@ -150,6 +138,7 @@ public class CheckOutActivity extends AppCompatActivity {
         });
 
     }
+
     public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Integer> services, String notes){
         checkOutViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services, notes).observe(CheckOutActivity.this, new Observer<BookingServiceResponse>() {
             @Override
