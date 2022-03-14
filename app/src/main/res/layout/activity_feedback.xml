@@ -104,8 +104,7 @@
             android:progressTint="@color/app_theme_gold">
 
         </RatingBar>
-
-
+        
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnReview"
             android:layout_width="match_parent"
