@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,8 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
     private BookingFragmentViewModel bookingFragmentViewModel;
     private BookingAdapter bookingAdapter;
     private String userToken;
+    private TextView tvNoTransactions;
+    private ImageView imgNoTransactions;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
         btnBookingHistory = view.findViewById(R.id.btnBookingHistory);
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
         rvBooking = view.findViewById(R.id.rvBooking);
+        tvNoTransactions = view.findViewById(R.id.tvNoTransactions);
+        imgNoTransactions = view.findViewById(R.id.imgNoTransactions);
         rvBooking.setHasFixedSize(true);
         rvBooking.setLayoutManager(new LinearLayoutManager(getContext()));
         bookingAdapter = new BookingAdapter(bookingServiceDataList, getContext(), this);
@@ -81,4 +87,16 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
         Intent intent = new Intent(getActivity(), CheckOutActivity.class);
         startActivity(intent);
     }
+
+//    public void loadData(){
+//        if (!bookingServiceDataList.isEmpty()){
+//            rvBooking.setVisibility(view.VISIBLE);
+//            tvNoTransactions.setVisibility(view.GONE);
+//            imgNoTransactions.setVisibility(view.GONE);
+//        } else {
+//            rvBooking.setVisibility(view.GONE);
+//            tvNoTransactions.setVisibility(view.VISIBLE);
+//            imgNoTransactions.setVisibility(view.VISIBLE);
+//        }
+//    }
 }

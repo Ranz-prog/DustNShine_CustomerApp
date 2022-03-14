@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class BookingAPIService {
 
     // Booking Request
-    public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, ArrayList<Integer> services, String notes){
+    public MutableLiveData<BookingServiceResponse> bookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Integer> services, String notes){
         final MutableLiveData<BookingServiceResponse> bookingServiceResponseMutableLiveData = new MutableLiveData<>();
         Call<BookingServiceResponse> bookingServiceResponseCall = RetrofitClient.getInstance().getApi().bookService("Bearer " + userToken, company_id, address, start_datetime, total, services, notes);
         bookingServiceResponseCall.enqueue(new Callback<BookingServiceResponse>() {
