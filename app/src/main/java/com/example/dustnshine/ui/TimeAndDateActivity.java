@@ -50,6 +50,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         calendarView = findViewById(R.id.calendar);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         intent = getIntent();
+        //comment
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
