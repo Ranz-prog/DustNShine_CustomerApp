@@ -83,7 +83,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         editPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editPasswordDialogBox();
+//                editPasswordDialogBox();
                 changePassword.show();
             }
         });
@@ -191,59 +191,59 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.btnEditPassword.setEnabled(true);
     }
 
-    public void editPasswordDialogBox(){
-
-        EditText etOldPass, etNewPassword, etConfirmPassword;
-        Button btnCancel, btnSave;
-
-        changePassword = new Dialog(this);
-        changePassword.setContentView(R.layout.change_password_dialogbox);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            changePassword.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
-        }
-        changePassword.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        changePassword.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
-        changePassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
-
-        btnCancel = changePassword.findViewById(R.id.cancelNewPassword);
-        btnSave = changePassword.findViewById(R.id.saveNewPassword);
-
-        etOldPass = changePassword.findViewById(R.id.etOldPassword);
-        etNewPassword = changePassword.findViewById(R.id.etNewPassword);
-        etConfirmPassword = changePassword.findViewById(R.id.etConfirmNewPassword);
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    enable();
-                    changePassword.dismiss();
-                }
-        });
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(etOldPass.getText().toString().isEmpty()){
-                    Toast.makeText(ManageAccountActivity.this, "Enter your old password", Toast.LENGTH_SHORT).show();
-                } else if(!etOldPass.getText().toString().equals(SharedPrefManager.getInstance(ManageAccountActivity.this).getPassword())){
-                    Toast.makeText(ManageAccountActivity.this, "Old password not correct", Toast.LENGTH_SHORT).show();
-                } else if(etNewPassword.getText().toString().isEmpty()){
-                    Toast.makeText(ManageAccountActivity.this, "Enter your new password", Toast.LENGTH_SHORT).show();
-                } else if(etNewPassword.getText().toString().length() < 8){
-                    Toast.makeText(ManageAccountActivity.this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
-                } else if(etConfirmPassword.getText().toString().isEmpty()){
-                    Toast.makeText(ManageAccountActivity.this, "Re-type your new password", Toast.LENGTH_SHORT).show();
-                } else if(!etConfirmPassword.getText().toString().equals(etNewPassword.getText().toString())){
-                    Toast.makeText(ManageAccountActivity.this, "Password do not match", Toast.LENGTH_SHORT).show();
-                } else {
-                    userChangePassword(userToken, etOldPass.getText().toString(), etNewPassword.getText().toString(), etConfirmPassword.getText().toString());
-                    Toast.makeText(ManageAccountActivity.this, "Successfully Changed Password", Toast.LENGTH_SHORT).show();
-                    changePassword.dismiss();
-                }
-            }
-        });
-    }
+//    public void editPasswordDialogBox(){
+//
+//        EditText etOldPass, etNewPassword, etConfirmPassword;
+//        Button btnCancel, btnSave;
+//
+//        changePassword = new Dialog(this);
+//        changePassword.setContentView(R.layout.change_password_dialogbox);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            changePassword.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+//        }
+//        changePassword.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        changePassword.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
+//        changePassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+//
+//        btnCancel = changePassword.findViewById(R.id.cancelNewPassword);
+//        btnSave = changePassword.findViewById(R.id.saveNewPassword);
+//
+//        etOldPass = changePassword.findViewById(R.id.etOldPassword);
+//        etNewPassword = changePassword.findViewById(R.id.etNewPassword);
+//        etConfirmPassword = changePassword.findViewById(R.id.etConfirmNewPassword);
+//
+//        btnCancel.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    enable();
+//                    changePassword.dismiss();
+//                }
+//        });
+//
+//        btnSave.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if(etOldPass.getText().toString().isEmpty()){
+//                    Toast.makeText(ManageAccountActivity.this, "Enter your old password", Toast.LENGTH_SHORT).show();
+//                } else if(!etOldPass.getText().toString().equals(SharedPrefManager.getInstance(ManageAccountActivity.this).getPassword())){
+//                    Toast.makeText(ManageAccountActivity.this, "Old password not correct", Toast.LENGTH_SHORT).show();
+//                } else if(etNewPassword.getText().toString().isEmpty()){
+//                    Toast.makeText(ManageAccountActivity.this, "Enter your new password", Toast.LENGTH_SHORT).show();
+//                } else if(etNewPassword.getText().toString().length() < 8){
+//                    Toast.makeText(ManageAccountActivity.this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
+//                } else if(etConfirmPassword.getText().toString().isEmpty()){
+//                    Toast.makeText(ManageAccountActivity.this, "Re-type your new password", Toast.LENGTH_SHORT).show();
+//                } else if(!etConfirmPassword.getText().toString().equals(etNewPassword.getText().toString())){
+//                    Toast.makeText(ManageAccountActivity.this, "Password do not match", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    userChangePassword(userToken, etOldPass.getText().toString(), etNewPassword.getText().toString(), etConfirmPassword.getText().toString());
+//                    Toast.makeText(ManageAccountActivity.this, "Successfully Changed Password", Toast.LENGTH_SHORT).show();
+//                    changePassword.dismiss();
+//                }
+//            }
+//        });
+//    }
 
     public void dialogBox(){
         // DIALOG BOX START
