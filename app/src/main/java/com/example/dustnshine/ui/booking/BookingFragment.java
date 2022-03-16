@@ -46,8 +46,8 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
         btnBookingHistory = view.findViewById(R.id.btnBookingHistory);
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
         rvBooking = view.findViewById(R.id.rvBooking);
-//        tvNoTransactions = view.findViewById(R.id.tvNoTransactions);
-//        imgNoTransactions = view.findViewById(R.id.imgNoTransactions);
+        tvNoTransactions = view.findViewById(R.id.tvNoTransactions);
+        imgNoTransactions = view.findViewById(R.id.imgNoTransactions);
         rvBooking.setHasFixedSize(true);
         rvBooking.setLayoutManager(new LinearLayoutManager(getContext()));
         bookingAdapter = new BookingAdapter(bookingServiceDataList, getContext(), this);
@@ -63,19 +63,22 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
             }
         });
         return view;
-
     }
 
     private void getBookedService(String userToken) {
         bookingFragmentViewModel.getBookedServices(userToken).observe(getActivity(), new Observer<List<BookingServiceData>>() {
             @Override
             public void onChanged(List<BookingServiceData> bookingServiceData) {
-                if (bookingServiceData != null) {
+                if (!bookingServiceData.isEmpty()) {
                     bookingServiceDataList = bookingServiceData;
                     bookingAdapter.setData(bookingServiceData);
                     rvBooking.setAdapter(bookingAdapter);
+                    imgNoTransactions.setVisibility(View.GONE);
+                    tvNoTransactions.setVisibility(View.GONE);
                 } else {
-                    Toast.makeText(getActivity(), "No Booked Service yet", Toast.LENGTH_SHORT).show();
+                    rvBooking.setVisibility(View.GONE);
+                    imgNoTransactions.setVisibility(View.VISIBLE);
+                    tvNoTransactions.setVisibility(View.VISIBLE);
                 }
             }
         });

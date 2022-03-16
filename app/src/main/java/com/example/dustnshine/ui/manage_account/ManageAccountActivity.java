@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.method.CharacterPickerDialog;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -38,6 +39,7 @@ import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.home.HomeFragment;
 import com.example.dustnshine.ui.signin.SignInActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ManageAccountActivity extends AppCompatActivity {
 
@@ -55,6 +57,7 @@ public class ManageAccountActivity extends AppCompatActivity {
     private static int userID;
     private Fragment homeFragment;
     private ImageButton editPass;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,6 @@ public class ManageAccountActivity extends AppCompatActivity {
         tvLogout = findViewById(R.id.tvLogout);
         tvManageCards = findViewById(R.id.tvManageCards);
         personalInfoCardView = findViewById(R.id.personal_info_cardview);
-
         editPass = findViewById(R.id.btnEditPassword);
         getUserInformation(userToken);
         activitySignupBinding.btnSaveDetails.setEnabled(false);
@@ -292,14 +294,19 @@ public class ManageAccountActivity extends AppCompatActivity {
         manageAccountViewModel.getSignOutRequest(userToken).observe(ManageAccountActivity.this, new Observer<LogoutResponse>() {
             @Override
             public void onChanged(LogoutResponse logoutResponse) {
-                    if(logoutResponse == null){
-                        Log.d("TAG", "Invalid Request");
+                    if(logoutResponse != null){
+                        showMessage(logoutResponse.getMessage());
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                SharedPrefManager.getInstance(ManageAccountActivity.this).clear();
+                                Intent intent = new Intent(ManageAccountActivity.this, SignInActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }, 2000);
                     } else {
-                        Toast.makeText(ManageAccountActivity.this, logoutResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        SharedPrefManager.getInstance(ManageAccountActivity.this).clear();
-                        Intent intent = new Intent(ManageAccountActivity.this, SignInActivity.class);
-                        startActivity(intent);
-                        finish();
+                        Log.d("TAG", "Invalid Request");
                     }
             }
         });
@@ -362,5 +369,10 @@ public class ManageAccountActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent intent = new Intent(getApplication(), MainActivity.class);
         startActivity(intent);
+    }
+
+    private void showMessage(String message){
+        snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 }

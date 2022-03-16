@@ -81,8 +81,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                 } else if (notes == null || notes.isEmpty()) {
                     Toast.makeText(CompanyDetailsActivity.this, "Notes is empty", Toast.LENGTH_SHORT).show();
                 } else {
-
-
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
                     intent.putExtra("COMPANY_NAME", companyName);
@@ -137,7 +135,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName, ArrayList<Integer> servicesPrice) {
 
         if (servicesID.toString() == "" || servicesName.toString() == "" || servicesID.contains(" ")){
-
             Log.d("Null na sya", "wala sya laman kaya oki lang");
         } else {
             servicesIdList = servicesID;

@@ -40,7 +40,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/services"
+            android:text="@string/servicename"
             android:textSize="14sp" />
 
         <TextView

@@ -2,6 +2,7 @@ package com.example.dustnshine.ui.signin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ForgetPasswordActivity;
 import com.example.dustnshine.ui.signup.SignUpActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,6 +44,7 @@ public class SignInActivity extends AppCompatActivity {
     private static final String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
     private Pattern pattern;
     private Matcher matcher;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,17 +62,17 @@ public class SignInActivity extends AppCompatActivity {
                 password = activitySigninBinding.etPassword.getText().toString();
                 matcher = pattern.matcher(email);
 
-                if(TextUtils.isEmpty(email)){
-                    activitySigninBinding.etEmailAddress.setError("Email is required");
+                if (TextUtils.isEmpty(email)){
+                    showMessage("Email is required");
                     activitySigninBinding.etEmailAddress.requestFocus();
                 } else if (!matcher.matches()) {
-                    activitySigninBinding.etEmailAddress.setError("Invalid email");
+                    showMessage("Invalid email");
                     activitySigninBinding.etEmailAddress.requestFocus();
                 } else if (TextUtils.isEmpty(password)) {
-                    activitySigninBinding.etPassword.setError("Password is required");
+                    showMessage("Password is required");
                     activitySigninBinding.etPassword.requestFocus();
                 } else if (password.length() < 8) {
-                    activitySigninBinding.etPassword.setError("Password must be at least 8 characters");
+                    showMessage("Password must be at least 8 characters");
                     activitySigninBinding.etPassword.requestFocus();
                 } else {
                     userSignIn(email, password);
@@ -81,18 +84,22 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void signInCallback(Integer statusCode, SignInResponse signInResponse) {
                 if(statusCode == 200){
-                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    getUserInformation(signInResponse.getData().getToken());
-                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
-                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
-                    SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
-                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-                else if (statusCode == 401){
-                    Toast.makeText(SignInActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                    showMessage(signInResponse.getMessage());
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getUserInformation(signInResponse.getData().getToken());
+                            SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
+                            SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
+                            SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
+                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }, 2000);
+                } else if (statusCode == 401){
+                    showMessage("Invalid Credentials");
                 } else {
-                    Toast.makeText(SignInActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                    showMessage("Try Again");
                 }
             }
         });
@@ -118,7 +125,6 @@ public class SignInActivity extends AppCompatActivity {
         if (backButtonCount >= 1) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();
             startActivity(intent);
         } else {
@@ -127,12 +133,11 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
-    public void createNewDialog() {
+    private void createNewDialog() {
         dialogBuilder = new AlertDialog.Builder(this);
         final View searchPopUp = getLayoutInflater().inflate(R.layout.activity_search_email, null);
         editTextEmailSearch = searchPopUp.findViewById(R.id.enterEmailSearch);
         btnSearch = searchPopUp.findViewById(R.id.searchBtn);
-
         dialogBuilder.setView(searchPopUp);
         dialog = dialogBuilder.create();
         dialog.show();
@@ -147,7 +152,7 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    public void userSignIn(String email, String password){
+    private void userSignIn(String email, String password){
 //        signInViewModel.getSignInRequest(email, password).observe(SignInActivity.this, new Observer<SignInResponse>() {
 //            @Override
 //            public void onChanged(SignInResponse signInResponse) {
@@ -176,7 +181,7 @@ public class SignInActivity extends AppCompatActivity {
         };
     }
 
-    public void getUserInformation(String userToken){
+    private void getUserInformation(String userToken){
         signInViewModel.getUserInformationRequest(userToken).observe(SignInActivity.this, new Observer<UserManagementResponse>() {
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
@@ -187,5 +192,10 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void showMessage(String message){
+        snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 }

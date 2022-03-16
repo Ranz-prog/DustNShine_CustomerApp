@@ -10,7 +10,7 @@
     android:paddingBottom="10dp">
 
     <ImageView
-        android:id="@+id/backNotification"
+        android:id="@+id/btnBack"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_weight="1"
@@ -25,27 +25,6 @@
         android:text="@string/notification"
         android:textColor="@color/app_theme_gold"
         android:textSize="20sp" />
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/background"-->
-<!--        android:layout_marginTop="50dp">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvConfirmation"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/montserrat_medium"-->
-<!--            android:text="Confirmation of Work Done"-->
-<!--            android:textSize="17sp" />-->
-
-<!--    </LinearLayout>-->
-
-<!--    <View-->
-<!--        android:layout_marginTop="80dp"-->
-<!--        style="@style/Divider" />-->
-
 
     <RelativeLayout
         android:id="@+id/middleSide"
@@ -63,20 +42,23 @@
 
     </RelativeLayout>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imgNoTransactions"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="400dp"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/no_transactions" />-->
+    <ImageView
+        android:id="@+id/imgNoTransactions"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/no_transactions"
+        android:visibility="gone" />
 
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/imgNoTransactions"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_marginTop="-89dp"-->
-<!--        android:text="No Transactions Yet . . . " />-->
+    <TextView
+        android:id="@+id/tvNoTransactions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgNoTransactions"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="-72dp"
+        android:text="@string/notransactionsyet"
+        android:visibility="gone"/>
 
 </RelativeLayout>

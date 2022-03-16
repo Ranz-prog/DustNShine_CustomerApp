@@ -1,6 +1,10 @@
 package com.example.dustnshine.ui.notification;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,12 +32,13 @@ import java.util.List;
 
 public class NotificationActivity extends AppCompatActivity implements NotificationAdapter.OnClickMessageListener {
 
-    private ImageView returnHome;
+    private ImageView btnBack, imgNoTransactions;
     private RecyclerView rvNotification;
     private List<NotificationModel> notificationModels;
     private NotificationAdapter notificationAdapter;
     private NotificationActivityViewModel notificationActivityViewModel;
     private String userToken;
+    private TextView tvNoTransactions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +47,26 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
         setContentView(R.layout.activity_notification);
 
+        btnBack = findViewById(R.id.btnBack);
+        imgNoTransactions = findViewById(R.id.imgNoTransactions);
+        tvNoTransactions = findViewById(R.id.tvNoTransactions);
         rvNotification = findViewById(R.id.rvNotification);
         rvNotification.setHasFixedSize(true);
         rvNotification.setLayoutManager(new LinearLayoutManager(NotificationActivity.this));
         notificationAdapter = new NotificationAdapter(notificationModels, NotificationActivity.this, this);
         notificationActivityViewModel = new ViewModelProvider(NotificationActivity.this).get(NotificationActivityViewModel.class);
         userToken = SharedPrefManager.getInstance(NotificationActivity.this).getUserToken();
-        returnHome = findViewById(R.id.backNotification);
 
         getDoneServices(userToken);
 
-        returnHome.setOnClickListener(new View.OnClickListener() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+
+        }
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -63,12 +79,24 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
         notificationActivityViewModel.getDoneServices(userToken).observe(NotificationActivity.this, new Observer<List<NotificationModel>>() {
             @Override
             public void onChanged(List<NotificationModel> notificationModelList) {
-                if (notificationModelList != null) {
+                if (!notificationModelList.isEmpty()) {
                     notificationModels = notificationModelList;
                     notificationAdapter.setData(notificationModelList);
                     rvNotification.setAdapter(notificationAdapter);
+                    imgNoTransactions.setVisibility(View.GONE);
+                    tvNoTransactions.setVisibility(View.GONE);
                 } else {
-                    Toast.makeText(NotificationActivity.this, "No Transactions yet", Toast.LENGTH_SHORT).show();
+                    rvNotification.setVisibility(View.GONE);
+                    imgNoTransactions.setVisibility(View.VISIBLE);
+                    tvNoTransactions.setVisibility(View.VISIBLE);
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(NotificationActivity.this, "My Notification");
+                    builder.setContentTitle("My Title");
+                    builder.setContentText("Hello from DustNShine");
+                    builder.setSmallIcon(R.drawable.ic_launcher_background);
+                    builder.setAutoCancel(true);
+
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(NotificationActivity.this);
+                    managerCompat.notify(1, builder.build());
                 }
             }
         });

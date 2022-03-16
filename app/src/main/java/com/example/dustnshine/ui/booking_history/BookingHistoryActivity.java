@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,21 +22,23 @@ import java.util.List;
 
 public class BookingHistoryActivity extends AppCompatActivity implements BookingHistoryAdapter.OnClickMessageListener {
 
-    private ImageView btnBack;
+    private ImageView btnBack, imgNoTransactions;
     private RecyclerView rvBookingHistory;
     private List<BookingHistoryModel> bookingHistoryModelList;
     private BookingHistoryAdapter bookingHistoryAdapter;
     private BookingHistoryViewModel bookingHistoryViewModel;
     private String userToken;
+    private TextView tvNoTransactions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_booking_history);
 
-        btnBack = findViewById(R.id.backBookingHistory);
+        imgNoTransactions = findViewById(R.id.imgNoTransactions);
+        tvNoTransactions = findViewById(R.id.tvNoTransactions);
+        btnBack = findViewById(R.id.btnBack);
         rvBookingHistory = findViewById(R.id.rvBookingHistory);
         userToken = SharedPrefManager.getInstance(BookingHistoryActivity.this).getUserToken();
         rvBookingHistory.setHasFixedSize(true);
@@ -57,12 +60,16 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
         bookingHistoryViewModel.getBookingHistory(userToken).observe(BookingHistoryActivity.this, new Observer<List<BookingHistoryModel>>() {
             @Override
             public void onChanged(List<BookingHistoryModel> bookingHistoryModels) {
-                if (bookingHistoryModels != null) {
+                if (!bookingHistoryModels.isEmpty()) {
                     bookingHistoryModelList = bookingHistoryModels;
                     bookingHistoryAdapter.setData(bookingHistoryModelList);
                     rvBookingHistory.setAdapter(bookingHistoryAdapter);
+                    imgNoTransactions.setVisibility(View.GONE);
+                    tvNoTransactions.setVisibility(View.GONE);
                 } else {
-                    Toast.makeText(BookingHistoryActivity.this, "No Transactions yet", Toast.LENGTH_SHORT).show();
+                    rvBookingHistory.setVisibility(View.GONE);
+                    imgNoTransactions.setVisibility(View.VISIBLE);
+                    tvNoTransactions.setVisibility(View.VISIBLE);
                 }
             }
         });
