@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.booking.BookingFragment;
 import com.example.dustnshine.ui.FavoritesFragment;
 import com.example.dustnshine.ui.home.HomeFragment;
 import com.example.dustnshine.ui.MessageFragment;
 
+import com.example.dustnshine.ui.signin.SignInActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
@@ -30,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
-
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(
@@ -76,5 +76,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
             backButtonCount++;
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!SharedPrefManager.getInstance(this).isLoggedIn()){
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+        };
     }
 }

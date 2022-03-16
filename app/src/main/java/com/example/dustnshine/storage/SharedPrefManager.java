@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.dustnshine.models.AddressModel;
-import com.example.dustnshine.models.User;
+import com.example.dustnshine.models.UserModel;
 
 public class SharedPrefManager {
 
@@ -23,22 +23,22 @@ public class SharedPrefManager {
         return  mInstance;
     }
 
-    public void saveUser(User user){
+    public void saveUser(UserModel userModel){
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt("id", user.getId());
-        editor.putString("first_name", user.getFirst_name());
-        editor.putString("last_name", user.getLast_name());
-        editor.putString("mobile_number", user.getMobile_number());
-        editor.putString("email", user.getEmail());
+        editor.putInt("id", userModel.getId());
+        editor.putString("first_name", userModel.getFirst_name());
+        editor.putString("last_name", userModel.getLast_name());
+        editor.putString("mobile_number", userModel.getMobile_number());
+        editor.putString("email", userModel.getEmail());
 
         editor.apply();
     }
 
-    public User getUser(){
+    public UserModel getUser(){
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-        return new User(
+        return new UserModel(
                 sharedPreferences.getInt("id", -1),
                 sharedPreferences.getString("first_name", null),
                 sharedPreferences.getString("last_name", null),

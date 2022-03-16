@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.LogoutResponse;
@@ -17,6 +18,7 @@ import retrofit2.Response;
 
 public class UserAPIService {
 
+    private SignInCallback signInCallback;
     //SignIn
     public MutableLiveData<SignInResponse> signInRequest(String email, String password){
         final MutableLiveData<SignInResponse> signInResponseMutableLiveData = new MutableLiveData<>();
@@ -26,7 +28,7 @@ public class UserAPIService {
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                 if(response.code() == 200){
                     signInResponseMutableLiveData.setValue(response.body());
-
+                    signInCallback.signInCallback(response.code(), response.body());
                 }
                 else if (response.code() == 401){
                     signInResponseMutableLiveData.setValue(response.body());

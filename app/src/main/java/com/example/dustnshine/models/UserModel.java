@@ -1,10 +1,10 @@
 package com.example.dustnshine.models;
 
-public class User {
+public class UserModel {
     private int id;
     private String first_name, last_name, mobile_number, email;
 
-    public User(int id, String first_name, String last_name, String mobile_number, String email) {
+    public UserModel(int id, String first_name, String last_name, String mobile_number, String email) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;

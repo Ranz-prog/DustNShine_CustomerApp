@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.method.CharacterPickerDialog;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -30,13 +29,10 @@ import android.widget.Toast;
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityManageAccountBinding;
-import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.LogoutResponse;
-import com.example.dustnshine.models.User;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.home.HomeFragment;
 import com.example.dustnshine.ui.signin.SignInActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -47,7 +43,6 @@ public class ManageAccountActivity extends AppCompatActivity {
     private LinearLayout personalInfoView;
     private TextView tvPersonalInfo, popText, tvLogout, tvManageCards;
     private CardView personalInfoCardView;
-    private Button reset, edit;
     private Dialog dialog, changePassword;
     private static int number;
     private String text, userToken;
@@ -161,7 +156,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
     }
 
-    public void disabled(){
+    private void disabled(){
         activitySignupBinding.etFirstName.setEnabled(false);
         activitySignupBinding.etLastName.setEnabled(false);
         activitySignupBinding.etMobileNumber.setEnabled(false);
@@ -176,7 +171,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.btnEditPassword.setEnabled(false);
     }
 
-    public void enable(){
+    private void enable(){
         activitySignupBinding.etFirstName.setEnabled(true);
         activitySignupBinding.etLastName.setEnabled(true);
         activitySignupBinding.etMobileNumber.setEnabled(true);
@@ -191,8 +186,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.btnEditPassword.setEnabled(true);
     }
 
-    public void editPasswordDialogBox(){
-
+    private void editPasswordDialogBox(){
         EditText etOldPass, etNewPassword, etConfirmPassword;
         Button btnCancel, btnSave;
 
@@ -245,7 +239,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
     }
 
-    public void dialogBox(){
+    private void dialogBox(){
         // DIALOG BOX START
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.pop_up_reference);
@@ -312,7 +306,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
     }
 
-    public void getUserInformation(String userToken){
+    private void getUserInformation(String userToken){
         manageAccountViewModel.getUserInformationRequest(userToken).observe(ManageAccountActivity.this, new Observer<UserManagementResponse>() {
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
@@ -338,7 +332,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
     }
 
-    public void updateUserInformation(int user_id, String userToken, String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, String zipcode,  String password, String passwordConfirmation){
+    private void updateUserInformation(int user_id, String userToken, String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, String zipcode,  String password, String passwordConfirmation){
         manageAccountViewModel.userInformationUpdate(user_id, userToken, firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation).observe(ManageAccountActivity.this, new Observer<UserManagementResponse>() {
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
@@ -351,7 +345,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
     }
 
-    public void userChangePassword(String userToken, String oldPassword, String password, String newPassword){
+    private void userChangePassword(String userToken, String oldPassword, String password, String newPassword){
         manageAccountViewModel.getChangePasswordRequest(userToken, oldPassword, password, newPassword).observe(ManageAccountActivity.this, new Observer<ChangePasswordResponse>() {
             @Override
             public void onChanged(ChangePasswordResponse changePasswordResponse) {

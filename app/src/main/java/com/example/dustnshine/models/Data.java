@@ -3,19 +3,19 @@ package com.example.dustnshine.models;
 public class Data {
 
     private String token;
-    private User user;
+    private UserModel userModel;
 
-    public Data(String token, User user) {
+    public Data(String token, UserModel userModel) {
         this.token = token;
-        this.user = user;
+        this.userModel = userModel;
     }
 
     public String getToken() {
         return token;
     }
 
-    public User getUser() {
-        return user;
+    public UserModel getUser() {
+        return userModel;
     }
 
     public void setToken(String token) {

@@ -26,6 +26,7 @@ import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.ForgetPasswordActivity;
 import com.example.dustnshine.ui.signup.SignUpActivity;
+import com.example.dustnshine.utils.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.regex.Matcher;
@@ -41,9 +42,9 @@ public class SignInActivity extends AppCompatActivity {
     private SignInViewModel signInViewModel;
     private ActivitySigninBinding activitySigninBinding;
     private static String email, password;
-    private static final String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
     private Pattern pattern;
     private Matcher matcher;
+    private AppConstants appConstants;
     private Snackbar snackbar;
 
     @Override
@@ -53,7 +54,7 @@ public class SignInActivity extends AppCompatActivity {
 
         signInViewModel = new ViewModelProvider(SignInActivity.this).get(SignInViewModel.class);
         activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
-        pattern = Pattern.compile(regex);
+        pattern = Pattern.compile(appConstants.regex);
 
         activitySigninBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +97,8 @@ public class SignInActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     }, 2000);
+                } else if (statusCode == 422){
+                    showMessage("The given data is invalid");
                 } else if (statusCode == 401){
                     showMessage("Invalid Credentials");
                 } else {
@@ -153,22 +156,6 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void userSignIn(String email, String password){
-//        signInViewModel.getSignInRequest(email, password).observe(SignInActivity.this, new Observer<SignInResponse>() {
-//            @Override
-//            public void onChanged(SignInResponse signInResponse) {
-//                if(signInResponse.getMessage() == "Succesfully Logged In"){
-//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
-//                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
-//                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                } else if (signInResponse.getMessage() == "Invalid Credentials") {
-//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
         signInViewModel.getSignInRequest(email, password);
     }
 
@@ -199,3 +186,20 @@ public class SignInActivity extends AppCompatActivity {
         snackbar.show();
     }
 }
+
+//        signInViewModel.getSignInRequest(email, password).observe(SignInActivity.this, new Observer<SignInResponse>() {
+//            @Override
+//            public void onChanged(SignInResponse signInResponse) {
+//                if(signInResponse.getMessage() == "Succesfully Logged In"){
+//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
+//                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
+//                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                } else if (signInResponse.getMessage() == "Invalid Credentials") {
+//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
