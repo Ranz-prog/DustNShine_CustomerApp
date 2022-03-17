@@ -44,12 +44,11 @@ import java.util.List;
 public class HomeFragment extends Fragment implements RecommendationAdapter.OnClickMessageListener{
 
     private ImageView btnManageAccount;
-    private LinearLayout btnNotification, generalCleaning, garageCleaning;
+    private LinearLayout btnNotification;
     private View view;
     private TextView btnShowAll;
     private TextView tvCityMunicipality, tvAddress;
     private RecyclerView recommendationRecycler;
-    private List<FeatureModel> featureModelList;
     private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
     private HomeFragmentViewModel homeFragmentViewModel;
     private RecommendationAdapter recommendationAdapter;
@@ -149,8 +148,11 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         homeFragmentViewModel.getUserInformationRequest(userToken).observe(getActivity(), new Observer<UserManagementResponse>() {
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
-                if(userManagementResponse == null){
+                if (userManagementResponse == null){
                     Log.d("TAG", "Invalid Request");
+                } else if (userManagementResponse.getData().get(0).getAddress().isEmpty() || userManagementResponse.getData().get(0).getAddress() == null ){
+                    tvCityMunicipality.setText("");
+                    tvAddress.setText("");
                 } else {
                     tvCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
                     tvAddress.setText(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().get(0).getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());

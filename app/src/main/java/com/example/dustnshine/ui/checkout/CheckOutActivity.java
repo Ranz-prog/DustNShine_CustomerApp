@@ -102,12 +102,12 @@ public class CheckOutActivity extends AppCompatActivity {
         dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
-        Button Okay = dialog.findViewById(R.id.btn_okay);
+        Button btnOkay = dialog.findViewById(R.id.btnOkay);
         popText = dialog.findViewById(R.id.popUpText);
         String text = "Thank you. Checkout is successful!";// Set Message Here
         popText.setText(text.toString());
 
-        Okay.setOnClickListener(new View.OnClickListener() {
+        btnOkay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CheckOutActivity.this, "Service successfully booked", Toast.LENGTH_LONG).show();

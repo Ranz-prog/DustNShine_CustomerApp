@@ -305,14 +305,14 @@ public class ManageAccountActivity extends AppCompatActivity {
         dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
-        Button Okay = dialog.findViewById(R.id.btn_okay);
+        Button btnOkay = dialog.findViewById(R.id.btnOkay);
         popText = dialog.findViewById(R.id.popUpText);
 
         popText.setText(text.toString());//placing message here
 
         if (number == 1){
 
-            Okay.setOnClickListener(new View.OnClickListener() {
+            btnOkay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     activitySignupBinding.btnEditDetails.setEnabled(false);
@@ -321,11 +321,8 @@ public class ManageAccountActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
             });
-            //END OF DIALOG BOX
-        }
-
-        else {
-            Okay.setOnClickListener(new View.OnClickListener() {
+        } else {
+            btnOkay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     activitySignupBinding.btnEditDetails.setEnabled(true);
@@ -365,11 +362,22 @@ public class ManageAccountActivity extends AppCompatActivity {
         manageAccountViewModel.getUserInformationRequest(userToken).observe(ManageAccountActivity.this, new Observer<UserManagementResponse>() {
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
-                if(userManagementResponse == null){
+                if(userManagementResponse == null) {
                     Log.d("TAG", "Invalid Request");
+                } else if(userManagementResponse.getData().get(0).getAddress().isEmpty() || userManagementResponse.getData().get(0).getAddress() == null) {
+                    userID = userManagementResponse.getData().get(0).getId();
+                    activitySignupBinding.etFirstName.setText(userManagementResponse.getData().get(0).getFirst_name());
+                    activitySignupBinding.etLastName.setText(userManagementResponse.getData().get(0).getLast_name());
+                    activitySignupBinding.etEmailAddress.setText(userManagementResponse.getData().get(0).getEmail());
+                    activitySignupBinding.etMobileNumber.setText(userManagementResponse.getData().get(0).getMobile_number());
+                    activitySignupBinding.etPassword.setText(SharedPrefManager.getInstance(ManageAccountActivity.this).getPassword());
+                    activitySignupBinding.etHouseNo.setText("");
+                    activitySignupBinding.etStreet.setText("");
+                    activitySignupBinding.etBarangay.setText("");
+                    activitySignupBinding.etCityMunicipality.setText("");
+                    activitySignupBinding.etProvince.setText("");
+                    activitySignupBinding.etZipCode.setText("");
                 } else {
-//                    SharedPrefManager.getInstance(ManageAccountActivity.this).saveUser();
-                    SharedPrefManager.getInstance(ManageAccountActivity.this).saveUserAddress(userManagementResponse.getData().get(0).getAddress().get(0));
                     userID = userManagementResponse.getData().get(0).getId();
                     activitySignupBinding.etFirstName.setText(userManagementResponse.getData().get(0).getFirst_name());
                     activitySignupBinding.etLastName.setText(userManagementResponse.getData().get(0).getLast_name());

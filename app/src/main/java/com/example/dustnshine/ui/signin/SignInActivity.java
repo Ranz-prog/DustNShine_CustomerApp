@@ -1,14 +1,21 @@
 package com.example.dustnshine.ui.signin;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -20,9 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.SignInCallback;
-import com.example.dustnshine.adapter.FeaturedServicesAdapter;
 import com.example.dustnshine.databinding.ActivitySigninBinding;
-import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
@@ -31,14 +36,16 @@ import com.example.dustnshine.ui.signup.SignUpActivity;
 import com.example.dustnshine.utils.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
 
+    private ImageView imgAlert;
+    private Dialog showMessage;
+    private TextView tvTitle, tvMessage;
     private long backButtonCount;
-    private Button btnSearch;
+    private Button btnSearch, btnOkay;
     private EditText editTextEmailSearch;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
@@ -49,6 +56,7 @@ public class SignInActivity extends AppCompatActivity {
     private Matcher matcher;
     private AppConstants appConstants;
     private Snackbar snackbar;
+    private static int alert = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,21 +70,21 @@ public class SignInActivity extends AppCompatActivity {
         activitySigninBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("LOGIN", "CLICKED");
                 email = activitySigninBinding.etEmailAddress.getText().toString();
                 password = activitySigninBinding.etPassword.getText().toString();
                 matcher = pattern.matcher(email);
-
                 if (TextUtils.isEmpty(email)){
-                    showMessage("Email is required");
+                    activitySigninBinding.etEmailAddress.setError("Email is required");
                     activitySigninBinding.etEmailAddress.requestFocus();
                 } else if (!matcher.matches()) {
-                    showMessage("Invalid email");
+                    activitySigninBinding.etEmailAddress.setError("Invalid email");
                     activitySigninBinding.etEmailAddress.requestFocus();
                 } else if (TextUtils.isEmpty(password)) {
-                    showMessage("Password is required");
+                    activitySigninBinding.etPassword.setError("Password is required");
                     activitySigninBinding.etPassword.requestFocus();
                 } else if (password.length() < 8) {
-                    showMessage("Password must be at least 8 characters");
+                    activitySigninBinding.etPassword.setError("Password must be at least 8 characters");
                     activitySigninBinding.etPassword.requestFocus();
                 } else {
                     userSignIn(email, password);
@@ -88,25 +96,20 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void signInCallback(Integer statusCode, SignInResponse signInResponse) {
                 if(statusCode == 200){
-                    Log.d("RESPONSE", signInResponse.getData().toString());
-                    showMessage(signInResponse.getMessage());
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            getUserInformation(signInResponse.getData().getToken());
-                            SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
-                            SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
-                            SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
-                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    }, 2000);
+                    alert = 1;
+                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
+                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
+                    SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
+                    alertMessage();
                 } else if (statusCode == 422){
-                    showMessage("The given data is invalid");
+                    alert = 2;
+                    alertMessage();
                 } else if (statusCode == 401){
-                    showMessage("Invalid Credentials");
+                    alert = 3;
+                    alertMessage();
                 } else {
-                    showMessage("Try Again");
+                    alert = 4;
+                    alertMessage();
                 }
             }
         });
@@ -125,6 +128,67 @@ public class SignInActivity extends AppCompatActivity {
                 createNewDialog();
             }
         });
+
+
+    }
+
+    private void alertMessage(){
+        showMessage = new Dialog(this);
+        showMessage.setContentView(R.layout.content_alert);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            showMessage.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+        }
+        showMessage.setCancelable(false);
+        showMessage.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        imgAlert = showMessage.findViewById(R.id.imgAlert);
+        tvTitle = showMessage.findViewById(R.id.tvTitle);
+        tvMessage = showMessage.findViewById(R.id.tvMessage);
+        btnOkay = showMessage.findViewById(R.id.btnOkay);
+
+        switch(alert){
+            case 1:
+                imgAlert.setImageResource(R.drawable.check);
+                tvTitle.setText("Login Successful!");
+                tvMessage.setText("Thank you. You have successfully Signed In!");
+                showMessage.show();
+                break;
+            case 2:
+                imgAlert.setImageResource(R.drawable.ic_error_2);
+                tvTitle.setText("Login Failed!");
+                tvMessage.setText("The given data is invalid");
+                showMessage.show();
+                break;
+            case 3:
+                imgAlert.setImageResource(R.drawable.ic_error_2);
+                tvTitle.setText("Login Failed!");
+                tvMessage.setText("Invalid Credentials");
+                showMessage.show();
+                break;
+            case 4:
+                imgAlert.setImageResource(R.drawable.ic_error_2);
+                tvTitle.setText("Login Failed!");
+                tvMessage.setText("Try Again");
+                showMessage.show();
+        }
+
+        btnOkay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(alert == 1){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }, 1000);
+                } else {
+                    showMessage.dismiss();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -139,6 +203,7 @@ public class SignInActivity extends AppCompatActivity {
             backButtonCount++;
         }
     }
+
 
     private void createNewDialog() {
         dialogBuilder = new AlertDialog.Builder(this);
@@ -172,38 +237,8 @@ public class SignInActivity extends AppCompatActivity {
         };
     }
 
-    private void getUserInformation(String userToken){
-        signInViewModel.getUserInformationRequest(userToken).observe(SignInActivity.this, new Observer<UserManagementResponse>() {
-            @Override
-            public void onChanged(UserManagementResponse userManagementResponse) {
-                if(userManagementResponse == null){
-                    Log.d("TAG", "Invalid Request");
-                } else {
-                    SharedPrefManager.getInstance(SignInActivity.this).saveUserAddress(userManagementResponse.getData().get(0).getAddress().get(0));
-                }
-            }
-        });
-    }
-
     private void showMessage(String message){
         snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 }
-
-//        signInViewModel.getSignInRequest(email, password).observe(SignInActivity.this, new Observer<SignInResponse>() {
-//            @Override
-//            public void onChanged(SignInResponse signInResponse) {
-//                if(signInResponse.getMessage() == "Succesfully Logged In"){
-//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
-//                    SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
-//                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                } else if (signInResponse.getMessage() == "Invalid Credentials") {
-//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(SignInActivity.this, signInResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });

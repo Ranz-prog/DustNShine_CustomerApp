@@ -101,7 +101,10 @@ public class SignUpActivity extends AppCompatActivity {
                     showMessage("Re-typed password does not match");
                     activitySignupBinding.etPasswordConfirmation.requestFocus();
                 } else if (TextUtils.isEmpty(house_number)) {
-                    showMessage("Please enter your House No.");
+                    showMessage("Please enter your House no.");
+                    activitySignupBinding.etHouseNo.requestFocus();
+                } else if (house_number.charAt(0) == '0') {
+                    showMessage("House no. should not start in 0");
                     activitySignupBinding.etHouseNo.requestFocus();
                 } else if (TextUtils.isEmpty(street)) {
                     showMessage("Please enter your Street");
@@ -128,25 +131,11 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void signUpCallback(Integer statusCode) {
                 if (statusCode == 200) {
-                    showMessage("Successfully Registered");
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                            startActivity(intent);
-                        }
-                    }, 2000);
+                    dialog.show();
                 } else if (statusCode == 422) {
-                    showMessage("The given data was invalid.");
+                    showMessage("The email has been already taken.");
                 } else if (statusCode == 500) {
                     showMessage("Try Again");
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                            startActivity(intent);
-                        }
-                    }, 2000);
                 }
             }
         });
@@ -170,15 +159,21 @@ public class SignUpActivity extends AppCompatActivity {
         dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
-        Button Okay = dialog.findViewById(R.id.btn_okay);
+        Button btnOkay = dialog.findViewById(R.id.btnOkay);
         popText = dialog.findViewById(R.id.popUpText);
         String text = "Thank you. You have successfully Signed Up!";// Set Message Here
         popText.setText(text.toString());
 
-        Okay.setOnClickListener(new View.OnClickListener() {
+        btnOkay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SignUpActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                        startActivity(intent);
+                    }
+                }, 1000);
                 dialog.dismiss();
             }
         });
