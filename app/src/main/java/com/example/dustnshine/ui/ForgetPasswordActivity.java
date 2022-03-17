@@ -47,13 +47,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
 
-        Button Okay = dialog.findViewById(R.id.btn_okay);
+        Button btnOkay = dialog.findViewById(R.id.btnOkay);
         popText = dialog.findViewById(R.id.popUpText);
         String text= "Thank you. You have successfully changed your Password!";// Set Message Here
         popText.setText(text.toString());
 
 
-        Okay.setOnClickListener(new View.OnClickListener() {
+        btnOkay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ForgetPasswordActivity.this, "Success", Toast.LENGTH_SHORT).show();

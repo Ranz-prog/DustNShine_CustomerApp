@@ -70,7 +70,7 @@ public class BookingAPIService {
                     servicesList.setValue(response.body().getData());
                     Log.d("TAG", "Success");
                 } else {
-                    Log.d("TAG", response.body().getMessage());
+                    Log.d("TAG", "Failed");
                 }
             }
 
