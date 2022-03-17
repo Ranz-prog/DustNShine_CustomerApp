@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.models.RecommendedCompaniesModel;
+import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.service.BookingAPIService;
 import com.example.dustnshine.service.UserAPIService;
 import com.example.dustnshine.response.UserManagementResponse;
@@ -18,10 +19,18 @@ public class HomeFragmentViewModel extends ViewModel {
     private MutableLiveData<UserManagementResponse> userManagementResponseMutableLiveData;
     private BookingAPIService bookingAPIService;
     private UserAPIService userAPIService;
+    private MutableLiveData<List<ServicesModel>> serviceList;
 
     public HomeFragmentViewModel() {
         bookingAPIService = new BookingAPIService();
         userAPIService = new UserAPIService();
+    }
+
+    public LiveData<List<ServicesModel>> getServicesList(String userToken){
+        if (serviceList == null) {
+            serviceList = bookingAPIService.getServices(userToken);
+        }
+        return serviceList;
     }
 
     public LiveData<List<RecommendedCompaniesModel>> getRecommendedCompaniesList(String userToken) {

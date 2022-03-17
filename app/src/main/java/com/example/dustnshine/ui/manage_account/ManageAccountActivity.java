@@ -185,7 +185,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding.etPassword.setEnabled(true);
         activitySignupBinding.btnEditPassword.setEnabled(true);
     }
-    
+
     private void editPasswordDialogBox(){
         EditText etOldPass, etNewPassword, etConfirmPassword;
         Button btnCancel, btnSave;

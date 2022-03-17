@@ -2,9 +2,9 @@ package com.example.dustnshine.models;
 
 public class ServicesModel {
     private int id, price;
-    private String name, description, created_at, updated_at, time;
+    private String name, description, created_at, updated_at, time, service_image;
 
-    public ServicesModel(int id, int price, String name, String description, String created_at, String updated_at, String time) {
+    public ServicesModel(int id, int price, String name, String description, String created_at, String updated_at, String time, String service_image) {
         this.id = id;
         this.price = price;
         this.name = name;
@@ -12,6 +12,7 @@ public class ServicesModel {
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.time = time;
+        this.service_image = service_image;
     }
 
     public int getId() {
@@ -70,14 +71,25 @@ public class ServicesModel {
         this.time = time;
     }
 
+    public String getService_image() {
+        return service_image;
+    }
+
+    public void setService_image(String service_image) {
+        this.service_image = service_image;
+    }
+
     @Override
     public String toString() {
         return "ServicesModel{" +
                 "id=" + id +
+                ", price=" + price +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", created_at='" + created_at + '\'' +
                 ", updated_at='" + updated_at + '\'' +
+                ", time='" + time + '\'' +
+                ", service_image='" + service_image + '\'' +
                 '}';
     }
 }

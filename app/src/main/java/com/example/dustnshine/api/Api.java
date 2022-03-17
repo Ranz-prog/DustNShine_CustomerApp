@@ -43,8 +43,6 @@ public interface Api {
             @Field("barangay") String barangay,
             @Field("municipality") String municipality,
             @Field("province") String province,
-            @Field("latitude") double latitude,
-            @Field("longitude") double longitude,
             @Field("zipcode") String zipcode,
             @Field("password") String password,
             @Field("password_confirmation") String password_confirmation

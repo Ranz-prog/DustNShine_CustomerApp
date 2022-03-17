@@ -37,7 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
     private SignUpViewModel signUpViewModel;
     private ActivitySignupBinding activitySignupBinding;
     private static String firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation;
-    private static double latitude, longitude;
     private Pattern pattern;
     private Matcher matcher;
     private Snackbar snackbar;
@@ -120,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
                     showMessage("Please enter your Zipcode");
                     activitySignupBinding.etZipCode.requestFocus();
                 } else {
-                    userSignUp(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, 1234.01, 98.01, zipcode, password, passwordConfirmation);
+                    userSignUp(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation);
                 }
             }
         });
@@ -186,8 +185,8 @@ public class SignUpActivity extends AppCompatActivity {
         //END OF DIALOG BOX
     }
 
-    private void userSignUp(String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, double latitude, double longitude, String zipcode, String password, String passwordConfirmation) {
-        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, latitude, longitude, zipcode, password, passwordConfirmation);
+    private void userSignUp(String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, String zipcode, String password, String passwordConfirmation) {
+        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation);
     }
 
     private void showMessage(String message) {

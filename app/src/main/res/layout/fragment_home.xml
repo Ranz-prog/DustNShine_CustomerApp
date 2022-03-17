@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/background"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
@@ -11,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/topSide"
@@ -216,194 +215,16 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/firstrow"
+        <GridView
+            android:id="@+id/gvFeaturedServices"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/botSide"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <LinearLayout
-                android:id="@+id/generalCleaning"
-                android:layout_width="150dp"
-                android:layout_height="140dp"
-                android:background="@drawable/container_border_2"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ichome" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/genralcleaning"
-                    android:textColor="@color/app_theme_black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/gentxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/congen"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/garageCleaning"
-                android:layout_width="150dp"
-                android:layout_height="140dp"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@id/generalCleaning"
-                android:background="@drawable/container_border_2"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/iccar" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/garagecleaning"
-                    android:textColor="@color/app_theme_black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/gartxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/congen"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/secondrow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/firstrow"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp">
-
-            <LinearLayout
-                android:id="@+id/dencon"
-                android:layout_width="150dp"
-                android:layout_height="140dp"
-                android:background="@drawable/container_border_2"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/icgarden" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/gardencleaning"
-                    android:textColor="@color/app_theme_black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/dentxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/congen"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/repcon"
-                android:layout_width="150dp"
-                android:layout_height="140dp"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@id/dencon"
-                android:background="@drawable/container_border_2"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/icrepair" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/repair"
-                    android:textColor="@color/app_theme_black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/reptxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/congen"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-
-        </RelativeLayout>
-
+            android:layout_height="400dp"
+            android:layout_below="@+id/botSide"
+            android:isScrollContainer="false"
+            android:numColumns="2"
+            android:scrollbars="none"
+            android:layout_weight="1"
+            android:stretchMode="columnWidth" />
 
     </RelativeLayout>
 </ScrollView>

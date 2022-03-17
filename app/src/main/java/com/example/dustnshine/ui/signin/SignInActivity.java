@@ -20,7 +20,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.SignInCallback;
+import com.example.dustnshine.adapter.FeaturedServicesAdapter;
 import com.example.dustnshine.databinding.ActivitySigninBinding;
+import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
@@ -29,6 +31,7 @@ import com.example.dustnshine.ui.signup.SignUpActivity;
 import com.example.dustnshine.utils.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -85,6 +88,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void signInCallback(Integer statusCode, SignInResponse signInResponse) {
                 if(statusCode == 200){
+                    Log.d("RESPONSE", signInResponse.getData().toString());
                     showMessage(signInResponse.getMessage());
                     new Handler().postDelayed(new Runnable() {
                         @Override

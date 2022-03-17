@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,11 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
 
+import com.example.dustnshine.adapter.FeaturedServicesAdapter;
 import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
 import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.models.RecommendedCompaniesModel;
+import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.garage_cleaning.GarageCleaningActivity;
@@ -44,8 +48,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
     private View view;
     private TextView btnShowAll;
     private TextView tvCityMunicipality, tvAddress;
-
-    private RecyclerView recommendationRecycler, featureRecycler;
+    private RecyclerView recommendationRecycler;
     private List<FeatureModel> featureModelList;
     private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
     private HomeFragmentViewModel homeFragmentViewModel;
@@ -53,6 +56,9 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
     private String userToken;
     private CompanyDetailsActivity companyDetailsActivity;
     private AddressModel addressModel;
+    private FeaturedServicesAdapter featuredServicesAdapter;
+    private List<ServicesModel> servicesModelList;
+    private GridView gvFeaturedServices;
 
 
     @Override
@@ -63,13 +69,15 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
 
         btnManageAccount = view.findViewById(R.id.btnManageAccount);
         btnNotification = view.findViewById(R.id.btnNotification);
-        generalCleaning = view.findViewById(R.id.generalCleaning);
-        garageCleaning = view.findViewById(R.id.garageCleaning);
+//        generalCleaning = view.findViewById(R.id.generalCleaning);
+//        garageCleaning = view.findViewById(R.id.garageCleaning);
         tvCityMunicipality = view.findViewById(R.id.tvCityMunicipality);
         tvAddress = view.findViewById(R.id.tvAddress);
         btnShowAll = view.findViewById(R.id.btnShowAll);
         recommendationRecycler = view.findViewById(R.id.companiesList);
+        gvFeaturedServices = view.findViewById(R.id.gvFeaturedServices);
         recommendationAdapter = new RecommendationAdapter(recommendedCompaniesModelList, getContext(),this);
+        featuredServicesAdapter = new FeaturedServicesAdapter(servicesModelList, getContext());
         userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
         getUserInformation(userToken);
 
@@ -81,6 +89,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         tvCityMunicipality.setText(addressModel.getMunicipality());
         tvAddress.setText(String.valueOf(addressModel.getHouse_number()) + " " + addressModel.getStreet() + " " + addressModel.getBarangay() + " " + addressModel.getMunicipality());
         getRecommendedCompanyList(userToken);
+        getFeaturedServices(userToken);
 
         btnManageAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,19 +115,16 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
             }
         });
 
-        generalCleaning.setOnClickListener(new View.OnClickListener() {
+        gvFeaturedServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), GeneralCleaningActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        garageCleaning.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), GarageCleaningActivity.class);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position == 0){
+                    Intent intent = new Intent(getContext(), GeneralCleaningActivity.class);
+                    startActivity(intent);
+                } else if (position == 1){
+                    Intent intent = new Intent(getContext(), GarageCleaningActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -148,6 +154,22 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
                 } else {
                     tvCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
                     tvAddress.setText(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().get(0).getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
+                }
+            }
+        });
+    }
+
+    public void getFeaturedServices(String userToken) {
+        homeFragmentViewModel.getServicesList(userToken).observe(getActivity(), new Observer<List<ServicesModel>>() {
+            @Override
+            public void onChanged(List<ServicesModel> servicesModels) {
+                if (servicesModels != null) {
+                    servicesModelList = servicesModels;
+                    featuredServicesAdapter.setData(servicesModels);
+                    gvFeaturedServices.setAdapter(featuredServicesAdapter);
+                    Log.d("TAG", "Success");
+                } else {
+                    Log.d("TAG", "Failure");
                 }
             }
         });
