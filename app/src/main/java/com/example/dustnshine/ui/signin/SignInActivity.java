@@ -17,6 +17,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.cometchat.pro.core.AppSettings;
+import com.cometchat.pro.core.CometChat;
+import com.cometchat.pro.exceptions.CometChatException;
+import com.cometchat.pro.models.User;
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.SignInCallback;
@@ -59,6 +63,18 @@ public class SignInActivity extends AppCompatActivity {
         activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
         pattern = Pattern.compile(appConstants.regex);
 
+        AppSettings appSettings=new AppSettings.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(AppConstants.REGION).build();
+
+        CometChat.init(SignInActivity.this, AppConstants.APP_ID,appSettings, new CometChat.CallbackListener<String>() {
+            @Override
+            public void onSuccess(String successMessage) {
+            }
+            @Override
+            public void onError(CometChatException e) {
+
+            }
+        });
+
         activitySigninBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +97,8 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     userSignIn(email, password);
                 }
+
+
             }
         });
 
@@ -97,6 +115,9 @@ public class SignInActivity extends AppCompatActivity {
                             SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
                             SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
                             SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
+
+                            String CustomerFirstName =  signInResponse.getData().getUser().getFirst_name().toString().toLowerCase();
+
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
                         }
@@ -163,14 +184,14 @@ public class SignInActivity extends AppCompatActivity {
         signInViewModel.getSignInRequest(email, password);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        };
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        };
+//    }
 
     private void getUserInformation(String userToken){
         signInViewModel.getUserInformationRequest(userToken).observe(SignInActivity.this, new Observer<UserManagementResponse>() {
