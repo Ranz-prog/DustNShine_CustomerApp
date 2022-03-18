@@ -62,6 +62,8 @@ public class SignInActivity extends AppCompatActivity {
     private Snackbar snackbar;
     private static int alert = 0;
 
+    String CustomerFirstName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,7 +119,7 @@ public class SignInActivity extends AppCompatActivity {
                     Log.d("RESPONSE", signInResponse.getData().toString());
                     showMessage(signInResponse.getMessage());
                     alert = 1;
-                    String CustomerFirstName =  signInResponse.getData().getUser().getFirst_name().toString().toLowerCase();
+                    CustomerFirstName =  signInResponse.getData().getUser().getFirst_name().toString().toLowerCase();
 
                     SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
@@ -202,8 +204,19 @@ public class SignInActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                            startActivity(intent);
+                                CometChat.login(CustomerFirstName , AppConstants.API_KEY, new CometChat.CallbackListener<User>() {
+
+                                    @Override
+                                    public void onSuccess(User user) {
+                                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+
+                                    @Override
+                                    public void onError(CometChatException e) {
+
+                                    }
+                                });
                         }
                     }, 1000);
                 } else {
