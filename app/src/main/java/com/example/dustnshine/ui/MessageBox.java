@@ -4,11 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cometchat.pro.constants.CometChatConstants;
 import com.cometchat.pro.core.CometChat;
@@ -19,6 +25,7 @@ import com.cometchat.pro.models.CustomMessage;
 import com.cometchat.pro.models.MediaMessage;
 import com.cometchat.pro.models.TextMessage;
 import com.example.dustnshine.R;
+import com.example.dustnshine.adapter.ChatAdapter;
 import com.example.dustnshine.models.MessageWrapper;
 import com.example.dustnshine.utils.AppConstants;
 import com.squareup.picasso.Picasso;
@@ -27,8 +34,12 @@ import com.stfalcon.chatkit.messages.MessageInput;
 import com.stfalcon.chatkit.messages.MessagesList;
 import com.stfalcon.chatkit.messages.MessagesListAdapter;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageBox extends AppCompatActivity {
 
@@ -36,8 +47,10 @@ public class MessageBox extends AppCompatActivity {
 
 
     //Comet chat related
-    private String groupId;
+    private String groupId,groupImg;
     private MessagesListAdapter<MessageWrapper> adapter;
+    TextView userName;
+    CircleImageView userImage;
 
     public static void start(Context context, String groupId) {
         Intent starter = new Intent(context, MessageBox.class);
@@ -52,6 +65,17 @@ public class MessageBox extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         message_arrowBack = findViewById(R.id.arrowback2);
+        userName = findViewById(R.id.message_userName);
+        userImage = findViewById(R.id.message_userImage);
+
+        userName.setText(AppConstants.GROUP_NAME);
+
+        groupImg = AppConstants.GROUP_ICON;
+
+        //display group icon
+        LoadImage loadImage = new LoadImage(userImage);
+        loadImage.execute(groupImg);// end of group icon
+
 
         message_arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,10 +84,10 @@ public class MessageBox extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-        if(intent != null){
-            groupId = intent.getStringExtra(AppConstants.GROUP_ID);
-        }
+
+
+        groupId = AppConstants.GROUP_ID;
+
 
         initViews();//for sending and viewing messages
         addListener();
@@ -94,7 +118,7 @@ public class MessageBox extends AppCompatActivity {
                 list.add(new MessageWrapper((TextMessage) message));
             }
         }
-        
+
         adapter.addToEnd(list, true);
     }
 
@@ -144,7 +168,7 @@ public class MessageBox extends AppCompatActivity {
 
     private void sendMessage(String message) {
 
-        String receiverType = CometChatConstants.RECEIVER_TYPE_USER;
+        String receiverType = CometChatConstants.RECEIVER_TYPE_GROUP;
 
         TextMessage textMessage = new TextMessage(groupId, message, receiverType);
 
@@ -155,12 +179,37 @@ public class MessageBox extends AppCompatActivity {
             }
             @Override
             public void onError(CometChatException e) {
-
             }
         });
     }
 
     private void addMessage(TextMessage textMessage) {
         adapter.addToStart(new MessageWrapper(textMessage),true);
+    }
+
+    private class LoadImage extends AsyncTask<String, Void , Bitmap> {
+        CircleImageView circleImageView;
+        public LoadImage(CircleImageView chat_clientImageView){
+            circleImageView = chat_clientImageView;
+
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            String urlLink = strings[0];
+            Bitmap bitmap = null;
+            try {
+                InputStream inputStream = new java.net.URL(groupImg).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            userImage.setImageBitmap(bitmap);
+        }
     }
 }

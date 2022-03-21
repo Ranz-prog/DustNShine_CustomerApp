@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.cometchat.pro.models.Group;
 import com.example.dustnshine.models.ChatModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.ui.MessageBox;
+import com.example.dustnshine.utils.AppConstants;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -108,6 +110,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                 public void onClick(View v) {
 
                     MessageBox.start(context, group.getGuid());
+                    AppConstants.GROUP_ID = group.getGuid();
+                    AppConstants.GROUP_NAME = group.getName();
+                    AppConstants.GROUP_ICON = group.getIcon();
+
                 }
             });
 
