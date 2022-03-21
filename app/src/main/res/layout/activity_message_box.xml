@@ -9,6 +9,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/chatDetails"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:elevation="4dp"
@@ -66,39 +67,26 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
+    <com.stfalcon.chatkit.messages.MessagesList
+        android:id="@+id/messagesList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@+id/messageBox"
+        android:layout_below="@+id/chatDetails" />
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/messageBox"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_alignParentBottom="true"
         app:cardElevation="8dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
 
-            <EditText
-                android:id="@+id/message_inputMessage"
+            <com.stfalcon.chatkit.messages.MessageInput
+                android:id="@+id/input"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@id/message_sendMessage"
-                android:background="@drawable/container_border_3"
-                android:fontFamily="@font/quicksand_regular"
-                android:hint="Type here . . ."
-                android:paddingLeft="8dp"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/message_sendMessage"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/send" />
-
-        </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:inputHint="Enter your message here" />
 
     </androidx.cardview.widget.CardView>
 

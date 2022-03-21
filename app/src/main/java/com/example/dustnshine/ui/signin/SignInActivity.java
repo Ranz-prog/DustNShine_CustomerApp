@@ -25,6 +25,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.cometchat.pro.core.AppSettings;
+import com.cometchat.pro.core.CometChat;
+import com.cometchat.pro.exceptions.CometChatException;
+import com.cometchat.pro.models.User;
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.SignInCallback;
@@ -59,6 +63,8 @@ public class SignInActivity extends AppCompatActivity {
     private Matcher matcher;
     private static int alert = 0;
 
+    String CustomerFirstName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +74,17 @@ public class SignInActivity extends AppCompatActivity {
         activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
         pattern = Pattern.compile(AppConstants.regex);
         passTF = findViewById(R.id.passTF);
+
+        AppSettings appSettings=new AppSettings.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(AppConstants.REGION).build();
+        CometChat.init(SignInActivity.this, AppConstants.APP_ID,appSettings, new CometChat.CallbackListener<String>() {
+            @Override
+            public void onSuccess(String successMessage) {
+            }
+            @Override
+            public void onError(CometChatException e) {
+
+            }
+        });
 
         activitySigninBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +108,8 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     userSignIn(email, password);
                 }
+
+
             }
         });
 
@@ -98,11 +117,16 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void signInCallback(Integer statusCode, SignInResponse signInResponse) {
                 if(statusCode == 200){
+                    Log.d("RESPONSE", signInResponse.getData().toString());
                     alert = 1;
+                    CustomerFirstName =  signInResponse.getData().getUser().getFirst_name().toString().toLowerCase();
+
                     SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
                     SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
                     AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed In!", SignInActivity.this, MainActivity.class);
+                    alertMessage();
+
                 } else if (statusCode == 422){
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The given data was invalid", SignInActivity.this, MainActivity.class);
                 } else if (statusCode == 401){
@@ -170,6 +194,76 @@ public class SignInActivity extends AppCompatActivity {
 //        });
 //    }
 
+    private void alertMessage(){
+        showMessage = new Dialog(this);
+        showMessage.setContentView(R.layout.content_alert);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            showMessage.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+        }
+        showMessage.setCancelable(false);
+        showMessage.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        imgAlert = showMessage.findViewById(R.id.imgAlert);
+        tvTitle = showMessage.findViewById(R.id.tvTitle);
+        tvMessage = showMessage.findViewById(R.id.tvMessage);
+        btnOkay = showMessage.findViewById(R.id.btnOkay);
+
+        switch(alert){
+            case 1:
+                imgAlert.setImageResource(R.drawable.check);
+                tvTitle.setText("Login Successful!");
+                tvMessage.setText("Thank you. You have successfully Signed In!");
+                showMessage.show();
+                break;
+            case 2:
+                imgAlert.setImageResource(R.drawable.ic_error_2);
+                tvTitle.setText("Login Failed!");
+                tvMessage.setText("The given data is invalid");
+                showMessage.show();
+                break;
+            case 3:
+                imgAlert.setImageResource(R.drawable.ic_error_2);
+                tvTitle.setText("Login Failed!");
+                tvMessage.setText("Invalid Credentials");
+                showMessage.show();
+                break;
+            case 4:
+                imgAlert.setImageResource(R.drawable.ic_error_2);
+                tvTitle.setText("Login Failed!");
+                tvMessage.setText("Try Again");
+                showMessage.show();
+        }
+
+        btnOkay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(alert == 1){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                                CometChat.login(CustomerFirstName , AppConstants.API_KEY, new CometChat.CallbackListener<User>() {
+
+                                    @Override
+                                    public void onSuccess(User user) {
+                                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+
+                                    @Override
+                                    public void onError(CometChatException e) {
+
+                                    }
+                                });
+                        }
+                    }, 1000);
+                } else {
+                    showMessage.dismiss();
+                }
+
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         if (backButtonCount >= 1) {
@@ -207,13 +301,13 @@ public class SignInActivity extends AppCompatActivity {
         signInViewModel.getSignInRequest(email, password);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        };
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        };
+//    }
 
 }
