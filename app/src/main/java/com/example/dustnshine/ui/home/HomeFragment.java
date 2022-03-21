@@ -180,6 +180,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
     public void onClickMessage(int adapterPosition) {
         Intent intent = new Intent(getActivity(), CompanyDetailsActivity.class);
         intent.putExtra("COMPANY_ID", recommendedCompaniesModelList.get(adapterPosition).getId());
+        Log.d("COMPANY_ID", String.valueOf(recommendedCompaniesModelList.get(adapterPosition).getId()));
         intent.putExtra("COMPANY_NAME", recommendedCompaniesModelList.get(adapterPosition).getCompany().getName());
         intent.putExtra("COMPANY_ADDRESS", recommendedCompaniesModelList.get(adapterPosition).getCompany().getAddress());
         intent.putExtra("COMPANY_IMAGE", recommendedCompaniesModelList.get(adapterPosition).getCompany().getCompany_image());

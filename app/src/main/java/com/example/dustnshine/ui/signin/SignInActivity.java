@@ -155,44 +155,6 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-//    private void alertMessage(Integer image, String title, String message){
-//        showMessage = new Dialog(this);
-//        showMessage.setContentView(R.layout.pop_up_reference);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            showMessage.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
-//        }
-//        showMessage.setCancelable(false);
-//        showMessage.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-//
-//        imgAlert = showMessage.findViewById(R.id.imgAlert);
-//        tvTitle = showMessage.findViewById(R.id.tvTitle);
-//        tvMessage = showMessage.findViewById(R.id.tvMessage);
-//        btnOkay = showMessage.findViewById(R.id.btnOkay);
-//
-//        imgAlert.setImageResource(image);
-//        tvTitle.setText(title);
-//        tvMessage.setText(message);
-//
-//        showMessage.show();
-//
-//        btnOkay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(alert == 1){
-//                    new Handler().postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-//                            startActivity(intent);
-//                        }
-//                    }, 1000);
-//                } else {
-//                    showMessage.dismiss();
-//                }
-//
-//            }
-//        });
-//    }
 
     private void alertMessage(){
         showMessage = new Dialog(this);
@@ -301,13 +263,13 @@ public class SignInActivity extends AppCompatActivity {
         signInViewModel.getSignInRequest(email, password);
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-//            Intent intent = new Intent(this, MainActivity.class);
-//            startActivity(intent);
-//        };
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        };
+    }
 
 }

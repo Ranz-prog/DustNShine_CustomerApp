@@ -94,6 +94,7 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("CLICKED", "CLICKED");
                 getBookingRequest(userToken, companyID, customerAddress, selectedDate + " " + selectedTime, total, servicesIDList, notes);
             }
         });
