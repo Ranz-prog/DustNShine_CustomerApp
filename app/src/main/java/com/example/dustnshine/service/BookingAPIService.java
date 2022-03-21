@@ -93,7 +93,7 @@ public class BookingAPIService {
                     companyList.setValue(response.body().getData());
                     Log.d("TAG", "Success");
                 } else {
-                    Log.d("TAG", response.body().getMessage());
+                    Log.d("TAG", String.valueOf(response.code()));
                 }
             }
 
@@ -208,9 +208,8 @@ public class BookingAPIService {
             public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
                 if (response.code() == 200) {
                     feedbackResponseMutableLiveData.setValue(response.body());
-                    Log.d("TAG", "Success");
                 } else {
-                    Log.d("TAG", String.valueOf(response.code()));
+                    feedbackResponseMutableLiveData.setValue(response.body());
                 }
             }
 
@@ -233,7 +232,6 @@ public class BookingAPIService {
                     doneServices.setValue(response.body().getData());
                     Log.d("CODE", String.valueOf(response.code()));
                 } else {
-                    Log.d("TAG", "Failed");
                     Log.d("CODE", String.valueOf(response.code()));
                 }
             }

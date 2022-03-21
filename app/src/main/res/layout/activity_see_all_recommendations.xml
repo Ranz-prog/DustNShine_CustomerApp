@@ -1,40 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="10dp">
 
             <ImageView
-                android:id="@+id/backSAR"
+                android:id="@+id/btnBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/back" />
-
-
-<!--            <EditText-->
-<!--                android:id="@+id/edtSearchCompany"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_marginLeft="10dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                android:layout_toLeftOf="@+id/btnSearch"-->
-<!--                android:layout_toRightOf="@+id/backSAR"-->
-<!--                android:background="@drawable/roundbutton"-->
-<!--                android:fontFamily="@font/roboto_regular"-->
-<!--                android:hint="Search..."-->
-<!--                android:padding="8dp"-->
-<!--                android:textColorHighlight="@color/app_theme_black"-->
-<!--                android:textColorLink="@color/line_divider_color"-->
-<!--                android:textSize="14sp" />-->
 
             <SearchView
                 android:id="@+id/sbSearchCompany"
@@ -42,7 +21,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/backSAR"
+                android:layout_toEndOf="@+id/btnBack"
                 android:background="@drawable/container1"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -63,25 +42,6 @@
                     android:layout_marginTop="10dp" />
             </RelativeLayout>
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/btnSearch"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentTop="true"-->
-<!--                android:layout_alignParentRight="true"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:background="@drawable/roundbutton"-->
-<!--                android:gravity="center_horizontal"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="10dp">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/searchIcon"-->
-<!--                    android:layout_width="18dp"-->
-<!--                    android:layout_height="18dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:background="@drawable/searchic" />-->
-<!--            </LinearLayout>-->
         </RelativeLayout>
 
-</ScrollView>
+</layout>

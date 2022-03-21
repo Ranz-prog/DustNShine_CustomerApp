@@ -42,13 +42,11 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
         }
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
-
         Button btnOkay = dialog.findViewById(R.id.btnOkay);
-        popText = dialog.findViewById(R.id.popUpText);
+        popText = dialog.findViewById(R.id.tvMessage);
         String text= "Thank you. You have successfully changed your Password!";// Set Message Here
         popText.setText(text.toString());
 

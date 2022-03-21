@@ -1,124 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingTop="10dp"
-    android:paddingRight="15dp"
-    android:paddingLeft="15dp"
-    android:paddingBottom="10dp"
-    android:background="@color/background">
-
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/back" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:paddingTop="10dp"
-        android:text="@string/feedback"
-        android:textColor="@color/app_theme_gold"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:paddingTop="10dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingBottom="10dp"
+        android:background="@color/background">
 
-        <TextView
-            android:id="@+id/txtFeedbackDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="@string/feedbakcdescription"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/txtHowItWorks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtFeedbackDescription"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="@string/howsourwork"
-            android:textSize="17sp" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardFeedback"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@+id/txtHowItWorks"
-            android:layout_alignParentStart="true"
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginTop="10dp"
-            app:cardCornerRadius="7dp">
+            android:layout_weight="1"
+            app:srcCompat="@drawable/back" />
 
-            <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingTop="10dp"
+            android:text="@string/feedback"
+            android:textColor="@color/app_theme_gold"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txtFeedbackDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/feedbakcdescription"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txtHowItWorks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtFeedbackDescription"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/howsourwork"
+                android:textSize="17sp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardFeedback"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp">
+                android:layout_height="200dp"
+                android:layout_below="@+id/txtHowItWorks"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="7dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFeedback"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:cursorVisible="true"
-                    android:fontFamily="@font/roboto_regular"
-                    android:gravity="start"
-                    android:hint="@string/typeyourfeedback"
-                    android:maxLength="50"
-                    android:paddingBottom="10dp"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
 
-        </androidx.cardview.widget.CardView>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFeedback"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:cursorVisible="true"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="start"
+                        android:hint="@string/typeyourfeedback"
+                        android:maxLength="50"
+                        android:paddingBottom="10dp"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/txtRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cardFeedback"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="@string/rating"
-            android:textSize="17sp" />
+            </androidx.cardview.widget.CardView>
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtRating"
-            android:numStars="5"
-            android:progressTint="@color/app_theme_gold">
+            <TextView
+                android:id="@+id/txtRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardFeedback"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/rating"
+                android:textSize="17sp" />
 
-        </RatingBar>
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtRating"
+                android:numStars="5"
+                android:progressTint="@color/app_theme_gold">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnReview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/rounded_corners_button_layout"
-            android:backgroundTint="@color/app_theme_gold"
-            android:padding="10dp"
-            android:text="@string/done"
-            android:textColor="@color/white"
-            android:textSize="18sp"/>
+            </RatingBar>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rounded_corners_button_layout"
+                android:backgroundTint="@color/app_theme_gold"
+                android:padding="10dp"
+                android:text="@string/done"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-
-</RelativeLayout>
+</layout>

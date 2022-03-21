@@ -51,7 +51,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         activityCompanyDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_company_details);
         companyDetailsViewModel = new ViewModelProvider(CompanyDetailsActivity.this).get(CompanyDetailsViewModel.class);
         userToken = SharedPrefManager.getInstance(CompanyDetailsActivity.this).getUserToken();

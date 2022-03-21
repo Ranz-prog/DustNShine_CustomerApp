@@ -7,11 +7,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -35,7 +38,11 @@ import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.home.HomeFragment;
 import com.example.dustnshine.ui.signin.SignInActivity;
+import com.example.dustnshine.utils.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ManageAccountActivity extends AppCompatActivity {
 
@@ -50,9 +57,9 @@ public class ManageAccountActivity extends AppCompatActivity {
     private ManageAccountViewModel manageAccountViewModel;
     private static String firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, password, passwordConfirmation;
     private static int userID;
-    private Fragment homeFragment;
+    private Pattern pattern;
+    private Matcher matcher;
     private ImageButton editPass;
-    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +69,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_manage_account);
         manageAccountViewModel =  new ViewModelProvider(ManageAccountActivity.this).get(ManageAccountViewModel.class);
         userToken = SharedPrefManager.getInstance(ManageAccountActivity.this).getUserToken();
-        homeFragment = new HomeFragment();
+        pattern = Pattern.compile(AppConstants.regex);
 
         btnBack = findViewById(R.id.backManageAcc);
         personalInfoView = findViewById(R.id.personal_info_view);
@@ -78,7 +85,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         editPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                editPasswordDialogBox();
+                editPasswordDialogBox();
                 changePassword.show();
             }
         });
@@ -107,7 +114,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logOutUser();
+                logoutDialog();
             }
         });
 
@@ -128,7 +135,7 @@ public class ManageAccountActivity extends AppCompatActivity {
                 text = "Are you sure you want to change information details?";
                 number = 1;
                 dialogBox();
-                dialog.show(); // Showing the dialog here
+                dialog.show();
             }
         });
 
@@ -148,8 +155,51 @@ public class ManageAccountActivity extends AppCompatActivity {
                 province = activitySignupBinding.etProvince.getText().toString();
                 zipcode = activitySignupBinding.etZipCode.getText().toString();
                 password = activitySignupBinding.etPassword.getText().toString();
+                matcher = pattern.matcher(email);
 
-                updateUserInformation(userID, userToken, firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, password, password);
+                if (TextUtils.isEmpty(firstName)) {
+                    activitySignupBinding.etFirstName.setError("Please enter your First Name");
+                    activitySignupBinding.etFirstName.requestFocus();
+                } else if (TextUtils.isEmpty(lastName)) {
+                    activitySignupBinding.etLastName.setError("Please enter your Last Name");
+                    activitySignupBinding.etLastName.requestFocus();
+                } else if (!matcher.matches()) {
+                    activitySignupBinding.etEmailAddress.setError("Invalid email");
+                    activitySignupBinding.etEmailAddress.requestFocus();
+                } else if (TextUtils.isEmpty(email)) {
+                    activitySignupBinding.etEmailAddress.setError("Please enter your Email Address");
+                    activitySignupBinding.etEmailAddress.requestFocus();
+                } else if (TextUtils.isEmpty(mobileNumber)) {
+                    activitySignupBinding.etMobileNumber.setError("Please enter your Mobile Number");
+                    activitySignupBinding.etMobileNumber.requestFocus();
+                } else if (mobileNumber.length() < 11 || mobileNumber.length() > 11) {
+                    activitySignupBinding.etMobileNumber.setError("Mobile number must be 11 characters");
+                    activitySignupBinding.etMobileNumber.requestFocus();
+                } else if (TextUtils.isEmpty(houseNumber)) {
+                    activitySignupBinding.etHouseNo.setError("Please enter your House no.");
+                    activitySignupBinding.etHouseNo.requestFocus();
+                } else if (houseNumber.charAt(0) == '0') {
+                    activitySignupBinding.etHouseNo.setError("House no. should not start in 0");
+                    activitySignupBinding.etHouseNo.requestFocus();
+                } else if (TextUtils.isEmpty(street)) {
+                    activitySignupBinding.etStreet.setError("Please enter your Street");
+                    activitySignupBinding.etStreet.requestFocus();
+                } else if (TextUtils.isEmpty(barangay)) {
+                    activitySignupBinding.etBarangay.setError("Please enter your Barangay");
+                    activitySignupBinding.etBarangay.requestFocus();
+                } else if (TextUtils.isEmpty(cityMunicipality)) {
+                    activitySignupBinding.etCityMunicipality.setError("Please enter your City/ Municipality");
+                    activitySignupBinding.etCityMunicipality.requestFocus();
+                } else if (TextUtils.isEmpty(province)) {
+                    activitySignupBinding.etProvince.setError("Please enter your Province");
+                    activitySignupBinding.etProvince.requestFocus();
+                } else if (TextUtils.isEmpty(zipcode)) {
+                    activitySignupBinding.etZipCode.setError("Please enter your Zipcode");
+                    activitySignupBinding.etZipCode.requestFocus();
+                } else {
+                    updateUserInformation(userID, userToken, firstName, lastName, mobileNumber, email, houseNumber, street, barangay, cityMunicipality, province, zipcode, password, password);
+                }
+
                 dialogBox();
                 dialog.show(); // Showing the dialog here
             }
@@ -195,7 +245,6 @@ public class ManageAccountActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             changePassword.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
         }
-        changePassword.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         changePassword.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
         changePassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
@@ -239,60 +288,25 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
     }
 
-//    public void editPasswordDialogBox(){
-//
-//        EditText etOldPass, etNewPassword, etConfirmPassword;
-//        Button btnCancel, btnSave;
-//
-//        changePassword = new Dialog(this);
-//        changePassword.setContentView(R.layout.change_password_dialogbox);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            changePassword.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
-//        }
-//        changePassword.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        changePassword.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
-//        changePassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
-//
-//        btnCancel = changePassword.findViewById(R.id.cancelNewPassword);
-//        btnSave = changePassword.findViewById(R.id.saveNewPassword);
-//
-//        etOldPass = changePassword.findViewById(R.id.etOldPassword);
-//        etNewPassword = changePassword.findViewById(R.id.etNewPassword);
-//        etConfirmPassword = changePassword.findViewById(R.id.etConfirmNewPassword);
-//
-//        btnCancel.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    enable();
-//                    changePassword.dismiss();
-//                }
-//        });
-//
-//        btnSave.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                if(etOldPass.getText().toString().isEmpty()){
-//                    Toast.makeText(ManageAccountActivity.this, "Enter your old password", Toast.LENGTH_SHORT).show();
-//                } else if(!etOldPass.getText().toString().equals(SharedPrefManager.getInstance(ManageAccountActivity.this).getPassword())){
-//                    Toast.makeText(ManageAccountActivity.this, "Old password not correct", Toast.LENGTH_SHORT).show();
-//                } else if(etNewPassword.getText().toString().isEmpty()){
-//                    Toast.makeText(ManageAccountActivity.this, "Enter your new password", Toast.LENGTH_SHORT).show();
-//                } else if(etNewPassword.getText().toString().length() < 8){
-//                    Toast.makeText(ManageAccountActivity.this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
-//                } else if(etConfirmPassword.getText().toString().isEmpty()){
-//                    Toast.makeText(ManageAccountActivity.this, "Re-type your new password", Toast.LENGTH_SHORT).show();
-//                } else if(!etConfirmPassword.getText().toString().equals(etNewPassword.getText().toString())){
-//                    Toast.makeText(ManageAccountActivity.this, "Password do not match", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    userChangePassword(userToken, etOldPass.getText().toString(), etNewPassword.getText().toString(), etConfirmPassword.getText().toString());
-//                    Toast.makeText(ManageAccountActivity.this, "Successfully Changed Password", Toast.LENGTH_SHORT).show();
-//                    changePassword.dismiss();
-//                }
-//            }
-//        });
-//    }
+    private void logoutDialog(){
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        logOutUser();
+                        break;
 
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ManageAccountActivity.this);
+        builder.setMessage("Are you sure you want to logout?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+    }
 
     private void dialogBox(){
         // DIALOG BOX START
@@ -301,17 +315,15 @@ public class ManageAccountActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
         }
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
 
         Button btnOkay = dialog.findViewById(R.id.btnOkay);
-        popText = dialog.findViewById(R.id.popUpText);
+        popText = dialog.findViewById(R.id.tvMessage);
 
         popText.setText(text.toString());//placing message here
 
         if (number == 1){
-
             btnOkay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -341,7 +353,6 @@ public class ManageAccountActivity extends AppCompatActivity {
             @Override
             public void onChanged(LogoutResponse logoutResponse) {
                     if(logoutResponse != null){
-                        showMessage(logoutResponse.getMessage());
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -350,7 +361,7 @@ public class ManageAccountActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
-                        }, 2000);
+                        }, 1000);
                     } else {
                         Log.d("TAG", "Invalid Request");
                     }
@@ -428,8 +439,4 @@ public class ManageAccountActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void showMessage(String message){
-        snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
-        snackbar.show();
-    }
 }

@@ -24,18 +24,17 @@ import java.util.List;
 
 public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRecommendationsAdapter.ViewHolder> {
 
-    private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
+    private List<RecommendationModel> recommendedCompaniesModelList;
     private Context context;
     private SeeAllRecommendationsAdapter.OnClickMessageListener onClickMessageListener;
-    private AppConstants appConstants;
 
-    public SeeAllRecommendationsAdapter(List<RecommendedCompaniesModel> recommendedCompaniesModelList, Context context, OnClickMessageListener onClickMessageListener) {
+    public SeeAllRecommendationsAdapter(List<RecommendationModel> recommendedCompaniesModelList, Context context, OnClickMessageListener onClickMessageListener) {
         this.recommendedCompaniesModelList = recommendedCompaniesModelList;
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;
     }
 
-    public void setData(List<RecommendedCompaniesModel> recommendedCompaniesModelList) {
+    public void setData(List<RecommendationModel> recommendedCompaniesModelList) {
         this.recommendedCompaniesModelList = recommendedCompaniesModelList;
         notifyDataSetChanged();
     }
@@ -51,10 +50,13 @@ public class SeeAllRecommendationsAdapter extends RecyclerView.Adapter<SeeAllRec
 
     @Override
     public void onBindViewHolder(@NonNull SeeAllRecommendationsAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load(appConstants.BASE_URL + recommendedCompaniesModelList.get(position).getCompany().getCompany_image()).into(holder.imgCompanyImage);
-        holder.tvCompanyName.setText(recommendedCompaniesModelList.get(position).getCompany().getName());
-        holder.tvCompanyLocation.setText(recommendedCompaniesModelList.get(position).getCompany().getAddress());
-        holder.tvCompanyRating.setText(String.valueOf(recommendedCompaniesModelList.get(position).getRating()));
+//        Glide.with(context).load(appConstants.BASE_URL + recommendedCompaniesModelList.get(position).getCompany().getCompany_image()).into(holder.imgCompanyImage);
+//        holder.tvCompanyName.setText(recommendedCompaniesModelList.get(position).getCompany().getName());
+//        holder.tvCompanyLocation.setText(recommendedCompaniesModelList.get(position).getCompany().getAddress());
+//        holder.tvCompanyRating.setText(String.valueOf(recommendedCompaniesModelList.get(position).getRating()));
+        Glide.with(context).load(AppConstants.BASE_URL + recommendedCompaniesModelList.get(position).getCompany_image()).into(holder.imgCompanyImage);
+        holder.tvCompanyName.setText(recommendedCompaniesModelList.get(position).getName());
+        holder.tvCompanyLocation.setText(recommendedCompaniesModelList.get(position).getAddress());
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.List;
 public class SeeAllRecommendationsViewModel extends ViewModel {
 
     private MutableLiveData<List<RecommendationModel>> searchedCompanyList;
-    private MutableLiveData<List<RecommendedCompaniesModel>> recommendedCompanyList;
+    private MutableLiveData<List<RecommendationModel>> recommendedCompanyList;
     private BookingAPIService bookingAPIService;
 
     public SeeAllRecommendationsViewModel() {
@@ -27,9 +27,16 @@ public class SeeAllRecommendationsViewModel extends ViewModel {
         return searchedCompanyList;
     }
 
-    public LiveData<List<RecommendedCompaniesModel>> getRecommendedCompaniesList(String userToken){
+//    public LiveData<List<RecommendedCompaniesModel>> getRecommendedCompaniesList(String userToken){
+//        if (recommendedCompanyList == null) {
+//            recommendedCompanyList = bookingAPIService.getRecommendedCompanies(userToken);
+//        }
+//        return recommendedCompanyList;
+//    }
+
+    public LiveData<List<RecommendationModel>> getRecommendedCompaniesList(String userToken){
         if (recommendedCompanyList == null) {
-            recommendedCompanyList = bookingAPIService.getRecommendedCompanies(userToken);
+            recommendedCompanyList = bookingAPIService.getCompanies(userToken);
         }
         return recommendedCompanyList;
     }

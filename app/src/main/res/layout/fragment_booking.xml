@@ -1,79 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    android:paddingTop="20dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingBottom="10dp">
-
-        <TextView
-            android:id="@+id/tvBookingService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/quicksand_medium"
-            android:text="Booking Service"
-            android:textColor="@color/app_theme_gold"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/btnBookingHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/roundbutton"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/time_past" />
-        </LinearLayout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <RelativeLayout
-            android:id="@+id/middleSide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvBookingService"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvBooking"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvBookingService"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:text="Booking Service"
+                android:textColor="@color/app_theme_gold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/btnBookingHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/roundbutton"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/time_past" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/middleSide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvBookingService"
+                android:orientation="vertical">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBooking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/imgNoTransactions"
+                android:layout_width="wrap_content"
+                android:layout_height="400dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/no_transactions"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvNoTransactions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgNoTransactions"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="-72dp"
+                android:text="@string/notransactionsyet"
+                android:visibility="gone"/>
+
+
         </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imgNoTransactions"
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_centerInParent="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/no_transactions"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/tvNoTransactions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imgNoTransactions"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="-72dp"
-        android:text="@string/notransactionsyet"
-        android:visibility="gone"/>
-
-</RelativeLayout>
+</layout>
