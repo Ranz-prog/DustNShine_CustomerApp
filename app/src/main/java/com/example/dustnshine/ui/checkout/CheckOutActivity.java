@@ -31,6 +31,7 @@ import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.QuantityListener;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.home.HomeFragment;
+import com.example.dustnshine.utils.AppConstants;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -43,8 +44,6 @@ import java.util.Map;
 public class CheckOutActivity extends AppCompatActivity {
 
     private ImageView btnBack;
-    private Dialog dialog;
-    private TextView popText;
     private CheckOutViewModel checkOutViewModel;
     private ActivityCheckoutBinding activityCheckoutBinding;
     private Intent intent;
@@ -92,41 +91,10 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.tvNotes.setText(notes);
         activityCheckoutBinding.tvTotal.setText(String.valueOf(total));
 
-        // DIALOG BOX START
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.pop_up_reference);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
-        }
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
-
-        Button btnOkay = dialog.findViewById(R.id.btnOkay);
-        popText = dialog.findViewById(R.id.popUpText);
-        String text = "Thank you. Checkout is successful!";// Set Message Here
-        popText.setText(text.toString());
-
-        btnOkay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(CheckOutActivity.this, "Service successfully booked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplication(), MainActivity.class);
-                startActivity(intent);
-                dialog.dismiss();
-            }
-        });
-
-        //END OF DIALOG BOX
         activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getBookingRequest(userToken, companyID, customerAddress, selectedDate + " " + selectedTime, total, servicesIDList, notes);
-                Log.d("SERVICES", String.valueOf(servicesIDList));
-                dialog.show();
-
-
-                // Showing the dialog here
             }
         });
 
@@ -144,9 +112,9 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
-                    Toast.makeText(CheckOutActivity.this, "Booking Success", Toast.LENGTH_SHORT).show();
+                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Booking failed. Try Again", CheckOutActivity.this, CompanyDetailsActivity.class);
                 } else {
-                    Toast.makeText(CheckOutActivity.this, "Booking Failed", Toast.LENGTH_SHORT).show();
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Booked Successfully", CheckOutActivity.this, MainActivity.class);
                 }
             }
         });

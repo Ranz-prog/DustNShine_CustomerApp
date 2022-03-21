@@ -99,6 +99,7 @@
                 android:id="@+id/passTF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:layout_below="@+id/userTF"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
@@ -117,7 +118,8 @@
                     android:inputType="textPassword"
                     android:maxLength="50"
                     android:paddingBottom="10dp"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:maxLines="1"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView

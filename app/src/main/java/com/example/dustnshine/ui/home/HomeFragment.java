@@ -29,6 +29,7 @@ import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.feedback.FeedbackActivity;
 import com.example.dustnshine.ui.garage_cleaning.GarageCleaningActivity;
 import com.example.dustnshine.ui.general_cleaning.GeneralCleaningActivity;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
@@ -68,8 +69,6 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
 
         btnManageAccount = view.findViewById(R.id.btnManageAccount);
         btnNotification = view.findViewById(R.id.btnNotification);
-//        generalCleaning = view.findViewById(R.id.generalCleaning);
-//        garageCleaning = view.findViewById(R.id.garageCleaning);
         tvCityMunicipality = view.findViewById(R.id.tvCityMunicipality);
         tvAddress = view.findViewById(R.id.tvAddress);
         btnShowAll = view.findViewById(R.id.btnShowAll);
@@ -120,7 +119,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
                 if (position == 0){
                     Intent intent = new Intent(getContext(), GeneralCleaningActivity.class);
                     startActivity(intent);
-                } else if (position == 1){
+                } else if (position == 2){
                     Intent intent = new Intent(getContext(), GarageCleaningActivity.class);
                     startActivity(intent);
                 }
@@ -131,7 +130,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
 
     }
 
-    public void getRecommendedCompanyList(String userToken){
+    private void getRecommendedCompanyList(String userToken){
         homeFragmentViewModel.getRecommendedCompaniesList(userToken).observe(getActivity(), new Observer<List<RecommendedCompaniesModel>>() {
             @Override
             public void onChanged(List<RecommendedCompaniesModel> recommendationModels) {
@@ -144,7 +143,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         });
     }
 
-    public void getUserInformation(String userToken){
+    private void getUserInformation(String userToken){
         homeFragmentViewModel.getUserInformationRequest(userToken).observe(getActivity(), new Observer<UserManagementResponse>() {
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
@@ -161,7 +160,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         });
     }
 
-    public void getFeaturedServices(String userToken) {
+    private void getFeaturedServices(String userToken) {
         homeFragmentViewModel.getServicesList(userToken).observe(getActivity(), new Observer<List<ServicesModel>>() {
             @Override
             public void onChanged(List<ServicesModel> servicesModels) {

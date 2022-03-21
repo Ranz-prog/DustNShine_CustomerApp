@@ -55,7 +55,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
         holder.serviceTitle.setText(servicesModelList.get(position).getName());
         holder.servicePrice.setText(servicesModelList.get(position).getDescription());
-        holder.serviceDetails1.setText("P" + " " + String.valueOf(servicesModelList.get(position).getPrice()) + "/" + servicesModelList.get(position).getTime());
+        holder.serviceDetails1.setText("P" + " " + String.valueOf(servicesModelList.get(position).getPrice()) + "/" + servicesModelList.get(position).getTime() + "hr");
 
         holder.cbItem.setOnClickListener(new View.OnClickListener() {
             @Override

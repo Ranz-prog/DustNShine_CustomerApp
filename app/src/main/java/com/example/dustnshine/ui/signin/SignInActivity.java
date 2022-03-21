@@ -2,6 +2,7 @@ package com.example.dustnshine.ui.signin;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,12 +36,14 @@ import com.example.dustnshine.ui.ForgetPasswordActivity;
 import com.example.dustnshine.ui.signup.SignUpActivity;
 import com.example.dustnshine.utils.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
 
+    private TextInputLayout passTF;
     private ImageView imgAlert;
     private Dialog showMessage;
     private TextView tvTitle, tvMessage;
@@ -54,8 +57,6 @@ public class SignInActivity extends AppCompatActivity {
     private static String email, password;
     private Pattern pattern;
     private Matcher matcher;
-    private AppConstants appConstants;
-    private Snackbar snackbar;
     private static int alert = 0;
 
     @Override
@@ -65,7 +66,8 @@ public class SignInActivity extends AppCompatActivity {
 
         signInViewModel = new ViewModelProvider(SignInActivity.this).get(SignInViewModel.class);
         activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
-        pattern = Pattern.compile(appConstants.regex);
+        pattern = Pattern.compile(AppConstants.regex);
+        passTF = findViewById(R.id.passTF);
 
         activitySigninBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,10 +83,10 @@ public class SignInActivity extends AppCompatActivity {
                     activitySigninBinding.etEmailAddress.setError("Invalid email");
                     activitySigninBinding.etEmailAddress.requestFocus();
                 } else if (TextUtils.isEmpty(password)) {
-                    activitySigninBinding.etPassword.setError("Password is required");
+                    activitySigninBinding.etPassword.setError("Password is required", null);
                     activitySigninBinding.etPassword.requestFocus();
                 } else if (password.length() < 8) {
-                    activitySigninBinding.etPassword.setError("Password must be at least 8 characters");
+                    activitySigninBinding.etPassword.setError("Password must be at least 8 characters", null);
                     activitySigninBinding.etPassword.requestFocus();
                 } else {
                     userSignIn(email, password);
@@ -100,16 +102,13 @@ public class SignInActivity extends AppCompatActivity {
                     SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
                     SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
-                    alertMessage();
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed In!", SignInActivity.this, MainActivity.class);
                 } else if (statusCode == 422){
-                    alert = 2;
-                    alertMessage();
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The given data was invalid", SignInActivity.this, MainActivity.class);
                 } else if (statusCode == 401){
-                    alert = 3;
-                    alertMessage();
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Wrong Password or Email", SignInActivity.this, MainActivity.class);
                 } else {
-                    alert = 4;
-                    alertMessage();
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Try again", SignInActivity.this, MainActivity.class);
                 }
             }
         });
@@ -132,64 +131,44 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    private void alertMessage(){
-        showMessage = new Dialog(this);
-        showMessage.setContentView(R.layout.content_alert);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            showMessage.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
-        }
-        showMessage.setCancelable(false);
-        showMessage.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-
-        imgAlert = showMessage.findViewById(R.id.imgAlert);
-        tvTitle = showMessage.findViewById(R.id.tvTitle);
-        tvMessage = showMessage.findViewById(R.id.tvMessage);
-        btnOkay = showMessage.findViewById(R.id.btnOkay);
-
-        switch(alert){
-            case 1:
-                imgAlert.setImageResource(R.drawable.check);
-                tvTitle.setText("Login Successful!");
-                tvMessage.setText("Thank you. You have successfully Signed In!");
-                showMessage.show();
-                break;
-            case 2:
-                imgAlert.setImageResource(R.drawable.ic_error_2);
-                tvTitle.setText("Login Failed!");
-                tvMessage.setText("The given data is invalid");
-                showMessage.show();
-                break;
-            case 3:
-                imgAlert.setImageResource(R.drawable.ic_error_2);
-                tvTitle.setText("Login Failed!");
-                tvMessage.setText("Invalid Credentials");
-                showMessage.show();
-                break;
-            case 4:
-                imgAlert.setImageResource(R.drawable.ic_error_2);
-                tvTitle.setText("Login Failed!");
-                tvMessage.setText("Try Again");
-                showMessage.show();
-        }
-
-        btnOkay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(alert == 1){
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    }, 1000);
-                } else {
-                    showMessage.dismiss();
-                }
-
-            }
-        });
-    }
+//    private void alertMessage(Integer image, String title, String message){
+//        showMessage = new Dialog(this);
+//        showMessage.setContentView(R.layout.pop_up_reference);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            showMessage.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+//        }
+//        showMessage.setCancelable(false);
+//        showMessage.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+//
+//        imgAlert = showMessage.findViewById(R.id.imgAlert);
+//        tvTitle = showMessage.findViewById(R.id.tvTitle);
+//        tvMessage = showMessage.findViewById(R.id.tvMessage);
+//        btnOkay = showMessage.findViewById(R.id.btnOkay);
+//
+//        imgAlert.setImageResource(image);
+//        tvTitle.setText(title);
+//        tvMessage.setText(message);
+//
+//        showMessage.show();
+//
+//        btnOkay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(alert == 1){
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    }, 1000);
+//                } else {
+//                    showMessage.dismiss();
+//                }
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onBackPressed() {
@@ -237,8 +216,4 @@ public class SignInActivity extends AppCompatActivity {
         };
     }
 
-    private void showMessage(String message){
-        snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
-        snackbar.show();
-    }
 }

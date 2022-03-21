@@ -119,6 +119,9 @@
     <!--Notification-->
     <string name="servicedone">service is done!</string>
 
+    <!--Services-->
+    <string name="somethingwentwrong">Oops... Something went wrong</string>
+
 
 
 </resources>

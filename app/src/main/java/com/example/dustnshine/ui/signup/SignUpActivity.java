@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.SignUpCallback;
 
 import com.example.dustnshine.R;
@@ -31,16 +32,17 @@ import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private ImageView btnBack;
-    private Dialog dialog;
-    private TextView popText;
+    private ImageView imgAlert, btnBack;
+    private Dialog showMessage;
+    private TextView tvTitle, tvMessage;
+    private Button btnOkay;
     private SignUpViewModel signUpViewModel;
     private ActivitySignupBinding activitySignupBinding;
     private static String firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation;
     private Pattern pattern;
     private Matcher matcher;
-    private Snackbar snackbar;
     private AppConstants appConstants;
+    private static int alert = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,55 +73,55 @@ public class SignUpActivity extends AppCompatActivity {
                 matcher = pattern.matcher(email);
 
                 if (TextUtils.isEmpty(firstName)) {
-                    showMessage("Please enter your First Name");
+                    activitySignupBinding.etFirstName.setError("Please enter your First Name");
                     activitySignupBinding.etFirstName.requestFocus();
                 } else if (TextUtils.isEmpty(lastName)) {
-                    showMessage("Please enter your Last Name");
+                    activitySignupBinding.etLastName.setError("Please enter your Last Name");
                     activitySignupBinding.etLastName.requestFocus();
                 } else if (!matcher.matches()) {
-                    showMessage("Invalid email");
+                    activitySignupBinding.etEmailAddress.setError("Invalid email");
                     activitySignupBinding.etEmailAddress.requestFocus();
                 } else if (TextUtils.isEmpty(email)) {
-                    showMessage("Please enter your Email Address");
+                    activitySignupBinding.etEmailAddress.setError("Please enter your Email Address");
                     activitySignupBinding.etEmailAddress.requestFocus();
                 } else if (TextUtils.isEmpty(mobileNumber)) {
-                    showMessage("Please enter your Mobile Number");
+                    activitySignupBinding.etMobileNumber.setError("Please enter your Mobile Number");
                     activitySignupBinding.etMobileNumber.requestFocus();
                 } else if (mobileNumber.length() < 11 || mobileNumber.length() > 11) {
-                    showMessage("Mobile number must be 11 characters");
+                    activitySignupBinding.etMobileNumber.setError("Mobile number must be 11 characters");
                     activitySignupBinding.etMobileNumber.requestFocus();
                 } else if (TextUtils.isEmpty(password)) {
-                    showMessage("Please enter your Password");
+                    activitySignupBinding.etPassword.setError("Please enter your Password", null);
                     activitySignupBinding.etPassword.requestFocus();
                 } else if (password.length() < 8) {
-                    showMessage("Password must be at least 8 characters");
+                    activitySignupBinding.etPassword.setError("Password must be at least 8 characters", null);
                     activitySignupBinding.etPassword.requestFocus();
                 } else if (TextUtils.isEmpty(passwordConfirmation)) {
-                    showMessage("Password Confirmation is required");
+                    activitySignupBinding.etPasswordConfirmation.setError("Password Confirmation is required", null);
                     activitySignupBinding.etPasswordConfirmation.requestFocus();
                 } else if (!(password.equals(passwordConfirmation))) {
-                    showMessage("Re-typed password does not match");
+                    activitySignupBinding.etPasswordConfirmation.setError("Re-typed password does not match", null);
                     activitySignupBinding.etPasswordConfirmation.requestFocus();
                 } else if (TextUtils.isEmpty(house_number)) {
-                    showMessage("Please enter your House no.");
+                    activitySignupBinding.etHouseNo.setError("Please enter your House no.");
                     activitySignupBinding.etHouseNo.requestFocus();
                 } else if (house_number.charAt(0) == '0') {
-                    showMessage("House no. should not start in 0");
+                    activitySignupBinding.etHouseNo.setError("House no. should not start in 0");
                     activitySignupBinding.etHouseNo.requestFocus();
                 } else if (TextUtils.isEmpty(street)) {
-                    showMessage("Please enter your Street");
+                    activitySignupBinding.etStreet.setError("Please enter your Street");
                     activitySignupBinding.etStreet.requestFocus();
                 } else if (TextUtils.isEmpty(barangay)) {
-                    showMessage("Please enter your Barangay");
+                    activitySignupBinding.etBarangay.setError("Please enter your Barangay");
                     activitySignupBinding.etBarangay.requestFocus();
                 } else if (TextUtils.isEmpty(municipality)) {
-                    showMessage("Please enter your City/ Municipality");
+                    activitySignupBinding.etCityMunicipality.setError("Please enter your City/ Municipality");
                     activitySignupBinding.etCityMunicipality.requestFocus();
                 } else if (TextUtils.isEmpty(province)) {
-                    showMessage("Please enter your Province");
+                    activitySignupBinding.etProvince.setError("Please enter your Province");
                     activitySignupBinding.etProvince.requestFocus();
                 } else if (TextUtils.isEmpty(zipcode)) {
-                    showMessage("Please enter your Zipcode");
+                    activitySignupBinding.etZipCode.setError("Please enter your Zipcode");
                     activitySignupBinding.etZipCode.requestFocus();
                 } else {
                     userSignUp(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation);
@@ -131,16 +133,18 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void signUpCallback(Integer statusCode) {
                 if (statusCode == 200) {
-                    dialog.show();
+                    alert = 1;
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed Up!", SignUpActivity.this, SignInActivity.class);
                 } else if (statusCode == 422) {
-                    showMessage("The email has been already taken.");
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The email has been already taken.", SignUpActivity.this, SignInActivity.class);
                 } else if (statusCode == 500) {
-                    showMessage("Try Again");
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The house no. is already taken for this address", SignUpActivity.this, SignInActivity.class);
+                } else {
+                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Try Again", SignUpActivity.this, SignInActivity.class);
                 }
             }
         });
 
-        //BackButton
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,57 +152,49 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        // DIALOG BOX START
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.pop_up_reference);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
-        }
-
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
-
-        Button btnOkay = dialog.findViewById(R.id.btnOkay);
-        popText = dialog.findViewById(R.id.popUpText);
-        String text = "Thank you. You have successfully Signed Up!";// Set Message Here
-        popText.setText(text.toString());
-
-        btnOkay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                        startActivity(intent);
-                    }
-                }, 1000);
-                dialog.dismiss();
-            }
-        });
-        //END OF DIALOG BOX
     }
+
+//        private void alertMessage(Integer image, String title, String message){
+//            showMessage = new Dialog(this);
+//            showMessage.setContentView(R.layout.pop_up_reference);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                showMessage.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
+//            }
+//            showMessage.setCancelable(false);
+//            showMessage.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+//
+//            imgAlert = showMessage.findViewById(R.id.imgAlert);
+//            tvTitle = showMessage.findViewById(R.id.tvTitle);
+//            tvMessage = showMessage.findViewById(R.id.tvMessage);
+//            btnOkay = showMessage.findViewById(R.id.btnOkay);
+//
+//            imgAlert.setImageResource(image);
+//            tvTitle.setText(title);
+//            tvMessage.setText(message);
+//
+//            showMessage.show();
+//
+//            btnOkay.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(alert == 1){
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+//                                startActivity(intent);
+//                            }
+//                        }, 1000);
+//                    } else {
+//                        showMessage.dismiss();
+//                    }
+//                }
+//            });
+//        }
 
     private void userSignUp(String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, String zipcode, String password, String passwordConfirmation) {
         signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation);
     }
 
-    private void showMessage(String message) {
-        snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
-        snackbar.show();
-    }
 }
 
-//        signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, password, passwordConfirmation).observe(SignUpActivity.this, new Observer<SignUpResponse>() {
-//            @Override
-//            public void onChanged(SignUpResponse signUpResponse) {
-//                if(signUpResponse == null){
-//                    Toast.makeText(SignUpActivity.this, signUpResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(SignUpActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-//                    startActivity(intent);
-//                }
-//            }
-//        });

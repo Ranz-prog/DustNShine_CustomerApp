@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.BookingHistoryAdapter;
+import com.example.dustnshine.databinding.ActivityBookingHistoryBinding;
 import com.example.dustnshine.models.BookingHistoryModel;
 import com.example.dustnshine.storage.SharedPrefManager;
 
@@ -22,33 +24,29 @@ import java.util.List;
 
 public class BookingHistoryActivity extends AppCompatActivity implements BookingHistoryAdapter.OnClickMessageListener {
 
-    private ImageView btnBack, imgNoTransactions;
     private RecyclerView rvBookingHistory;
     private List<BookingHistoryModel> bookingHistoryModelList;
     private BookingHistoryAdapter bookingHistoryAdapter;
     private BookingHistoryViewModel bookingHistoryViewModel;
     private String userToken;
-    private TextView tvNoTransactions;
+    private ActivityBookingHistoryBinding activityBookingHistoryBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_booking_history);
 
-        imgNoTransactions = findViewById(R.id.imgNoTransactions);
-        tvNoTransactions = findViewById(R.id.tvNoTransactions);
-        btnBack = findViewById(R.id.btnBack);
+        activityBookingHistoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking_history);
+        bookingHistoryViewModel = new ViewModelProvider(BookingHistoryActivity.this).get(BookingHistoryViewModel.class);
         rvBookingHistory = findViewById(R.id.rvBookingHistory);
         userToken = SharedPrefManager.getInstance(BookingHistoryActivity.this).getUserToken();
         rvBookingHistory.setHasFixedSize(true);
         rvBookingHistory.setLayoutManager(new LinearLayoutManager(BookingHistoryActivity.this));
         bookingHistoryAdapter = new BookingHistoryAdapter(bookingHistoryModelList, BookingHistoryActivity.this, this);
-        bookingHistoryViewModel = new ViewModelProvider(BookingHistoryActivity.this).get(BookingHistoryViewModel.class);
 
         getBookingHistory(userToken);
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        activityBookingHistoryBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -63,13 +61,13 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
                 if (!bookingHistoryModels.isEmpty()) {
                     bookingHistoryModelList = bookingHistoryModels;
                     bookingHistoryAdapter.setData(bookingHistoryModelList);
-                    rvBookingHistory.setAdapter(bookingHistoryAdapter);
-                    imgNoTransactions.setVisibility(View.GONE);
-                    tvNoTransactions.setVisibility(View.GONE);
+                    activityBookingHistoryBinding.rvBookingHistory.setAdapter(bookingHistoryAdapter);
+                    activityBookingHistoryBinding.imgNoTransactions.setVisibility(View.GONE);
+                    activityBookingHistoryBinding.tvNoTransactions.setVisibility(View.GONE);
                 } else {
-                    rvBookingHistory.setVisibility(View.GONE);
-                    imgNoTransactions.setVisibility(View.VISIBLE);
-                    tvNoTransactions.setVisibility(View.VISIBLE);
+                    activityBookingHistoryBinding.rvBookingHistory.setVisibility(View.GONE);
+                    activityBookingHistoryBinding.imgNoTransactions.setVisibility(View.VISIBLE);
+                    activityBookingHistoryBinding.tvNoTransactions.setVisibility(View.VISIBLE);
                 }
             }
         });
