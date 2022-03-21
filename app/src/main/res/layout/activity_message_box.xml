@@ -71,23 +71,14 @@
         android:id="@+id/messagesList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_above="@+id/messageBox"
+        android:layout_above="@+id/input"
         android:layout_below="@+id/chatDetails" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/messageBox"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        app:cardElevation="8dp">
-
-            <com.stfalcon.chatkit.messages.MessageInput
+    <com.stfalcon.chatkit.messages.MessageInput
                 android:id="@+id/input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 app:inputHint="Enter your message here" />
-
-    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
