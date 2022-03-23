@@ -53,7 +53,6 @@ public class CheckOutActivity extends AppCompatActivity {
     private static String notes;
     private static String userToken, companyName, companyAddress, customerAddress, selectedDate, selectedTime;
     private static int companyID;
-    private AddressModel addressModel;
     private static int total;
 
     @Override
@@ -63,7 +62,6 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_checkout);
         checkOutViewModel = new ViewModelProvider(CheckOutActivity.this).get(CheckOutViewModel.class);
         userToken = SharedPrefManager.getInstance(CheckOutActivity.this).getUserToken();
-        addressModel = SharedPrefManager.getInstance(CheckOutActivity.this).getUserAddress();
         intent = getIntent();
         btnBack = findViewById(R.id.backCheckout);
         getUserInformation(userToken);
@@ -113,9 +111,9 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
-                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Booking failed. Try Again", CheckOutActivity.this, CompanyDetailsActivity.class);
+                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Booking failed. Try Again", CheckOutActivity.this, CompanyDetailsActivity.class, "VISIBLE");
                 } else {
-                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Booked Successfully", CheckOutActivity.this, MainActivity.class);
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Booked Successfully", CheckOutActivity.this, MainActivity.class, "GONE");
                 }
             }
         });

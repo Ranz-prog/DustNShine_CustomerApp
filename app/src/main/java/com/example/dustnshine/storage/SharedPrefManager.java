@@ -35,7 +35,6 @@ public class SharedPrefManager {
         editor.putString("email_verified_at", userModel.getEmail_verified_at());
         editor.putString("created_at", userModel.getCreated_at());
         editor.putString("updated_at", userModel.getUpdated_at());
-
         editor.apply();
     }
 
@@ -67,40 +66,6 @@ public class SharedPrefManager {
 
         return sharedPreferences.getString("password", null);
 
-    }
-
-    public void saveUserAddress(AddressModel addressModel){
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putInt("id", addressModel.getId());
-        editor.putInt("user_id", addressModel.getUser_id());
-        editor.putInt("house_number", addressModel.getHouse_number());
-        editor.putLong("latitude", Double.doubleToRawLongBits(addressModel.getLatitude()));
-        editor.putLong("longitude", Double.doubleToRawLongBits(addressModel.getLongitude()));
-        editor.putString("street", addressModel.getStreet());
-        editor.putString("barangay", addressModel.getBarangay());
-        editor.putString("municipality", addressModel.getMunicipality());
-        editor.putString("province", addressModel.getProvince());
-        editor.putString("zipcode", addressModel.getZipcode());
-
-        editor.apply();
-    }
-
-    public AddressModel getUserAddress(){
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-        return new AddressModel(
-                sharedPreferences.getInt("id", -1),
-                sharedPreferences.getInt("user_id", -1),
-                sharedPreferences.getInt("house_number", -1),
-                sharedPreferences.getLong("latitude", -1),
-                sharedPreferences.getLong("longitude", -1),
-                sharedPreferences.getString("street", null),
-                sharedPreferences.getString("barangay", null),
-                sharedPreferences.getString("municipality", null),
-                sharedPreferences.getString("province", null),
-                sharedPreferences.getString("zipcode", null)
-        );
     }
 
     public void saveUserToken(String token){

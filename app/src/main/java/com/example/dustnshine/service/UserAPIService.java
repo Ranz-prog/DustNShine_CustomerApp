@@ -100,7 +100,7 @@ public class UserAPIService {
                     userManagementModelMutableLiveData.setValue(response.body());
                     Log.d("TAG", "Getting info success");
                 } else {
-                    Log.d("TAG", "Getting info unsuccessful");
+
                 }
             }
 
@@ -122,7 +122,7 @@ public class UserAPIService {
                     userManagementResponseMutableLiveData.setValue(response.body());
                     Log.d("TAG", "Updating Info Success");
                 } else {
-                    Log.d("TAG", String.valueOf(response.code()));
+
                 }
             }
 
@@ -142,7 +142,6 @@ public class UserAPIService {
             public void onResponse(Call<ChangePasswordResponse> call, Response<ChangePasswordResponse> response) {
                 if(response.code() == 200){
                     changePasswordResponseMutableLiveData.setValue(response.body());
-                    Log.d("TAG", "Updating Info Success");
                 } else {
                     Log.d("TAG", String.valueOf(response.code()));
                 }

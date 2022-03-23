@@ -1,20 +1,21 @@
 package com.example.dustnshine.utils;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.dustnshine.R;
-import com.example.dustnshine.ui.signin.SignInActivity;
-import com.example.dustnshine.ui.signup.SignUpActivity;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.dustnshine.R;;
 
 public final class AppConstants {
 
@@ -28,7 +29,7 @@ public final class AppConstants {
     public static String GROUP_NAME = "group_id";
     public static String GROUP_ICON = "group_id";
     
-    public static void alertMessage(Integer alert, Integer image, String title, String message, Context context, Class destination){
+    public static void alertMessage(Integer alert, Integer image, String title, String message, Context context, Class destination, String visibility){
 
         Dialog showMessage;
         ImageView imgAlert;
@@ -54,23 +55,72 @@ public final class AppConstants {
 
         showMessage.show();
 
-        btnOkay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(alert == 1){
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(context, destination);
-                            context.startActivity(intent);
-                        }
-                    }, 1000);
-                } else {
-                    showMessage.dismiss();
-                }
+        if (visibility.equals("GONE")){
+            if(alert == 1){
+                btnOkay.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(context, destination);
+                        context.startActivity(intent);
+                    }
+                }, 2000);
+            } else {
+                btnOkay.setVisibility(View.GONE);
+                showMessage.dismiss();
             }
-        });
+        } else {
+            btnOkay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(alert == 1){
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(context, destination);
+                                context.startActivity(intent);
+                            }
+                        }, 1000);
+                    } else {
+                        showMessage.dismiss();
+                    }
+                }
+            });
+        }
+
     }
 
+    public static boolean isNetworkConnected(Context context) {
+        boolean result = false;
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (cm != null) {
+                NetworkCapabilities capabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
+                if (capabilities != null) {
+                    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                        result = true;
+                    } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                        result = true;
+                    }
+                } else {
+                    Toast.makeText(context, "Bad connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } else {
+            if (cm != null) {
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                if (activeNetwork != null) {
+                    if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                        result = true;
+                    } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                        result = true;
+                    }
+                } else {
+                    Toast.makeText(context, "Bad connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        return result;
+    }
 
 }

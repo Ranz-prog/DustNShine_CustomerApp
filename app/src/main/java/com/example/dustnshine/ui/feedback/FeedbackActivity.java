@@ -9,11 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.Toast;
 
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
@@ -61,7 +57,7 @@ public class FeedbackActivity extends AppCompatActivity {
                     activityFeedbackBinding.etFeedback.setError("Please give your review");
                     activityFeedbackBinding.etFeedback.requestFocus();
                 } else if(rating == 0){
-                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed", "Please give your rating", FeedbackActivity.this, MainActivity.class);
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed", "Please give your rating", FeedbackActivity.this, MainActivity.class, "VISIBLE");
                 } else {
                     putReviewRequest(userToken, 128, activityFeedbackBinding.etFeedback.getText().toString(), rating);
                 }
@@ -75,9 +71,9 @@ public class FeedbackActivity extends AppCompatActivity {
             @Override
             public void onChanged(ReviewResponse reviewResponse) {
                 if (reviewResponse == null){
-                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Try Again", FeedbackActivity.this, NotificationActivity.class);
+                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Try Again", FeedbackActivity.this, NotificationActivity.class, "GONE");
                 } else {
-                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Successfully gave Feedback!", FeedbackActivity.this, MainActivity.class);
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Successfully gave Feedback!", FeedbackActivity.this, MainActivity.class, "VISIBLE");
                 }
             }
         });

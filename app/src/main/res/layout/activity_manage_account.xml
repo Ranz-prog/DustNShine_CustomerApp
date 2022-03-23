@@ -21,7 +21,7 @@
 
 
             <ImageView
-                android:id="@+id/backManageAcc"
+                android:id="@+id/btnBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="10dp"

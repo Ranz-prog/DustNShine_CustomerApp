@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -46,7 +45,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     private static ArrayList<String> servicesNameList;
     private static ArrayList<Integer> servicesPriceList;
     private static String notes;
-    private AppConstants appConstants;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,8 +53,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         companyDetailsViewModel = new ViewModelProvider(CompanyDetailsActivity.this).get(CompanyDetailsViewModel.class);
         userToken = SharedPrefManager.getInstance(CompanyDetailsActivity.this).getUserToken();
         intent = getIntent();
-        btnBack = findViewById(R.id.backCompanyDetails);
-        rvServices = findViewById(R.id.rvServices);
         servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
@@ -64,22 +60,23 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
         companyImage = intent.getStringExtra("COMPANY_IMAGE");
 
-        rvServices.setHasFixedSize(true);
-        rvServices.setLayoutManager(new LinearLayoutManager(this));
+        activityCompanyDetailsBinding.rvServices.setHasFixedSize(true);
+        activityCompanyDetailsBinding.rvServices.setLayoutManager(new LinearLayoutManager(this));
         getServices(userToken);
 
         activityCompanyDetailsBinding.tvCompanyName.setText(companyName);
         activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
-        Glide.with(CompanyDetailsActivity.this).load(appConstants.BASE_URL + companyImage).into(activityCompanyDetailsBinding.imgCompanyImage);
+        Glide.with(CompanyDetailsActivity.this).load(AppConstants.BASE_URL + companyImage).into(activityCompanyDetailsBinding.imgCompanyImage);
 
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 notes = activityCompanyDetailsBinding.etNotes.getText().toString();
                 if (servicesNameList == null|| servicesNameList.size() == 0) {
-                    Toast.makeText(CompanyDetailsActivity.this, "No service selected", Toast.LENGTH_SHORT).show();
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Ooops!", "No service selected", CompanyDetailsActivity.this, CompanyDetailsActivity.class, "VISIBLE");
                 } else if (notes == null || notes.isEmpty()) {
-                    Toast.makeText(CompanyDetailsActivity.this, "Notes is empty", Toast.LENGTH_SHORT).show();
+                    activityCompanyDetailsBinding.etNotes.setError("Notes is empty");
+                    activityCompanyDetailsBinding.etNotes.requestFocus();
                 } else {
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
@@ -101,11 +98,10 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        activityCompanyDetailsBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-
             }
         });
     }
@@ -117,7 +113,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                 if (servicesModels != null) {
                     servicesModelList = servicesModels;
                     servicesAdapter.setData(servicesModels);
-                    rvServices.setAdapter(servicesAdapter);
+                    activityCompanyDetailsBinding.rvServices.setAdapter(servicesAdapter);
                     Log.d("TAG", "Success");
                 } else {
                     Log.d("TAG", "Failure");
@@ -140,7 +136,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             servicesIdList = servicesID;
             servicesNameList = servicesName;
             servicesPriceList = servicesPrice;
-
         }
 
     }

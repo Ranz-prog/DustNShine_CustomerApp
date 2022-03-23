@@ -13,6 +13,7 @@
     <string name="newuser">New User? </string>
     <string name="createaccount"> Create an account</string>
     <string name="keepsignedin">Keep me signed in</string>
+    <string name="okay">OK</string>
 
     <!--Sign Up-->
     <string name="signup">Sign Up</string>
@@ -102,7 +103,6 @@
     <string name="next">Next</string>
     <string name="bookingDetails">Booking Details:</string>
     <string name="notransactionsyet">No Transactions Yet . . .</string>
-
 
     <!--Date and Time-->
     <string name="eightam">8:00 AM</string>

@@ -1,8 +1,11 @@
 package com.example.dustnshine.models;
 
+import java.util.List;
+
 public class UserModel {
     private int id;
     private String first_name, last_name, mobile_number, email, email_verified_at, created_at, updated_at;
+    private List<UserRolesModel> roles;
 
     public UserModel(int id, String first_name, String last_name, String mobile_number, String email, String email_verified_at, String created_at, String updated_at) {
         this.id = id;
@@ -79,4 +82,11 @@ public class UserModel {
         this.updated_at = updated_at;
     }
 
+    public List<UserRolesModel> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<UserRolesModel> roles) {
+        this.roles = roles;
+    }
 }

@@ -1,47 +1,31 @@
 package com.example.dustnshine.ui.signup;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.SignUpCallback;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivitySignupBinding;
 import com.example.dustnshine.ui.signin.SignInActivity;
-import com.example.dustnshine.utils.AppConstants;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.dustnshine.utils.AppConstants;;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private ImageView imgAlert, btnBack;
-    private Dialog showMessage;
-    private TextView tvTitle, tvMessage;
-    private Button btnOkay;
     private SignUpViewModel signUpViewModel;
     private ActivitySignupBinding activitySignupBinding;
     private static String firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation;
     private Pattern pattern;
     private Matcher matcher;
-    private AppConstants appConstants;
     private static int alert = 0;
 
     @Override
@@ -51,8 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         signUpViewModel = new ViewModelProvider(SignUpActivity.this).get(SignUpViewModel.class);
         activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
-        btnBack = findViewById(R.id.btnBack);
-        pattern = Pattern.compile(appConstants.regex);
+        pattern = Pattern.compile(AppConstants.regex);
 
         activitySignupBinding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,19 +116,18 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void signUpCallback(Integer statusCode) {
                 if (statusCode == 200) {
-                    alert = 1;
-                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed Up!", SignUpActivity.this, SignInActivity.class);
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed Up!", SignUpActivity.this, SignInActivity.class, "GONE");
                 } else if (statusCode == 422) {
-                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The email has been already taken.", SignUpActivity.this, SignInActivity.class);
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The email has been already taken.", SignUpActivity.this, SignInActivity.class, "VISIBLE");
                 } else if (statusCode == 500) {
-                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The house no. is already taken for this address", SignUpActivity.this, SignInActivity.class);
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The house no. is already taken for this address", SignUpActivity.this, SignInActivity.class, "VISIBLE");
                 } else {
-                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Try Again", SignUpActivity.this, SignInActivity.class);
+                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Try Again", SignUpActivity.this, SignInActivity.class, "VISIBLE");
                 }
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        activitySignupBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -153,44 +135,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
-
-//        private void alertMessage(Integer image, String title, String message){
-//            showMessage = new Dialog(this);
-//            showMessage.setContentView(R.layout.pop_up_reference);
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                showMessage.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
-//            }
-//            showMessage.setCancelable(false);
-//            showMessage.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-//
-//            imgAlert = showMessage.findViewById(R.id.imgAlert);
-//            tvTitle = showMessage.findViewById(R.id.tvTitle);
-//            tvMessage = showMessage.findViewById(R.id.tvMessage);
-//            btnOkay = showMessage.findViewById(R.id.btnOkay);
-//
-//            imgAlert.setImageResource(image);
-//            tvTitle.setText(title);
-//            tvMessage.setText(message);
-//
-//            showMessage.show();
-//
-//            btnOkay.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if(alert == 1){
-//                        new Handler().postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-//                                startActivity(intent);
-//                            }
-//                        }, 1000);
-//                    } else {
-//                        showMessage.dismiss();
-//                    }
-//                }
-//            });
-//        }
 
     private void userSignUp(String firstName, String lastName, String mobileNumber, String email, String house_number, String street, String barangay, String municipality, String province, String zipcode, String password, String passwordConfirmation) {
         signUpViewModel.getSignUpRequest(firstName, lastName, mobileNumber, email, house_number, street, barangay, municipality, province, zipcode, password, passwordConfirmation);

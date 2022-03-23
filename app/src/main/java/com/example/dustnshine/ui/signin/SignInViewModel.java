@@ -44,7 +44,7 @@ public class SignInViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<SignInResponse> call, Throwable t) {
-                Log.d("FAILURE", "Failure to connect");
+                Log.d("FAILURE", t.getLocalizedMessage());
             }
         });
     }

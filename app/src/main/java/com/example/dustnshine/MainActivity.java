@@ -11,6 +11,7 @@ import com.example.dustnshine.ui.home.HomeFragment;
 import com.example.dustnshine.ui.MessageFragment;
 
 import com.example.dustnshine.ui.signin.SignInActivity;
+import com.example.dustnshine.utils.AppConstants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
@@ -63,16 +64,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        if(backButtonCount >= 1)
-        {
+        if(backButtonCount >= 1) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();
             startActivity(intent);
-        }
-        else
-        {
+        } else {
             Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
             backButtonCount++;
         }
@@ -85,5 +82,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SignInActivity.class);
             startActivity(intent);
         };
+        AppConstants.isNetworkConnected(this);
     }
 }
