@@ -47,22 +47,8 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     private static ArrayList<Integer> servicesIdList;
     private static ArrayList<String> servicesNameList;
     private static ArrayList<Integer> servicesPriceList;
+    private static ArrayList<Integer> quantityOfService;
     private static String notes;
-
-    private View.OnClickListener clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.minus:
-                    minusCounter();
-                    break;
-                case R.id.plus:
-                    plusCounter();
-                    break;
-            }
-        }
-    };
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,13 +60,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
 
 
-        mCounter = (TextView) findViewById(R.id.countertxt);
-        plus = (ImageView) findViewById(R.id.plus);
-        plus.setOnClickListener(clickListener);
-        minus = (ImageView) findViewById(R.id.minus);
-        minus.setOnClickListener(clickListener);
 
-        initCounter();
 
 
 
@@ -134,20 +114,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             }
         });
     }
-    private void initCounter(){
-        counter = 0;
-        mCounter.setText(counter + " ");
-    }
-
-    private void plusCounter(){
-        counter ++;
-        mCounter.setText(counter + " ");
-    }
-
-    private void minusCounter(){
-        counter--;
-        mCounter.setText(counter + " ");
-    }
 
 
     public void getServices(String userToken) {
@@ -172,14 +138,15 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     }
 
     @Override
-    public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName, ArrayList<Integer> servicesPrice) {
+    public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName, ArrayList<Integer> servicesPrice, ArrayList<Integer> quantityOfService) {
 
-        if (servicesID.toString() == "" || servicesName.toString() == "" || servicesID.contains(" ")){
+        if (servicesID.toString() == "" || servicesName.toString() == "" || servicesID.contains(" ") || quantityOfService.contains(" ")){
             Log.d("Null na sya", "wala sya laman kaya oki lang");
         } else {
             servicesIdList = servicesID;
             servicesNameList = servicesName;
             servicesPriceList = servicesPrice;
+            quantityOfService = quantityOfService;
         }
 
     }

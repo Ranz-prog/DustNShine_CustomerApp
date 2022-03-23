@@ -66,6 +66,7 @@
                 android:id="@+id/cbItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/countertxt"
                 android:layout_alignParentEnd="true"
                 android:buttonTint="@color/app_theme_blue" />
 
@@ -73,8 +74,7 @@
                 android:id="@+id/minus"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_below="@id/cbItem"
-                android:layout_marginStart="270dp"
+                android:layout_toLeftOf="@+id/countertxt"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/minus_small" />
 
@@ -82,7 +82,7 @@
                 android:id="@+id/plus"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_below="@id/cbItem"
+
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/plus_small" />
@@ -91,9 +91,8 @@
                 android:id="@+id/countertxt"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_below="@id/cbItem"
-                android:layout_marginStart="300dp"
                 android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/plus"
                 android:text="1"
                 android:textAlignment="center" />
 
