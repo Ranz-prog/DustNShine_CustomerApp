@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginTop="10dp"
@@ -21,11 +21,11 @@
             android:src="@drawable/user" />
 
         <TextView
-            android:id="@+id/detailsTv"
+            android:id="@+id/tvBookingDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="11dp"
-            android:layout_toRightOf="@+id/clientImage"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/clientImage"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/bookingdetails"
             android:textColor="@color/app_theme_blue"
@@ -36,9 +36,9 @@
             android:id="@+id/tvServices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/detailsTv"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/clientImage"
+            android:layout_below="@id/tvBookingDetails"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/servicename"
             android:textSize="14sp" />
@@ -47,19 +47,64 @@
             android:id="@+id/tvServicesName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/detailsTv"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tvServices"
+            android:layout_below="@+id/tvBookingDetails"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/tvServices"
             android:fontFamily="@font/roboto_regular"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvServices"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/clientImage"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/comment"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvServices"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/tvComment"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvComments"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/clientImage"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/payment"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvTotalPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvComments"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/tvPayment"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/paymentacknowledge"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tvCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvServices"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/clientImage"
+            android:layout_below="@+id/tvPayment"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/totalcost"
             android:textSize="14sp" />
@@ -68,33 +113,33 @@
             android:id="@+id/tvTotalCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvServices"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tvCost"
+            android:layout_below="@+id/tvTotalPayment"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/tvPayment"
             android:fontFamily="@font/roboto_regular"
             android:textSize="14sp" />
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+<!--        <ImageView-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />-->
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/lineDividerHorizontal"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/clientImage"
-            android:layout_marginTop="4dp"
+            android:layout_below="@id/tvPayment"
+            android:layout_marginTop="25dp"
             app:dividerColor="@color/line_divider_color" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/lineDividerHorizontal"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/clockId"

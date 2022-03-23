@@ -1,6 +1,5 @@
 package com.example.dustnshine.ui.notification;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -11,11 +10,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.NotificationAdapter;
-import com.example.dustnshine.models.BookingHistoryModel;
+import com.example.dustnshine.databinding.ActivityNotificationBinding;
 import com.example.dustnshine.models.NotificationModel;
 import com.example.dustnshine.storage.SharedPrefManager;
 import com.example.dustnshine.ui.feedback.FeedbackActivity;
@@ -32,29 +31,22 @@ import java.util.List;
 
 public class NotificationActivity extends AppCompatActivity implements NotificationAdapter.OnClickMessageListener {
 
-    private ImageView btnBack, imgNoTransactions;
-    private RecyclerView rvNotification;
     private List<NotificationModel> notificationModels;
     private NotificationAdapter notificationAdapter;
     private NotificationActivityViewModel notificationActivityViewModel;
     private String userToken;
-    private TextView tvNoTransactions;
+    private ActivityNotificationBinding activityNotificationBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_notification);
-
-        btnBack = findViewById(R.id.btnBack);
-        imgNoTransactions = findViewById(R.id.imgNoTransactions);
-        tvNoTransactions = findViewById(R.id.tvNoTransactions);
-        rvNotification = findViewById(R.id.rvNotification);
-        rvNotification.setHasFixedSize(true);
-        rvNotification.setLayoutManager(new LinearLayoutManager(NotificationActivity.this));
-        notificationAdapter = new NotificationAdapter(notificationModels, NotificationActivity.this, this);
+        activityNotificationBinding = DataBindingUtil.setContentView(this, R.layout.activity_notification);
         notificationActivityViewModel = new ViewModelProvider(NotificationActivity.this).get(NotificationActivityViewModel.class);
+        activityNotificationBinding.rvNotification.setHasFixedSize(true);
+        activityNotificationBinding.rvNotification.setLayoutManager(new LinearLayoutManager(NotificationActivity.this));
+        notificationAdapter = new NotificationAdapter(notificationModels, NotificationActivity.this, this);
         userToken = SharedPrefManager.getInstance(NotificationActivity.this).getUserToken();
 
         getDoneServices(userToken);
@@ -66,7 +58,7 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
         }
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        activityNotificationBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -82,21 +74,13 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
                 if (!notificationModelList.isEmpty()) {
                     notificationModels = notificationModelList;
                     notificationAdapter.setData(notificationModelList);
-                    rvNotification.setAdapter(notificationAdapter);
-                    imgNoTransactions.setVisibility(View.GONE);
-                    tvNoTransactions.setVisibility(View.GONE);
+                    activityNotificationBinding.rvNotification.setAdapter(notificationAdapter);
+                    activityNotificationBinding.imgNoTransactions.setVisibility(View.GONE);
+                    activityNotificationBinding.tvNoTransactions.setVisibility(View.GONE);
                 } else {
-                    rvNotification.setVisibility(View.GONE);
-                    imgNoTransactions.setVisibility(View.VISIBLE);
-                    tvNoTransactions.setVisibility(View.VISIBLE);
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(NotificationActivity.this, "My Notification");
-                    builder.setContentTitle("My Title");
-                    builder.setContentText("Hello from DustNShine");
-                    builder.setSmallIcon(R.drawable.ic_launcher_background);
-                    builder.setAutoCancel(true);
-
-                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(NotificationActivity.this);
-                    managerCompat.notify(1, builder.build());
+                    activityNotificationBinding.rvNotification.setVisibility(View.GONE);
+                    activityNotificationBinding.imgNoTransactions.setVisibility(View.VISIBLE);
+                    activityNotificationBinding.tvNoTransactions.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -106,7 +90,6 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
     public void onClickMessage(int adapterPosition) {
         Intent intent = new Intent(NotificationActivity.this, FeedbackActivity.class);
         intent.putExtra("BOOKING_ID", notificationModels.get(adapterPosition).getId());
-        Log.d("BOOKING ID", String.valueOf(notificationModels.get(adapterPosition).getId()));
         startActivity(intent);
     }
 }

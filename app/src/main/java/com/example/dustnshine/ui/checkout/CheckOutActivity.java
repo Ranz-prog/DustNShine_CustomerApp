@@ -1,20 +1,10 @@
 package com.example.dustnshine.ui.checkout;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.IntegerRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -24,26 +14,18 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityCheckoutBinding;
-import com.example.dustnshine.models.AddressModel;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.QuantityListener;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
-import com.example.dustnshine.ui.home.HomeFragment;
 import com.example.dustnshine.utils.AppConstants;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CheckOutActivity extends AppCompatActivity {
 
-    private ImageView btnBack;
     private CheckOutViewModel checkOutViewModel;
     private ActivityCheckoutBinding activityCheckoutBinding;
     private Intent intent;
@@ -63,7 +45,6 @@ public class CheckOutActivity extends AppCompatActivity {
         checkOutViewModel = new ViewModelProvider(CheckOutActivity.this).get(CheckOutViewModel.class);
         userToken = SharedPrefManager.getInstance(CheckOutActivity.this).getUserToken();
         intent = getIntent();
-        btnBack = findViewById(R.id.backCheckout);
         getUserInformation(userToken);
 
         servicesIDList = new ArrayList<Integer>();
@@ -97,7 +78,7 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        activityCheckoutBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

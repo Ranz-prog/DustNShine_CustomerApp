@@ -52,8 +52,8 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        signInViewModel = new ViewModelProvider(SignInActivity.this).get(SignInViewModel.class);
         activitySigninBinding = DataBindingUtil.setContentView(this, R.layout.activity_signin);
+        signInViewModel = new ViewModelProvider(SignInActivity.this).get(SignInViewModel.class);
         pattern = Pattern.compile(AppConstants.regex);
 
         appSettings = new AppSettings.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(AppConstants.REGION).build();
@@ -90,8 +90,6 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     userSignIn(email, password);
                 }
-
-
             }
         });
 
@@ -104,11 +102,11 @@ public class SignInActivity extends AppCompatActivity {
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
                     SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
                     CometChat.login(customerFirstName, AppConstants.API_KEY, new CometChat.CallbackListener<User>() {
+
                         @Override
                         public void onSuccess(User user) {
                             AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed In!", SignInActivity.this, MainActivity.class, "GONE");
                         }
-
                         @Override
                         public void onError(CometChatException e) {
 
@@ -141,8 +139,6 @@ public class SignInActivity extends AppCompatActivity {
                 createNewDialog();
             }
         });
-
-
     }
 
 
@@ -158,7 +154,6 @@ public class SignInActivity extends AppCompatActivity {
             backButtonCount++;
         }
     }
-
 
     private void createNewDialog() {
         dialogBuilder = new AlertDialog.Builder(this);
@@ -176,7 +171,6 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void userSignIn(String email, String password) {
@@ -190,6 +184,5 @@ public class SignInActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-        ;
     }
 }

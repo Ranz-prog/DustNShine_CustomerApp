@@ -45,7 +45,6 @@ public class GarageCleaningActivity extends AppCompatActivity implements General
 
         getFilteredService(1, userToken);
 
-
         activityGarageCleaningBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

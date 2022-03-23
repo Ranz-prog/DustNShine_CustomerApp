@@ -28,11 +28,9 @@ import java.util.Date;
 
 public class TimeAndDateActivity extends AppCompatActivity{
 
-    private ImageView btnBack;
     private Intent intent;
     private static String companyName, companyAddress, selectedDate, selectedTime;
     private static int companyID;
-    private CalendarView calendarView;
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
     private ActivityTimeAndDateBinding activityTimeAndDateBinding;
@@ -44,13 +42,10 @@ public class TimeAndDateActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityTimeAndDateBinding = DataBindingUtil.setContentView(this, R.layout.activity_time_and_date);
 
-        btnBack = findViewById(R.id.backDandT);
-        calendarView = findViewById(R.id.calendar);
+        activityTimeAndDateBinding = DataBindingUtil.setContentView(this, R.layout.activity_time_and_date);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         intent = getIntent();
-        //comment
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
@@ -60,11 +55,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         servicesPriceList = intent.getIntegerArrayListExtra("SERVICES_PRICE_LIST");
         notes = intent.getStringExtra("NOTES");
 
-        Log.d("Nagana", servicesIDList.toString());
-        Log.d("Nagana", servicesNameList.toString());
-        Log.d("Nagana", servicesPriceList.toString());
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        activityTimeAndDateBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -73,7 +64,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
             }
         });
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        activityTimeAndDateBinding.calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int date) {
                 calendar = Calendar.getInstance();
@@ -85,7 +76,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(selectedDate == null || selectedTime == null){
+                if(selectedDate.isEmpty() || selectedTime.isEmpty()){
                     Toast.makeText(TimeAndDateActivity.this, "Please select Date and Time", Toast.LENGTH_SHORT).show();
                 } else if(selectedDate == null) {
 

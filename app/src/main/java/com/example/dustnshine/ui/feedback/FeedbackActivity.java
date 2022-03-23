@@ -59,7 +59,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 } else if(rating == 0){
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed", "Please give your rating", FeedbackActivity.this, MainActivity.class, "VISIBLE");
                 } else {
-                    putReviewRequest(userToken, 128, activityFeedbackBinding.etFeedback.getText().toString(), rating);
+                    putReviewRequest(userToken, bookingID, activityFeedbackBinding.etFeedback.getText().toString(), rating);
                 }
             }
         });
@@ -73,7 +73,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 if (reviewResponse == null){
                     AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Try Again", FeedbackActivity.this, NotificationActivity.class, "GONE");
                 } else {
-                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Successfully gave Feedback!", FeedbackActivity.this, MainActivity.class, "VISIBLE");
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Successfully gave Feedback!", FeedbackActivity.this, NotificationActivity.class, "VISIBLE");
                 }
             }
         });

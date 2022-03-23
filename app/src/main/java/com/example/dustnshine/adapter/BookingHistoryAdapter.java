@@ -45,8 +45,9 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
     @Override
     public void onBindViewHolder(@NonNull BookingHistoryAdapter.ViewHolder holder, int position) {
         holder.tvServicesName.setText(bookingHistoryModelList.get(position).getServices().toString());
-        holder.tvDateAndTime.setText(String.valueOf(bookingHistoryModelList.get(position).getSched_datetime()));
+        holder.tvComments.setText(bookingHistoryModelList.get(position).getReviews().get(0).getComment());
         holder.tvTotalCost.setText(String.valueOf(bookingHistoryModelList.get(position).getTotal()));
+        holder.tvDateAndTime.setText(String.valueOf(bookingHistoryModelList.get(position).getSched_datetime()));
     }
 
     @Override
@@ -61,18 +62,18 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private ImageView customerImg;
-        private TextView tvDateAndTime, tvServicesName,tvTotalCost;
+        private TextView tvDateAndTime, tvServicesName,tvTotalCost, tvTotalPayment, tvComments;
 
         BookingHistoryAdapter.OnClickMessageListener onClickMessageListener;
 
         public ViewHolder(@NonNull View itemView, BookingHistoryAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
-//            customerImg = itemView.findViewById(R.id.clientImage);
             tvServicesName = itemView.findViewById(R.id.tvServicesName);
             tvDateAndTime = itemView.findViewById(R.id.tvDateAndTime);
             tvTotalCost = itemView.findViewById(R.id.tvTotalCost);
+            tvComments = itemView.findViewById(R.id.tvComments);
+            tvTotalPayment = itemView.findViewById(R.id.tvTotalPayment);
 
             this.onClickMessageListener = (BookingHistoryAdapter.OnClickMessageListener) onClickMessageListener;
 

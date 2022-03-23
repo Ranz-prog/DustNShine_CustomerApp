@@ -103,6 +103,9 @@
     <string name="next">Next</string>
     <string name="bookingDetails">Booking Details:</string>
     <string name="notransactionsyet">No Transactions Yet . . .</string>
+    <string name="payment">Payment:</string>
+    <string name="comment">Comment:</string>
+    <string name="paymentacknowledge">Payment Acknowledge</string>
 
     <!--Date and Time-->
     <string name="eightam">8:00 AM</string>

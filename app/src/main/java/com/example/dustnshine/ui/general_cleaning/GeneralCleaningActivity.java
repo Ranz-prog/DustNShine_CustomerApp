@@ -29,7 +29,6 @@ public class GeneralCleaningActivity extends AppCompatActivity implements Genera
     private GeneralCleaningViewModel generalCleaningViewModel;
     private ActivityGeneralCleaningBinding activityGeneralCleaningBinding;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
