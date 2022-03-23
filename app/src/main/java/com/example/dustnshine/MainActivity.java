@@ -49,11 +49,12 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new HomeFragment();
             } else if (itemId == R.id.booking) {
                 selectedFragment = new BookingFragment();
-            }else if (itemId == R.id.message) {
-                selectedFragment = new MessageFragment();
-            } else if (itemId == R.id.favorite) {
-                selectedFragment = new FavoritesFragment();
             }
+//            else if (itemId == R.id.message) {
+//                selectedFragment = new MessageFragment();
+//            } else if (itemId == R.id.favorite) {
+//                selectedFragment = new FavoritesFragment();
+//            }
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,
                     selectedFragment).commit();
 

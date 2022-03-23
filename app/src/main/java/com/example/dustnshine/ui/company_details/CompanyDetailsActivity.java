@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +31,9 @@ import java.util.List;
 
 public class CompanyDetailsActivity extends AppCompatActivity implements QuantityListener {
 
+    private TextView mCounter ;
+    private ImageView plus,minus;
+    private int counter;
     private RecyclerView rvServices;
     private List<ServicesModel> servicesModelList;
     private ImageView btnBack;
@@ -44,6 +47,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     private static ArrayList<Integer> servicesIdList;
     private static ArrayList<String> servicesNameList;
     private static ArrayList<Integer> servicesPriceList;
+    private static ArrayList<Integer> quantityOfService;
     private static String notes;
 
     @Override
@@ -54,6 +58,11 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         userToken = SharedPrefManager.getInstance(CompanyDetailsActivity.this).getUserToken();
         intent = getIntent();
         servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
+
+
+
+
+
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
@@ -68,7 +77,9 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
         Glide.with(CompanyDetailsActivity.this).load(AppConstants.BASE_URL + companyImage).into(activityCompanyDetailsBinding.imgCompanyImage);
 
+
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 notes = activityCompanyDetailsBinding.etNotes.getText().toString();
@@ -86,17 +97,15 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                     intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
                     intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
                     intent.putExtra("NOTES", notes);
-                    notes = null;
-                    servicesNameList = null;
-                    servicesIdList = null;
-                    servicesPriceList = null;
-                    Intent restart = getIntent();
-                    finish();
-                    startActivity(restart);
+
+//                    Intent restart = getIntent();
+//                    finish();
+//                    startActivity(restart);
                     startActivity(intent);
                 }
             }
         });
+
 
         activityCompanyDetailsBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +114,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             }
         });
     }
+
 
     public void getServices(String userToken) {
         companyDetailsViewModel.getServicesList(userToken).observe(CompanyDetailsActivity.this, new Observer<List<ServicesModel>>() {
@@ -128,15 +138,18 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     }
 
     @Override
-    public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName, ArrayList<Integer> servicesPrice) {
+    public void onQuantityChange(ArrayList<Integer> servicesID, ArrayList<String> servicesName, ArrayList<Integer> servicesPrice, ArrayList<Integer> quantityOfService) {
 
-        if (servicesID.toString() == "" || servicesName.toString() == "" || servicesID.contains(" ")){
+        if (servicesID.toString() == "" || servicesName.toString() == "" || servicesID.contains(" ") || quantityOfService.contains(" ")){
             Log.d("Null na sya", "wala sya laman kaya oki lang");
         } else {
             servicesIdList = servicesID;
             servicesNameList = servicesName;
             servicesPriceList = servicesPrice;
+            quantityOfService = quantityOfService;
         }
 
     }
+
+
 }
