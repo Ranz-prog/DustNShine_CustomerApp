@@ -86,13 +86,10 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                     intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
                     intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
                     intent.putExtra("NOTES", notes);
-                    notes = null;
-                    servicesNameList = null;
-                    servicesIdList = null;
-                    servicesPriceList = null;
-                    Intent restart = getIntent();
-                    finish();
-                    startActivity(restart);
+
+//                    Intent restart = getIntent();
+//                    finish();
+//                    startActivity(restart);
                     startActivity(intent);
                 }
             }

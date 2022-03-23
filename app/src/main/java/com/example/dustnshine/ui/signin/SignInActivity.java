@@ -103,17 +103,20 @@ public class SignInActivity extends AppCompatActivity {
                     SharedPrefManager.getInstance(SignInActivity.this).saveUser(signInResponse.getData().getUser());
                     SharedPrefManager.getInstance(SignInActivity.this).saveUserToken(signInResponse.getData().getToken());
                     SharedPrefManager.getInstance(SignInActivity.this).savePassword(activitySigninBinding.etPassword.getText().toString());
-                    CometChat.login(customerFirstName, AppConstants.API_KEY, new CometChat.CallbackListener<User>() {
-                        @Override
-                        public void onSuccess(User user) {
-                            AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed In!", SignInActivity.this, MainActivity.class, "GONE");
-                        }
+//                    CometChat.login(customerFirstName, AppConstants.API_KEY, new CometChat.CallbackListener<User>() {
+//                        @Override
+//                        public void onSuccess(User user) {
+//                            AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed In!", SignInActivity.this, MainActivity.class, "GONE");
+//                        }
+//
+//                        @Override
+//                        public void onError(CometChatException e) {
+//
+//                        }
+//                    });
 
-                        @Override
-                        public void onError(CometChatException e) {
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed In!", SignInActivity.this, MainActivity.class, "GONE");
 
-                        }
-                    });
 
                 } else if (statusCode == 422) {
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The given data was invalid", SignInActivity.this, MainActivity.class, "VISIBLE");
