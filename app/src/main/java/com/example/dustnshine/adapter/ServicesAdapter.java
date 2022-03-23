@@ -1,14 +1,17 @@
 package com.example.dustnshine.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dustnshine.models.ServicesModel;
@@ -20,6 +23,9 @@ import java.util.List;
 
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder> {
 
+    private TextView mCounter ;
+    private ImageView plus,minus;
+    private int counter;
     private List<ServicesModel> servicesModelList;
     private Context context;
     QuantityListener quantityListener;
@@ -27,11 +33,17 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     private ArrayList<String> servicesName = new ArrayList<>();
     private ArrayList<Integer> servicesPrice = new ArrayList<>();
 
+
+
+
+
+
     public ServicesAdapter(List<ServicesModel> servicesModelList, Context context, QuantityListener quantityListener) {
         this.servicesModelList = servicesModelList;
         this.context = context;
         this.quantityListener = quantityListener;
     }
+
 
     public void setData(List<ServicesModel> servicesModelList) {
         this.servicesModelList = servicesModelList;
@@ -48,6 +60,10 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
         return viewHolder;
     }
+
+
+
+
 
     @Override
     public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder holder, int position) {
@@ -80,6 +96,9 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         });
     }
 
+
+
+
     @Override
     public int getItemCount() {
         return servicesModelList.size();
@@ -101,5 +120,9 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             serviceDetails2 = itemView.findViewById(R.id.description2Tv);
 
         }
+
+
     }
+
+
 }

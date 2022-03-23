@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +31,9 @@ import java.util.List;
 
 public class CompanyDetailsActivity extends AppCompatActivity implements QuantityListener {
 
+    private TextView mCounter ;
+    private ImageView plus,minus;
+    private int counter;
     private RecyclerView rvServices;
     private List<ServicesModel> servicesModelList;
     private ImageView btnBack;
@@ -46,6 +49,21 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
     private static ArrayList<Integer> servicesPriceList;
     private static String notes;
 
+    private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.minus:
+                    minusCounter();
+                    break;
+                case R.id.plus:
+                    plusCounter();
+                    break;
+            }
+        }
+    };
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +72,17 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         userToken = SharedPrefManager.getInstance(CompanyDetailsActivity.this).getUserToken();
         intent = getIntent();
         servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
+
+
+        mCounter = (TextView) findViewById(R.id.countertxt);
+        plus = (ImageView) findViewById(R.id.plus);
+        plus.setOnClickListener(clickListener);
+        minus = (ImageView) findViewById(R.id.minus);
+        minus.setOnClickListener(clickListener);
+
+        initCounter();
+
+
 
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
@@ -68,7 +97,9 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
         Glide.with(CompanyDetailsActivity.this).load(AppConstants.BASE_URL + companyImage).into(activityCompanyDetailsBinding.imgCompanyImage);
 
+
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 notes = activityCompanyDetailsBinding.etNotes.getText().toString();
@@ -95,6 +126,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             }
         });
 
+
         activityCompanyDetailsBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +134,21 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
             }
         });
     }
+    private void initCounter(){
+        counter = 0;
+        mCounter.setText(counter + " ");
+    }
+
+    private void plusCounter(){
+        counter ++;
+        mCounter.setText(counter + " ");
+    }
+
+    private void minusCounter(){
+        counter--;
+        mCounter.setText(counter + " ");
+    }
+
 
     public void getServices(String userToken) {
         companyDetailsViewModel.getServicesList(userToken).observe(CompanyDetailsActivity.this, new Observer<List<ServicesModel>>() {
@@ -136,4 +183,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         }
 
     }
+
+
 }

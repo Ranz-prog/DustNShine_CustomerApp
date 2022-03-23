@@ -69,6 +69,34 @@
                 android:layout_alignParentEnd="true"
                 android:buttonTint="@color/app_theme_blue" />
 
+            <ImageView
+                android:id="@+id/minus"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_below="@id/cbItem"
+                android:layout_marginStart="270dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/minus_small" />
+
+            <ImageView
+                android:id="@+id/plus"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_below="@id/cbItem"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/plus_small" />
+
+            <TextView
+                android:id="@+id/countertxt"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_below="@id/cbItem"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="10dp"
+                android:text="1"
+                android:textAlignment="center" />
+
 
         </RelativeLayout>
 
