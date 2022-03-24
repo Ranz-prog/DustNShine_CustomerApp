@@ -103,6 +103,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
                     holder.Plus.setEnabled(false);
                     holder.Minus.setEnabled(false);
+                    holder.Plus.setVisibility(View.INVISIBLE);
+                    holder.Minus.setVisibility(View.INVISIBLE);
 
                     servicesID.add(servicesModelList.get(itemPosition).getId());
                     servicesName.add(servicesModelList.get(itemPosition).getName());
@@ -114,6 +116,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
                     holder.cbItem.setEnabled(false);
                     holder.Plus.setEnabled(true);
                     holder.Minus.setEnabled(true);
+                    holder.Plus.setVisibility(View.VISIBLE);
+                    holder.Minus.setVisibility(View.VISIBLE);
                     int index = servicesID.indexOf(servicesModelList.get(itemPosition).getId());
                     int index2 = servicesName.indexOf(servicesModelList.get(itemPosition).getName());
                     int index3 = servicesPrice.indexOf(servicesModelList.get(itemPosition).getPrice() * Integer.valueOf(holder.Quantity.getText().toString()));

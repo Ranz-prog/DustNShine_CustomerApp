@@ -98,6 +98,9 @@
     <string name="services">Services</string>
     <string name="extraservices">Customize your cleaning with optimal extra service</string>
     <string name="describe">Please describe any other needs...</string>
+    <string name="emailaddress">Email:</string>
+    <string name="telephonenumber">Telephone Number:</string>
+    <string name="mobile">Mobile Number:</string>
 
     <!--Booking-->
     <string name="bookinghistory">Booking History</string>

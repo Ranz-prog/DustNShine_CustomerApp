@@ -121,8 +121,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -133,47 +133,82 @@
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Lorem ipsum lorem ipsum"
-                        android:textSize="14sp" />
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Lorem ipsum lorem ipsum"
-                        android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/companyEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/emailaddress"
+                            android:textSize="14sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/companydetails"
-                        android:textColor="@color/black"
-                        android:textSize="17sp" />
+                        <TextView
+                            android:id="@+id/tvEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/companyEmail"
+                            android:textSize="15sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Lorem ipsum lorem ipsum"
-                        android:textSize="14sp" />
+                    </RelativeLayout>
 
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:fontFamily="@font/quicksand_regular"
-                        android:text="Lorem ipsum lorem ipsum"
-                        android:textSize="15sp" />
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/companyMobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/mobile"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvMobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/companyMobile"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/companyTelephone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/telephonenumber"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvTelephone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/companyTelephone"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+
 
                 </LinearLayout>
 

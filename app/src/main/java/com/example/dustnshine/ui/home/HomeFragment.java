@@ -167,6 +167,10 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         intent.putExtra("COMPANY_NAME", recommendedCompaniesModelList.get(adapterPosition).getCompany().getName());
         intent.putExtra("COMPANY_ADDRESS", recommendedCompaniesModelList.get(adapterPosition).getCompany().getAddress());
         intent.putExtra("COMPANY_IMAGE", recommendedCompaniesModelList.get(adapterPosition).getCompany().getCompany_image());
+        intent.putExtra("COMPANY_RATING", recommendedCompaniesModelList.get(adapterPosition).getRating());
+        intent.putExtra("COMPANY_EMAIL", recommendedCompaniesModelList.get(adapterPosition).getCompany().getEmail());
+        intent.putExtra("COMPANY_MOBILE", recommendedCompaniesModelList.get(adapterPosition).getCompany().getMobile_number());
+        intent.putExtra("COMPANY_TELEPHONE", recommendedCompaniesModelList.get(adapterPosition).getCompany().getTel_number());
         startActivity(intent);
     }
 }
