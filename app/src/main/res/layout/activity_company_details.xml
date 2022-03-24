@@ -72,6 +72,41 @@
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/message"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="130dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/rating_border_2"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/starSAR"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/star" />
+
+                <TextView
+                    android:id="@+id/tvCompanyRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:text="5/5"
+                    android:layout_toEndOf="@id/starSAR"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="@color/app_theme_gold"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardCompanyDetail"

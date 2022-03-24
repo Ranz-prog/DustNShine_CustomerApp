@@ -96,7 +96,7 @@
             android:textColor="@color/app_theme_gold"
             android:textSize="15sp" />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 
 
