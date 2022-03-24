@@ -5,26 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityTimeAndDateBinding;
 import com.example.dustnshine.ui.checkout.CheckOutActivity;
-import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
+import com.example.dustnshine.utils.AppConstants;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class TimeAndDateActivity extends AppCompatActivity{
 
@@ -76,10 +68,10 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(selectedDate.isEmpty() || selectedTime.isEmpty()){
-                    Toast.makeText(TimeAndDateActivity.this, "Please select Date and Time", Toast.LENGTH_SHORT).show();
-                } else if(selectedDate == null) {
-
+                if(selectedDate == null){
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Please select Date", TimeAndDateActivity.this, TimeAndDateActivity.class, "VISIBLE");
+                } else if (selectedTime == null) {
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Please select Time", TimeAndDateActivity.this, TimeAndDateActivity.class, "VISIBLE");
                 } else {
                     Intent intent = new Intent(TimeAndDateActivity.this, CheckOutActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);

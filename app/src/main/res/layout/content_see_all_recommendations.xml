@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/recommendation_border_2"
     android:orientation="horizontal"
@@ -52,7 +51,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="Clean Solutions"
             android:textColor="@color/app_theme_blue"
             android:textSize="17sp" />
 
@@ -63,7 +61,6 @@
             android:layout_below="@+id/tvCompanyName"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="location"
             android:textColor="@color/app_theme_black"
             android:textSize="14sp" />
     </RelativeLayout>
@@ -72,11 +69,11 @@
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/compicSAR"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="12dp"
-        android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@id/companySAR"
+        android:layout_marginEnd="5dp"
+        android:layout_toStartOf="@id/companySAR"
         android:background="@drawable/rating_border_2"
         android:padding="4dp">
 
@@ -93,10 +90,9 @@
             android:id="@+id/tvCompanyRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_toRightOf="@id/starSAR"
+            android:layout_marginStart="2dp"
+            android:layout_toEndOf="@id/starSAR"
             android:fontFamily="@font/montserrat_medium"
-            android:text="rating"
             android:textColor="@color/app_theme_gold"
             android:textSize="15sp" />
 

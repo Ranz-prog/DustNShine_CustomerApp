@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,165 +34,173 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <CalendarView
-            android:id="@+id/calendarView"
+        <LinearLayout
+            android:id="@+id/layoutDateTime"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtBookingHistory"
-            android:layout_marginTop="10dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/txtBookingHistory">
 
-        <RelativeLayout
-            android:id="@+id/pickTimeRelative"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/calendarView"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/pickTimeTv"
-                android:layout_width="wrap_content"
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Pick Time"
-                android:textSize="17sp" />
+                android:layout_below="@+id/txtBookingHistory"
+                android:layout_marginTop="10dp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnEightAM"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/pickTimeRelative"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/pickTimeTv"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/eightam"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:layout_below="@+id/calendarView"
+                android:padding="10dp">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnNineAM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pickTimeTv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/nineam"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/pickTimeTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Pick Time"
+                    android:textSize="17sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnTenAM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pickTimeTv"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/tenam"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnEightAM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pickTimeTv"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/eightam"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnElevenAM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnEightAM"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/elevenam"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNineAM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pickTimeTv"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/nineam"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnTwelvePM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnNineAM"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/twelvepm"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnTenAM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pickTimeTv"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/tenam"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnOnePM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnTenAM"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/onepm"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnElevenAM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnEightAM"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/elevenam"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnTwoPM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnElevenAM"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/twopm"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnTwelvePM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnNineAM"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/twelvepm"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnThreePM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnTwelvePM"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/threepm"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnOnePM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnTenAM"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/onepm"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFourPM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnOnePM"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/fourpm"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnTwoPM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnElevenAM"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/twopm"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFivePM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnThreePM"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/datetime_unselected_round_button"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/fivepm"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnThreePM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnTwelvePM"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/threepm"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-        </RelativeLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnFourPM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnOnePM"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/fourpm"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnFivePM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnThreePM"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/datetime_unselected_round_button"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/fivepm"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@+id/pickTimeRelative"
+            android:layout_below="@+id/layoutDateTime"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp"
             android:backgroundTint="@color/app_theme_gold"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/next"

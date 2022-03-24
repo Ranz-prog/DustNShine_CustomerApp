@@ -28,15 +28,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/montserrat_medium"
+                    android:text=""
                     android:textSize="17sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/servicedone"
-                    android:textSize="17sp" />
-
             </LinearLayout>
 
             <TextView

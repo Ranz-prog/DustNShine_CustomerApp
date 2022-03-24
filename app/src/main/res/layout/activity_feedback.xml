@@ -118,7 +118,7 @@
                 android:padding="10dp"
                 android:text="@string/done"
                 android:textColor="@color/white"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
         </RelativeLayout>
 

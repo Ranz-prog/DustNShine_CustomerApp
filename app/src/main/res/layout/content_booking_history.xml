@@ -48,9 +48,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvBookingDetails"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="-1dp"
             android:layout_toEndOf="@+id/tvServices"
             android:fontFamily="@font/roboto_regular"
+            android:maxLines="1"
+            android:text=""
             android:textSize="14sp" />
 
         <TextView
@@ -72,6 +75,7 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/tvComment"
             android:fontFamily="@font/roboto_regular"
+            android:maxLines="1"
             android:textSize="14sp" />
 
         <TextView
@@ -110,22 +114,25 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tvTotalCost"
+            android:id="@+id/tvPesoSign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTotalPayment"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/tvPayment"
+            android:text="@string/pesosign"
+            android:layout_toEndOf="@+id/tvCost"
             android:fontFamily="@font/roboto_regular"
             android:textSize="14sp" />
 
-<!--        <ImageView-->
-<!--            android:layout_width="24dp"-->
-<!--            android:layout_height="24dp"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />-->
+        <TextView
+            android:id="@+id/tvTotalCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTotalPayment"
+            android:layout_marginStart="2dp"
+            android:layout_toEndOf="@+id/tvPesoSign"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="14sp" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/lineDividerHorizontal"
@@ -152,6 +159,7 @@
                 android:id="@+id/tvDateAndTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/clockId"
                 android:fontFamily="@font/roboto_medium"

@@ -65,6 +65,7 @@
     <string name="dateandtime">Date and Time:</string>
     <string name="servicename">Services:</string>
     <string name="notes">Notes:</string>
+    <string name="pesosign">₱</string>
 
     <!--Feedback-->
     <string name="feedbakcdescription">Your feedback matters. Write down your experience or what we can improve in our service.</string>
@@ -96,6 +97,7 @@
     <string name="bathrooms">How many bathrooms</string>
     <string name="services">Services</string>
     <string name="extraservices">Customize your cleaning with optimal extra service</string>
+    <string name="describe">Please describe any other needs...</string>
 
     <!--Booking-->
     <string name="bookinghistory">Booking History</string>

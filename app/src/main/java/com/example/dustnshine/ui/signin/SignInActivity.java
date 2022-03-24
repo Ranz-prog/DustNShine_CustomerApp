@@ -126,7 +126,7 @@ public class SignInActivity extends AppCompatActivity {
 //                    });
 
                     AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed In!", SignInActivity.this, MainActivity.class, "GONE");
-                    
+
 
                 } else if (statusCode == 422) {
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The given data was invalid", SignInActivity.this, MainActivity.class, "VISIBLE");

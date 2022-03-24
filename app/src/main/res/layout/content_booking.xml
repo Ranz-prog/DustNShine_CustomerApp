@@ -53,7 +53,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/nameTv"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/customername"
+            android:maxLines="1"
             android:textSize="14sp" />
 
         <TextView
@@ -73,10 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/nameTv"
             android:layout_marginLeft="10dp"
-
             android:layout_toRightOf="@+id/locTv"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/location"
+            android:maxLines="1"
             android:textSize="14sp" />
 
         <TextView
@@ -98,28 +97,8 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/conTv"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/contactnumber"
+            android:maxLines="1"
             android:textSize="14sp" />
-    </RelativeLayout>
-
-    //Sample comment comment
-
-
-
-
-
-
-
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/cardView">
-
-
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

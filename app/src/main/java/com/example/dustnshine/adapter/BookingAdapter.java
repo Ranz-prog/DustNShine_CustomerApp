@@ -46,7 +46,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull BookingAdapter.ViewHolder holder, int position) {
 
-//        holder.customerImg.setImageResource(bookingModelList.get(position).getCustomerImg());
         holder.customerName.setText(bookingServiceData.get(position).getCustomer().getFirst_name() + " " + bookingServiceData.get(position).getCustomer().getLast_name());
         holder.customerLoc.setText(bookingServiceData.get(position).getAddress());
         holder.customerNum.setText(bookingServiceData.get(position).getCustomer().getMobile_number());

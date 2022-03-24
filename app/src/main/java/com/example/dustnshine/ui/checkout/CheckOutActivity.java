@@ -66,14 +66,13 @@ public class CheckOutActivity extends AppCompatActivity {
         activityCheckoutBinding.tvCompanyName.setText(companyName);
 
         activityCheckoutBinding.tvDateAndTime.setText(selectedDate + " " + selectedTime);
-        activityCheckoutBinding.tvServiceName.setText(servicesNameList.toString());
+        activityCheckoutBinding.tvServiceName.setText(servicesNameList.toString().replaceAll("(^\\[|\\]$)", ""));
         activityCheckoutBinding.tvNotes.setText(notes);
-        activityCheckoutBinding.tvTotal.setText(String.valueOf(total));
+        activityCheckoutBinding.tvTotalCost.setText(String.valueOf(total));
 
         activityCheckoutBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CLICKED", "CLICKED");
                 getBookingRequest(userToken, companyID, customerAddress, selectedDate + " " + selectedTime, total, servicesIDList, notes);
             }
         });
@@ -87,7 +86,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
     }
 
-    public void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Integer> services, String notes){
+    private void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Integer> services, String notes){
         checkOutViewModel.getBookingServiceRequest(userToken, company_id, address, start_datetime, total, services, notes).observe(CheckOutActivity.this, new Observer<BookingServiceResponse>() {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
@@ -100,13 +99,13 @@ public class CheckOutActivity extends AppCompatActivity {
         });
     }
 
-    public void getServices(Map<Integer, Integer> services, ArrayList<Integer> servicesList){
+    private void getServices(Map<Integer, Integer> services, ArrayList<Integer> servicesList){
         for(int i = 0; i < servicesList.size(); i++){
             services.put(i, servicesList.get(i));
         }
     }
 
-    public int servicesPrice(ArrayList<Integer> priceList)
+    private int servicesPrice(ArrayList<Integer> priceList)
     {
         int price = 0;
         for(int i = 0; i < priceList.size(); i++)
@@ -116,7 +115,7 @@ public class CheckOutActivity extends AppCompatActivity {
         return price;
     }
 
-    public void getUserInformation(String userToken){
+    private void getUserInformation(String userToken){
         checkOutViewModel.getUserInformationRequest(userToken).observe(CheckOutActivity.this, new Observer<UserManagementResponse>() {
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
@@ -131,6 +130,5 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
     }
-
 }
 
