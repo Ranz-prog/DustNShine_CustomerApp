@@ -97,9 +97,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
-                    android:text="5/5"
                     android:layout_toEndOf="@id/starSAR"
                     android:fontFamily="@font/montserrat_medium"
+                    android:text="5/5"
                     android:textColor="@color/app_theme_gold"
                     android:textSize="15sp" />
 

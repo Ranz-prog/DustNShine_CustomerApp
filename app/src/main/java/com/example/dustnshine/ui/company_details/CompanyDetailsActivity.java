@@ -74,6 +74,7 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.tvEmail.setText(companyEmail);
         activityCompanyDetailsBinding.tvMobile.setText(companyMobile);
         activityCompanyDetailsBinding.tvTelephone.setText(companyTelephone);
+        activityCompanyDetailsBinding.tvCompanyRating.setText(String.valueOf(companyRating));
 
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
 
