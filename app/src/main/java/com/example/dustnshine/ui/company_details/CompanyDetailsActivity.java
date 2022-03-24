@@ -31,23 +31,19 @@ import java.util.List;
 
 public class CompanyDetailsActivity extends AppCompatActivity implements QuantityListener {
 
-    private TextView mCounter ;
-    private ImageView plus,minus;
-    private int counter;
-    private RecyclerView rvServices;
+
     private List<ServicesModel> servicesModelList;
-    private ImageView btnBack;
     private ServicesAdapter servicesAdapter;
     private CompanyDetailsViewModel companyDetailsViewModel;
     private String userToken;
     private ActivityCompanyDetailsBinding activityCompanyDetailsBinding;
-    private String companyName, companyAddress, companyImage;
-    private int companyID;
+    private static String companyName, companyAddress, companyImage, companyEmail, companyMobile, companyTelephone;
+    private static int companyID;
+    private static double companyRating;
     private Intent intent;
     private static ArrayList<Integer> servicesIdList;
     private static ArrayList<String> servicesNameList;
     private static ArrayList<Integer> servicesPriceList;
-    private static ArrayList<Integer> quantityOfService;
     private static String notes;
 
     @Override
@@ -59,24 +55,25 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         intent = getIntent();
         servicesAdapter = new ServicesAdapter(servicesModelList, this, this);
 
-
-
-
-
-
         companyID = intent.getIntExtra("COMPANY_ID", 0);
         companyName = intent.getStringExtra("COMPANY_NAME");
         companyAddress = intent.getStringExtra("COMPANY_ADDRESS");
         companyImage = intent.getStringExtra("COMPANY_IMAGE");
+        companyRating = intent.getDoubleExtra("COMPANY_RATING", 0.0);
+        companyEmail = intent.getStringExtra("COMPANY_EMAIL");
+        companyMobile = intent.getStringExtra("COMPANY_MOBILE");
+        companyTelephone = intent.getStringExtra("COMPANY_TELEPHONE");
 
         activityCompanyDetailsBinding.rvServices.setHasFixedSize(true);
         activityCompanyDetailsBinding.rvServices.setLayoutManager(new LinearLayoutManager(this));
         getServices(userToken);
 
+        Glide.with(CompanyDetailsActivity.this).load(AppConstants.BASE_URL + companyImage).into(activityCompanyDetailsBinding.imgCompanyImage);
         activityCompanyDetailsBinding.tvCompanyName.setText(companyName);
         activityCompanyDetailsBinding.tvCompanyAddress.setText(companyAddress);
-        Glide.with(CompanyDetailsActivity.this).load(AppConstants.BASE_URL + companyImage).into(activityCompanyDetailsBinding.imgCompanyImage);
-
+        activityCompanyDetailsBinding.tvEmail.setText(companyEmail);
+        activityCompanyDetailsBinding.tvMobile.setText(companyMobile);
+        activityCompanyDetailsBinding.tvTelephone.setText(companyTelephone);
 
         activityCompanyDetailsBinding.btnNext.setOnClickListener(new View.OnClickListener() {
 
