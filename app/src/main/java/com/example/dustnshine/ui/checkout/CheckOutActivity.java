@@ -64,7 +64,6 @@ public class CheckOutActivity extends AppCompatActivity {
         total = servicesPrice(servicesPriceList);
 
         activityCheckoutBinding.tvCompanyName.setText(companyName);
-
         activityCheckoutBinding.tvDateAndTime.setText(selectedDate + " " + selectedTime);
         activityCheckoutBinding.tvServiceName.setText(servicesNameList.toString().replaceAll("(^\\[|\\]$)", ""));
         activityCheckoutBinding.tvNotes.setText(notes);
@@ -83,7 +82,6 @@ public class CheckOutActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     private void getBookingRequest(String userToken, int company_id, String address, String start_datetime, int total, List<Integer> services, String notes){
@@ -91,7 +89,7 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
-                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Booking failed. Try Again", CheckOutActivity.this, CompanyDetailsActivity.class, "VISIBLE");
+                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Booking failed. Try Again", CheckOutActivity.this, MainActivity.class, "VISIBLE");
                 } else {
                     AppConstants.alertMessage(1, R.drawable.check, "Success!", "Booked Successfully", CheckOutActivity.this, MainActivity.class, "GONE");
                 }

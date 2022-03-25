@@ -44,7 +44,7 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
 
     @Override
     public void onBindViewHolder(@NonNull BookingHistoryAdapter.ViewHolder holder, int position) {
-        holder.tvServicesName.setText(bookingHistoryModelList.get(position).getServices().toString());
+        holder.tvServicesName.setText(bookingHistoryModelList.get(position).getServices().toString().replaceAll("(^\\[|\\]$)", ""));
         holder.tvComments.setText(bookingHistoryModelList.get(position).getReviews().get(0).getComment());
         holder.tvTotalCost.setText(String.valueOf(bookingHistoryModelList.get(position).getTotal()));
         holder.tvDateAndTime.setText(String.valueOf(bookingHistoryModelList.get(position).getSched_datetime()));
@@ -58,7 +58,6 @@ public class BookingHistoryAdapter extends RecyclerView.Adapter<BookingHistoryAd
     public interface OnClickMessageListener {
         void onClickMessage(int adapterPosition);
     }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
