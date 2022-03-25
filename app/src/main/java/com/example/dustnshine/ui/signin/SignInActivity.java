@@ -126,14 +126,12 @@ public class SignInActivity extends AppCompatActivity {
 //                    });
 
                     AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you. You have successfully Signed In!", SignInActivity.this, MainActivity.class, "GONE");
-
-
                 } else if (statusCode == 422) {
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "The given data was invalid", SignInActivity.this, MainActivity.class, "VISIBLE");
                 } else if (statusCode == 401) {
-                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Wrong Password or Email", SignInActivity.this, MainActivity.class, "VISIBLE");
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "User not Found", SignInActivity.this, MainActivity.class, "VISIBLE");
                 } else if (statusCode == 404) {
-                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "User not found", SignInActivity.this, MainActivity.class, "VISIBLE");
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Wrong Password or Email", SignInActivity.this, MainActivity.class, "VISIBLE");
                 } else {
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Try again", SignInActivity.this, MainActivity.class, "VISIBLE");
                 }

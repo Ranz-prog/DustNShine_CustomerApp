@@ -47,7 +47,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position) {
-        holder.tvServicesName.setText(notificationModelList.get(position).getServices().toString().replaceAll("(^\\[|\\]$)", "") + " services is done");
+        holder.tvServicesName.setText(notificationModelList.get(position).getServices().toString().replaceAll("(^\\[|\\]$)", "") + " services is done!");
         holder.tvWorkerName.setText(notificationModelList.get(position).getWorkers().get(0).getFirst_name() + " " + notificationModelList.get(position).getWorkers().get(0).getLast_name());
     }
 

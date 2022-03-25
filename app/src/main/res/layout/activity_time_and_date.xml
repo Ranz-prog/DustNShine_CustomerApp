@@ -9,8 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:padding="10dp"
         android:background="@color/background">
 
         <ImageView
@@ -38,8 +37,8 @@
             android:id="@+id/layoutDateTime"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_below="@+id/txtBookingHistory">
+            android:layout_below="@+id/txtBookingHistory"
+            android:orientation="vertical">
 
             <CalendarView
                 android:id="@+id/calendarView"
@@ -199,8 +198,12 @@
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@+id/layoutDateTime"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="-28dp"
             android:backgroundTint="@color/app_theme_gold"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/next"

@@ -57,17 +57,13 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         return viewHolder;
     }
 
-
-
-
-
     @Override
     public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder holder, int position) {
         int itemPosition = position;
 
         holder.serviceTitle.setText(servicesModelList.get(position).getName());
         holder.servicePrice.setText(servicesModelList.get(position).getDescription());
-        holder.serviceDetails1.setText("P" + " " + String.valueOf(servicesModelList.get(position).getPrice()) + "/" + servicesModelList.get(position).getTime() + "hr");
+        holder.serviceDetails1.setText(String.valueOf(servicesModelList.get(position).getPrice()) + "/" + servicesModelList.get(position).getTime() + "hr");
         holder.Quantity.setText(String.valueOf(counter));
 
 
@@ -89,8 +85,12 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         holder.Minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                counter--;
-                holder.Quantity.setText(String.valueOf(counter));
+                if(Integer.valueOf(holder.Quantity.getText().toString()).equals(0)){
+                    holder.cbItem.setEnabled(false);
+                } else {
+                    counter--;
+                    holder.Quantity.setText(String.valueOf(counter));
+                }
             }
         });
 
@@ -124,7 +124,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
                     servicesID.remove(index);
                     servicesName.remove(index2);
                     servicesPrice.remove(index3);
-                   // QuantityOfService.remove(index4);
+                    // QuantityOfService.remove(index4);
 
                     counter = 0;
                     holder.Quantity.setText(String.valueOf(counter));
@@ -142,8 +142,6 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
         });
     }
-
-
 
 
     @Override
@@ -164,17 +162,13 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             cbItem = itemView.findViewById(R.id.cbItem);
             serviceTitle = itemView.findViewById(R.id.serviceTitleTv);
             servicePrice = itemView.findViewById(R.id.servicePriceTv);
-            serviceDetails1 = itemView.findViewById(R.id.description1Tv);
-            serviceDetails2 = itemView.findViewById(R.id.description2Tv);
+            serviceDetails1 = itemView.findViewById(R.id.tvDescription);
+//            serviceDetails2 = itemView.findViewById(R.id.description2Tv);
 
             Quantity = itemView.findViewById(R.id.countertxt);
             Plus = itemView.findViewById(R.id.plus);
             Minus = itemView.findViewById(R.id.minus);
 
         }
-
-
     }
-
-
 }
