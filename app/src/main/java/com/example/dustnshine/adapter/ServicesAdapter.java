@@ -40,7 +40,6 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         this.quantityListener = quantityListener;
     }
 
-
     public void setData(List<ServicesModel> servicesModelList) {
         this.servicesModelList = servicesModelList;
         notifyDataSetChanged();

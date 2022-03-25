@@ -98,9 +98,9 @@ public class UserAPIService {
             public void onResponse(Call<UserManagementResponse> call, Response<UserManagementResponse> response) {
                 if(response.code() == 200){
                     userManagementModelMutableLiveData.setValue(response.body());
-                    Log.d("TAG", "Getting info success");
+                    Log.d("User Info", "Getting info success");
                 } else {
-
+                    Log.d("User Info", "Getting info failed");
                 }
             }
 
