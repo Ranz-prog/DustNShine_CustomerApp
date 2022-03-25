@@ -17,13 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.databinding.ActivityCompanyDetailsBinding;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.ServicesAdapter;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.ForgetPasswordActivity;
 import com.example.dustnshine.ui.QuantityListener;
 import com.example.dustnshine.ui.TimeAndDateActivity;
+import com.example.dustnshine.ui.signin.SignInActivity;
 import com.example.dustnshine.utils.AppConstants;
 
 import java.util.ArrayList;
@@ -108,7 +111,8 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
         activityCompanyDetailsBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(CompanyDetailsActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -132,7 +136,8 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
 
     @Override
     public void onBackPressed() {
-        finish();
+        Intent intent = new Intent(CompanyDetailsActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
