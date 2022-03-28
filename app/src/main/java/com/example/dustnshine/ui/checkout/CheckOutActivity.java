@@ -89,22 +89,15 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
-                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Booking failed. Try Again", CheckOutActivity.this, MainActivity.class, "VISIBLE");
-                } else {
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Sorry, full bookings for this date.", CheckOutActivity.this, MainActivity.class, "VISIBLE");
+                }  else {
                     AppConstants.alertMessage(1, R.drawable.check, "Success!", "Booked Successfully", CheckOutActivity.this, MainActivity.class, "GONE");
                 }
             }
         });
     }
 
-    private void getServices(Map<Integer, Integer> services, ArrayList<Integer> servicesList){
-        for(int i = 0; i < servicesList.size(); i++){
-            services.put(i, servicesList.get(i));
-        }
-    }
-
-    private int servicesPrice(ArrayList<Integer> priceList)
-    {
+    private int servicesPrice(ArrayList<Integer> priceList) {
         int price = 0;
         for(int i = 0; i < priceList.size(); i++)
         {
@@ -122,8 +115,8 @@ public class CheckOutActivity extends AppCompatActivity {
                 } else {
                     activityCheckoutBinding.tvCustomerName.setText(userManagementResponse.getData().get(0).getFirst_name() + " " + userManagementResponse.getData().get(0).getLast_name());
                     activityCheckoutBinding.tvContactNumber.setText(userManagementResponse.getData().get(0).getMobile_number());
-                    activityCheckoutBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().getMunicipality());
-                    customerAddress = userManagementResponse.getData().get(0).getAddress().getMunicipality();
+                    customerAddress = userManagementResponse.getData().get(0).getAddress().getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().getStreet() + ", "+ userManagementResponse.getData().get(0).getAddress().getBarangay() + ", " + userManagementResponse.getData().get(0).getAddress().getMunicipality() + ", " + userManagementResponse.getData().get(0).getAddress().getProvince();
+                    activityCheckoutBinding.tvAddress.setText(customerAddress);
                 }
             }
         });

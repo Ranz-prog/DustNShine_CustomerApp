@@ -7,40 +7,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.R;
 
-
 import com.example.dustnshine.adapter.FeaturedServicesAdapter;
-import com.example.dustnshine.databinding.FragmentBookingBinding;
 import com.example.dustnshine.databinding.FragmentHomeBinding;
-import com.example.dustnshine.models.AddressModel;
-import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.adapter.RecommendationAdapter;
-import com.example.dustnshine.models.FeatureModel;
 import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.feedback.FeedbackActivity;
 import com.example.dustnshine.ui.garage_cleaning.GarageCleaningActivity;
 import com.example.dustnshine.ui.general_cleaning.GeneralCleaningActivity;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.manage_account.ManageAccountActivity;
 import com.example.dustnshine.ui.notification.NotificationActivity;
 import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsActivity;
-//import com.example.dustnshine.ui.activities.ActivityManageAccount;
-//import com.example.dustnshine.ui.activities.ActivityNotification;
 
 import java.util.List;
 
@@ -138,7 +125,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
                     fragmentHomeBinding.tvAddress.setText("");
                 } else {
                     fragmentHomeBinding.tvCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().getMunicipality());
-                    fragmentHomeBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().getMunicipality());
+                    fragmentHomeBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().getStreet() + ", "+ userManagementResponse.getData().get(0).getAddress().getBarangay() + ", " + userManagementResponse.getData().get(0).getAddress().getMunicipality());
                 }
             }
         });

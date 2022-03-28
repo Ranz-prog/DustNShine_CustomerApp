@@ -42,12 +42,12 @@ public class BookingAPIService {
                 Log.d("Services", String.valueOf(call.request()));
                 if(response.code() == 200){
                     bookingServiceResponseMutableLiveData.setValue(response.body());
-                    Log.d("STATUS", String.valueOf(response.code()));
                 } else if(response.code() == 422){
                     bookingServiceResponseMutableLiveData.setValue(response.body());
-                    Log.d("STATUS", String.valueOf(response.code()));
+                } else if(response.code() == 404) {
+                    bookingServiceResponseMutableLiveData.setValue(response.body());
                 } else {
-                    Log.d("STATUS", String.valueOf(response.code()));
+                    bookingServiceResponseMutableLiveData.setValue(response.body());
                 }
             }
             @Override
@@ -68,9 +68,10 @@ public class BookingAPIService {
             public void onResponse(Call<ServiceResponse> call, Response<ServiceResponse> response) {
                 if(response.code() == 200){
                     servicesList.setValue(response.body().getData());
-                    Log.d("TAG", "Success");
+                } else if (response.code() == 422) {
+                    servicesList.setValue(response.body().getData());
                 } else {
-                    Log.d("TAG", "Failed");
+                    servicesList.setValue(response.body().getData());
                 }
             }
 
