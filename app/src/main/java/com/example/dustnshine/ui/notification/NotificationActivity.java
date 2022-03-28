@@ -55,7 +55,6 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
             NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
-
         }
 
         activityNotificationBinding.btnBack.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +63,6 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
                 finish();
             }
         });
-
     }
 
     private void getDoneServices(String userToken) {

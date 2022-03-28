@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import com.example.dustnshine.adapter.GeneralCleaningAdapter;
 import com.example.dustnshine.databinding.ActivityGeneralCleaningBinding;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 
 import java.util.List;
 
@@ -74,6 +76,14 @@ public class GeneralCleaningActivity extends AppCompatActivity implements Genera
 
     @Override
     public void onClickMessage(int adapterPosition) {
-
+        Intent intent = new Intent(getApplicationContext(), CompanyDetailsActivity.class);
+        intent.putExtra("COMPANY_ID", companyList.get(adapterPosition).getId());
+        intent.putExtra("COMPANY_NAME", companyList.get(adapterPosition).getName());
+        intent.putExtra("COMPANY_ADDRESS", companyList.get(adapterPosition).getAddress());
+        intent.putExtra("COMPANY_IMAGE", companyList.get(adapterPosition).getCompany_image());
+        intent.putExtra("COMPANY_EMAIL", companyList.get(adapterPosition).getEmail());
+        intent.putExtra("COMPANY_MOBILE", companyList.get(adapterPosition).getMobile_number());
+        intent.putExtra("COMPANY_TELEPHONE", companyList.get(adapterPosition).getTel_number());
+        startActivity(intent);
     }
 }

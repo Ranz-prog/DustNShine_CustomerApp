@@ -16,6 +16,7 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.databinding.ActivityFeedbackBinding;
 import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.notification.NotificationActivity;
 import com.example.dustnshine.utils.AppConstants;
 
@@ -43,7 +44,8 @@ public class FeedbackActivity extends AppCompatActivity {
         activityFeedbackBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -61,6 +61,14 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         getRecommendedCompanyList(userToken);
         getFeaturedServices(userToken);
 
+        fragmentHomeBinding.searchBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SeeAllRecommendationsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         fragmentHomeBinding.btnManageAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

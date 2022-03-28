@@ -86,9 +86,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                 notes = activityCompanyDetailsBinding.etNotes.getText().toString();
                 if (servicesNameList == null|| servicesNameList.size() == 0) {
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Ooops!", "No service selected", CompanyDetailsActivity.this, CompanyDetailsActivity.class, "VISIBLE");
-                } else if (notes == null || notes.isEmpty()) {
-                    activityCompanyDetailsBinding.etNotes.setError("Notes is empty");
-                    activityCompanyDetailsBinding.etNotes.requestFocus();
                 } else {
                     Intent intent = new Intent(CompanyDetailsActivity.this, TimeAndDateActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);
@@ -98,10 +95,6 @@ public class CompanyDetailsActivity extends AppCompatActivity implements Quantit
                     intent.putStringArrayListExtra("SERVICES_NAME_LIST", servicesNameList);
                     intent.putIntegerArrayListExtra("SERVICES_PRICE_LIST", servicesPriceList);
                     intent.putExtra("NOTES", notes);
-
-//                    Intent restart = getIntent();
-//                    finish();
-//                    startActivity(restart);
                     startActivity(intent);
                 }
             }

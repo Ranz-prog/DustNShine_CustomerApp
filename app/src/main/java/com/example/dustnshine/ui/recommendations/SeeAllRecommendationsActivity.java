@@ -135,6 +135,14 @@ public class SeeAllRecommendationsActivity extends AppCompatActivity implements 
 
     @Override
     public void onClickMessage(int adapterPosition) {
-
+        Intent intent = new Intent(getApplicationContext(), CompanyDetailsActivity.class);
+        intent.putExtra("COMPANY_ID", recommendedCompaniesModelList.get(adapterPosition).getId());
+        intent.putExtra("COMPANY_NAME", recommendedCompaniesModelList.get(adapterPosition).getName());
+        intent.putExtra("COMPANY_ADDRESS", recommendedCompaniesModelList.get(adapterPosition).getAddress());
+        intent.putExtra("COMPANY_IMAGE", recommendedCompaniesModelList.get(adapterPosition).getCompany_image());
+        intent.putExtra("COMPANY_EMAIL", recommendedCompaniesModelList.get(adapterPosition).getEmail());
+        intent.putExtra("COMPANY_MOBILE", recommendedCompaniesModelList.get(adapterPosition).getMobile_number());
+        intent.putExtra("COMPANY_TELEPHONE", recommendedCompaniesModelList.get(adapterPosition).getTel_number());
+        startActivity(intent);
     }
 }
