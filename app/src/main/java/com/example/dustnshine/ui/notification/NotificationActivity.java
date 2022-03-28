@@ -20,11 +20,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.NotificationAdapter;
 import com.example.dustnshine.databinding.ActivityNotificationBinding;
 import com.example.dustnshine.models.NotificationModel;
 import com.example.dustnshine.storage.SharedPrefManager;
+import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.feedback.FeedbackActivity;
 
 import java.util.List;
@@ -60,7 +62,8 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
         activityNotificationBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -82,6 +85,12 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
