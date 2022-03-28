@@ -122,8 +122,8 @@ public class CheckOutActivity extends AppCompatActivity {
                 } else {
                     activityCheckoutBinding.tvCustomerName.setText(userManagementResponse.getData().get(0).getFirst_name() + " " + userManagementResponse.getData().get(0).getLast_name());
                     activityCheckoutBinding.tvContactNumber.setText(userManagementResponse.getData().get(0).getMobile_number());
-                    activityCheckoutBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().get(0).getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
-                    customerAddress = userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality();
+                    activityCheckoutBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().getMunicipality());
+                    customerAddress = userManagementResponse.getData().get(0).getAddress().getMunicipality();
                 }
             }
         });

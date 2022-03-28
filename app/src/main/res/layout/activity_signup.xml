@@ -229,7 +229,6 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/houseno"
-
                         android:maxLength="5"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -279,9 +278,7 @@
                         android:cursorVisible="true"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/barangay"
-                        android:inputType="textCapWords"
-                        android:digits="qwertzuiopasdfghjklyxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM"
-                        android:maxLength="15"
+                        android:maxLength="20"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 

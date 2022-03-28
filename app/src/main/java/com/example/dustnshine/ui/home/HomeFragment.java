@@ -133,12 +133,12 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
                 if (userManagementResponse == null){
-                } else if (userManagementResponse.getData().get(0).getAddress().isEmpty() || userManagementResponse.getData().get(0).getAddress() == null ){
+                } else if (userManagementResponse.getData().get(0).getAddress() == null ){
                     fragmentHomeBinding.tvCityMunicipality.setText("");
                     fragmentHomeBinding.tvAddress.setText("");
                 } else {
-                    fragmentHomeBinding.tvCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
-                    fragmentHomeBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().get(0).getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
+                    fragmentHomeBinding.tvCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().getMunicipality());
+                    fragmentHomeBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().getStreet() + " "+ userManagementResponse.getData().get(0).getAddress().getBarangay() + " " + userManagementResponse.getData().get(0).getAddress().getMunicipality());
                 }
             }
         });

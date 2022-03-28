@@ -76,7 +76,7 @@
                         android:layout_marginTop="35dp"
                         android:background="@color/background"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -292,7 +292,6 @@
                                     android:cursorVisible="true"
                                     android:hint="@string/barangay"
                                     android:maxLength="20"
-
                                     android:paddingBottom="10dp"
                                     android:textSize="15sp" />
                             </com.google.android.material.textfield.TextInputLayout>

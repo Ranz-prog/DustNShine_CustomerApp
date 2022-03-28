@@ -316,7 +316,7 @@ public class ManageAccountActivity extends AppCompatActivity {
             public void onChanged(UserManagementResponse userManagementResponse) {
                 if(userManagementResponse == null) {
                     Log.d("TAG", "Invalid Request");
-                } else if(userManagementResponse.getData().get(0).getAddress().isEmpty() || userManagementResponse.getData().get(0).getAddress() == null) {
+                } else if(userManagementResponse.getData().get(0).getAddress() == null) {
                     userID = userManagementResponse.getData().get(0).getId();
                     activityManageAccountBinding.etFirstName.setText(userManagementResponse.getData().get(0).getFirst_name());
                     activityManageAccountBinding.etLastName.setText(userManagementResponse.getData().get(0).getLast_name());
@@ -336,12 +336,12 @@ public class ManageAccountActivity extends AppCompatActivity {
                     activityManageAccountBinding.etEmailAddress.setText(userManagementResponse.getData().get(0).getEmail());
                     activityManageAccountBinding.etMobileNumber.setText(userManagementResponse.getData().get(0).getMobile_number());
                     activityManageAccountBinding.etPassword.setText(SharedPrefManager.getInstance(ManageAccountActivity.this).getPassword());
-                    activityManageAccountBinding.etHouseNo.setText(String.valueOf(userManagementResponse.getData().get(0).getAddress().get(0).getHouse_number()));
-                    activityManageAccountBinding.etStreet.setText(userManagementResponse.getData().get(0).getAddress().get(0).getStreet());
-                    activityManageAccountBinding.etBarangay.setText(userManagementResponse.getData().get(0).getAddress().get(0).getBarangay());
-                    activityManageAccountBinding.etCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().get(0).getMunicipality());
-                    activityManageAccountBinding.etProvince.setText(userManagementResponse.getData().get(0).getAddress().get(0).getProvince());
-                    activityManageAccountBinding.etZipCode.setText(userManagementResponse.getData().get(0).getAddress().get(0).getZipcode());
+                    activityManageAccountBinding.etHouseNo.setText(userManagementResponse.getData().get(0).getAddress().getHouse_number());
+                    activityManageAccountBinding.etStreet.setText(userManagementResponse.getData().get(0).getAddress().getStreet());
+                    activityManageAccountBinding.etBarangay.setText(userManagementResponse.getData().get(0).getAddress().getBarangay());
+                    activityManageAccountBinding.etCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().getMunicipality());
+                    activityManageAccountBinding.etProvince.setText(userManagementResponse.getData().get(0).getAddress().getProvince());
+                    activityManageAccountBinding.etZipCode.setText(userManagementResponse.getData().get(0).getAddress().getZipcode());
                 }
             }
         });

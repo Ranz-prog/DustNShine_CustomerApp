@@ -5,9 +5,9 @@ import java.util.List;
 public class UserManagementModel {
     private int id;
     private String first_name, last_name, mobile_number, email, email_verified_at, created_at, updated_at;
-    private List<AddressModel> address;
+    private AddressModel address;
 
-    public UserManagementModel(int id, String first_name, String last_name, String mobile_number, String email, String email_verified_at, String created_at, String updated_at, List<AddressModel> address) {
+    public UserManagementModel(int id, String first_name, String last_name, String mobile_number, String email, String email_verified_at, String created_at, String updated_at, AddressModel address) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -83,11 +83,11 @@ public class UserManagementModel {
         this.updated_at = updated_at;
     }
 
-    public List<AddressModel> getAddress() {
+    public AddressModel getAddress() {
         return address;
     }
 
-    public void setAddress(List<AddressModel> address) {
+    public void setAddress(AddressModel address) {
         this.address = address;
     }
 }

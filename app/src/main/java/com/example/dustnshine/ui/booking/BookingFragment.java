@@ -83,8 +83,8 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
 
     @Override
     public void onClickMessage(int adapterPosition) {
-        Intent intent = new Intent(getActivity(), CheckOutActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), CheckOutActivity.class);
+//        startActivity(intent);
     }
 
 }

@@ -1,14 +1,13 @@
 package com.example.dustnshine.models;
 
 public class AddressModel {
-    private int id, user_id, house_number;
+    private int id, user_id;
     private double latitude, longitude;
-    private String street, barangay, municipality, province, zipcode;
+    private String street, barangay, municipality, province, zipcode, house_number;
 
-    public AddressModel(int id, int user_id, int house_number, double latitude, double longitude, String street, String barangay, String municipality, String province, String zipcode) {
+    public AddressModel(int id, int user_id, double latitude, double longitude, String street, String barangay, String municipality, String province, String zipcode, String house_number) {
         this.id = id;
         this.user_id = user_id;
-        this.house_number = house_number;
         this.latitude = latitude;
         this.longitude = longitude;
         this.street = street;
@@ -16,6 +15,7 @@ public class AddressModel {
         this.municipality = municipality;
         this.province = province;
         this.zipcode = zipcode;
+        this.house_number = house_number;
     }
 
     public int getId() {
@@ -32,14 +32,6 @@ public class AddressModel {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
-    }
-
-    public int getHouse_number() {
-        return house_number;
-    }
-
-    public void setHouse_number(int house_number) {
-        this.house_number = house_number;
     }
 
     public double getLatitude() {
@@ -96,5 +88,13 @@ public class AddressModel {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public String getHouse_number() {
+        return house_number;
+    }
+
+    public void setHouse_number(String house_number) {
+        this.house_number = house_number;
     }
 }
