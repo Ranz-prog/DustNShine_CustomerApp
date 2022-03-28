@@ -55,10 +55,11 @@ public class TimeAndDateActivity extends AppCompatActivity{
                 servicesNameList.removeAll(servicesNameList);
             }
         });
-
+        activityTimeAndDateBinding.calendarView.setMinDate(System.currentTimeMillis()- 1000);
         activityTimeAndDateBinding.calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int date) {
+
                 calendar = Calendar.getInstance();
                 calendar.set(year, month, date);
                 selectedDate = simpleDateFormat.format(calendar.getTime());
