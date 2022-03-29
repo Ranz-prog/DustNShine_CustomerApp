@@ -1,10 +1,6 @@
 package com.example.dustnshine.models;
 
-import androidx.annotation.Nullable;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BookingServiceData {
     private int user_id, status, id, company_id, total;

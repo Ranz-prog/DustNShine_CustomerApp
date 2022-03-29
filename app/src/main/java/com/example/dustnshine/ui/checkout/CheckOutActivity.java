@@ -90,7 +90,8 @@ public class CheckOutActivity extends AppCompatActivity {
             public void onChanged(BookingServiceResponse bookingServiceResponse) {
                 if (bookingServiceResponse == null){
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Sorry, full bookings for this date.", CheckOutActivity.this, MainActivity.class, "VISIBLE");
-                }  else {
+//                    AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Try Again", CheckOutActivity.this, MainActivity.class, "VISIBLE");
+                } else {
                     AppConstants.alertMessage(1, R.drawable.check, "Success!", "Booked Successfully", CheckOutActivity.this, MainActivity.class, "GONE");
                 }
             }

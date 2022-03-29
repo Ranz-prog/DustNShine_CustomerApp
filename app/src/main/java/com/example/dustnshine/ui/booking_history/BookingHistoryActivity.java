@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.BookingHistoryAdapter;
@@ -22,7 +23,7 @@ import com.example.dustnshine.storage.SharedPrefManager;
 
 import java.util.List;
 
-public class BookingHistoryActivity extends AppCompatActivity implements BookingHistoryAdapter.OnClickMessageListener {
+public class BookingHistoryActivity extends AppCompatActivity implements BookingHistoryAdapter.OnClickMessageListener, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView rvBookingHistory;
     private List<BookingHistoryModel> bookingHistoryModelList;
@@ -38,11 +39,11 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
 
         activityBookingHistoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking_history);
         bookingHistoryViewModel = new ViewModelProvider(BookingHistoryActivity.this).get(BookingHistoryViewModel.class);
-        rvBookingHistory = findViewById(R.id.rvBookingHistory);
         userToken = SharedPrefManager.getInstance(BookingHistoryActivity.this).getUserToken();
-        rvBookingHistory.setHasFixedSize(true);
-        rvBookingHistory.setLayoutManager(new LinearLayoutManager(BookingHistoryActivity.this));
+        activityBookingHistoryBinding.rvBookingHistory.setHasFixedSize(true);
+        activityBookingHistoryBinding.rvBookingHistory.setLayoutManager(new LinearLayoutManager(BookingHistoryActivity.this));
         bookingHistoryAdapter = new BookingHistoryAdapter(bookingHistoryModelList, BookingHistoryActivity.this, this);
+        activityBookingHistoryBinding.refreshLayout.setOnRefreshListener(this);
 
         getBookingHistory(userToken);
 
@@ -76,5 +77,11 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
     @Override
     public void onClickMessage(int adapterPosition) {
 
+    }
+
+    @Override
+    public void onRefresh() {
+        getBookingHistory(userToken);
+        activityBookingHistoryBinding.refreshLayout.setRefreshing(false);
     }
 }

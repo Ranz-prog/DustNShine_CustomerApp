@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 
@@ -29,7 +30,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
     private static ArrayList<Integer> servicesIDList;
     private static ArrayList<String> servicesNameList;
     private static ArrayList<Integer> servicesPriceList;
-    private String notes;
+    private static String notes, dateTimeNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +60,11 @@ public class TimeAndDateActivity extends AppCompatActivity{
         activityTimeAndDateBinding.calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int date) {
-
                 calendar = Calendar.getInstance();
                 calendar.set(year, month, date);
                 selectedDate = simpleDateFormat.format(calendar.getTime());
+                dateTimeNow = simpleDateFormat.format(calendarView.getDate());;
+                Log.d("DATE", dateTimeNow);
             }
         });
 
@@ -73,6 +75,8 @@ public class TimeAndDateActivity extends AppCompatActivity{
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Please select Date", TimeAndDateActivity.this, TimeAndDateActivity.class, "VISIBLE");
                 } else if (selectedTime == null) {
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Please select Time", TimeAndDateActivity.this, TimeAndDateActivity.class, "VISIBLE");
+                } else if (selectedDate.equals(dateTimeNow)) {
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Please select date the is not today.", TimeAndDateActivity.this, TimeAndDateActivity.class, "VISIBLE");
                 } else {
                     Intent intent = new Intent(TimeAndDateActivity.this, CheckOutActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);

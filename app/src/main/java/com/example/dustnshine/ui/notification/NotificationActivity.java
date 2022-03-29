@@ -19,6 +19,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.dustnshine.MainActivity;
 import com.example.dustnshine.R;
@@ -31,7 +32,7 @@ import com.example.dustnshine.ui.feedback.FeedbackActivity;
 
 import java.util.List;
 
-public class NotificationActivity extends AppCompatActivity implements NotificationAdapter.OnClickMessageListener {
+public class NotificationActivity extends AppCompatActivity implements NotificationAdapter.OnClickMessageListener, SwipeRefreshLayout.OnRefreshListener {
 
     private List<NotificationModel> notificationModels;
     private NotificationAdapter notificationAdapter;
@@ -46,10 +47,11 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
         activityNotificationBinding = DataBindingUtil.setContentView(this, R.layout.activity_notification);
         notificationActivityViewModel = new ViewModelProvider(NotificationActivity.this).get(NotificationActivityViewModel.class);
+        userToken = SharedPrefManager.getInstance(NotificationActivity.this).getUserToken();
         activityNotificationBinding.rvNotification.setHasFixedSize(true);
         activityNotificationBinding.rvNotification.setLayoutManager(new LinearLayoutManager(NotificationActivity.this));
         notificationAdapter = new NotificationAdapter(notificationModels, NotificationActivity.this, this);
-        userToken = SharedPrefManager.getInstance(NotificationActivity.this).getUserToken();
+        activityNotificationBinding.refreshLayout.setOnRefreshListener(this);
 
         getDoneServices(userToken);
 
@@ -98,5 +100,11 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
         Intent intent = new Intent(NotificationActivity.this, FeedbackActivity.class);
         intent.putExtra("BOOKING_ID", notificationModels.get(adapterPosition).getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        getDoneServices(userToken);
+        activityNotificationBinding.refreshLayout.setRefreshing(false);
     }
 }

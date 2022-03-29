@@ -1,68 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp">
-
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_weight="1"
-            android:src="@drawable/back" />
-
-        <TextView
-            android:id="@+id/tvBookingHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/bookinghistory"
-            android:textColor="@color/app_theme_gold"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/middleSide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvBookingHistory"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
 
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:src="@drawable/back" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvBookingHistory"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvBookingHistory"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"/>
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/bookinghistory"
+                android:textColor="@color/app_theme_gold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/middleSide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvBookingHistory"
+                android:orientation="vertical">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBookingHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"/>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/imgNoTransactions"
+                android:layout_width="wrap_content"
+                android:layout_height="400dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/no_transactions"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvNoTransactions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgNoTransactions"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="-72dp"
+                android:text="@string/notransactionsyet"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/imgNoTransactions"
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
-            android:layout_centerInParent="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/no_transactions"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/tvNoTransactions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgNoTransactions"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="-72dp"
-            android:text="@string/notransactionsyet"
-            android:visibility="gone"/>
-
-    </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>

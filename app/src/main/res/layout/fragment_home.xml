@@ -2,231 +2,238 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scrollbars="none">
 
             <RelativeLayout
-                android:id="@+id/topSide"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tvCityMunicipality"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/topSide"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="87dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:paddingTop="20dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/app_theme_gold"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvCityMunicipality"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="87dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textAlignment="center"
-                    android:textColor="@color/line_divider_color"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:id="@+id/btnNotification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/roundbutton"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/bell" />
-                </LinearLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/clientImagecon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="22dp"
-                    android:elevation="10dp"
-                    app:cardCornerRadius="7dp">
-
-                    <ImageView
-                        android:id="@+id/btnManageAccount"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:src="@drawable/user" />
-
-                </androidx.cardview.widget.CardView>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/twotopside"
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_below="@id/topSide"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:background="@drawable/container2"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/container2"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/perfect"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tvCityMunicipality"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="87dp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="40dp"
-                        android:paddingRight="10dp"
-                        android:text="Perfect Cleaning We are ready!"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
+                        android:paddingTop="20dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/app_theme_gold"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/weare"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/tvCityMunicipality"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="87dp"
                         android:fontFamily="@font/roboto_regular"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="10dp"
-                        android:text="We always have the perfect cleaning goal at your perfect home."
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFFFF"
-                        android:textSize="11sp" />
-                </LinearLayout>
+                        android:textAlignment="center"
+                        android:textColor="@color/line_divider_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="140dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/dashbanner"
+                    <LinearLayout
+                        android:id="@+id/btnNotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/roundbutton"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/bell" />
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/clientImagecon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="22dp"
+                        android:elevation="10dp"
+                        app:cardCornerRadius="7dp">
+
+                        <ImageView
+                            android:id="@+id/btnManageAccount"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/user" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/twotopside"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_below="@id/topSide"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="35dp"
+                    android:background="@drawable/container2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/container2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/perfect"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="40dp"
+                            android:paddingRight="10dp"
+                            android:text="Perfect Cleaning We are ready!"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/weare"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="10dp"
+                            android:text="We always have the perfect cleaning goal at your perfect home."
+                            android:textAlignment="textStart"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="140dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/dashbanner"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/middleSide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/twotopside"
+                    android:layout_marginTop="35dp"
                     android:orientation="vertical">
 
-                </LinearLayout>
+                    <SearchView
+                        android:id="@+id/search_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/container1"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:queryHint="Search. . . " />
 
+                    <TextView
+                        android:id="@+id/recommendationTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/search_bar"
+                        android:layout_marginTop="20dp"
+                        android:elevation="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/Recommendation"
+                        android:textColor="@color/app_theme_black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/btnShowAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/search_bar"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Show all"
+                        android:textColor="@color/line_divider_color"
+                        android:textSize="12sp" />
 
-            <RelativeLayout
-                android:id="@+id/middleSide"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/twotopside"
-                android:layout_marginTop="35dp"
-                android:orientation="vertical">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCompanyList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recommendationTV"
+                        android:layout_marginTop="10dp" />
 
-                <SearchView
-                    android:id="@+id/search_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/container1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:queryHint="Search. . . " />
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/recommendationTV"
+                <RelativeLayout
+                    android:id="@+id/botSide"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/search_bar"
+                    android:layout_below="@+id/middleSide"
                     android:layout_marginTop="20dp"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/Recommendation"
-                    android:textColor="@color/app_theme_black"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/btnShowAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/search_bar"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Show all"
-                    android:textColor="@color/line_divider_color"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/featuredTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/FeaturedServices"
+                        android:textColor="@color/app_theme_black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCompanyList"
+                <GridView
+                    android:id="@+id/gvFeaturedServices"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/recommendationTV"
-                    android:layout_marginTop="10dp" />
+                    android:layout_height="400dp"
+                    android:layout_below="@+id/botSide"
+                    android:layout_marginTop="10dp"
+                    android:isScrollContainer="false"
+                    android:numColumns="2"
+                    android:scrollbars="none"
+                    android:stretchMode="columnWidth" />
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/botSide"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/middleSide"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
+        </ScrollView>
 
-                <TextView
-                    android:id="@+id/featuredTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/FeaturedServices"
-                    android:textColor="@color/app_theme_black"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <GridView
-                android:id="@+id/gvFeaturedServices"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_below="@+id/botSide"
-                android:layout_marginTop="10dp"
-                android:isScrollContainer="false"
-                android:numColumns="2"
-                android:scrollbars="none"
-                android:stretchMode="columnWidth" />
-
-        </RelativeLayout>
-
-    </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

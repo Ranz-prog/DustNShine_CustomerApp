@@ -2,6 +2,7 @@ package com.example.dustnshine.ui.booking;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.BookingAdapter;
@@ -30,7 +32,7 @@ import com.example.dustnshine.ui.checkout.CheckOutActivity;
 import java.util.List;
 
 
-public class BookingFragment extends Fragment implements BookingAdapter.OnClickMessageListener {
+public class BookingFragment extends Fragment implements BookingAdapter.OnClickMessageListener, SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView rvBooking;
     private View view;
     private List<BookingServiceData> bookingServiceDataList;
@@ -49,7 +51,7 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
         fragmentBookingBinding.rvBooking.setHasFixedSize(true);
         fragmentBookingBinding.rvBooking.setLayoutManager(new LinearLayoutManager(getContext()));
         bookingAdapter = new BookingAdapter(bookingServiceDataList, getContext(), this);
-
+        fragmentBookingBinding.refreshLayout.setOnRefreshListener(this);
         getBookedService(userToken);
 
         fragmentBookingBinding.btnBookingHistory.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +85,17 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
 
     @Override
     public void onClickMessage(int adapterPosition) {
-//        Intent intent = new Intent(getActivity(), CheckOutActivity.class);
-//        startActivity(intent);
+
     }
 
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getBookedService(userToken);
+            }
+        }, 2000);
+        fragmentBookingBinding.refreshLayout.setRefreshing(false);
+    }
 }

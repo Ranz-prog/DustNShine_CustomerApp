@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.example.dustnshine.R;
 
 import com.example.dustnshine.adapter.FeaturedServicesAdapter;
@@ -32,7 +34,7 @@ import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsActivity;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements RecommendationAdapter.OnClickMessageListener{
+public class HomeFragment extends Fragment implements RecommendationAdapter.OnClickMessageListener, SwipeRefreshLayout.OnRefreshListener {
 
     private View view;
     private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
@@ -42,6 +44,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
     private FeaturedServicesAdapter featuredServicesAdapter;
     private List<ServicesModel> servicesModelList;
     private FragmentHomeBinding fragmentHomeBinding;
+    private LinearLayoutManager layoutRecommendations;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,17 +52,17 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         fragmentHomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         homeFragmentViewModel = new ViewModelProvider(HomeFragment.this).get(HomeFragmentViewModel.class);
         view = fragmentHomeBinding.getRoot();
+        userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
         recommendationAdapter = new RecommendationAdapter(recommendedCompaniesModelList, getContext(),this);
         featuredServicesAdapter = new FeaturedServicesAdapter(servicesModelList, getContext());
-        userToken = SharedPrefManager.getInstance(getContext()).getUserToken();
-        getUserInformation(userToken);
-
         fragmentHomeBinding.rvCompanyList.setHasFixedSize(true);
-        LinearLayoutManager layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        layoutRecommendations = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         fragmentHomeBinding.rvCompanyList.setLayoutManager(layoutRecommendations);
+        fragmentHomeBinding.refreshLayout.setOnRefreshListener(this);
 
         getRecommendedCompanyList(userToken);
         getFeaturedServices(userToken);
+        getUserInformation(userToken);
 
         fragmentHomeBinding.searchBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,9 +150,8 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
                     servicesModelList = servicesModels;
                     featuredServicesAdapter.setData(servicesModels);
                     fragmentHomeBinding.gvFeaturedServices.setAdapter(featuredServicesAdapter);
-                    Log.d("TAG", "Success");
                 } else {
-                    Log.d("TAG", "Failure");
+
                 }
             }
         });
@@ -167,5 +169,13 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         intent.putExtra("COMPANY_MOBILE", recommendedCompaniesModelList.get(adapterPosition).getCompany().getMobile_number());
         intent.putExtra("COMPANY_TELEPHONE", recommendedCompaniesModelList.get(adapterPosition).getCompany().getTel_number());
         startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        getUserInformation(userToken);
+        getRecommendedCompanyList(userToken);
+        getFeaturedServices(userToken);
+        fragmentHomeBinding.refreshLayout.setRefreshing(false);
     }
 }
