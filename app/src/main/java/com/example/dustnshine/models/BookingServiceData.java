@@ -3,11 +3,35 @@ package com.example.dustnshine.models;
 import java.util.List;
 
 public class BookingServiceData {
-    private int user_id, status, id, company_id, total;
-    private String address, start_datetime, updated_at, created_at;
+    private int user_id, status, id, company_id, total, payment_status;
+    private String address,sched_datetime, start_datetime, updated_at, created_at,note;
     private List<ServiceDetailsModel> services;
     private List workers;
     private CustomerModel customer;
+
+    public int getPayment_status() {
+        return payment_status;
+    }
+
+    public void setPayment_status(int payment_status) {
+        this.payment_status = payment_status;
+    }
+
+    public String getSched_datetime() {
+        return sched_datetime;
+    }
+
+    public void setSched_datetime(String sched_datetime) {
+        this.sched_datetime = sched_datetime;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     public int getUser_id() {
         return user_id;

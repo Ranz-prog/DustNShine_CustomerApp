@@ -3,8 +3,10 @@ package com.example.dustnshine.models;
 public class ServicesModel {
     private int id, price;
     private String name, description, created_at, updated_at, time, service_image;
+    private PivotModel pivot;
 
-    public ServicesModel(int id, int price, String name, String description, String created_at, String updated_at, String time, String service_image) {
+
+    public ServicesModel(int id, int price, String name, String description, String created_at, String updated_at, String time, String service_image, PivotModel pivot) {
         this.id = id;
         this.price = price;
         this.name = name;
@@ -13,6 +15,7 @@ public class ServicesModel {
         this.updated_at = updated_at;
         this.time = time;
         this.service_image = service_image;
+        this.pivot = pivot;
     }
 
     public int getId() {
@@ -77,6 +80,14 @@ public class ServicesModel {
 
     public void setService_image(String service_image) {
         this.service_image = service_image;
+    }
+
+    public PivotModel getPivot() {
+        return pivot;
+    }
+
+    public void setPivot(PivotModel pivot) {
+        this.pivot = pivot;
     }
 
     @Override

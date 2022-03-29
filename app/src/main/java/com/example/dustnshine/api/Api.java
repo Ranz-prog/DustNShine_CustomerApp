@@ -4,6 +4,7 @@ import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.ChangePasswordResponse;
+import com.example.dustnshine.response.CompanyAndServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.response.NotificationResponse;
 import com.example.dustnshine.response.RecommendedCompaniesResponse;
@@ -106,6 +107,10 @@ public interface Api {
             @Field("comment") String comment,
             @Field("rating") double rating
     );
+
+    @GET("companies/{keyword}")
+    Call<CompanyAndServiceResponse> getSpecificCompany(@Path("keyword") int keyword, @Header("Authorization") String searchCompanyRequest);
+
 
     @GET("companies")
     Call<CompanyResponse> getCompanies(@Header("Authorization") String companyRequest);

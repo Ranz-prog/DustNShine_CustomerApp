@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.dustnshine.api.RetrofitClient;
 import com.example.dustnshine.models.BookingHistoryModel;
 import com.example.dustnshine.models.BookingServiceData;
+import com.example.dustnshine.models.CompanyAndServicesModel;
 import com.example.dustnshine.models.NotificationModel;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.models.RecommendedCompaniesModel;
@@ -14,6 +15,7 @@ import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.BookedServiceResponse;
 import com.example.dustnshine.response.BookingHistoryResponse;
 import com.example.dustnshine.response.BookingServiceResponse;
+import com.example.dustnshine.response.CompanyAndServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
 import com.example.dustnshine.response.NotificationResponse;
 import com.example.dustnshine.response.RecommendedCompaniesResponse;
@@ -104,6 +106,29 @@ public class BookingAPIService {
             }
         });
         return companyList;
+    }
+
+    // Get Specific Company
+    public MutableLiveData<CompanyAndServicesModel> getSpecificCompany( int companyId, String userToken ){
+        final MutableLiveData<CompanyAndServicesModel> specificCompany = new MutableLiveData<>();
+        Call<CompanyAndServiceResponse> companyResponseCall = RetrofitClient.getInstance().getApi().getSpecificCompany(companyId,"Bearer " + userToken );
+        companyResponseCall.enqueue(new Callback<CompanyAndServiceResponse>() {
+            @Override
+            public void onResponse(Call<CompanyAndServiceResponse> call, Response<CompanyAndServiceResponse> response) {
+                if(response.code() == 200){
+                    specificCompany.setValue(response.body().getData());
+                    Log.d("TAG", "Success");
+                } else {
+                    Log.d("TAG", String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CompanyAndServiceResponse> call, Throwable t) {
+
+            }
+        });
+        return specificCompany;
     }
 
     // Get Booked Services
