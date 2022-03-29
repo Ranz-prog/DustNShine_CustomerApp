@@ -13,24 +13,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dustnshine.models.BookingModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.models.BookingServiceData;
+import com.example.dustnshine.models.CompanyAndServicesModel;
 import com.example.dustnshine.models.RecommendationModel;
 
 import java.util.List;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHolder>{
 
-    List<BookingServiceData> bookingServiceData;
+    private List<BookingServiceData> bookingServiceData;
     private Context context;
     private BookingAdapter.OnClickMessageListener onClickMessageListener;
 
     public BookingAdapter(List<BookingServiceData> bookingServiceData, Context context, OnClickMessageListener onClickMessageListener) {
         this.bookingServiceData = bookingServiceData;
+
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;
     }
 
     public void setData(List<BookingServiceData> bookingServiceData) {
         this.bookingServiceData = bookingServiceData;
+
         notifyDataSetChanged();
     }
 
@@ -46,9 +49,9 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull BookingAdapter.ViewHolder holder, int position) {
 
-        holder.customerName.setText(bookingServiceData.get(position).getCustomer().getFirst_name() + " " + bookingServiceData.get(position).getCustomer().getLast_name());
-        holder.customerLoc.setText(bookingServiceData.get(position).getAddress());
-        holder.customerNum.setText(bookingServiceData.get(position).getCustomer().getMobile_number());
+        holder.customerName.setText(bookingServiceData.get(position).getServices().toString().replaceAll("(^\\[|\\]$)", ""));
+        holder.customerLoc.setText(bookingServiceData.get(position).getSched_datetime());
+        holder.customerNum.setText("Php "+String.valueOf(bookingServiceData.get(position).getTotal()));
 
     }
 

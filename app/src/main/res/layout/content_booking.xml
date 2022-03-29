@@ -28,7 +28,7 @@
             android:layout_marginLeft="11dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/montserrat_medium"
-            android:text="@string/customerdetails"
+            android:text="Service Details"
             android:textColor="@color/app_theme_blue"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/customername"
+            android:text="Services:"
             android:textSize="14sp" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/locationdetails"
+            android:text="Date:"
             android:textSize="14sp" />
 
         <TextView
@@ -85,7 +85,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/contactnumber"
+            android:text="Price: "
             android:textSize="14sp" />
 
         <TextView
