@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             startActivity(intent);
         } else {
-            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_LONG).show();
             backButtonCount++;
         }
     }

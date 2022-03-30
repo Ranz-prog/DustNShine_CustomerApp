@@ -8,10 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.dustnshine.R;
@@ -30,18 +26,16 @@ import com.example.dustnshine.databinding.FragmentBookingBinding;
 import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.models.CompanyAndServicesModel;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.ForgetPasswordActivity;
 import com.example.dustnshine.ui.booking_history.BookingHistoryActivity;
-import com.example.dustnshine.ui.checkout.CheckOutActivity;
-import com.example.dustnshine.ui.signin.SignInActivity;
 
 import java.util.List;
 
 
 public class BookingFragment extends Fragment implements BookingAdapter.OnClickMessageListener, SwipeRefreshLayout.OnRefreshListener {
-    private RecyclerView rvBooking;
+
+    private Button btnOkay;
     private AlertDialog.Builder dialogBuilder;
-    private TextView companyName, companyEmail, companyNumber, paymentStatus, dateAndTime, services, notes, comment, total;
+    private TextView companyName, companyEmail, companyNumber, paymentStatus, dateAndTime, services, notes, comment, comments, total;
     private CompanyAndServicesModel companyAndServicesModels;
     private AlertDialog dialog;
     private View view;
@@ -106,11 +100,6 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
                     companyFullname = companyAndServicesModel.getName();
                     companyEmailAddress = companyAndServicesModel.getEmail();
                     companyTelephoneNumber = companyAndServicesModel.getTel_number();
-
-                    Log.d("pangalan", companyFullname);
-                    Log.d("pangalan", companyEmailAddress);
-                    Log.d("pangalan", companyTelephoneNumber);
-
                 }
 
             }
@@ -123,48 +112,44 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
 
         BookingServiceData bookingServiceData = bookingServiceDataList.get(adapterPosition);
         getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
-
         dialogBuilder = new AlertDialog.Builder(getContext());
+        final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_booking_details, null);
 
-        final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_customerdetails, null);
-
-        TextView commentTV = searchPopUp.findViewById(R.id.tvcom);
-        Button okay = searchPopUp.findViewById(R.id.btnOkay);
-
-        companyName = searchPopUp.findViewById(R.id.txtcompany);
-        companyEmail = searchPopUp.findViewById(R.id.txtemail);
-        companyNumber = searchPopUp.findViewById(R.id.txttelnum);
-
-        paymentStatus = searchPopUp.findViewById(R.id.txtpaymentstatus);
-        dateAndTime = searchPopUp.findViewById(R.id.txtSched);
-        services = searchPopUp.findViewById(R.id.txtServices);
-        notes = searchPopUp.findViewById(R.id.txtnote);
-        comment = searchPopUp.findViewById(R.id.txtcom);
-        total = searchPopUp.findViewById(R.id.txttotal);
+        btnOkay = searchPopUp.findViewById(R.id.btnOkay);
+        companyName = searchPopUp.findViewById(R.id.tvCompanyName);
+        companyEmail = searchPopUp.findViewById(R.id.tvEmailAddress);
+        companyNumber = searchPopUp.findViewById(R.id.tvTelNum);
+        paymentStatus = searchPopUp.findViewById(R.id.tvPaymentStatus);
+        dateAndTime = searchPopUp.findViewById(R.id.tvSchedDateTime);
+        services = searchPopUp.findViewById(R.id.tvServices);
+        notes = searchPopUp.findViewById(R.id.tvNotes);
+        comment = searchPopUp.findViewById(R.id.tvComment);
+        comments = searchPopUp.findViewById(R.id.tvComments);
+        total = searchPopUp.findViewById(R.id.tvTotalCost);
 
         comment.setVisibility(View.GONE);
-        commentTV.setVisibility(View.GONE);
+        comments.setVisibility(View.GONE);
+
+        if (String.valueOf(companyFullname) == "null"){
+            getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
+        } else {
+            companyName.setText(String.valueOf(companyFullname));
+            companyEmail.setText(String.valueOf(companyEmailAddress));
+            companyNumber.setText(String.valueOf(companyTelephoneNumber));
+        }
 
         paymentStatus.setText("Not yet paid");
-        if(String.valueOf(companyFullname) == "null"){
-            getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
-
-        }else{companyName.setText(String.valueOf(companyFullname));
-            companyEmail.setText(String.valueOf(companyEmailAddress));
-            companyNumber.setText(String.valueOf(companyTelephoneNumber));}
-
         dateAndTime.setText(bookingServiceData.getSched_datetime());
         services.setText(bookingServiceData.getServices().toString().replaceAll("(^\\[|\\]$)", ""));
         notes.setText(bookingServiceData.getNote());
-        total.setText("Php "+String.valueOf(bookingServiceData.getTotal()));
+        total.setText("₱ " + String.valueOf(bookingServiceData.getTotal()));
 
-        okay.setOnClickListener(new View.OnClickListener() {
+        btnOkay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
-
 
         dialogBuilder.setView(searchPopUp);
         dialog = dialogBuilder.create();

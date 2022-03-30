@@ -5,9 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +20,6 @@ import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.BookingHistoryAdapter;
 import com.example.dustnshine.databinding.ActivityBookingHistoryBinding;
 import com.example.dustnshine.models.BookingHistoryModel;
-import com.example.dustnshine.models.BookingServiceData;
 import com.example.dustnshine.models.CompanyAndServicesModel;
 import com.example.dustnshine.storage.SharedPrefManager;
 
@@ -34,7 +31,6 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private CompanyAndServicesModel companyAndServicesModels;
-    private RecyclerView rvBookingHistory;
     private List<BookingHistoryModel> bookingHistoryModelList;
     private BookingHistoryAdapter bookingHistoryAdapter;
     private BookingHistoryViewModel bookingHistoryViewModel;
@@ -94,11 +90,6 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
                     companyFullname = companyAndServicesModel.getName();
                     companyEmailAddress = companyAndServicesModel.getEmail();
                     companyTelephoneNumber = companyAndServicesModel.getTel_number();
-
-                    Log.d("pangalan", companyFullname);
-                    Log.d("pangalan", companyEmailAddress);
-                    Log.d("pangalan", companyTelephoneNumber);
-
                 }
 
             }
@@ -114,40 +105,34 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
 
         dialogBuilder = new AlertDialog.Builder(this);
 
-        final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_customerdetails, null);
+        final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_booking_details, null);
 
-        TextView commentTV = searchPopUp.findViewById(R.id.tvcom);
         Button okay = searchPopUp.findViewById(R.id.btnOkay);
 
-        companyName = searchPopUp.findViewById(R.id.txtcompany);
-        companyEmail = searchPopUp.findViewById(R.id.txtemail);
-        companyNumber = searchPopUp.findViewById(R.id.txttelnum);
+        companyName = searchPopUp.findViewById(R.id.tvCompanyName);
+        companyEmail = searchPopUp.findViewById(R.id.tvEmailAddress);
+        companyNumber = searchPopUp.findViewById(R.id.tvTelNum);
+        paymentStatus = searchPopUp.findViewById(R.id.tvPaymentStatus);
+        dateAndTime = searchPopUp.findViewById(R.id.tvSchedDateTime);
+        services = searchPopUp.findViewById(R.id.tvServices);
+        notes = searchPopUp.findViewById(R.id.tvNotes);
+        comment = searchPopUp.findViewById(R.id.tvComments);
+        total = searchPopUp.findViewById(R.id.tvTotalCost);
 
-        paymentStatus = searchPopUp.findViewById(R.id.txtpaymentstatus);
-        dateAndTime = searchPopUp.findViewById(R.id.txtSched);
-        services = searchPopUp.findViewById(R.id.txtServices);
-        notes = searchPopUp.findViewById(R.id.txtnote);
-        comment = searchPopUp.findViewById(R.id.txtcom);
-        total = searchPopUp.findViewById(R.id.txttotal);
-
-//        comment.setVisibility(View.GONE);
-//        commentTV.setVisibility(View.GONE);
-
-
-
-        paymentStatus.setText("Payment Acknowledged");
-        if(String.valueOf(companyFullname) == "null"){
+        if (String.valueOf(companyFullname) == "null"){
             getSpecificCompany(bookingHistoryModel.getCompany_id(), userToken);
-
-        }else{companyName.setText(String.valueOf(companyFullname));
+        } else {
+            companyName.setText(String.valueOf(companyFullname));
             companyEmail.setText(String.valueOf(companyEmailAddress));
             companyNumber.setText(String.valueOf(companyTelephoneNumber));
-            }
+        }
+
+        paymentStatus.setText("Payment Acknowledged");
         comment.setText(bookingHistoryModel.getReviews().get(0).getComment());
         dateAndTime.setText(bookingHistoryModel.getSched_datetime());
         services.setText(bookingHistoryModel.getServices().toString().replaceAll("(^\\[|\\]$)", ""));
         notes.setText(bookingHistoryModel.getNote());
-        total.setText("Php "+String.valueOf(bookingHistoryModel.getTotal()));
+        total.setText("₱ " + bookingHistoryModel.getTotal());
 
         okay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +147,7 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
         dialog.show();
 
     }
-    
+
     @Override
     public void onRefresh() {
         getBookingHistory(userToken);

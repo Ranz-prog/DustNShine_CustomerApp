@@ -76,7 +76,7 @@ public class TimeAndDateActivity extends AppCompatActivity{
                 } else if (selectedTime == null) {
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Please select Time", TimeAndDateActivity.this, TimeAndDateActivity.class, "VISIBLE");
                 } else if (selectedDate.equals(dateTimeNow)) {
-                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Please select date the is not today.", TimeAndDateActivity.this, TimeAndDateActivity.class, "VISIBLE");
+                    AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Current date can not be selected", TimeAndDateActivity.this, TimeAndDateActivity.class, "VISIBLE");
                 } else {
                     Intent intent = new Intent(TimeAndDateActivity.this, CheckOutActivity.class);
                     intent.putExtra("COMPANY_ID", companyID);

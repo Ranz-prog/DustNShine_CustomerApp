@@ -15,12 +15,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Booking Details"
+        android:text="@string/bookingdetails"
         android:textColor="@android:color/black"
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/tvcompany"
+        android:id="@+id/tvCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvBookingDetails"
@@ -30,69 +30,66 @@
         android:text="Company" />
 
     <TextView
-        android:id="@+id/txtcompany"
+        android:id="@+id/tvCompanyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvBookingDetails"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Info Tech Cleaning Company" />
+        android:fontFamily="@font/roboto_regular" />
 
     <TextView
-        android:id="@+id/tvemail"
+        android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvcompany"
+        android:layout_below="@+id/tvCompany"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Email Address" />
 
     <TextView
-        android:id="@+id/txtemail"
+        android:id="@+id/tvEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtcompany"
+        android:layout_below="@id/tvCompanyName"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="DustnShine@gmail.com" />
+        android:fontFamily="@font/roboto_regular"/>
 
     <TextView
-        android:id="@+id/tvtelnum"
+        android:id="@+id/tvTel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvemail"
+        android:layout_below="@+id/tvEmail"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Tel Number" />
 
     <TextView
-        android:id="@+id/txttelnum"
+        android:id="@+id/tvTelNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtemail"
+        android:layout_below="@id/tvEmailAddress"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="0912379232" />
+        android:fontFamily="@font/roboto_regular" />
 
     <View
         android:id="@+id/line"
         android:layout_width="350dp"
         android:layout_height="1dp"
-        android:layout_below="@+id/txttelnum"
+        android:layout_below="@+id/tvTelNum"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:background="@android:color/black" />
 
     <TextView
-        android:id="@+id/tvpaymentstatus"
+        android:id="@+id/tvPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/line"
@@ -102,126 +99,120 @@
         android:text="Payment Status" />
 
     <TextView
-        android:id="@+id/txtpaymentstatus"
+        android:id="@+id/tvPaymentStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/line"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Payment Status Acknowledge" />
+        android:fontFamily="@font/roboto_regular" />
 
     <TextView
         android:id="@+id/tvSched"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvpaymentstatus"
+        android:layout_below="@+id/tvPayment"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Date and Time" />
 
     <TextView
-        android:id="@+id/txtSched"
+        android:id="@+id/tvSchedDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtpaymentstatus"
+        android:layout_below="@id/tvPaymentStatus"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="2022-03-29 / 8:00am" />
+        android:fontFamily="@font/roboto_regular" />
 
     <TextView
-        android:id="@+id/tvServices"
+        android:id="@+id/tvService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvSched"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_regular"
-        android:text="Services" />
+        android:text="@string/services" />
 
     <TextView
-        android:id="@+id/txtServices"
+        android:id="@+id/tvServices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtSched"
+        android:layout_below="@id/tvSchedDateTime"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="General Cleaning" />
+        android:fontFamily="@font/roboto_regular" />
 
     <TextView
-        android:id="@+id/tvnote"
+        android:id="@+id/tvNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvServices"
+        android:layout_below="@+id/tvService"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Note" />
 
     <TextView
-        android:id="@+id/txtnote"
+        android:id="@+id/tvNotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtServices"
+        android:layout_below="@id/tvServices"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="General Cleaning" />
+        android:fontFamily="@font/roboto_regular" />
 
     <TextView
-        android:id="@+id/tvcom"
+        android:id="@+id/tvComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvnote"
+        android:layout_below="@+id/tvNote"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Comment" />
 
     <TextView
-        android:id="@+id/txtcom"
+        android:id="@+id/tvComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtnote"
+        android:layout_below="@id/tvNote"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Great Job" />
+        android:fontFamily="@font/roboto_regular" />
 
     <TextView
-        android:id="@+id/tvtotal"
+        android:id="@+id/tvTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvcom"
+        android:layout_below="@+id/tvComment"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Total" />
 
     <TextView
-        android:id="@+id/txttotal"
+        android:id="@+id/tvTotalCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtcom"
+        android:layout_below="@id/tvComments"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Php 2500" />
+        android:fontFamily="@font/roboto_regular" />
 
     <View
         android:id="@+id/secline"
         android:layout_width="350dp"
         android:layout_height="1dp"
-        android:layout_below="@+id/tvtotal"
+        android:layout_below="@+id/tvTotal"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:background="@android:color/black" />
@@ -231,11 +222,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/secline"
+        android:layout_marginTop="10dp"
         android:background="@color/app_theme_blue"
         android:fontFamily="@font/montserrat_regular"
         android:stateListAnimator="@null"
         android:text="@string/okay"
-
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="15sp"
