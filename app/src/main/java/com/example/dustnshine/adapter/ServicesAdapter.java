@@ -47,16 +47,6 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         notifyDataSetChanged();
     }
 
-//    public ServicesAdapter(List<ServicesModel> servicesModelList, Context context, QuantityListener quantityListener) {
-//        this.servicesModelList = servicesModelList;
-//        this.context = context;
-//        this.quantityListener = quantityListener;
-//    }
-//
-//    public void setData(List<ServicesModel> servicesModelList) {
-//        this.servicesModelList = servicesModelList;
-//        notifyDataSetChanged();
-//    }
 
     @NonNull
     @Override
@@ -73,12 +63,20 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder holder, int position) {
         int itemPosition = position;
 
+
         holder.serviceTitle.setText(companyAndServicesModel.getServices().get(position).getName());
         holder.servicePrice.setText(companyAndServicesModel.getServices().get(position).getDescription());
         holder.serviceDetails.setText(String.valueOf(companyAndServicesModel.getServices().get(position).getPrice()) + "/" + companyAndServicesModel.getServices().get(position).getTime() + "hr");
         holder.quantity.setText(String.valueOf(counter));
 
         if (Integer.valueOf(holder.quantity.getText().toString()).equals(0)) {
+
+        holder.serviceTitle.setText(servicesModelList.get(position).getName());
+        holder.servicePrice.setText(servicesModelList.get(position).getDescription());
+        holder.serviceDetails1.setText(String.valueOf(servicesModelList.get(position).getPrice()) + "/" + servicesModelList.get(position).getTime() + "hr");
+        holder.Quantity.setText(String.valueOf(counter));
+
+        if(Integer.valueOf(holder.Quantity.getText().toString()).equals(0)){
             holder.cbItem.setEnabled(false);
         } else {
             holder.cbItem.setEnabled(true);
@@ -87,6 +85,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         holder.Plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                holder.Minus.setEnabled(true);
                 holder.cbItem.setEnabled(true);
                 counter++;
                 holder.quantity.setText(String.valueOf(counter));
@@ -97,13 +96,26 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         holder.Minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (Integer.valueOf(holder.quantity.getText().toString()).equals(0)) {
+
+                if(Integer.valueOf(holder.Quantity.getText().toString()).equals(0)){
+                    Log.d("d", holder.Quantity.getText().toString());
+                    holder.Minus.setEnabled(false);
                     holder.cbItem.setEnabled(false);
                     Log.d("CB", String.valueOf(counter));
                 } else {
                     counter--;
                     holder.quantity.setText(String.valueOf(counter));
                     Log.d("COUNTER", String.valueOf(counter));
+
+                    holder.Quantity.setText(String.valueOf(counter));
+                    if(Integer.valueOf(holder.Quantity.getText().toString()).equals(0)){
+                        Log.d("d", holder.Quantity.getText().toString());
+                        holder.Minus.setEnabled(false);
+                        holder.cbItem.setEnabled(false);
+                    }
+
                 }
             }
         });
