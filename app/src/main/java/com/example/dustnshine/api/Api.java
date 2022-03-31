@@ -6,8 +6,10 @@ import com.example.dustnshine.response.BookingServiceResponse;
 import com.example.dustnshine.response.ChangePasswordResponse;
 import com.example.dustnshine.response.CompanyAndServiceResponse;
 import com.example.dustnshine.response.CompanyResponse;
+import com.example.dustnshine.response.ForgotPasswordResponse;
 import com.example.dustnshine.response.NotificationResponse;
 import com.example.dustnshine.response.RecommendedCompaniesResponse;
+import com.example.dustnshine.response.ResetPasswordResponse;
 import com.example.dustnshine.response.ReviewResponse;
 import com.example.dustnshine.response.FilteredServiceResponse;
 import com.example.dustnshine.response.LogoutResponse;
@@ -17,9 +19,7 @@ import com.example.dustnshine.response.SignUpResponse;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.response.UserManagementResponse;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -108,9 +108,23 @@ public interface Api {
             @Field("rating") double rating
     );
 
-    @GET("companies/{keyword}")
-    Call<CompanyAndServiceResponse> getSpecificCompany(@Path("keyword") int keyword, @Header("Authorization") String searchCompanyRequest);
+    @FormUrlEncoded
+    @POST("forgot-password")
+    Call<ForgotPasswordResponse> forgotPassword(
+            @Field("email") String email
+    );
 
+    @FormUrlEncoded
+    @POST("reset-password")
+    Call<ResetPasswordResponse> resetPassword(
+            @Field("token") String token,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("password_confirmation") String password_confirmation
+    );
+
+    @GET("companies/{company_id}")
+    Call<CompanyAndServiceResponse> getSpecificCompany(@Path("company_id") int company_id, @Header("Authorization") String searchCompanyRequest);
 
     @GET("companies")
     Call<CompanyResponse> getCompanies(@Header("Authorization") String companyRequest);

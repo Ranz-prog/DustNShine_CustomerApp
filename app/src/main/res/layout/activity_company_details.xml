@@ -260,7 +260,7 @@
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/txtExtraServices"
+                    android:id="@+id/tvExtraServices"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvServices"
@@ -275,11 +275,31 @@
                     android:id="@+id/rvServices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/txtExtraServices"
+                    android:layout_below="@id/tvExtraServices"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp" />
+
+                <ImageView
+                    android:id="@+id/imgNoData"
+                    android:layout_width="300dp"
+                    android:layout_height="250dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="15dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/no_data"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvNoData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgNoData"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:text="@string/noservices"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 

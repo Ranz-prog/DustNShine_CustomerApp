@@ -45,28 +45,28 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/star"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:layout_below="@id/txtCompanyName"
-                android:layout_marginStart="170dp"
-                android:layout_marginLeft="164dp"
-                android:layout_marginTop="2dp"
-                android:layout_toRightOf="@id/txtCompanyAddress"
-                app:srcCompat="@drawable/star" />
+<!--            <ImageView-->
+<!--                android:id="@+id/star"-->
+<!--                android:layout_width="20sp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_below="@id/txtCompanyName"-->
+<!--                android:layout_marginStart="170dp"-->
+<!--                android:layout_marginLeft="164dp"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:layout_toRightOf="@id/txtCompanyAddress"-->
+<!--                app:srcCompat="@drawable/star" />-->
 
-            <TextView
-                android:id="@+id/ratingFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtCompanyName"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp"
-                android:layout_toRightOf="@id/star"
-                android:text="Rating"
-                android:textColor="@color/white" />
+<!--            <TextView-->
+<!--                android:id="@+id/ratingFavorite"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/txtCompanyName"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:layout_marginLeft="5dp"-->
+<!--                android:layout_marginTop="3dp"-->
+<!--                android:layout_toRightOf="@id/star"-->
+<!--                android:text="Rating"-->
+<!--                android:textColor="@color/white" />-->
 
         </RelativeLayout>
 

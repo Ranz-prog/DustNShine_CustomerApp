@@ -94,12 +94,13 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
             @Override
             public void onChanged(CompanyAndServicesModel companyAndServicesModel) {
                 if (companyAndServicesModel == null) {
-                    Log.d("D", " Nagana");
+
                 }else{
                     companyAndServicesModels = companyAndServicesModel;
                     companyFullname = companyAndServicesModel.getName();
                     companyEmailAddress = companyAndServicesModel.getEmail();
                     companyTelephoneNumber = companyAndServicesModel.getTel_number();
+                    Log.d("D", companyFullname);
                 }
 
             }
@@ -129,6 +130,8 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
 
         comment.setVisibility(View.GONE);
         comments.setVisibility(View.GONE);
+
+        Log.d("COMPANY", String.valueOf(companyFullname));
 
         if (String.valueOf(companyFullname) == "null"){
             getSpecificCompany(bookingServiceData.getCompany_id(), userToken);

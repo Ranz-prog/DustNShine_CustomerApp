@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,13 +14,13 @@ import com.example.dustnshine.models.RecommendationModel;
 
 import java.util.List;
 
-public class GarageCleaningAdapter extends RecyclerView.Adapter<GarageCleaningAdapter.ViewHolder> {
+public class CompanyServicesAdapter extends RecyclerView.Adapter<CompanyServicesAdapter.ViewHolder> {
 
     List<RecommendationModel> companyList;
     private Context context;
     private GeneralCleaningAdapter.OnClickMessageListener onClickMessageListener;
 
-    public GarageCleaningAdapter(List<RecommendationModel> companyList, Context context, GeneralCleaningAdapter.OnClickMessageListener onClickMessageListener) {
+    public CompanyServicesAdapter(List<RecommendationModel> companyList, Context context, GeneralCleaningAdapter.OnClickMessageListener onClickMessageListener) {
         this.companyList = companyList;
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;
@@ -36,7 +35,7 @@ public class GarageCleaningAdapter extends RecyclerView.Adapter<GarageCleaningAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_company, parent, false);
-        GarageCleaningAdapter.ViewHolder viewHolder = new GarageCleaningAdapter.ViewHolder(view, onClickMessageListener);
+        CompanyServicesAdapter.ViewHolder viewHolder = new CompanyServicesAdapter.ViewHolder(view, onClickMessageListener);
 
         return viewHolder;
     }

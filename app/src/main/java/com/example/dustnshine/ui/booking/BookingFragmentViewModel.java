@@ -20,16 +20,16 @@ public class BookingFragmentViewModel extends ViewModel {
         bookingAPIService = new BookingAPIService();
     }
 
-    public LiveData<List<BookingServiceData>> getBookedServices(String userToken){
+    public LiveData<List<BookingServiceData>> getBookedServices(String userToken) {
         if (bookedServiceList == null) {
             bookedServiceList = bookingAPIService.getBookedServices(userToken);
         }
         return bookedServiceList;
     }
 
-    public LiveData<CompanyAndServicesModel> getSpecificCompany( int companyId,String userToken){
+    public LiveData<CompanyAndServicesModel> getSpecificCompany(int companyId, String userToken) {
         if (companyAndServicesModelMutableLiveData == null) {
-            companyAndServicesModelMutableLiveData = bookingAPIService.getSpecificCompany(companyId ,userToken);
+            companyAndServicesModelMutableLiveData = bookingAPIService.getSpecificCompany(companyId, userToken);
         }
         return companyAndServicesModelMutableLiveData;
     }

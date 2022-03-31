@@ -24,15 +24,13 @@ import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.models.ServicesModel;
 import com.example.dustnshine.response.UserManagementResponse;
 import com.example.dustnshine.storage.SharedPrefManager;
-import com.example.dustnshine.ui.garage_cleaning.GarageCleaningActivity;
-import com.example.dustnshine.ui.general_cleaning.GeneralCleaningActivity;
+import com.example.dustnshine.ui.featured_services.FeaturedServicesActivity;
 import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 import com.example.dustnshine.ui.manage_account.ManageAccountActivity;
 import com.example.dustnshine.ui.notification.NotificationActivity;
 import com.example.dustnshine.ui.recommendations.SeeAllRecommendationsActivity;
 
 import java.util.List;
-
 
 public class HomeFragment extends Fragment implements RecommendationAdapter.OnClickMessageListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -99,18 +97,13 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
         fragmentHomeBinding.gvFeaturedServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (position == 0){
-                    Intent intent = new Intent(getContext(), GeneralCleaningActivity.class);
-                    startActivity(intent);
-                } else if (position == 2){
-                    Intent intent = new Intent(getContext(), GarageCleaningActivity.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getContext(), FeaturedServicesActivity.class);
+                intent.putExtra("SERVICE_ID", servicesModelList.get(position).getId());
+                intent.putExtra("SERVICE_NAME", servicesModelList.get(position).getName());
+                startActivity(intent);
             }
         });
-
         return view;
-
     }
 
     private void getRecommendedCompanyList(String userToken){

@@ -1,4 +1,4 @@
-package com.example.dustnshine.ui.garage_cleaning;
+package com.example.dustnshine.ui.featured_services;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,11 +9,11 @@ import com.example.dustnshine.service.BookingAPIService;
 
 import java.util.List;
 
-public class GarageCleaningViewModel extends ViewModel {
+public class FeaturedServicesViewModel extends ViewModel {
     private MutableLiveData<List<RecommendationModel>> companyList;
     private BookingAPIService bookingAPIService;
 
-    public GarageCleaningViewModel() {
+    public FeaturedServicesViewModel() {
         bookingAPIService = new BookingAPIService();
     }
 

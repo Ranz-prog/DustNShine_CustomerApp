@@ -51,7 +51,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
 
         holder.customerName.setText(bookingServiceData.get(position).getServices().toString().replaceAll("(^\\[|\\]$)", ""));
         holder.customerLoc.setText(bookingServiceData.get(position).getSched_datetime());
-        holder.customerNum.setText("Php "+String.valueOf(bookingServiceData.get(position).getTotal()));
+        holder.customerNum.setText("₱ "+String.valueOf(bookingServiceData.get(position).getTotal()));
 
     }
 

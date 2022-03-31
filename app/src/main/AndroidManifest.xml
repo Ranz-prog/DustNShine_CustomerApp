@@ -22,7 +22,7 @@
             android:name=".ui.TimeAndDateActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.garage_cleaning.GarageCleaningActivity"
+            android:name=".ui.featured_services.FeaturedServicesActivity"
             android:exported="false" />
         <activity
             android:name=".ui.general_cleaning.GeneralCleaningActivity"
@@ -58,7 +58,7 @@
             android:name=".ui.SearchEmailActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.ForgetPasswordActivity"
+            android:name=".ui.forgot_password.ForgotPasswordActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

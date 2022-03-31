@@ -18,7 +18,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/serviceTitleTv"
+                android:id="@+id/tvServiceName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -28,35 +28,23 @@
                 android:textSize="17sp" />
 
             <TextView
-                android:id="@+id/servicePriceTv"
+                android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/serviceTitleTv"
+                android:layout_below="@+id/tvServiceName"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Lorem ipsum lorem ipsum"
                 android:textColor="@color/app_theme_gold"
                 android:textSize="14sp" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/description1Tv"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/servicePriceTv"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:textSize="15sp" />-->
-<!--                android:fontFamily="@font/roboto_regular"-->
-<!--                android:text="Lorem ipsum lorem ipsum"-->
-<!--                android:textSize="14sp" />-->
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/servicePriceTv">
+                android:layout_below="@+id/tvDescription">
 
                 <TextView
-                    android:id="@+id/contactNumber"
+                    android:id="@+id/tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -66,28 +54,14 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tvDescription"
+                    android:id="@+id/tvPriceHour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/contactNumber"
+                    android:layout_toRightOf="@+id/tvPrice"
                     android:textSize="15sp" />
             </RelativeLayout>
-
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/description2Tv"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/tvDescription"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:textSize="15sp" />-->
-<!--                android:fontFamily="@font/roboto_regular"-->
-<!--                android:text="Lorem ipsum lorem ipsum"-->
-<!--                android:textSize="14sp" />-->
 
             <CheckBox
                 android:id="@+id/cbItem"
@@ -95,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/countertxt"
                 android:layout_alignParentEnd="true"
+                android:layout_marginEnd="3dp"
                 android:buttonTint="@color/app_theme_blue" />
 
             <ImageView

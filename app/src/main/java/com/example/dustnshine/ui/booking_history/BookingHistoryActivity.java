@@ -84,12 +84,13 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
             @Override
             public void onChanged(CompanyAndServicesModel companyAndServicesModel) {
                 if (companyAndServicesModel == null) {
-                    Log.d("D", " Nagana");
+
                 }else{
                     companyAndServicesModels = companyAndServicesModel;
                     companyFullname = companyAndServicesModel.getName();
                     companyEmailAddress = companyAndServicesModel.getEmail();
                     companyTelephoneNumber = companyAndServicesModel.getTel_number();
+
                 }
 
             }
@@ -140,7 +141,6 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
                 dialog.dismiss();
             }
         });
-
 
         dialogBuilder.setView(searchPopUp);
         dialog = dialogBuilder.create();

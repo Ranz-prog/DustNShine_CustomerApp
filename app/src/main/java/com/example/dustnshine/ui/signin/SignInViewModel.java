@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.dustnshine.ForgotPasswordCallback;
 import com.example.dustnshine.SignInCallback;
 import com.example.dustnshine.api.RetrofitClient;
+import com.example.dustnshine.response.ForgotPasswordResponse;
 import com.example.dustnshine.response.SignInResponse;
 import com.example.dustnshine.service.UserAPIService;
 import com.example.dustnshine.response.UserManagementResponse;
@@ -20,19 +22,12 @@ public class SignInViewModel extends ViewModel {
 
     private UserAPIService userAPIService;
     private SignInCallback signInCallback;
-    //    private MutableLiveData<SignInResponse> signInResponseMutableLiveData;
+    private ForgotPasswordCallback forgotPasswordCallback;
     private MutableLiveData<UserManagementResponse> userManagementResponseMutableLiveData;
 
     public SignInViewModel() {
         userAPIService = new UserAPIService();
     }
-//
-//    public LiveData<SignInResponse> getSignInRequest(String email, String password){
-//        if (signInResponseMutableLiveData == null) {
-//            signInResponseMutableLiveData = userAPIRepo.signInRequest(email, password);
-//        }
-//        return signInResponseMutableLiveData;
-//    }
 
     public void getSignInRequest(String email, String password){
         Call<SignInResponse> signInResponseCall = RetrofitClient.getInstance().getApi().userSignIn(email, password);
@@ -49,6 +44,25 @@ public class SignInViewModel extends ViewModel {
         });
     }
 
+    public void forgotPasswordRequest(String email){
+        Call<ForgotPasswordResponse> forgotPasswordResponseCall = RetrofitClient.getInstance().getApi().forgotPassword(email);
+        forgotPasswordResponseCall.enqueue(new Callback<ForgotPasswordResponse>() {
+            @Override
+            public void onResponse(Call<ForgotPasswordResponse> call, Response<ForgotPasswordResponse> response) {
+                forgotPasswordCallback.forgotPasswordCallback(response.code(), response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ForgotPasswordResponse> call, Throwable t) {
+                Log.d("FAILURE", "Failure to connect");
+            }
+        });
+    }
+
+    public void setOnForgotPasswordListener(ForgotPasswordCallback forgotpasswordCallback){
+        forgotPasswordCallback = forgotpasswordCallback;
+    }
+
     public void setOnSignInListener(SignInCallback signinCallback){
         signInCallback = signinCallback;
     }
@@ -59,4 +73,5 @@ public class SignInViewModel extends ViewModel {
         }
         return userManagementResponseMutableLiveData;
     }
+
 }
