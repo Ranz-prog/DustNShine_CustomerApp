@@ -112,48 +112,57 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
 
         BookingServiceData bookingServiceData = bookingServiceDataList.get(adapterPosition);
         getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
-        dialogBuilder = new AlertDialog.Builder(getContext());
-        final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_booking_details, null);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                dialogBuilder = new AlertDialog.Builder(getContext());
+                final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_booking_details, null);
 
-        btnOkay = searchPopUp.findViewById(R.id.btnOkay);
-        companyName = searchPopUp.findViewById(R.id.tvCompanyName);
-        companyEmail = searchPopUp.findViewById(R.id.tvEmailAddress);
-        companyNumber = searchPopUp.findViewById(R.id.tvTelNum);
-        paymentStatus = searchPopUp.findViewById(R.id.tvPaymentStatus);
-        dateAndTime = searchPopUp.findViewById(R.id.tvSchedDateTime);
-        services = searchPopUp.findViewById(R.id.tvServices);
-        notes = searchPopUp.findViewById(R.id.tvNotes);
-        comment = searchPopUp.findViewById(R.id.tvComment);
-        comments = searchPopUp.findViewById(R.id.tvComments);
-        total = searchPopUp.findViewById(R.id.tvTotalCost);
+                btnOkay = searchPopUp.findViewById(R.id.btnOkay);
+                companyName = searchPopUp.findViewById(R.id.tvCompanyName);
+                companyEmail = searchPopUp.findViewById(R.id.tvEmailAddress);
+                companyNumber = searchPopUp.findViewById(R.id.tvTelNum);
+                paymentStatus = searchPopUp.findViewById(R.id.tvPaymentStatus);
+                dateAndTime = searchPopUp.findViewById(R.id.tvSchedDateTime);
+                services = searchPopUp.findViewById(R.id.tvServices);
+                notes = searchPopUp.findViewById(R.id.tvNotes);
+                comment = searchPopUp.findViewById(R.id.tvComment);
+                comments = searchPopUp.findViewById(R.id.tvComments);
+                total = searchPopUp.findViewById(R.id.tvTotalCost);
 
-        comment.setVisibility(View.GONE);
-        comments.setVisibility(View.GONE);
+                comment.setText("");
+                comments.setText("");
 
-        if (String.valueOf(companyFullname) == "null"){
-            getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
-        } else {
-            companyName.setText(String.valueOf(companyFullname));
-            companyEmail.setText(String.valueOf(companyEmailAddress));
-            companyNumber.setText(String.valueOf(companyTelephoneNumber));
-        }
+                Log.d("D", String.valueOf(companyFullname));
 
-        paymentStatus.setText("Not yet paid");
-        dateAndTime.setText(bookingServiceData.getSched_datetime());
-        services.setText(bookingServiceData.getServices().toString().replaceAll("(^\\[|\\]$)", ""));
-        notes.setText(bookingServiceData.getNote());
-        total.setText("₱ " + String.valueOf(bookingServiceData.getTotal()));
+                if (String.valueOf(companyFullname) == "null"){
+                    getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
+                } else {
+                    companyName.setText(String.valueOf(companyFullname));
+                    companyEmail.setText(String.valueOf(companyEmailAddress));
+                    companyNumber.setText(String.valueOf(companyTelephoneNumber));
+                }
 
-        btnOkay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+                paymentStatus.setText("Not yet paid");
+                dateAndTime.setText(bookingServiceData.getSched_datetime());
+                services.setText(bookingServiceData.getServices().toString().replaceAll("(^\\[|\\]$)", ""));
+                notes.setText(bookingServiceData.getNote());
+                total.setText("₱ " + String.valueOf(bookingServiceData.getTotal()));
+
+                btnOkay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialogBuilder.setView(searchPopUp);
+                dialog = dialogBuilder.create();
+                dialog.show();
             }
-        });
+        }, 150);   //5 seconds
 
-        dialogBuilder.setView(searchPopUp);
-        dialog = dialogBuilder.create();
-        dialog.show();
+
 
     }
 

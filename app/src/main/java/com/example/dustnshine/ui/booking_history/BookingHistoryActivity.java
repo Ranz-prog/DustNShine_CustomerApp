@@ -1,6 +1,7 @@
 package com.example.dustnshine.ui.booking_history;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -102,49 +103,54 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
 
         BookingHistoryModel bookingHistoryModel = bookingHistoryModelList.get(adapterPosition);
         getSpecificCompany(bookingHistoryModel.getCompany_id(), userToken);
-
         dialogBuilder = new AlertDialog.Builder(this);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_booking_details, null);
 
-        final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_booking_details, null);
+                Button okay = searchPopUp.findViewById(R.id.btnOkay);
 
-        Button okay = searchPopUp.findViewById(R.id.btnOkay);
+                companyName = searchPopUp.findViewById(R.id.tvCompanyName);
+                companyEmail = searchPopUp.findViewById(R.id.tvEmailAddress);
+                companyNumber = searchPopUp.findViewById(R.id.tvTelNum);
+                paymentStatus = searchPopUp.findViewById(R.id.tvPaymentStatus);
+                dateAndTime = searchPopUp.findViewById(R.id.tvSchedDateTime);
+                services = searchPopUp.findViewById(R.id.tvServices);
+                notes = searchPopUp.findViewById(R.id.tvNotes);
+                comment = searchPopUp.findViewById(R.id.tvComments);
+                total = searchPopUp.findViewById(R.id.tvTotalCost);
 
-        companyName = searchPopUp.findViewById(R.id.tvCompanyName);
-        companyEmail = searchPopUp.findViewById(R.id.tvEmailAddress);
-        companyNumber = searchPopUp.findViewById(R.id.tvTelNum);
-        paymentStatus = searchPopUp.findViewById(R.id.tvPaymentStatus);
-        dateAndTime = searchPopUp.findViewById(R.id.tvSchedDateTime);
-        services = searchPopUp.findViewById(R.id.tvServices);
-        notes = searchPopUp.findViewById(R.id.tvNotes);
-        comment = searchPopUp.findViewById(R.id.tvComments);
-        total = searchPopUp.findViewById(R.id.tvTotalCost);
+                if (String.valueOf(companyFullname) == "null"){
+                    getSpecificCompany(bookingHistoryModel.getCompany_id(), userToken);
+                } else {
+                    companyName.setText(String.valueOf(companyFullname));
+                    companyEmail.setText(String.valueOf(companyEmailAddress));
+                    companyNumber.setText(String.valueOf(companyTelephoneNumber));
+                }
 
-        if (String.valueOf(companyFullname) == "null"){
-            getSpecificCompany(bookingHistoryModel.getCompany_id(), userToken);
-        } else {
-            companyName.setText(String.valueOf(companyFullname));
-            companyEmail.setText(String.valueOf(companyEmailAddress));
-            companyNumber.setText(String.valueOf(companyTelephoneNumber));
-        }
+                paymentStatus.setText("Payment Acknowledged");
+                comment.setText(bookingHistoryModel.getReviews().get(0).getComment());
+                dateAndTime.setText(bookingHistoryModel.getSched_datetime());
+                services.setText(bookingHistoryModel.getServices().toString().replaceAll("(^\\[|\\]$)", ""));
+                notes.setText(bookingHistoryModel.getNote());
+                total.setText("₱ " + bookingHistoryModel.getTotal());
 
-        paymentStatus.setText("Payment Acknowledged");
-        comment.setText(bookingHistoryModel.getReviews().get(0).getComment());
-        dateAndTime.setText(bookingHistoryModel.getSched_datetime());
-        services.setText(bookingHistoryModel.getServices().toString().replaceAll("(^\\[|\\]$)", ""));
-        notes.setText(bookingHistoryModel.getNote());
-        total.setText("₱ " + bookingHistoryModel.getTotal());
+                okay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
 
-        okay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+
+                dialogBuilder.setView(searchPopUp);
+                dialog = dialogBuilder.create();
+                dialog.show();
             }
-        });
+        }, 150);
 
 
-        dialogBuilder.setView(searchPopUp);
-        dialog = dialogBuilder.create();
-        dialog.show();
 
     }
 
