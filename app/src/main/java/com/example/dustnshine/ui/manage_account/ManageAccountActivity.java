@@ -102,16 +102,16 @@ public class ManageAccountActivity extends AppCompatActivity {
             }
         });
 
-        activityManageAccountBinding.btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TransitionManager.beginDelayedTransition(personalInfoCardView, new AutoTransition());
-                personalInfoView.setVisibility(View.GONE);
-                activityManageAccountBinding.btnEditDetails.setEnabled(true);
-                activityManageAccountBinding.btnSaveDetails.setEnabled(false);
-                disabled();
-            }
-        });
+//        activityManageAccountBinding.btnCancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                TransitionManager.beginDelayedTransition(personalInfoCardView, new AutoTransition());
+//                personalInfoView.setVisibility(View.GONE);
+//                activityManageAccountBinding.btnEditDetails.setEnabled(true);
+//                activityManageAccountBinding.btnSaveDetails.setEnabled(false);
+//                disabled();
+//            }
+//        });
 
         activityManageAccountBinding.btnEditDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +125,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         activityManageAccountBinding.btnSaveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 firstName = activityManageAccountBinding.etFirstName.getText().toString();
                 lastName = activityManageAccountBinding.etLastName.getText().toString();
                 mobileNumber = activityManageAccountBinding.etMobileNumber.getText().toString();
@@ -223,8 +224,8 @@ public class ManageAccountActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             changePassword.getWindow().setBackgroundDrawable(getDrawable(R.drawable.pop_up_background));
         }
-        changePassword.setCancelable(false); //Optional para lang d mag close pag clinick ang labas
-        changePassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+        changePassword.setCancelable(false);
+        changePassword.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
         btnCancel = changePassword.findViewById(R.id.cancelNewPassword);
         btnSave = changePassword.findViewById(R.id.saveNewPassword);
@@ -302,9 +303,9 @@ public class ManageAccountActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
-                        }, 1000);
+                        }, 2000);
                     } else {
-                        Log.d("TAG", "Invalid Request");
+
                     }
             }
         });
@@ -315,7 +316,7 @@ public class ManageAccountActivity extends AppCompatActivity {
             @Override
             public void onChanged(UserManagementResponse userManagementResponse) {
                 if(userManagementResponse == null) {
-                    Log.d("TAG", "Invalid Request");
+
                 } else if(userManagementResponse.getData().get(0).getAddress() == null) {
                     userID = userManagementResponse.getData().get(0).getId();
                     activityManageAccountBinding.etFirstName.setText(userManagementResponse.getData().get(0).getFirst_name());
@@ -354,7 +355,6 @@ public class ManageAccountActivity extends AppCompatActivity {
                 if(userManagementResponse == null){
                     AppConstants.alertMessage(0, R.drawable.ic_error_2, "Failed!", "Try Again", ManageAccountActivity.this, ManageAccountActivity.class, "VISIBLE");
                 } else {
-                    Log.d("SUCCESS", "SUCCESS");
                     AppConstants.alertMessage(0, R.drawable.check, "Success!", "Thank you. You have successfully changed your information!", ManageAccountActivity.this, ManageAccountActivity.class, "VISIBLE");
                     activityManageAccountBinding.btnEditDetails.setEnabled(true);
                     activityManageAccountBinding.btnSaveDetails.setEnabled(false);
@@ -373,7 +373,7 @@ public class ManageAccountActivity extends AppCompatActivity {
                     changePassword.dismiss();
                 } else {
                     changePassword.dismiss();
-                    AppConstants.alertMessage(0, R.drawable.check, "Success!", "Successfully changed. Session expired, please sign in again...", ManageAccountActivity.this, SignInActivity.class, "GONE");
+                    AppConstants.successMessage(R.drawable.check, "Success!", "Successfully changed. Session expired, please sign in again...", ManageAccountActivity.this);
                     logOutUser();
                 }
             }

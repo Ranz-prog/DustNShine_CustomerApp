@@ -12,7 +12,6 @@ import android.view.View;
 
 import com.example.dustnshine.R;
 import com.example.dustnshine.adapter.CompanyServicesAdapter;
-import com.example.dustnshine.adapter.GeneralCleaningAdapter;
 import com.example.dustnshine.databinding.ActivityFeaturedServicesBinding;
 import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.storage.SharedPrefManager;
@@ -20,7 +19,7 @@ import com.example.dustnshine.ui.company_details.CompanyDetailsActivity;
 
 import java.util.List;
 
-public class FeaturedServicesActivity extends AppCompatActivity implements GeneralCleaningAdapter.OnClickMessageListener {
+public class FeaturedServicesActivity extends AppCompatActivity implements CompanyServicesAdapter.OnClickMessageListener {
 
     private CompanyServicesAdapter companyServicesAdapter;
     private static List<RecommendationModel> companyList;

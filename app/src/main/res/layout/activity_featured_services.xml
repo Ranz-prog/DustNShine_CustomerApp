@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgNoData"
             android:layout_centerInParent="true"
-            android:text="@string/somethingwentwrong"
+            android:text="@string/nocompanies"
             android:visibility="gone"/>
 
     </RelativeLayout>

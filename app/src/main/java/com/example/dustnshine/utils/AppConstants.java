@@ -87,6 +87,41 @@ public final class AppConstants {
                 }
             });
         }
+    }
+
+    public static void successMessage( Integer image, String title, String message, Context context){
+
+        Dialog showMessage;
+        ImageView imgAlert;
+        TextView tvTitle, tvMessage;
+        Button btnOkay;
+
+        showMessage = new Dialog(context);
+        showMessage.setContentView(R.layout.pop_up_reference);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            showMessage.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.pop_up_background));
+        }
+        showMessage.setCancelable(false);
+        showMessage.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        imgAlert = showMessage.findViewById(R.id.imgAlert);
+        tvTitle = showMessage.findViewById(R.id.tvTitle);
+        tvMessage = showMessage.findViewById(R.id.tvMessage);
+        btnOkay = showMessage.findViewById(R.id.btnOkay);
+
+        imgAlert.setImageResource(image);
+        tvTitle.setText(title);
+        tvMessage.setText(message);
+        btnOkay.setVisibility(View.GONE);
+
+        showMessage.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showMessage.dismiss();
+            }
+        }, 1000);
 
     }
 

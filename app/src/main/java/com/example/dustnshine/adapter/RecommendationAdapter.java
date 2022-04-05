@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.dustnshine.models.RecommendationModel;
 import com.example.dustnshine.R;
 import com.example.dustnshine.models.RecommendedCompaniesModel;
 import com.example.dustnshine.utils.AppConstants;
@@ -23,7 +22,6 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
     private List<RecommendedCompaniesModel> recommendedCompaniesModelList;
     private Context context;
     private RecommendationAdapter.OnClickMessageListener onClickMessageListener;
-    private AppConstants appConstants;
 
     public RecommendationAdapter(List<RecommendedCompaniesModel> recommendedCompaniesModelList, Context context, OnClickMessageListener onClickMessageListener) {
         this.recommendedCompaniesModelList = recommendedCompaniesModelList;
@@ -47,7 +45,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
     @Override
     public void onBindViewHolder(@NonNull RecommendationAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load(appConstants.BASE_URL + recommendedCompaniesModelList.get(position).getCompany().getCompany_image()).into(holder.imgCompanyImage);
+        Glide.with(context).load(AppConstants.BASE_URL + recommendedCompaniesModelList.get(position).getCompany().getCompany_image()).into(holder.imgCompanyImage);
         holder.tvCompanyName.setText(recommendedCompaniesModelList.get(position).getCompany().getName());
         holder.tvCompanyLocation.setText(recommendedCompaniesModelList.get(position).getCompany().getAddress());
         holder.tvCompanyRating.setText(String.valueOf(recommendedCompaniesModelList.get(position).getRating()));

@@ -14,7 +14,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.dustnshine.R;
@@ -91,7 +90,6 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
                     companyFullname = companyAndServicesModel.getName();
                     companyEmailAddress = companyAndServicesModel.getEmail();
                     companyTelephoneNumber = companyAndServicesModel.getTel_number();
-
                 }
 
             }
@@ -149,11 +147,9 @@ public class BookingHistoryActivity extends AppCompatActivity implements Booking
                 dialog = dialogBuilder.create();
                 dialog.show();
             }
-        }, 150);
+        }, 500);
 
-        dialogBuilder.setView(searchPopUp);
-        dialog = dialogBuilder.create();
-        dialog.show();
+
 
     }
 

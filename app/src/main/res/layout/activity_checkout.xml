@@ -19,7 +19,6 @@
             android:scaleType="fitXY"
             android:src="@drawable/checkout" />
 
-
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="24dp"
@@ -253,27 +252,35 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp">
 
-                    <ImageView
-                        android:id="@+id/bank"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="20dp" />
-
-                    <TextView
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/layoutCash"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/bank"
-                        android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Credit/ Debit Card"
-                        android:textSize="12sp" />
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/bank"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/money" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/cash"
+                            android:textSize="15sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="30dp"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/changemethod"
                         android:textSize="12sp" />

@@ -4,13 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.dustnshine.R;
 import com.example.dustnshine.models.RecommendationModel;
+import com.example.dustnshine.utils.AppConstants;
 
 import java.util.List;
 
@@ -18,9 +21,9 @@ public class CompanyServicesAdapter extends RecyclerView.Adapter<CompanyServices
 
     List<RecommendationModel> companyList;
     private Context context;
-    private GeneralCleaningAdapter.OnClickMessageListener onClickMessageListener;
+    private CompanyServicesAdapter.OnClickMessageListener onClickMessageListener;
 
-    public CompanyServicesAdapter(List<RecommendationModel> companyList, Context context, GeneralCleaningAdapter.OnClickMessageListener onClickMessageListener) {
+    public CompanyServicesAdapter(List<RecommendationModel> companyList, Context context, CompanyServicesAdapter.OnClickMessageListener onClickMessageListener) {
         this.companyList = companyList;
         this.context = context;
         this.onClickMessageListener = onClickMessageListener;
@@ -42,6 +45,7 @@ public class CompanyServicesAdapter extends RecyclerView.Adapter<CompanyServices
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Glide.with(context).load(AppConstants.BASE_URL + companyList.get(position).getCompany_image()).into(holder.imgCompanyImage);
         holder.txtCompanyName.setText(companyList.get(position).getName());
         holder.txtCompanyAddress.setText(companyList.get(position).getAddress());
     }
@@ -58,20 +62,23 @@ public class CompanyServicesAdapter extends RecyclerView.Adapter<CompanyServices
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView txtCompanyName, txtCompanyAddress;
+        private ImageView imgCompanyImage;
 
-        GeneralCleaningAdapter.OnClickMessageListener onClickMessageListener;
+        CompanyServicesAdapter.OnClickMessageListener onClickMessageListener;
 
-        public ViewHolder(@NonNull View itemView, GeneralCleaningAdapter.OnClickMessageListener onClickMessageListener) {
+        public ViewHolder(@NonNull View itemView, CompanyServicesAdapter.OnClickMessageListener onClickMessageListener) {
             super(itemView);
 
-            txtCompanyName = itemView.findViewById(R.id.txtCompanyName);
-            txtCompanyAddress = itemView.findViewById(R.id.txtCompanyAddress);
+            imgCompanyImage = itemView.findViewById(R.id.imgCompanyImage);
+            txtCompanyName = itemView.findViewById(R.id.tvCompanyName);
+            txtCompanyAddress = itemView.findViewById(R.id.tvCompanyAddress);
 
-            this.onClickMessageListener = (GeneralCleaningAdapter.OnClickMessageListener) onClickMessageListener;
+            this.onClickMessageListener = (CompanyServicesAdapter.OnClickMessageListener) onClickMessageListener;
 
             itemView.setOnClickListener(this);
 
         }
+
         @Override
         public void onClick(View v) {
             onClickMessageListener.onClickMessage(getAdapterPosition());

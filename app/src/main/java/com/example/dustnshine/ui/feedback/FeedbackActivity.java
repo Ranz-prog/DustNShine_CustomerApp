@@ -75,7 +75,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 if (reviewResponse == null){
                     AppConstants.alertMessage(1, R.drawable.ic_error_2, "Failed!", "Try Again", FeedbackActivity.this, NotificationActivity.class, "GONE");
                 } else {
-                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Successfully gave Feedback!", FeedbackActivity.this, NotificationActivity.class, "VISIBLE");
+                    AppConstants.alertMessage(1, R.drawable.check, "Success!", "Thank you, your response will help our company improved!", FeedbackActivity.this, NotificationActivity.class, "VISIBLE");
                 }
             }
         });

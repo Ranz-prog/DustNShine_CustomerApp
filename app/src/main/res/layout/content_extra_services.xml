@@ -35,7 +35,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Lorem ipsum lorem ipsum"
-                android:textColor="@color/app_theme_gold"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <RelativeLayout
@@ -59,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="5dp"
+                    android:textColor="@color/app_theme_gold"
                     android:layout_toRightOf="@+id/tvPrice"
                     android:textSize="15sp" />
             </RelativeLayout>

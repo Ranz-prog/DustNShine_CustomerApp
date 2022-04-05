@@ -100,7 +100,6 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
                     companyFullname = companyAndServicesModel.getName();
                     companyEmailAddress = companyAndServicesModel.getEmail();
                     companyTelephoneNumber = companyAndServicesModel.getTel_number();
-                    Log.d("D", companyFullname);
                 }
 
             }
@@ -110,47 +109,8 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
 
     @Override
     public void onClickMessage(int adapterPosition) {
-
         BookingServiceData bookingServiceData = bookingServiceDataList.get(adapterPosition);
         getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
-        dialogBuilder = new AlertDialog.Builder(getContext());
-        final View searchPopUp = getLayoutInflater().inflate(R.layout.pop_up_booking_details, null);
-
-        btnOkay = searchPopUp.findViewById(R.id.btnOkay);
-        companyName = searchPopUp.findViewById(R.id.tvCompanyName);
-        companyEmail = searchPopUp.findViewById(R.id.tvEmailAddress);
-        companyNumber = searchPopUp.findViewById(R.id.tvTelNum);
-        paymentStatus = searchPopUp.findViewById(R.id.tvPaymentStatus);
-        dateAndTime = searchPopUp.findViewById(R.id.tvSchedDateTime);
-        services = searchPopUp.findViewById(R.id.tvServices);
-        notes = searchPopUp.findViewById(R.id.tvNotes);
-        comment = searchPopUp.findViewById(R.id.tvComment);
-        comments = searchPopUp.findViewById(R.id.tvComments);
-        total = searchPopUp.findViewById(R.id.tvTotalCost);
-
-        comment.setVisibility(View.GONE);
-        comments.setVisibility(View.GONE);
-
-        Log.d("COMPANY", String.valueOf(companyFullname));
-
-        if (String.valueOf(companyFullname) == "null"){
-            getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
-        } else {
-            companyName.setText(String.valueOf(companyFullname));
-            companyEmail.setText(String.valueOf(companyEmailAddress));
-            companyNumber.setText(String.valueOf(companyTelephoneNumber));
-        }
-
-        paymentStatus.setText("Not yet paid");
-        dateAndTime.setText(bookingServiceData.getSched_datetime());
-        services.setText(bookingServiceData.getServices().toString().replaceAll("(^\\[|\\]$)", ""));
-        notes.setText(bookingServiceData.getNote());
-        total.setText("₱ " + String.valueOf(bookingServiceData.getTotal()));
-
-        btnOkay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -171,8 +131,6 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
 
                 comment.setText("");
                 comments.setText("");
-
-                Log.d("D", String.valueOf(companyFullname));
 
                 if (String.valueOf(companyFullname) == "null"){
                     getSpecificCompany(bookingServiceData.getCompany_id(), userToken);
@@ -199,9 +157,7 @@ public class BookingFragment extends Fragment implements BookingAdapter.OnClickM
                 dialog = dialogBuilder.create();
                 dialog.show();
             }
-        }, 150);   //5 seconds
-
-
+        }, 500);
 
     }
 

@@ -251,7 +251,7 @@
         android:background="@color/app_theme_blue"
         android:fontFamily="@font/montserrat_regular"
         android:stateListAnimator="@null"
-        android:text="@string/okay"
+        android:text="@string/close"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="15sp"

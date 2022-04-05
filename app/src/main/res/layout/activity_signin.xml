@@ -99,10 +99,10 @@
                 android:id="@+id/passTF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:layout_below="@+id/userTF"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                app:passwordToggleDrawable="@drawable/custom_eye"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -117,9 +117,9 @@
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:maxLength="50"
+                    android:maxLines="1"
                     android:paddingBottom="10dp"
-                    android:textSize="14sp"
-                    android:maxLines="1"/>
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView

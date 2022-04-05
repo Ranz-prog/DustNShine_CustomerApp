@@ -25,9 +25,6 @@
             android:name=".ui.featured_services.FeaturedServicesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.general_cleaning.GeneralCleaningActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.MessageBox"
             android:exported="false" />
         <activity

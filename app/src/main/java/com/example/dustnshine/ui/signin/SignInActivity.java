@@ -182,7 +182,7 @@ public class SignInActivity extends AppCompatActivity {
                 if (etEmailSearch.getText().toString().isEmpty()) {
                     etEmailSearch.setError("Please input your email");
                     etEmailSearch.requestFocus();
-                }  else {
+                } else {
                     forgotPassword(etEmailSearch.getText().toString());
                     email = etEmailSearch.getText().toString();
                 }

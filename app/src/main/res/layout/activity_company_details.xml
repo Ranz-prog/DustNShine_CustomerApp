@@ -18,15 +18,14 @@
                 android:id="@+id/imgCompanyImage"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 android:src="@drawable/company1" />
-
 
             <ImageView
                 android:id="@+id/btnBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/back" />
@@ -35,26 +34,16 @@
                 android:id="@+id/message"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@id/heart"
-                app:srcCompat="@drawable/message" />
-
-            <ImageView
-                android:id="@+id/heart"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                app:srcCompat="@drawable/heart_red" />
+                android:layout_marginEnd="40dp" />
 
             <TextView
                 android:id="@+id/tvCompanyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btnBack"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="120dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="companyname"
@@ -66,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvCompanyName"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/roboto_regular"
                 android:text="companyAddress"
                 android:textColor="@color/white"
@@ -151,7 +140,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/companyEmail"
+                            android:layout_toEndOf="@+id/companyEmail"
                             android:textSize="15sp" />
 
                     </RelativeLayout>
@@ -176,7 +165,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/companyMobile"
+                            android:layout_toEndOf="@+id/companyMobile"
                             android:textSize="15sp" />
 
                     </RelativeLayout>
@@ -201,7 +190,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/companyTelephone"
+                            android:layout_toEndOf="@+id/companyTelephone"
                             android:textSize="15sp" />
 
                     </RelativeLayout>

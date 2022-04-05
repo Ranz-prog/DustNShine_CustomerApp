@@ -33,7 +33,6 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/back" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -41,7 +40,7 @@
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:paddingTop="10dp"
-                    android:text="@string/reg"
+                    android:text="@string/createaccount"
                     android:textColor="@color/app_theme_gold"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -155,6 +154,7 @@
                 android:layout_height="wrap_content"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                app:passwordToggleDrawable="@drawable/custom_eye"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -178,6 +178,7 @@
                 android:layout_height="wrap_content"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                app:passwordToggleDrawable="@drawable/custom_eye"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText

@@ -11,9 +11,10 @@
     <string name="mobilenumber">Mobile Number</string>
     <string name="dustnshine">Dust n\' Shine</string>
     <string name="newuser">New User? </string>
-    <string name="createaccount"> Create an account</string>
+    <string name="createaccount"> Create account</string>
     <string name="keepsignedin">Keep me signed in</string>
     <string name="okay">OK</string>
+    <string name="close">CLOSE</string>
 
     <!--Sign Up-->
     <string name="signup">Sign Up</string>
@@ -66,6 +67,7 @@
     <string name="servicename">Services:</string>
     <string name="notes">Notes:</string>
     <string name="pesosign">₱</string>
+    <string name="cash">Cash</string>
 
     <!--Feedback-->
     <string name="feedbakcdescription">Your feedback matters. Write down your experience or what we can improve in our service.</string>
@@ -112,6 +114,7 @@
     <string name="payment">Payment:</string>
     <string name="comment">Comment:</string>
     <string name="paymentacknowledge">Payment Acknowledge</string>
+    <string name="bookedservices">Booked Services</string>
 
     <!--Date and Time-->
     <string name="eightam">8:00 AM</string>
@@ -130,6 +133,7 @@
 
     <!--Services-->
     <string name="somethingwentwrong">Oops... Something went wrong</string>
+    <string name="nocompanies">No companies are providing this service at the moment</string>
 
 
 
