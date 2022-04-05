@@ -129,7 +129,7 @@ public class HomeFragment extends Fragment implements RecommendationAdapter.OnCl
                     fragmentHomeBinding.tvAddress.setText("");
                 } else {
                     fragmentHomeBinding.tvCityMunicipality.setText(userManagementResponse.getData().get(0).getAddress().getMunicipality());
-                    fragmentHomeBinding.tvAddress.setText(userManagementResponse.getData().get(0).getAddress().getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().getStreet() + ", "+ userManagementResponse.getData().get(0).getAddress().getBarangay() + ", " + userManagementResponse.getData().get(0).getAddress().getMunicipality());
+                    fragmentHomeBinding.tvAddress.setText("#" + userManagementResponse.getData().get(0).getAddress().getHouse_number() + " " + userManagementResponse.getData().get(0).getAddress().getStreet() + ", "+ userManagementResponse.getData().get(0).getAddress().getBarangay() + ", " + userManagementResponse.getData().get(0).getAddress().getMunicipality());
                 }
             }
         });
