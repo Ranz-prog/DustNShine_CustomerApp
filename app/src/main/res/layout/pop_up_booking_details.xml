@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="380dp"
+    android:layout_height="420dp"
     android:layout_margin="20dp"
     android:layout_gravity="center"
     android:background="@color/background">
@@ -37,7 +37,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular" />
+        android:fontFamily="@font/roboto_regular"
+        android:textAlignment="viewEnd" />
 
     <TextView
         android:id="@+id/tvEmail"
@@ -57,7 +58,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular"/>
+        android:fontFamily="@font/roboto_regular"
+        android:textAlignment="viewEnd" />
 
     <TextView
         android:id="@+id/tvTel"
@@ -77,16 +79,17 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular" />
+        android:fontFamily="@font/roboto_regular"
+        android:textAlignment="viewEnd" />
 
     <View
         android:id="@+id/line"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="1dp"
         android:layout_below="@+id/tvTelNum"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
-        android:background="@android:color/black" />
+        android:background="@color/line_divider_color" />
 
     <TextView
         android:id="@+id/tvPayment"
@@ -106,7 +109,11 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular" />
+        android:fontFamily="@font/roboto_regular"
+        android:maxLength="30"
+        android:maxLines="3"
+        android:singleLine="false"
+        android:textAlignment="viewEnd" />
 
     <TextView
         android:id="@+id/tvSched"
@@ -126,7 +133,11 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular" />
+        android:fontFamily="@font/roboto_regular"
+        android:maxLength="30"
+        android:maxLines="3"
+        android:singleLine="false"
+        android:textAlignment="viewEnd" />
 
     <TextView
         android:id="@+id/tvService"
@@ -147,7 +158,10 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular" />
+        android:fontFamily="@font/roboto_regular"
+        android:maxLength="30"
+        android:maxLines="3"
+        android:textAlignment="viewEnd" />
 
     <TextView
         android:id="@+id/tvNote"
@@ -167,7 +181,9 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular" />
+        android:fontFamily="@font/roboto_regular"
+        android:maxLength="30"
+        android:textAlignment="viewEnd" />
 
     <TextView
         android:id="@+id/tvComment"
@@ -187,7 +203,11 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular" />
+        android:fontFamily="@font/roboto_regular"
+        android:maxLength="30"
+        android:maxLines="3"
+        android:singleLine="false"
+        android:textAlignment="viewEnd" />
 
     <TextView
         android:id="@+id/tvTotal"
@@ -207,23 +227,27 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_regular" />
+        android:fontFamily="@font/roboto_regular"
+        android:maxLength="30"
+        android:maxLines="3"
+        android:singleLine="false"
+        android:textAlignment="viewEnd" />
 
     <View
         android:id="@+id/secline"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="1dp"
         android:layout_below="@+id/tvTotal"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
-        android:background="@android:color/black" />
+        android:background="@color/line_divider_color" />
 
     <Button
         android:id="@+id/btnOkay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/secline"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tvTotal"
+        android:layout_marginTop="50dp"
         android:background="@color/app_theme_blue"
         android:fontFamily="@font/montserrat_regular"
         android:stateListAnimator="@null"
