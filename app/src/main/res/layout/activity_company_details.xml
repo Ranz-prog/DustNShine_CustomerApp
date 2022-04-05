@@ -38,28 +38,33 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="40dp" />
 
-            <TextView
-                android:id="@+id/tvCompanyName"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btnBack"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="120dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="companyname"
-                android:textColor="@color/app_theme_blue"
-                android:textSize="20sp" />
+                android:layout_marginTop="150dp"
+                android:background="@drawable/rating_border_3"
+                android:padding="10dp">
 
-            <TextView
-                android:id="@+id/tvCompanyAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvCompanyName"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="companyAddress"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/tvCompanyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="companyname"
+                    android:textColor="@color/app_theme_gold"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvCompanyAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvCompanyName"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="companyAddress"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="60dp"
