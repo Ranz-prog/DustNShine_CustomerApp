@@ -21,22 +21,9 @@
             android:src="@drawable/user" />
 
         <TextView
-            android:id="@+id/tvBookingDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:layout_toEndOf="@+id/clientImage"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="@string/bookingdetails"
-            android:textColor="@color/app_theme_blue"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/tvServices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvBookingDetails"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/clientImage"
             android:fontFamily="@font/roboto_medium"
@@ -47,7 +34,6 @@
             android:id="@+id/tvServicesName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvBookingDetails"
             android:layout_marginStart="9dp"
             android:layout_marginTop="-1dp"
             android:layout_toEndOf="@+id/tvServices"
