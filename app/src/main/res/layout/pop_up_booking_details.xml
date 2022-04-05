@@ -161,7 +161,7 @@
         android:fontFamily="@font/roboto_regular"
         android:maxLength="30"
         android:maxLines="3"
-        android:textAlignment="viewEnd" />
+        />
 
     <TextView
         android:id="@+id/tvNote"
